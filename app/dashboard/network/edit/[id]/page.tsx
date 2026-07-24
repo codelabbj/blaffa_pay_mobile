@@ -14,6 +14,7 @@ import { ErrorDisplay, extractErrorMessages } from "@/components/ui/error-displa
 import { ArrowLeft, Save, Loader2, Globe, Settings } from "lucide-react"
 import { getApiBaseUrl } from "@/lib/env-config"
 
+
 const baseUrl = getApiBaseUrl()
 
 // Colors for consistent theming - using logo colors

@@ -13,6 +13,7 @@ import Link from "next/link"
 import { useRouter, useParams } from "next/navigation"
 import { getApiBaseUrl } from "@/lib/env-config"
 
+
 // Colors for consistent theming - using logo colors
 const COLORS = {
   primary: '#FF6B35', // Orange (primary from logo)

@@ -37,6 +37,7 @@ import { fr, enUS } from "date-fns/locale"
 import { cn } from "@/lib/utils"
 import { getApiBaseUrl } from "@/lib/env-config"
 
+
 export default function DeviceAuthorizationDetailPage() {
     const { id } = useParams()
     const { t, language } = useLanguage()

@@ -14,6 +14,7 @@ import { Settings, ArrowLeft, Save, Loader2, Globe, MessageSquare, AlertTriangle
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { getApiBaseUrl } from "@/lib/env-config"
 
+
 const baseUrl = getApiBaseUrl()
 
 // Colors for consistent theming

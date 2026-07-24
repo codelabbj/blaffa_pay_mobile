@@ -13,6 +13,7 @@ import { ErrorDisplay, extractErrorMessages } from "@/components/ui/error-displa
 import { Copy, ArrowLeft, Save, RefreshCw, FileText, Phone, User, Calendar, DollarSign, Network, CheckCircle, XCircle, Clock, AlertTriangle } from "lucide-react"
 import { getApiBaseUrl } from "@/lib/env-config"
 
+
 // Colors for consistent theming
 const COLORS = {
   primary: '#3B82F6',

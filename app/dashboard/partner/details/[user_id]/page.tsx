@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { getApiBaseUrl } from "@/lib/env-config"
 
+
 // Colors for consistent theming
 const COLORS = {
   primary: '#3B82F6',

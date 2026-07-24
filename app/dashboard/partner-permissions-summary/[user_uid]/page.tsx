@@ -13,6 +13,7 @@ import Link from "next/link"
 import { useRouter, useParams } from "next/navigation"
 import { getApiBaseUrl } from "@/lib/env-config"
 
+
 interface Partner {
   success: boolean;
   user_info: {

@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { DateRangeFilter } from "@/components/ui/date-range-filter";
 import { getApiBaseUrl } from "@/lib/env-config"
 
+
 // Colors for consistent theming - using logo colors
 const COLORS = {
   primary: '#FF6B35', // Orange (primary from logo)

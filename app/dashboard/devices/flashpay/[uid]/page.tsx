@@ -44,6 +44,7 @@ import { useApi } from "@/lib/useApi"
 import { useToast } from "@/hooks/use-toast"
 import { extractErrorMessages } from "@/components/ui/error-display"
 import { cn } from "@/lib/utils"
+
 export default function FlashPayDeviceEditPage() {
   const { uid } = useParams<{ uid: string }>()
   const apiFetch = useApi()

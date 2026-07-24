@@ -9,8 +9,9 @@ import { useToast } from "@/hooks/use-toast";
 import { useApi } from "@/lib/useApi";
 import { ErrorDisplay, extractErrorMessages } from "@/components/ui/error-display";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
-import { ArrowLeft, DollarSign, User, Mail, Calendar, Clock, FileText, CheckCircle, XCircle, Loader2, Eye } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { ArrowLeft, DollarSign, User, Mail, Calendar, Clock, FileText, CheckCircle, XCircle, Loader2, Eye } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+
 
 // Colors for consistent theming
 const COLORS = {

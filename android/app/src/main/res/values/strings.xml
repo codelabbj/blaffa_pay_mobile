@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Blaffa Pay</string>
+    <string name="title_activity_main">Blaffa Pay</string>
+    <string name="package_name">com.blaffapay.codelab</string>
+    <string name="custom_url_scheme">com.blaffapay.codelab</string>
+</resources>

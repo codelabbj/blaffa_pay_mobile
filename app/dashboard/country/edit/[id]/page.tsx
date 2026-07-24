@@ -13,6 +13,7 @@ import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { getApiBaseUrl } from "@/lib/env-config"
 
+
 const baseUrl = getApiBaseUrl()
 
 // Colors for consistent theming - using logo colors

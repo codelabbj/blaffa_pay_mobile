@@ -12,6 +12,7 @@ import { ErrorDisplay, extractErrorMessages } from "@/components/ui/error-displa
 import { useRouter, useParams } from "next/navigation"
 import { getApiBaseUrl } from "@/lib/env-config"
 
+
 export default function UserPlatformsPage() {
   const [userPlatformsData, setUserPlatformsData] = useState<any | null>(null)
   const [userPlatformsLoading, setUserPlatformsLoading] = useState(false)

@@ -18,6 +18,7 @@ import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { getApiBaseUrl } from "@/lib/env-config"
 
+
 // Colors for consistent theming - using logo colors
 const COLORS = {
   primary: '#FF6B35', // Orange (primary from logo)
