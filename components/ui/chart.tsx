@@ -52,7 +52,7 @@ const ChartContainer = React.forwardRef<
         data-chart={chartId}
         ref={ref}
         className={cn(
-          "flex aspect-video justify-center text-xs rounded-lg border border-gray-200/50 bg-white/50 backdrop-blur-sm p-4 shadow-sm [&_.recharts-cartesian-axis-tick_text]:fill-gray-600 dark:fill-gray-400 [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-gray-200/50 dark:stroke-gray-700/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-gray-300 dark:stroke-gray-600 [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-none [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-gray-200/50 dark:stroke-gray-700/50 [&_.recharts-radial-bar-background-sector]:fill-gray-100 dark:fill-gray-800 [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-gray-100 dark:fill-gray-800 [&_.recharts-reference-line_[stroke='#ccc']]:stroke-gray-200/50 dark:stroke-gray-700/50 [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-sector]:outline-none [&_.recharts-surface]:outline-none dark:border-gray-700/50 dark:bg-gray-800/50",
+          "flex aspect-video justify-center text-xs rounded-lg border border-stroke/50 bg-white/50 backdrop-blur-sm p-4 shadow-sm [&_.recharts-cartesian-axis-tick_text]:fill-gray-600 dark:fill-gray-400 [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-gray-200/50 dark:stroke-gray-700/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-gray-300 dark:stroke-gray-600 [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-none [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-gray-200/50 dark:stroke-gray-700/50 [&_.recharts-radial-bar-background-sector]:fill-gray-100 dark:fill-gray-800 [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-gray-100 dark:fill-gray-800 [&_.recharts-reference-line_[stroke='#ccc']]:stroke-gray-200/50 dark:stroke-gray-700/50 [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-sector]:outline-none [&_.recharts-surface]:outline-none dark:border-strokedark/50 dark:bg-boxdark/50",
           className
         )}
         {...props}
@@ -179,7 +179,7 @@ const ChartTooltipContent = React.forwardRef<
       <div
         ref={ref}
         className={cn(
-          "grid min-w-[8rem] items-start gap-2 rounded-lg border-2 border-gray-200/50 bg-white/95 backdrop-blur-md px-3 py-2 text-xs shadow-xl dark:border-gray-700/50 dark:bg-gray-800/95",
+          "grid min-w-[8rem] items-start gap-2 rounded-lg border-2 border-stroke/50 bg-white/95 backdrop-blur-md px-3 py-2 text-xs shadow-xl dark:border-strokedark/50 dark:bg-boxdark/95",
           className
         )}
       >
@@ -194,7 +194,7 @@ const ChartTooltipContent = React.forwardRef<
               <div
                 key={item.dataKey}
                 className={cn(
-                  "flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-gray-500 dark:text-gray-400",
+                  "flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-body dark:text-bodydark2",
                   indicator === "dot" && "items-center"
                 )}
               >
@@ -234,7 +234,7 @@ const ChartTooltipContent = React.forwardRef<
                     >
                       <div className="grid gap-2">
                         {nestLabel ? tooltipLabel : null}
-                        <span className="text-gray-600 dark:text-gray-400">
+                        <span className="text-body dark:text-bodydark2">
                           <span>{itemConfig?.label || item.name}</span>
                         </span>
                       </div>
@@ -293,20 +293,20 @@ const ChartLegendContent = React.forwardRef<
             <div
               key={item.value}
               className={cn(
-                "flex items-center gap-2 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:text-gray-500 dark:text-gray-400"
+                "flex items-center gap-2 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:text-body dark:text-bodydark2"
               )}
             >
               {itemConfig?.icon && !hideIcon ? (
                 <itemConfig.icon />
               ) : (
                 <div
-                  className="h-3 w-3 shrink-0 rounded-md border border-gray-200 dark:border-gray-600 shadow-sm"
+                  className="h-3 w-3 shrink-0 rounded-md border border-stroke dark:border-strokedark shadow-sm"
                   style={{
                     backgroundColor: item.color,
                   }}
                 />
               )}
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <span className="text-sm font-medium text-gray-700 dark:text-bodydark">
                 <span>{itemConfig?.label}</span>
               </span>
             </div>

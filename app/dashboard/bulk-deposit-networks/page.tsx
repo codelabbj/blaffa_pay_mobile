@@ -212,21 +212,21 @@ export default function BulkDepositNetworksPage() {
     const totalPages = Math.ceil(totalCount / itemsPerPage)
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+            <div className="w-full">
                 {/* Header */}
-                <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="mb-4 sm:mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
-                        <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+                        <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
                             Autorisation Dépôts en Masse
                         </h1>
-                        <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+                        <p className="text-body dark:text-bodydark mt-2 text-lg">
                             Gérer les autorisations des utilisateurs pour les dépôts en masse par réseau
                         </p>
                     </div>
                     <Button
                         onClick={() => setIsCreateModalOpen(true)}
-                        className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg transition-all duration-200"
+                        className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white shadow-lg transition-all duration-200"
                     >
                         <Plus className="mr-2 h-5 w-5" />
                         Nouvelle Autorisation
@@ -234,29 +234,29 @@ export default function BulkDepositNetworksPage() {
                 </div>
 
                 {/* Filters */}
-                <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-                    <CardContent className="p-6">
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+                    <CardContent className="p-3 sm:p-4 md:p-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
                             <div className="relative">
-                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-bodydark2" />
                                 <Input
                                     placeholder="ID Utilisateur..."
                                     value={userFilter}
                                     onChange={(e) => setUserFilter(e.target.value)}
-                                    className="pl-10 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                                    className="pl-10 dark:bg-meta-4 border-stroke dark:border-strokedark"
                                 />
                             </div>
                             <div className="relative">
-                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-bodydark2" />
                                 <Input
                                     placeholder="ID Réseau..."
                                     value={networkFilter}
                                     onChange={(e) => setNetworkFilter(e.target.value)}
-                                    className="pl-10 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                                    className="pl-10 dark:bg-meta-4 border-stroke dark:border-strokedark"
                                 />
                             </div>
                             <Select value={isActiveFilter} onValueChange={setIsActiveFilter}>
-                                <SelectTrigger className="dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                                <SelectTrigger className="dark:bg-meta-4 border-stroke dark:border-strokedark">
                                     <SelectValue placeholder="Filtrer par statut" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -282,33 +282,33 @@ export default function BulkDepositNetworksPage() {
                 </Card>
 
                 {/* Table */}
-                <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg overflow-hidden">
-                    <CardHeader className="border-b border-gray-100 dark:border-gray-700 flex flex-row items-center justify-between">
+                <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark overflow-hidden">
+                    <CardHeader className="border-b border-gray-100 dark:border-strokedark flex flex-row items-center justify-between">
                         <CardTitle className="text-xl font-semibold flex items-center gap-2">
-                            <div className="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
-                                <User className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+                            <div className="p-2 bg-meta-2 dark:bg-orange-900/30 rounded-lg">
+                                <User className="h-5 w-5 text-primary dark:text-primary" />
                             </div>
                             Liste des autorisations
                         </CardTitle>
-                        <Badge variant="outline" className="text-gray-500">
+                        <Badge variant="outline" className="text-body">
                             {totalCount} total
                         </Badge>
                     </CardHeader>
                     <CardContent className="p-0">
                         {loading ? (
                             <div className="flex flex-col items-center justify-center py-20">
-                                <Loader2 className="h-10 w-10 text-orange-500 animate-spin mb-4" />
-                                <p className="text-gray-500">Chargement des données...</p>
+                                <Loader2 className="h-10 w-10 text-primary animate-spin mb-4" />
+                                <p className="text-body">Chargement des données...</p>
                             </div>
                         ) : data.length === 0 ? (
                             <div className="py-20 text-center">
-                                <p className="text-gray-500 text-lg">Aucune autorisation trouvée</p>
+                                <p className="text-body text-lg">Aucune autorisation trouvée</p>
                             </div>
                         ) : (
                             <div className="overflow-x-auto">
                                 <Table>
                                     <TableHeader>
-                                        <TableRow className="bg-gray-50/50 dark:bg-gray-900/50">
+                                        <TableRow className="bg-gray-50/50 dark:bg-boxdark-2/50">
                                             <TableHead>Utilisateur</TableHead>
                                             <TableHead>Réseau</TableHead>
                                             <TableHead>Statut</TableHead>
@@ -318,13 +318,13 @@ export default function BulkDepositNetworksPage() {
                                     </TableHeader>
                                     <TableBody>
                                         {data.map((item) => (
-                                            <TableRow key={item.uid} className="hover:bg-gray-50/50 dark:hover:bg-gray-900/40 transition-colors">
-                                                <TableCell>
+                                            <TableRow key={item.uid} className="hover:bg-gray-50/50 dark:hover:bg-boxdark-2/40 transition-colors">
+                                                <TableCell data-label="Utilisateur">
                                                     <div className="flex flex-col">
                                                         <span className="font-semibold text-gray-900 dark:text-gray-100">
                                                             {item.user_phone}
                                                         </span>
-                                                        <span className="text-xs text-gray-500 font-mono">
+                                                        <span className="text-xs text-body font-mono">
                                                             {item.user}
                                                         </span>
                                                         {item.user_email && (
@@ -334,13 +334,13 @@ export default function BulkDepositNetworksPage() {
                                                         )}
                                                     </div>
                                                 </TableCell>
-                                                <TableCell>
+                                                <TableCell data-label="Réseau">
                                                     <div className="flex flex-col">
                                                         <span className="font-medium">{item.network_name}</span>
-                                                        <span className="text-xs text-gray-500 font-mono">{item.network}</span>
+                                                        <span className="text-xs text-body font-mono">{item.network}</span>
                                                     </div>
                                                 </TableCell>
-                                                <TableCell>
+                                                <TableCell data-label="Statut">
                                                     <Badge
                                                         className={
                                                             item.is_active
@@ -351,29 +351,22 @@ export default function BulkDepositNetworksPage() {
                                                         {item.is_active ? "Actif" : "Inactif"}
                                                     </Badge>
                                                 </TableCell>
-                                                <TableCell className="text-gray-500 text-sm">
+                                                <TableCell className="text-body text-sm" data-label="Date création">
                                                     {new Date(item.created_at).toLocaleDateString()}
                                                 </TableCell>
-                                                <TableCell className="text-right">
-                                                    <DropdownMenu>
-                                                        <DropdownMenuTrigger asChild>
-                                                            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                                                                <MoreHorizontal className="h-4 w-4" />
-                                                            </Button>
-                                                        </DropdownMenuTrigger>
-                                                        <DropdownMenuContent align="end">
-                                                            <DropdownMenuItem
-                                                                onClick={() => handleToggleStatus(item.uid, item.is_active)}
-                                                                className={item.is_active ? "text-red-600" : "text-green-600"}
-                                                            >
-                                                                {item.is_active ? (
-                                                                    <><XCircle className="mr-2 h-4 w-4" /> Désactiver</>
-                                                                ) : (
-                                                                    <><CheckCircle className="mr-2 h-4 w-4" /> Activer</>
-                                                                )}
-                                                            </DropdownMenuItem>
-                                                        </DropdownMenuContent>
-                                                    </DropdownMenu>
+                                                <TableCell className="text-right" data-label="Actions">
+                                                    <div className="flex flex-wrap gap-1.5 justify-end">
+                                                        <button
+                                                            onClick={() => handleToggleStatus(item.uid, item.is_active)}
+                                                            className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-opacity-90 ${item.is_active ? "bg-danger" : "bg-meta-3"}`}
+                                                        >
+                                                            {item.is_active ? (
+                                                                <><XCircle className="h-3.5 w-3.5 flex-shrink-0" />Désactiver</>
+                                                            ) : (
+                                                                <><CheckCircle className="h-3.5 w-3.5 flex-shrink-0" />Activer</>
+                                                            )}
+                                                        </button>
+                                                    </div>
                                                 </TableCell>
                                             </TableRow>
                                         ))}
@@ -414,11 +407,11 @@ export default function BulkDepositNetworksPage() {
             <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
                 <DialogContent className="sm:max-w-[500px]">
                     <DialogHeader>
-                        <DialogTitle className="text-2xl font-bold text-orange-600">
+                        <DialogTitle className="text-lg font-bold sm:text-xl text-primary">
                             Nouvelle Autorisation
                         </DialogTitle>
                     </DialogHeader>
-                    <div className="grid gap-6 py-4">
+                    <div className="grid gap-3 sm:p-4 md:p-6 py-4">
                         <div className="grid gap-2">
                             <Label htmlFor="author-user">Utilisateur</Label>
                             <Popover open={userDropdownOpen} onOpenChange={setUserDropdownOpen}>
@@ -427,7 +420,7 @@ export default function BulkDepositNetworksPage() {
                                         variant="outline"
                                         role="combobox"
                                         aria-expanded={userDropdownOpen}
-                                        className="w-full justify-between font-normal dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                                        className="w-full justify-between font-normal dark:bg-meta-4 border-stroke dark:border-strokedark"
                                     >
                                         {selectedUser
                                             ? users.find((u) => u.uid === selectedUser)?.display_name || users.find((u) => u.uid === selectedUser)?.phone || selectedUser
@@ -479,7 +472,7 @@ export default function BulkDepositNetworksPage() {
                                         variant="outline"
                                         role="combobox"
                                         aria-expanded={networkDropdownOpen}
-                                        className="w-full justify-between font-normal dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                                        className="w-full justify-between font-normal dark:bg-meta-4 border-stroke dark:border-strokedark"
                                     >
                                         {selectedNetwork
                                             ? networks.find((n) => n.uid === selectedNetwork)?.name || selectedNetwork
@@ -525,7 +518,7 @@ export default function BulkDepositNetworksPage() {
                         <Button
                             onClick={handleCreate}
                             disabled={createLoading || !selectedUser || !selectedNetwork}
-                            className="bg-orange-500 hover:bg-orange-600 text-white"
+                            className="bg-primary hover:bg-primary text-white"
                         >
                             {createLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                             Créer l'autorisation

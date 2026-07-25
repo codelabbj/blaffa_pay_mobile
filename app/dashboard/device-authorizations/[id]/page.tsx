@@ -103,7 +103,7 @@ export default function DeviceAuthorizationDetailPage() {
     if (loading) {
         return (
             <div className="flex flex-col items-center justify-center min-h-screen space-y-4">
-                <Loader2 className="h-12 w-12 text-orange-600 animate-spin" />
+                <Loader2 className="h-12 w-12 text-primary animate-spin" />
                 <p className="text-slate-500 animate-pulse">{t("common.loading")}</p>
             </div>
         )
@@ -115,7 +115,7 @@ export default function DeviceAuthorizationDetailPage() {
                 <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-full">
                     <ShieldCheck className="h-12 w-12 text-red-600" />
                 </div>
-                <h2 className="text-2xl font-bold">{t("common.errorOccurred")}</h2>
+                <h2 className="text-lg font-bold sm:text-xl">{t("common.errorOccurred")}</h2>
                 <Button onClick={() => router.back()}>{t("common.previous")}</Button>
             </div>
         )
@@ -124,7 +124,7 @@ export default function DeviceAuthorizationDetailPage() {
     const isChanged = notes !== data.notes || isActive !== data.is_active
 
     return (
-        <div className="min-h-screen bg-slate-50/50 dark:bg-slate-950/50 p-4 md:p-8">
+        <div className="min-h-screen bg-slate-50/50 dark:bg-slate-950/50 p-4 md:p-3 sm:p-5 md:p-8">
             <div className="max-w-4xl mx-auto space-y-6">
                 {/* Breadcrumb/Back */}
                 <Button
@@ -158,20 +158,20 @@ export default function DeviceAuthorizationDetailPage() {
                     </Badge>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:p-4 md:p-6">
                     {/* Main Content */}
                     <div className="md:col-span-2 space-y-6">
                         <Card className="border-none shadow-sm bg-white dark:bg-slate-900 overflow-hidden">
                             <CardHeader className="border-b border-slate-50 dark:border-slate-800">
                                 <CardTitle className="text-xl flex items-center gap-2">
-                                    <Pencil className="h-5 w-5 text-orange-600" />
+                                    <Pencil className="h-5 w-5 text-primary" />
                                     {t("deviceAuthorizations.edit")}
                                 </CardTitle>
                                 <CardDescription>
                                     Modify notes and status transition
                                 </CardDescription>
                             </CardHeader>
-                            <CardContent className="p-6 space-y-6">
+                            <CardContent className="p-3 sm:p-4 md:p-6 space-y-6">
                                 <div className="space-y-2">
                                     <Label htmlFor="notes" className="text-xs font-bold uppercase tracking-wider text-slate-500">
                                         {t("deviceAuthorizations.notes")}
@@ -181,11 +181,11 @@ export default function DeviceAuthorizationDetailPage() {
                                         value={notes}
                                         onChange={(e) => setNotes(e.target.value)}
                                         placeholder="Enter notes..."
-                                        className="h-12 bg-slate-50/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-800 focus-visible:ring-orange-500/20"
+                                        className="h-12 bg-slate-50/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-800 focus-visible:ring-primary/20"
                                     />
                                 </div>
 
-                                <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800">
+                                <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800">
                                     <div className="space-y-0.5">
                                         <Label className="text-base font-semibold">{t("deviceAuthorizations.isActive")}</Label>
                                         <p className="text-sm text-slate-500 italic">
@@ -195,11 +195,11 @@ export default function DeviceAuthorizationDetailPage() {
                                     <Switch
                                         checked={isActive}
                                         onCheckedChange={setIsActive}
-                                        className="data-[state=checked]:bg-orange-600"
+                                        className="data-[state=checked]:bg-primary"
                                     />
                                 </div>
                             </CardContent>
-                            <CardFooter className="bg-slate-50/50 dark:bg-slate-800/30 border-t border-slate-100 dark:border-slate-800 p-6 flex justify-end gap-3">
+                            <CardFooter className="bg-slate-50/50 dark:bg-slate-800/30 border-t border-slate-100 dark:border-slate-800 p-3 sm:p-4 md:p-6 flex justify-end gap-3">
                                 <Button
                                     variant="outline"
                                     disabled={saving || !isChanged}
@@ -214,7 +214,7 @@ export default function DeviceAuthorizationDetailPage() {
                                 <Button
                                     onClick={handleUpdate}
                                     disabled={saving || !isChanged}
-                                    className="bg-orange-600 hover:bg-orange-700 text-white min-w-[140px] shadow-lg shadow-orange-600/20"
+                                    className="bg-primary hover:bg-opacity-90 text-white min-w-[140px] shadow-lg shadow-orange-600/20"
                                 >
                                     {saving ? (
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -251,7 +251,7 @@ export default function DeviceAuthorizationDetailPage() {
                     {/* Sidebar Info */}
                     <div className="space-y-6">
                         <Card className="border-none shadow-sm bg-white dark:bg-slate-900 overflow-hidden">
-                            <div className="h-2 bg-orange-600" />
+                            <div className="h-2 bg-primary" />
                             <CardHeader>
                                 <CardTitle className="text-sm font-bold uppercase tracking-widest text-slate-500">
                                     Information
@@ -284,9 +284,9 @@ export default function DeviceAuthorizationDetailPage() {
                             </CardContent>
                         </Card>
 
-                        <Card className="border-none shadow-sm bg-white dark:bg-slate-900 p-6 text-center space-y-4">
+                        <Card className="border-none shadow-sm bg-white dark:bg-slate-900 p-3 sm:p-4 md:p-6 text-center space-y-4">
                             <div className="mx-auto w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center">
-                                <ShieldCheck className="h-8 w-8 text-orange-600" />
+                                <ShieldCheck className="h-8 w-8 text-primary" />
                             </div>
                             <div className="space-y-1">
                                 <h3 className="font-bold text-slate-900 dark:text-white">Secure Authorization</h3>

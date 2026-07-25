@@ -105,19 +105,19 @@ import {
 function StatusDot({ device }: { device: PaymentDevice }) {
   if (device.is_paused) {
     return (
-      <span className="inline-flex items-center gap-1 text-orange-600 dark:text-orange-400 text-xs font-medium">
+      <span className="inline-flex items-center gap-1 text-primary dark:text-primary text-xs font-medium">
         ⏸ Pause
       </span>
     )
   }
   if (isDeviceEffectivelyOnline(device)) {
     return (
-      <span className="inline-flex items-center gap-1.5 text-green-600 dark:text-green-400 text-xs font-medium">
-        <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" /> En ligne
+      <span className="inline-flex items-center gap-1.5 text-meta-3 dark:text-green-400 text-xs font-medium">
+        <span className="h-2 w-2 rounded-full bg-meta-3 animate-pulse" /> En ligne
       </span>
     )
   }
-  return <span className="inline-flex items-center gap-1 text-slate-400 dark:text-gray-500 text-xs">○ Hors ligne</span>
+  return <span className="inline-flex items-center gap-1 text-slate-400 dark:text-body text-xs">○ Hors ligne</span>
 }
 
 function SortableHead({
@@ -358,7 +358,7 @@ export default function FlashPayDevicesPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
           {(
             [
               ["all", "Total", kpis.total],
@@ -373,7 +373,7 @@ export default function FlashPayDevicesPage() {
               onClick={() => setFilters((prev) => filtersFromKpi(key, prev))}
               className={flashpayTheme.kpiCard(kpiFilter === key)}
             >
-              <p className="text-2xl font-bold text-[#0B2545] dark:text-gray-100">{value}</p>
+              <p className="text-lg font-bold sm:text-xl text-[#0B2545] dark:text-gray-100">{value}</p>
               <p className={flashpayTheme.muted}>{label}</p>
             </button>
           ))}
@@ -383,9 +383,9 @@ export default function FlashPayDevicesPage() {
           <CardContent className="p-4 space-y-3">
             <div className="flex flex-col sm:flex-row gap-3">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 dark:text-gray-500" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 dark:text-body" />
                 <Input
-                  className="pl-9 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                  className="pl-9 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                   placeholder="Rechercher device_id, nom, agent, email, téléphone, réseau…"
                   value={filters.search}
                   onChange={(e) => patchFilters({ search: e.target.value })}
@@ -399,7 +399,7 @@ export default function FlashPayDevicesPage() {
             <div className="flex flex-wrap items-center gap-2">
               <Filter className="h-4 w-4 text-slate-500 shrink-0" />
               <Select value={filters.status} onValueChange={(v) => patchFilters({ status: v as DeviceListFilters["status"] })}>
-                <SelectTrigger className="w-[130px] h-9 bg-gray-50 dark:bg-gray-700">
+                <SelectTrigger className="w-[130px] h-9 bg-gray-50 dark:bg-meta-4">
                   <SelectValue placeholder="Statut" />
                 </SelectTrigger>
                 <SelectContent>
@@ -410,7 +410,7 @@ export default function FlashPayDevicesPage() {
               </Select>
 
               <Select value={filters.pause} onValueChange={(v) => patchFilters({ pause: v as DeviceListFilters["pause"] })}>
-                <SelectTrigger className="w-[130px] h-9 bg-gray-50 dark:bg-gray-700">
+                <SelectTrigger className="w-[130px] h-9 bg-gray-50 dark:bg-meta-4">
                   <SelectValue placeholder="Pause" />
                 </SelectTrigger>
                 <SelectContent>
@@ -421,7 +421,7 @@ export default function FlashPayDevicesPage() {
               </Select>
 
               <Select value={filters.mode} onValueChange={(v) => patchFilters({ mode: v as DeviceListFilters["mode"] })}>
-                <SelectTrigger className="w-[120px] h-9 bg-gray-50 dark:bg-gray-700">
+                <SelectTrigger className="w-[120px] h-9 bg-gray-50 dark:bg-meta-4">
                   <SelectValue placeholder="Mode" />
                 </SelectTrigger>
                 <SelectContent>
@@ -433,7 +433,7 @@ export default function FlashPayDevicesPage() {
               </Select>
 
               <Select value={filters.network} onValueChange={(v) => patchFilters({ network: v })}>
-                <SelectTrigger className="w-[160px] h-9 bg-gray-50 dark:bg-gray-700">
+                <SelectTrigger className="w-[160px] h-9 bg-gray-50 dark:bg-meta-4">
                   <SelectValue placeholder="Réseau" />
                 </SelectTrigger>
                 <SelectContent>
@@ -447,7 +447,7 @@ export default function FlashPayDevicesPage() {
               </Select>
 
               <Select value={filters.config} onValueChange={(v) => patchFilters({ config: v as DeviceListFilters["config"] })}>
-                <SelectTrigger className="w-[150px] h-9 bg-gray-50 dark:bg-gray-700">
+                <SelectTrigger className="w-[150px] h-9 bg-gray-50 dark:bg-meta-4">
                   <SelectValue placeholder="Config" />
                 </SelectTrigger>
                 <SelectContent>
@@ -464,7 +464,7 @@ export default function FlashPayDevicesPage() {
                   setSort({ field, dir })
                 }}
               >
-                <SelectTrigger className="w-[180px] h-9 bg-gray-50 dark:bg-gray-700">
+                <SelectTrigger className="w-[180px] h-9 bg-gray-50 dark:bg-meta-4">
                   <SelectValue placeholder="Tri" />
                 </SelectTrigger>
                 <SelectContent>
@@ -550,19 +550,19 @@ export default function FlashPayDevicesPage() {
           </CardHeader>
           <CardContent className="p-0">
             {loading ? (
-              <div className="p-6 space-y-3">
+              <div className="p-3 sm:p-4 md:p-6 space-y-3">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Skeleton key={i} className="h-12 w-full" />
                 ))}
               </div>
             ) : error ? (
-              <div className="p-6">
+              <div className="p-3 sm:p-4 md:p-6">
                 <ErrorDisplay error={error} onRetry={load} />
               </div>
             ) : displayed.length === 0 ? (
               <div className="p-12 text-center">
-                <Sparkles className="h-10 w-10 text-slate-300 dark:text-gray-600 mx-auto mb-3" />
-                <p className="text-slate-600 dark:text-gray-300 font-medium">Aucun appareil</p>
+                <Sparkles className="h-10 w-10 text-slate-300 dark:text-body mx-auto mb-3" />
+                <p className="text-slate-600 dark:text-bodydark font-medium">Aucun appareil</p>
                 {hasActiveFilters(filters) || debouncedSearch ? (
                   <Button
                     className="mt-4"
@@ -613,17 +613,17 @@ export default function FlashPayDevicesPage() {
                           aria-label={`Sélectionner ${device.device_id}`}
                         />
                       </TableCell>
-                      <TableCell>
+                      <TableCell data-label="Agent">
                         <StatusDot device={device} />
                       </TableCell>
-                      <TableCell>
+                      <TableCell data-label="Réseau">
                         <div className="flex items-center gap-3">
                           <div className="h-9 w-9 rounded-full bg-[#0B2545] text-white text-xs font-bold flex items-center justify-center">
                             {networkInitials(device.network_name, device.custom_settings?.flashpay?.network_code)}
                           </div>
                             <div>
                             <p className="font-semibold text-[#0B2545] dark:text-gray-100">{device.device_name || "—"}</p>
-                            <p className="font-mono text-xs text-slate-500 dark:text-gray-400">{device.device_id}</p>
+                            <p className="font-mono text-xs text-slate-500 dark:text-bodydark2">{device.device_id}</p>
                             {isSmsSenderDevice(device) && (
                               <Badge variant="outline" className="mt-1 text-xs border-violet-300 text-violet-800">
                                 Émetteur SMS

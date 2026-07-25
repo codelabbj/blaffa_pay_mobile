@@ -21,12 +21,12 @@ import { DateRangeFilter } from "@/components/ui/date-range-filter"
 
 // Colors for consistent theming - using logo colors
 const COLORS = {
-  primary: '#FF6B35', // Orange (primary from logo)
-  secondary: '#00FF88', // Bright green from logo
+  primary: '#194185', // Orange (primary from logo)
+  secondary: '#10B981', // Bright green from logo
   accent: '#1E3A8A', // Dark blue from logo
   danger: '#EF4444',
   warning: '#F97316',
-  success: '#00FF88', // Using bright green for success
+  success: '#10B981', // Using bright green for success
   info: '#1E3A8A', // Using dark blue for info
   purple: '#8B5CF6',
   pink: '#EC4899',
@@ -259,7 +259,7 @@ function PartnerTransfersPageContent() {
         )
       default:
         return (
-          <Badge className="bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-300">
+          <Badge className="bg-gray-100 text-gray-800 dark:bg-boxdark-2/20 dark:text-bodydark">
             <span>{status}</span>
           </Badge>
         )
@@ -267,25 +267,25 @@ function PartnerTransfersPageContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+      <div className="w-full">
 
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+              <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
                 Gestion des Transferts Partenaires
               </h1>
-              <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+              <p className="text-body dark:text-bodydark mt-2 text-lg">
                 Surveiller et gérer les transferts entre partenaires
               </p>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="bg-white dark:bg-gray-800 rounded-lg px-4 py-2 shadow-sm">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="bg-white dark:bg-boxdark rounded-lg px-4 py-2 shadow-sm">
                 <div className="flex items-center space-x-2">
-                  <ArrowUpDownIcon className="h-5 w-5 text-orange-500" />
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <ArrowUpDownIcon className="h-5 w-5 text-primary" />
+                  <span className="text-sm font-medium text-gray-700 dark:text-bodydark">
                     {totalCount} transferts
                   </span>
                 </div>
@@ -296,16 +296,16 @@ function PartnerTransfersPageContent() {
 
         {/* Statistics Cards */}
         {stats && (
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-3">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-3 sm:p-4 md:p-6 mb-4 sm:mb-6">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+              <CardContent className="p-3 sm:p-4 md:p-6">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                   <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg">
                     <ArrowUpDownIcon className="h-6 w-6 text-blue-600 dark:text-blue-300" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total transferts</p>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                    <p className="text-sm font-medium text-body dark:text-bodydark2">Total transferts</p>
+                    <p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
                       {stats.global_stats.total_transfers}
                     </p>
                   </div>
@@ -313,15 +313,15 @@ function PartnerTransfersPageContent() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-3">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+              <CardContent className="p-3 sm:p-4 md:p-6">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                   <div className="p-3 bg-green-100 dark:bg-green-900 rounded-lg">
-                    <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-300" />
+                    <CheckCircle className="h-6 w-6 text-meta-3 dark:text-green-300" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Terminés</p>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                    <p className="text-sm font-medium text-body dark:text-bodydark2">Terminés</p>
+                    <p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
                       {stats.global_stats.completed_transfers}
                     </p>
                   </div>
@@ -329,15 +329,15 @@ function PartnerTransfersPageContent() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-3">
-                  <div className="p-3 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                    <DollarSign className="h-6 w-6 text-orange-600 dark:text-orange-300" />
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+              <CardContent className="p-3 sm:p-4 md:p-6">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                  <div className="p-3 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                    <DollarSign className="h-6 w-6 text-primary dark:text-secondary" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Montant total</p>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                    <p className="text-sm font-medium text-body dark:text-bodydark2">Montant total</p>
+                    <p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
                       {stats.global_stats.total_amount.toFixed(2)} FCFA
                     </p>
                   </div>
@@ -345,15 +345,15 @@ function PartnerTransfersPageContent() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-3">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+              <CardContent className="p-3 sm:p-4 md:p-6">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                   <div className="p-3 bg-purple-100 dark:bg-purple-900 rounded-lg">
                     <TrendingUp className="h-6 w-6 text-purple-600 dark:text-purple-300" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Moyenne</p>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                    <p className="text-sm font-medium text-body dark:text-bodydark2">Moyenne</p>
+                    <p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
                       {stats.global_stats.average_amount.toFixed(2)} FCFA
                     </p>
                   </div>
@@ -364,23 +364,23 @@ function PartnerTransfersPageContent() {
         )}
 
         {/* Filters and Search */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-          <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+          <CardContent className="p-3 sm:p-4 md:p-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
               {/* Search */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-bodydark2" />
                 <Input
                   placeholder="Rechercher des transferts..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                  className="pl-10 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                 />
               </div>
 
               {/* Status Filter */}
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                   <SelectValue placeholder="Filtrer par statut" />
                 </SelectTrigger>
                 <SelectContent>
@@ -396,7 +396,7 @@ function PartnerTransfersPageContent() {
                 value={sortField || ""}
                 onValueChange={(value) => setSortField(value as "amount" | "created_at" | "status" | null)}
               >
-                <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                   <SelectValue placeholder="Trier par" />
                 </SelectTrigger>
                 <SelectContent>
@@ -424,32 +424,32 @@ function PartnerTransfersPageContent() {
         </Card>
 
         {/* Transfers Table */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-          <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+          <CardHeader className="border-b border-gray-100 dark:border-strokedark">
             <CardTitle className="flex items-center space-x-2">
-              <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                <ArrowUpDownIcon className="h-5 w-5 text-orange-600 dark:text-orange-300" />
+              <div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                <ArrowUpDownIcon className="h-5 w-5 text-primary dark:text-secondary" />
               </div>
               <span>Liste des transferts</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             {loading ? (
-              <div className="flex items-center justify-center py-12">
+              <div className="flex items-center justify-center py-6 sm:py-10">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Chargement des transferts...</span>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                  <span className="text-body dark:text-bodydark">Chargement des transferts...</span>
                 </div>
               </div>
             ) : error ? (
-              <div className="p-6 text-center">
+              <div className="p-3 sm:p-4 md:p-6 text-center">
                 <ErrorDisplay error={error} onRetry={() => {/* retry function */ }} />
               </div>
             ) : (
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-gray-50 dark:bg-gray-900/50">
+                    <TableRow className="bg-gray-50 dark:bg-boxdark-2/50">
                       <TableHead className="font-semibold">Référence</TableHead>
                       <TableHead className="font-semibold">Expéditeur</TableHead>
                       <TableHead className="font-semibold">Destinataire</TableHead>
@@ -461,32 +461,32 @@ function PartnerTransfersPageContent() {
                   </TableHeader>
                   <TableBody>
                     {transfers.map((transfer) => (
-                      <TableRow key={transfer.uid} className="hover:bg-gray-50 dark:hover:bg-gray-900/50">
-                        <TableCell>
+                      <TableRow key={transfer.uid} className="hover:bg-gray-50 dark:hover:bg-boxdark-2/50">
+                        <TableCell data-label="Référence">
                           <div className="flex items-center space-x-2">
-                            <Copy className="h-4 w-4 text-gray-400" />
-                            <span className="text-sm font-mono text-gray-700 dark:text-gray-300">
+                            <Copy className="h-4 w-4 text-bodydark2" />
+                            <span className="text-sm font-mono text-gray-700 dark:text-bodydark">
                               {transfer.reference}
                             </span>
                           </div>
                         </TableCell>
-                        <TableCell>
-                          <div className="flex items-center space-x-3">
-                            <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-green-600 rounded-full flex items-center justify-center text-white font-semibold text-xs">
+                        <TableCell data-label="Expéditeur">
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                            <div className="w-8 h-8 bg-gradient-to-br from-primary to-meta-3 rounded-full flex items-center justify-center text-white font-semibold text-xs">
                               {transfer.sender_name?.charAt(0)?.toUpperCase() || 'S'}
                             </div>
                             <div>
                               <div className="font-medium text-gray-900 dark:text-gray-100 text-sm">
                                 {transfer.sender_name}
                               </div>
-                              <div className="text-xs text-gray-500 dark:text-gray-400">
+                              <div className="text-xs text-body dark:text-bodydark2">
                                 {transfer.sender_email}
                               </div>
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell>
-                          <div className="flex items-center space-x-3">
+                        <TableCell data-label="Destinataire">
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                             {/* <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-xs">
                               {transfer.receiver_name?.charAt(0)?.toUpperCase() || 'R'}
                             </div> */}
@@ -494,42 +494,42 @@ function PartnerTransfersPageContent() {
                               <div className="font-medium text-gray-900 dark:text-gray-100 text-sm">
                                 {transfer.receiver_name}
                               </div>
-                              <div className="text-xs text-gray-500 dark:text-gray-400">
+                              <div className="text-xs text-body dark:text-bodydark2">
                                 {transfer.receiver_email}
                               </div>
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Montant">
                           <div className="flex items-center space-x-1">
-                            <DollarSign className="h-4 w-4 text-gray-400" />
+                            <DollarSign className="h-4 w-4 text-bodydark2" />
                             <span className="font-medium text-gray-900 dark:text-gray-100">
                               {parseFloat(transfer.amount).toFixed(2)} FCFA
                             </span>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Statut">
                           {getStatusBadge(transfer.status)}
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Date">
                           <div className="flex items-center space-x-2">
-                            <Calendar className="h-4 w-4 text-gray-400" />
+                            <Calendar className="h-4 w-4 text-bodydark2" />
                             <div className="flex flex-col">
-                              <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">
+                              <span className="text-sm text-gray-700 dark:text-bodydark font-medium">
                                 {transfer.created_at
                                   ? new Date(transfer.created_at).toLocaleDateString()
                                   : 'Inconnu'
                                 }
                               </span>
                               {transfer.created_at && (
-                                <span className="text-xs text-gray-500 dark:text-gray-400">
+                                <span className="text-xs text-body dark:text-bodydark2">
                                   {new Date(transfer.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                 </span>
                               )}
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Actions">
                           <Button
                             variant="outline"
                             size="sm"
@@ -550,8 +550,8 @@ function PartnerTransfersPageContent() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-between mt-6">
-            <div className="text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center mt-6">
+            <div className="text-sm text-body dark:text-bodydark2">
               Affichage de {startIndex + 1} à {Math.min(startIndex + itemsPerPage, totalCount)} sur {totalCount} résultats
             </div>
             <div className="flex items-center space-x-2">
@@ -577,7 +577,7 @@ function PartnerTransfersPageContent() {
                   
                   return pages.map((page, index) => {
                     if (page === '...') {
-                      return <span key={`ellipsis-${index}`} className="px-2 text-gray-500 text-sm">...</span>;
+                      return <span key={`ellipsis-${index}`} className="px-2 text-body text-sm">...</span>;
                     }
                     return (
                       <Button
@@ -585,7 +585,7 @@ function PartnerTransfersPageContent() {
                         variant={currentPage === page ? "default" : "outline"}
                         size="sm"
                         onClick={() => handlePageChange(page as number)}
-                        className={currentPage === page ? "bg-orange-500 hover:bg-orange-600 text-white border-orange-500" : "border-gray-200 dark:border-gray-600"}
+                        className={currentPage === page ? "bg-primary hover:bg-primary text-white border-primary" : "border-stroke dark:border-strokedark"}
                       >
                         {page}
                       </Button>
@@ -608,13 +608,13 @@ function PartnerTransfersPageContent() {
 
         {/* Empty State */}
         {!loading && !error && transfers.length === 0 && (
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mt-6">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mt-6">
             <CardContent className="p-12 text-center">
-              <ArrowUpDownIcon className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+              <ArrowUpDownIcon className="h-12 w-12 text-bodydark2 mx-auto mb-4" />
+              <h3 className="text-sm font-medium sm:text-base text-gray-900 dark:text-gray-100 mb-2">
                 Aucun transfert trouvé
               </h3>
-              <p className="text-gray-500 dark:text-gray-400 mb-4">
+              <p className="text-body dark:text-bodydark2 mb-4">
                 {searchTerm ? `Aucun transfert ne correspond à "${searchTerm}"` : "Aucun transfert n'a encore été effectué."}
               </p>
             </CardContent>
@@ -626,13 +626,13 @@ function PartnerTransfersPageContent() {
           <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle className="flex items-center space-x-2">
-                <ArrowUpDownIcon className="h-5 w-5 text-orange-600" />
+                <ArrowUpDownIcon className="h-5 w-5 text-primary" />
                 <span>Détails du transfert</span>
               </DialogTitle>
             </DialogHeader>
             {detailLoading ? (
-              <div className="flex items-center justify-center py-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600"></div>
+              <div className="flex items-center justify-center py-4 sm:py-6">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
               </div>
             ) : detailError ? (
               <ErrorDisplay error={detailError} />
@@ -641,8 +641,8 @@ function PartnerTransfersPageContent() {
                 {/* Basic Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Référence</label>
-                    <div className="flex items-center space-x-2 bg-gray-100 dark:bg-gray-700 p-2 rounded">
+                    <label className="text-sm font-medium text-body dark:text-bodydark2">Référence</label>
+                    <div className="flex items-center space-x-2 bg-gray-100 dark:bg-meta-4 p-2 rounded">
                       <p className="text-sm font-mono text-gray-900 dark:text-gray-100 flex-1">
                         {detailTransfer.reference}
                       </p>
@@ -663,7 +663,7 @@ function PartnerTransfersPageContent() {
                     </div>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Statut</label>
+                    <label className="text-sm font-medium text-body dark:text-bodydark2">Statut</label>
                     <div className="mt-1">
                       {getStatusBadge(detailTransfer.status)}
                     </div>
@@ -671,21 +671,21 @@ function PartnerTransfersPageContent() {
                 </div>
 
                 {/* Amount Information */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4">
                   <div>
-                    <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Montant</label>
-                    <p className="text-lg font-semibold text-green-600">
+                    <label className="text-sm font-medium text-body dark:text-bodydark2">Montant</label>
+                    <p className="text-lg font-semibold text-meta-3">
                       {parseFloat(detailTransfer.amount).toFixed(2)} FCFA
                     </p>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Frais</label>
+                    <label className="text-sm font-medium text-body dark:text-bodydark2">Frais</label>
                     <p className="text-sm text-gray-900 dark:text-gray-100">
                       {parseFloat(detailTransfer.fees).toFixed(2)} FCFA
                     </p>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Description</label>
+                    <label className="text-sm font-medium text-body dark:text-bodydark2">Description</label>
                     <p className="text-sm text-gray-900 dark:text-gray-100">
                       {detailTransfer.description || 'Aucune description'}
                     </p>
@@ -693,29 +693,29 @@ function PartnerTransfersPageContent() {
                 </div>
 
                 {/* Sender Information */}
-                <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg">
-                  <h4 className="font-medium text-orange-800 dark:text-orange-300 mb-3">Expéditeur</h4>
+                <div className="bg-gray dark:bg-orange-900/20 p-4 rounded-lg">
+                  <h4 className="font-medium text-orange-800 dark:text-secondary mb-3">Expéditeur</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Nom</label>
+                      <label className="text-sm font-medium text-body dark:text-bodydark2">Nom</label>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {detailTransfer.sender_name}
                       </p>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Email</label>
+                      <label className="text-sm font-medium text-body dark:text-bodydark2">Email</label>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {detailTransfer.sender_email}
                       </p>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Solde avant</label>
+                      <label className="text-sm font-medium text-body dark:text-bodydark2">Solde avant</label>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {parseFloat(detailTransfer.sender_balance_before).toFixed(2)} FCFA
                       </p>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Solde après</label>
+                      <label className="text-sm font-medium text-body dark:text-bodydark2">Solde après</label>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {parseFloat(detailTransfer.sender_balance_after).toFixed(2)} FCFA
                       </p>
@@ -728,25 +728,25 @@ function PartnerTransfersPageContent() {
                   <h4 className="font-medium text-blue-800 dark:text-blue-300 mb-3">Destinataire</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Nom</label>
+                      <label className="text-sm font-medium text-body dark:text-bodydark2">Nom</label>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {detailTransfer.receiver_name}
                       </p>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Email</label>
+                      <label className="text-sm font-medium text-body dark:text-bodydark2">Email</label>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {detailTransfer.receiver_email}
                       </p>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Solde avant</label>
+                      <label className="text-sm font-medium text-body dark:text-bodydark2">Solde avant</label>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {parseFloat(detailTransfer.receiver_balance_before).toFixed(2)} FCFA
                       </p>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Solde après</label>
+                      <label className="text-sm font-medium text-body dark:text-bodydark2">Solde après</label>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {parseFloat(detailTransfer.receiver_balance_after).toFixed(2)} FCFA
                       </p>
@@ -755,9 +755,9 @@ function PartnerTransfersPageContent() {
                 </div>
 
                 {/* Timestamps */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4">
                   <div>
-                    <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Créé le</label>
+                    <label className="text-sm font-medium text-body dark:text-bodydark2">Créé le</label>
                     <p className="text-sm text-gray-900 dark:text-gray-100">
                       {detailTransfer.created_at
                         ? new Date(detailTransfer.created_at).toLocaleString()
@@ -766,7 +766,7 @@ function PartnerTransfersPageContent() {
                     </p>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Terminé le</label>
+                    <label className="text-sm font-medium text-body dark:text-bodydark2">Terminé le</label>
                     <p className="text-sm text-gray-900 dark:text-gray-100">
                       {detailTransfer.completed_at
                         ? new Date(detailTransfer.completed_at).toLocaleString()
@@ -775,7 +775,7 @@ function PartnerTransfersPageContent() {
                     </p>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Mis à jour le</label>
+                    <label className="text-sm font-medium text-body dark:text-bodydark2">Mis à jour le</label>
                     <p className="text-sm text-gray-900 dark:text-gray-100">
                       {detailTransfer.updated_at
                         ? new Date(detailTransfer.updated_at).toLocaleString()
@@ -788,7 +788,7 @@ function PartnerTransfersPageContent() {
                 {/* Failed Reason */}
                 {detailTransfer.failed_reason && (
                   <div>
-                    <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Raison de l'échec</label>
+                    <label className="text-sm font-medium text-body dark:text-bodydark2">Raison de l'échec</label>
                     <p className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 p-3 rounded border">
                       {detailTransfer.failed_reason}
                     </p>
@@ -810,7 +810,7 @@ import { getApiBaseUrl } from "@/lib/env-config"
 
 export default function PartnerTransfersPage() {
   return (
-    <Suspense fallback={<div className="flex justify-center items-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div></div>}>
+    <Suspense fallback={<div className="flex justify-center items-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
       <PartnerTransfersPageContent />
     </Suspense>
   )

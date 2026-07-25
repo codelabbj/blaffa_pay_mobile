@@ -62,12 +62,12 @@ const baseUrl = getApiBaseUrl()
 
 // Colors for consistent theming - using logo colors
 const COLORS = {
-  primary: '#FF6B35', // Orange (primary from logo)
-  secondary: '#00FF88', // Bright green from logo
+  primary: '#194185', // Orange (primary from logo)
+  secondary: '#10B981', // Bright green from logo
   accent: '#1E3A8A', // Dark blue from logo
   danger: '#EF4444',
   warning: '#F97316',
-  success: '#00FF88', // Using bright green for success
+  success: '#10B981', // Using bright green for success
   info: '#1E3A8A', // Using dark blue for info
   purple: '#8B5CF6',
   pink: '#EC4899',
@@ -297,17 +297,41 @@ function TransactionsPageContent() {
 
 
   const statusMap: Record<string, { label: string; color: string }> = {
-    pending: { label: "En attente", color: "#ffc107" },      // jaune
-    sent_to_user: { label: "Envoyé", color: "#17a2b8" },          // bleu clair
-    processing: { label: "En cours", color: "#fd7e14" },        // orange
-    completed: { label: "Terminé", color: "#28a745" },         // vert foncé
-    success: { label: "Succès", color: "#20c997" },          // turquoise
-    failed: { label: "Échec", color: "#dc3545" },           // rouge
-    cancelled: { label: "Annulé", color: "#6c757d" },          // gris
-    timeout: { label: "Délai dépassé", color: "#6f42c1" },          // violet
-    confirmed: { label: "Confirmé", color: "#007bff" },         // bleu
-    expired: { label: "Expiré", color: "#343a40" },           // gris foncé
+    pending: { label: "En attente", color: "#ffc107" },
+    sent_to_user: { label: "Envoyé", color: "#17a2b8" },
+    processing: { label: "En cours", color: "#fd7e14" },
+    completed: { label: "Terminé", color: "#28a745" },
+    success: { label: "Succès", color: "#20c997" },
+    failed: { label: "Échec", color: "#dc3545" },
+    cancelled: { label: "Annulé", color: "#6c757d" },
+    timeout: { label: "Délai dépassé", color: "#6f42c1" },
+    confirmed: { label: "Confirmé", color: "#007bff" },
+    expired: { label: "Expiré", color: "#343a40" },
   };
+
+  // Returns Tailwind classes for the table row background based on status
+  const getStatusRowClass = (status: string): string => {
+    switch (status) {
+      case "completed":
+      case "success":
+        return "bg-meta-3/5 dark:bg-meta-3/10 border-l-4 border-l-meta-3"
+      case "pending":
+        return "bg-warning/5 dark:bg-warning/10 border-l-4 border-l-warning"
+      case "processing":
+      case "sent_to_user":
+        return "bg-primary/5 dark:bg-primary/10 border-l-4 border-l-primary"
+      case "failed":
+      case "cancelled":
+      case "timeout":
+        return "bg-danger/5 dark:bg-danger/10 border-l-4 border-l-danger"
+      case "confirmed":
+        return "bg-secondary/10 dark:bg-secondary/15 border-l-4 border-l-secondary"
+      case "expired":
+        return "bg-graydark/5 dark:bg-meta-4/30 border-l-4 border-l-graydark"
+      default:
+        return ""
+    }
+  }
 
   const getStatusBadge = (status: string) => {
     const info = statusMap[status] || { label: status, color: "#adb5bd" };
@@ -704,32 +728,32 @@ function TransactionsPageContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+      <div className="w-full">
 
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+              <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
                 <span>{t("transactions.title")}</span>
               </h1>
-              <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+              <p className="text-body dark:text-bodydark mt-2 text-lg">
                 <span>Surveiller et gérer les transactions de paiement</span>
               </p>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="bg-white dark:bg-gray-800 rounded-lg px-4 py-2 shadow-sm">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="bg-white dark:bg-boxdark rounded-lg px-4 py-2 shadow-sm">
                 <div className="flex items-center space-x-2">
-                  <CreditCard className="h-5 w-5 text-orange-500" />
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <CreditCard className="h-5 w-5 text-primary" />
+                  <span className="text-sm font-medium text-gray-700 dark:text-bodydark">
                     <span>{totalCount}</span> <span>transactions</span>
                   </span>
                 </div>
               </div>
               {/* <Button
                 onClick={() => setCreateModalOpen(true)}
-                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+                className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white"
               >
                 <Plus className="h-4 w-4 mr-2" />
                 New Transaction
@@ -739,23 +763,23 @@ function TransactionsPageContent() {
         </div>
 
         {/* Filters and Search */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-          <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+          <CardContent className="p-3 sm:p-4 md:p-6">
+            <div className="grid grid-cols-1 grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 sm:gap-4">
               {/* Search */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-bodydark2" />
                 <Input
                   placeholder={t("transactions.searchPlaceholder")}
                   value={searchTerm}
                   onChange={(e) => handleSearchChange(e.target.value)}
-                  className="pl-10 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                  className="pl-10 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                 />
               </div>
 
               {/* Status Filter */}
               <Select value={statusFilter} onValueChange={handleStatusChange}>
-                <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                   <SelectValue placeholder={t("transactions.filterByStatus")} />
                 </SelectTrigger>
                 <SelectContent>
@@ -775,7 +799,7 @@ function TransactionsPageContent() {
 
               {/* Type Filter */}
               <Select value={typeFilter} onValueChange={handleTypeChange}>
-                <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                   <SelectValue placeholder={t("transactions.filterByType")} />
                 </SelectTrigger>
                 <SelectContent>
@@ -787,7 +811,7 @@ function TransactionsPageContent() {
 
               {/* Network Filter */}
               <Select value={networkFilter} onValueChange={handleNetworkChange}>
-                <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                   <SelectValue placeholder="Réseau" />
                 </SelectTrigger>
                 <SelectContent>
@@ -814,7 +838,7 @@ function TransactionsPageContent() {
                   updateUrl({ sort_field: field, sort_dir: dir, page: 1 })
                 }}
               >
-                <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                   <SelectValue placeholder="Trier par" />
                 </SelectTrigger>
                 <SelectContent>
@@ -840,7 +864,7 @@ function TransactionsPageContent() {
               />
             </div>
             {hasActiveFilters && (
-              <div className="flex justify-end mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
+              <div className="flex justify-end mt-3 pt-3 border-t border-gray-100 dark:border-strokedark">
                 <Button type="button" variant="ghost" size="sm" onClick={clearFilters}>
                   <X className="h-4 w-4 mr-1" /> Effacer filtres
                 </Button>
@@ -862,32 +886,32 @@ function TransactionsPageContent() {
         </BulkActionBar>
 
         {/* Transactions Table */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-          <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+          <CardHeader className="border-b border-gray-100 dark:border-strokedark">
             <CardTitle className="flex items-center space-x-2">
               <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                <CreditCard className="h-5 w-5 text-green-600 dark:text-green-300" />
+                <CreditCard className="h-5 w-5 text-meta-3 dark:text-green-300" />
               </div>
               <span><span>Liste des transactions</span></span>
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             {loading ? (
-              <div className="flex items-center justify-center py-12">
+              <div className="flex items-center justify-center py-6 sm:py-10">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-                  <span className="text-gray-600 dark:text-gray-300"><span>Chargement des transactions...</span></span>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                  <span className="text-body dark:text-bodydark"><span>Chargement des transactions...</span></span>
                 </div>
               </div>
             ) : error ? (
-              <div className="p-6 text-center">
+              <div className="p-3 sm:p-4 md:p-6 text-center">
                 <ErrorDisplay error={error} onRetry={fetchTransactions} />
               </div>
             ) : (
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-gray-50 dark:bg-gray-900/50">
+                    <TableRow className="bg-gray-50 dark:bg-boxdark-2/50">
                       <TableHead className="w-10">
                         <Checkbox
                           checked={selection.allSelected ? true : selection.someSelected ? "indeterminate" : false}
@@ -908,7 +932,7 @@ function TransactionsPageContent() {
                   </TableHeader>
                   <TableBody>
                     {transactions.map((transaction) => (
-                      <TableRow key={transaction.uid} className="hover:bg-gray-50 dark:hover:bg-gray-900/50">
+                      <TableRow key={transaction.uid} className={`transition-colors hover:brightness-95 ${getStatusRowClass(transaction.status)}`}>
                         <TableCell>
                           <Checkbox
                             checked={selection.selected.has(transaction.uid)}
@@ -916,15 +940,15 @@ function TransactionsPageContent() {
                             aria-label={`Sélectionner ${transaction.uid}`}
                           />
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="ID Transaction">
                           <div className="flex items-center space-x-2 font-mono text-sm text-gray-900 dark:text-gray-100">
                             <span>{transaction.uid}</span>
                             <CopyButton value={transaction.uid} className="h-4 w-4" iconClassName="h-3 w-3" />
                           </div>
                         </TableCell>
 
-                        <TableCell>
-                          <div className="flex items-center space-x-3">
+                        <TableCell data-label="Réseau">
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                             {/* <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-xs font-semibold">
                               {transaction.recipient_name?.charAt(0)?.toUpperCase() || transaction.user?.email?.charAt(0)?.toUpperCase() }
                             </div> */}
@@ -932,29 +956,29 @@ function TransactionsPageContent() {
                               <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
                                 <span>{transaction.recipient_phone || 'Utilisateur inconnu'}</span>
                               </div>
-                              <div className="text-xs text-gray-500 dark:text-gray-400">
+                              <div className="text-xs text-body dark:text-bodydark2">
                                 <span>{transaction.recipient_name}</span>
                               </div>
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Créé par">
                           <Badge
                             className={
                               transaction.type === 'deposit'
                                 ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300"
-                                : "bg-orange-100 text-orange-800 dark:bg-orange-900/20 dark:text-orange-300"
+                                : "bg-meta-2 text-orange-800 dark:bg-orange-900/20 dark:text-secondary"
                             }
                           >
                             <span>{transaction.type === 'deposit' ? 'Dépôt' : 'Retrait'}</span>
                           </Badge>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Actions">
                           <div className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                             <span>{parseFloat(transaction.amount || 0).toFixed(2)}</span> <span>FCFA</span>
                           </div>
                           {transaction.fees && (
-                            <div className="text-xs text-gray-500 dark:text-gray-400">
+                            <div className="text-xs text-body dark:text-bodydark2">
                               <span>Frais:</span> <span>${parseFloat(transaction.fees).toFixed(2)}</span>
                             </div>
                           )}
@@ -965,7 +989,7 @@ function TransactionsPageContent() {
                           </span>
                         </TableCell>
                         <TableCell>
-                          <div className="flex items-center space-x-3">
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                             {/* <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-xs font-semibold">
                               {transaction.recipient_name?.charAt(0)?.toUpperCase() || transaction.user?.email?.charAt(0)?.toUpperCase() }
                             </div> */}
@@ -973,7 +997,7 @@ function TransactionsPageContent() {
                               <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
                                 <span>{transaction.created_by_name}</span>
                               </div>
-                              <div className="text-xs text-gray-500 dark:text-gray-400">
+                              <div className="text-xs text-body dark:text-bodydark2">
                                 <span>{transaction.created_by_email}</span>
                               </div>
                             </div>
@@ -988,7 +1012,7 @@ function TransactionsPageContent() {
                                   ? "bg-yellow-100 text-yellow-400 dark:bg-yellow-900/20 dark:text-yellow-300"
                                   : transaction.status === 'failed'
                                     ? "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300"
-                                    : "bg-orange-100 text-orange-800 dark:bg-orange-900/20 dark:text-orange-300"
+                                    : "bg-meta-2 text-orange-800 dark:bg-orange-900/20 dark:text-secondary"
                             }
                           >
                             <div className="flex items-center space-x-1">
@@ -1002,58 +1026,55 @@ function TransactionsPageContent() {
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center space-x-2">
-                            <Calendar className="h-4 w-4 text-gray-400" />
+                            <Calendar className="h-4 w-4 text-bodydark2" />
                             <div className="flex flex-col">
-                              <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">
+                              <span className="text-sm text-gray-700 dark:text-bodydark font-medium">
                                 <span>{new Date(transaction.created_at).toLocaleDateString()}</span>
                               </span>
-                              <span className="text-xs text-gray-500 dark:text-gray-400">
+                              <span className="text-xs text-body dark:text-bodydark2">
                                 <span>{new Date(transaction.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                               </span>
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell className="text-right">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm">
-                                <MoreHorizontal className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuItem onClick={() => router.push(`/dashboard/transactions/${transaction.uid}/edit`)}>
-                                <Pencil className="h-4 w-4 mr-2" />
-                                Modifier
-                              </DropdownMenuItem>
-                              {/* <DropdownMenuItem onClick={() => handleOpenEdit(transaction)}>
-                                <Pencil className="h-4 w-4 mr-2" />
-                                Edit
-                              </DropdownMenuItem> */}
-                              {/* <DropdownMenuItem 
-                                onClick={() => setDeleteUid(transaction.uid)}
-                                className="text-red-600 dark:text-red-400"
-                              >
-                                <Trash className="h-4 w-4 mr-2" />
-                                Delete
-                              </DropdownMenuItem> */}
-                              <DropdownMenuItem onClick={() => openRetryModal(transaction)} className="text-orange-600 dark:text-orange-400">
-                                <AlertCircle className="h-4 w-4 mr-2" />
-                                Relancer
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => openCancelModal(transaction)} className="text-red-600 dark:text-red-400">
-                                <XCircle className="h-4 w-4 mr-2" />
-                                Annuler
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => openSuccessModal(transaction)} className="text-green-600 dark:text-green-400">
-                                <CheckCircle className="h-4 w-4 mr-2" />
-                                Marquer comme Succès
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => openFailedModal(transaction)} className="text-red-600 dark:text-red-400">
-                                <XCircle className="h-4 w-4 mr-2" />
-                                Marquer comme Échec
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
+                        <TableCell data-label="Actions">
+                          <div className="flex flex-wrap gap-1.5">
+                            <button
+                              onClick={() => router.push(`/dashboard/transactions/${transaction.uid}/edit`)}
+                              className="inline-flex items-center gap-1.5 rounded-md border border-stroke bg-white px-2.5 py-1.5 text-xs font-medium text-body shadow-sm hover:border-primary hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-bodydark dark:hover:border-primary dark:hover:text-white"
+                            >
+                              <Pencil className="h-3.5 w-3.5 flex-shrink-0" />
+                              Modifier
+                            </button>
+                            <button
+                              onClick={() => openRetryModal(transaction)}
+                              className="inline-flex items-center gap-1.5 rounded-md bg-primary px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-opacity-90"
+                            >
+                              <AlertCircle className="h-3.5 w-3.5 flex-shrink-0" />
+                              Relancer
+                            </button>
+                            <button
+                              onClick={() => openSuccessModal(transaction)}
+                              className="inline-flex items-center gap-1.5 rounded-md bg-meta-3 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-opacity-90"
+                            >
+                              <CheckCircle className="h-3.5 w-3.5 flex-shrink-0" />
+                              Succès
+                            </button>
+                            <button
+                              onClick={() => openCancelModal(transaction)}
+                              className="inline-flex items-center gap-1.5 rounded-md bg-warning px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-opacity-90"
+                            >
+                              <XCircle className="h-3.5 w-3.5 flex-shrink-0" />
+                              Annuler
+                            </button>
+                            <button
+                              onClick={() => openFailedModal(transaction)}
+                              className="inline-flex items-center gap-1.5 rounded-md bg-danger px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-opacity-90"
+                            >
+                              <XCircle className="h-3.5 w-3.5 flex-shrink-0" />
+                              Échec
+                            </button>
+                          </div>
                         </TableCell>
                       </TableRow>
                     ))}
@@ -1066,8 +1087,8 @@ function TransactionsPageContent() {
 
         {/* Pagination */}
         {Math.ceil(totalCount / itemsPerPage) > 1 && (
-          <div className="flex items-center justify-between mt-6">
-            <div className="text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center mt-6">
+            <div className="text-sm text-body dark:text-bodydark2">
               <span>Affichage de</span> <span>{((currentPage - 1) * itemsPerPage) + 1}</span> <span>à</span> <span>{Math.min(currentPage * itemsPerPage, totalCount)}</span> <span>sur</span> <span>{totalCount}</span> <span>résultats</span>
             </div>
             <div className="flex items-center space-x-2">
@@ -1094,7 +1115,7 @@ function TransactionsPageContent() {
                   
                   return pages.map((page, index) => {
                     if (page === '...') {
-                      return <span key={`ellipsis-${index}`} className="px-2 text-gray-500 text-sm">...</span>;
+                      return <span key={`ellipsis-${index}`} className="px-2 text-body text-sm">...</span>;
                     }
                     return (
                       <Button
@@ -1102,7 +1123,7 @@ function TransactionsPageContent() {
                         variant={currentPage === page ? "default" : "outline"}
                         size="sm"
                         onClick={() => handlePageChange(page as number)}
-                        className={currentPage === page ? "bg-orange-500 hover:bg-orange-600 text-white border-orange-500" : "border-gray-200 dark:border-gray-600"}
+                        className={currentPage === page ? "bg-primary hover:bg-primary text-white border-primary" : "border-stroke dark:border-strokedark"}
                       >
                         {page}
                       </Button>
@@ -1208,7 +1229,7 @@ function TransactionsPageContent() {
                   onChange={handleEditChange}
                   placeholder="Message de confirmation"
                   rows={3}
-                  className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-gray-50 dark:bg-meta-4 border border-stroke dark:border-strokedark rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
               <div>
@@ -1219,7 +1240,7 @@ function TransactionsPageContent() {
                   onChange={handleEditChange}
                   placeholder="Contenu du SMS brut"
                   rows={3}
-                  className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-gray-50 dark:bg-meta-4 border border-stroke dark:border-strokedark rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
               <div>
@@ -1230,7 +1251,7 @@ function TransactionsPageContent() {
                   onChange={handleEditChange}
                   placeholder="Message d'erreur"
                   rows={3}
-                  className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-gray-50 dark:bg-meta-4 border border-stroke dark:border-strokedark rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
               <DialogFooter>
@@ -1245,7 +1266,7 @@ function TransactionsPageContent() {
                 <Button
                   type="submit"
                   disabled={editLoading}
-                  className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+                  className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white"
                 >
                   {editLoading ? (
                     <>
@@ -1281,7 +1302,7 @@ function TransactionsPageContent() {
               <Button
                 onClick={confirmEditAndSend}
                 disabled={editLoading}
-                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+                className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white"
               >
                 {editLoading ? (
                   <>
@@ -1321,7 +1342,7 @@ function TransactionsPageContent() {
                   onChange={(e) => setRetryReason(e.target.value)}
                   placeholder="Entrer la raison du relancement"
                   rows={3}
-                  className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-gray-50 dark:bg-meta-4 border border-stroke dark:border-strokedark rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
             </div>
@@ -1336,7 +1357,7 @@ function TransactionsPageContent() {
               <Button
                 onClick={handleRetrySubmit}
                 disabled={retryLoading}
-                className="bg-gradient-to-r from-orange-600 to-orange-600 hover:from-orange-700 hover:to-orange-700 text-white"
+                className="bg-gradient-to-r from-primary to-primary hover:from-orange-700 hover:to-primary text-white"
               >
                 {retryLoading ? (
                   <>
@@ -1376,7 +1397,7 @@ function TransactionsPageContent() {
                   onChange={(e) => setCancelReason(e.target.value)}
                   placeholder="Entrer la raison de l'annulation"
                   rows={3}
-                  className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-gray-50 dark:bg-meta-4 border border-stroke dark:border-strokedark rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
             </div>
@@ -1431,7 +1452,7 @@ function TransactionsPageContent() {
                   onChange={(e) => setSuccessReason(e.target.value)}
                   placeholder="Entrer la raison du marquage comme succès"
                   rows={3}
-                  className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-gray-50 dark:bg-meta-4 border border-stroke dark:border-strokedark rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
             </div>
@@ -1446,7 +1467,7 @@ function TransactionsPageContent() {
               <Button
                 onClick={handleSuccessSubmit}
                 disabled={successLoading}
-                className="bg-gradient-to-r from-green-600 to-green-600 hover:from-green-700 hover:to-green-700 text-white"
+                className="bg-gradient-to-r from-meta-3 to-meta-3 hover:from-green-700 hover:to-green-700 text-white"
               >
                 {successLoading ? (
                   <>
@@ -1486,7 +1507,7 @@ function TransactionsPageContent() {
                   onChange={(e) => setFailedReason(e.target.value)}
                   placeholder="Entrer la raison du marquage comme échec"
                   rows={3}
-                  className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-gray-50 dark:bg-meta-4 border border-stroke dark:border-strokedark rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
             </div>
@@ -1555,7 +1576,7 @@ function TransactionsPageContent() {
                     setCreateModalOpen(false)
                     router.push("/dashboard/transactions/deposit")
                   }}
-                  className="h-20 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white"
+                  className="h-20 bg-gradient-to-r from-meta-3 to-meta-3 hover:from-meta-3 hover:to-green-700 text-white"
                 >
                   <div className="flex flex-col items-center space-y-2">
                     <DollarSign className="h-6 w-6" />
@@ -1569,7 +1590,7 @@ function TransactionsPageContent() {
                     setCreateModalOpen(false)
                     router.push("/dashboard/transactions/withdraw")
                   }}
-                  className="h-20 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+                  className="h-20 bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white"
                 >
                   <div className="flex flex-col items-center space-y-2">
                     <TrendingDown className="h-6 w-6" />
@@ -1601,8 +1622,8 @@ export default function TransactionsPage() {
     <Suspense fallback={
       <div className="flex items-center justify-center min-h-screen">
         <div className="flex flex-col items-center space-y-4">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-          <span className="text-gray-500">Chargement...</span>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          <span className="text-body">Chargement...</span>
         </div>
       </div>
     }>

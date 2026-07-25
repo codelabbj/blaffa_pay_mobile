@@ -264,32 +264,32 @@ function ApiConfigPageContent() {
   const activeConfigs = configs.filter(c => c.is_active).length
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+      <div className="w-full">
         
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+              <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
                 Configuration API
               </h1>
-              <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+              <p className="text-body dark:text-bodydark mt-2 text-lg">
                 Gérer les configurations API des plateformes de paris
               </p>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="bg-white dark:bg-gray-800 rounded-lg px-4 py-2 shadow-sm">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="bg-white dark:bg-boxdark rounded-lg px-4 py-2 shadow-sm">
                 <div className="flex items-center space-x-2">
-                  <Settings className="h-5 w-5 text-orange-500" />
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <Settings className="h-5 w-5 text-primary" />
+                  <span className="text-sm font-medium text-gray-700 dark:text-bodydark">
                     {totalCount} configurations
                   </span>
                 </div>
               </div>
               <Button 
                 onClick={handleOpenCreate}
-                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+                className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white"
               >
                 <Plus className="h-4 w-4 mr-2" />
                 Nouvelle Configuration
@@ -299,16 +299,16 @@ function ApiConfigPageContent() {
         </div>
 
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:p-4 md:p-6 mb-4 sm:mb-6">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <CardContent className="p-3 sm:p-4 md:p-6">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg">
                   <Settings className="h-6 w-6 text-blue-600 dark:text-blue-300" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Configurations</p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  <p className="text-sm font-medium text-body dark:text-bodydark2">Total Configurations</p>
+                  <p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
                     {totalCount}
                   </p>
                 </div>
@@ -316,15 +316,15 @@ function ApiConfigPageContent() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-3">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <CardContent className="p-3 sm:p-4 md:p-6">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="p-3 bg-green-100 dark:bg-green-900 rounded-lg">
-                  <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-300" />
+                  <CheckCircle className="h-6 w-6 text-meta-3 dark:text-green-300" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Configurations actives</p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  <p className="text-sm font-medium text-body dark:text-bodydark2">Configurations actives</p>
+                  <p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
                     {activeConfigs}
                   </p>
                 </div>
@@ -332,15 +332,15 @@ function ApiConfigPageContent() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-3">
-                <div className="p-3 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                  <Key className="h-6 w-6 text-orange-600 dark:text-orange-300" />
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <CardContent className="p-3 sm:p-4 md:p-6">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <div className="p-3 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                  <Key className="h-6 w-6 text-primary dark:text-secondary" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Configurations inactives</p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  <p className="text-sm font-medium text-body dark:text-bodydark2">Configurations inactives</p>
+                  <p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
                     {totalCount - activeConfigs}
                   </p>
                 </div>
@@ -350,23 +350,23 @@ function ApiConfigPageContent() {
         </div>
 
         {/* Filters and Search */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-          <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+          <CardContent className="p-3 sm:p-4 md:p-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4">
               {/* Search */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-bodydark2" />
                 <Input
                   placeholder="Rechercher des configurations..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                  className="pl-10 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                 />
               </div>
 
               {/* Status Filter */}
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                   <SelectValue placeholder="Filtrer par statut" />
                 </SelectTrigger>
                 <SelectContent>
@@ -381,7 +381,7 @@ function ApiConfigPageContent() {
                 value={sortField || ""} 
                 onValueChange={(value) => setSortField(value as "name" | "created_at" | "is_active" | null)}
               >
-                <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                   <SelectValue placeholder="Trier par" />
                 </SelectTrigger>
                 <SelectContent>
@@ -395,32 +395,32 @@ function ApiConfigPageContent() {
         </Card>
 
         {/* Configurations Table */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-          <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+          <CardHeader className="border-b border-gray-100 dark:border-strokedark">
             <CardTitle className="flex items-center space-x-2">
-              <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                <Settings className="h-5 w-5 text-orange-600 dark:text-orange-300" />
+              <div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                <Settings className="h-5 w-5 text-primary dark:text-secondary" />
               </div>
               <span>Liste des configurations API</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             {loading ? (
-              <div className="flex items-center justify-center py-12">
+              <div className="flex items-center justify-center py-6 sm:py-10">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Chargement des configurations...</span>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                  <span className="text-body dark:text-bodydark">Chargement des configurations...</span>
                 </div>
               </div>
             ) : error ? (
-              <div className="p-6 text-center">
+              <div className="p-3 sm:p-4 md:p-6 text-center">
                 <ErrorDisplay error={error} onRetry={() => {/* retry function */}} />
               </div>
             ) : (
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-gray-50 dark:bg-gray-900/50">
+                    <TableRow className="bg-gray-50 dark:bg-boxdark-2/50">
                       <TableHead className="font-semibold">Nom</TableHead>
                       <TableHead className="font-semibold">URL de base</TableHead>
                       <TableHead className="font-semibold">Clé publique</TableHead>
@@ -433,10 +433,10 @@ function ApiConfigPageContent() {
                   </TableHeader>
                   <TableBody>
                     {configs.map((config) => (
-                      <TableRow key={config.uid} className="hover:bg-gray-50 dark:hover:bg-gray-900/50">
-                        <TableCell>
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-green-600 rounded-full flex items-center justify-center text-white font-semibold">
+                      <TableRow key={config.uid} className="hover:bg-gray-50 dark:hover:bg-boxdark-2/50">
+                        <TableCell data-label="Nom">
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                            <div className="w-10 h-10 bg-gradient-to-br from-primary to-meta-3 rounded-full flex items-center justify-center text-white font-semibold">
                               {config.name?.charAt(0)?.toUpperCase() || 'A'}
                             </div>
                             <div>
@@ -446,45 +446,45 @@ function ApiConfigPageContent() {
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="URL de base">
                           <div className="flex items-center space-x-2">
-                            <Globe className="h-4 w-4 text-gray-400" />
-                            <span className="text-sm text-gray-700 dark:text-gray-300 font-mono">
+                            <Globe className="h-4 w-4 text-bodydark2" />
+                            <span className="text-sm text-gray-700 dark:text-bodydark font-mono">
                               {config.base_url}
                             </span>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Clé publique">
                           <div className="flex items-center space-x-2">
-                            <Key className="h-4 w-4 text-gray-400" />
-                            <span className="text-sm text-gray-700 dark:text-gray-300 font-mono">
+                            <Key className="h-4 w-4 text-bodydark2" />
+                            <span className="text-sm text-gray-700 dark:text-bodydark font-mono">
                               {config.public_key.substring(0, 20)}...
                             </span>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Timeout">
                           <div className="flex items-center space-x-2">
-                            <Timer className="h-4 w-4 text-gray-400" />
-                            <span className="text-sm text-gray-600 dark:text-gray-400">
+                            <Timer className="h-4 w-4 text-bodydark2" />
+                            <span className="text-sm text-body dark:text-bodydark2">
                               {config.timeout_seconds}s
                             </span>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Statut">
                           {getStatusBadge(config.is_active)}
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Mis à jour par">
                           <div className="flex items-center space-x-2">
-                            <User className="h-4 w-4 text-gray-400" />
-                            <span className="text-sm text-gray-600 dark:text-gray-400">
+                            <User className="h-4 w-4 text-bodydark2" />
+                            <span className="text-sm text-body dark:text-bodydark2">
                               {config.updated_by_name}
                             </span>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Créé le">
                           <div className="flex items-center space-x-2">
-                            <Calendar className="h-4 w-4 text-gray-400" />
-                            <span className="text-sm text-gray-600 dark:text-gray-400">
+                            <Calendar className="h-4 w-4 text-bodydark2" />
+                            <span className="text-sm text-body dark:text-bodydark2">
                               {config.created_at 
                                 ? new Date(config.created_at).toLocaleDateString()
                                 : 'Inconnu'
@@ -492,7 +492,7 @@ function ApiConfigPageContent() {
                             </span>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Actions">
                           <div className="flex items-center space-x-2">
                             <Button 
                               variant="outline" 
@@ -507,7 +507,7 @@ function ApiConfigPageContent() {
                               variant="outline" 
                               size="sm"
                               onClick={() => handleOpenEdit(config)}
-                              className="bg-orange-50 text-orange-700 border-orange-200 hover:bg-orange-100 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-700 dark:hover:bg-orange-900/30"
+                              className="bg-gray text-orange-700 border-stroke hover:bg-meta-2 dark:bg-orange-900/20 dark:text-secondary dark:border-orange-700 dark:hover:bg-orange-900/30"
                             >
                               <Edit className="h-4 w-4 mr-1" />
                               Modifier
@@ -525,8 +525,8 @@ function ApiConfigPageContent() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-between mt-6">
-            <div className="text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center mt-6">
+            <div className="text-sm text-body dark:text-bodydark2">
               Affichage de {startIndex + 1} à {Math.min(startIndex + itemsPerPage, totalCount)} sur {totalCount} résultats
             </div>
             <div className="flex items-center space-x-2">
@@ -552,7 +552,7 @@ function ApiConfigPageContent() {
                   
                   return pages.map((page, index) => {
                     if (page === '...') {
-                      return <span key={`ellipsis-${index}`} className="px-2 text-gray-500 text-sm">...</span>;
+                      return <span key={`ellipsis-${index}`} className="px-2 text-body text-sm">...</span>;
                     }
                     return (
                       <Button
@@ -560,7 +560,7 @@ function ApiConfigPageContent() {
                         variant={currentPage === page ? "default" : "outline"}
                         size="sm"
                         onClick={() => handlePageChange(page as number)}
-                        className={currentPage === page ? "bg-orange-500 hover:bg-orange-600 text-white border-orange-500" : "border-gray-200 dark:border-gray-600"}
+                        className={currentPage === page ? "bg-primary hover:bg-primary text-white border-primary" : "border-stroke dark:border-strokedark"}
                       >
                         {page}
                       </Button>
@@ -583,18 +583,18 @@ function ApiConfigPageContent() {
 
         {/* Empty State */}
         {!loading && !error && configs.length === 0 && (
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mt-6">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mt-6">
             <CardContent className="p-12 text-center">
-              <Settings className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+              <Settings className="h-12 w-12 text-bodydark2 mx-auto mb-4" />
+              <h3 className="text-sm font-medium sm:text-base text-gray-900 dark:text-gray-100 mb-2">
                 Aucune configuration trouvée
               </h3>
-              <p className="text-gray-500 dark:text-gray-400 mb-4">
+              <p className="text-body dark:text-bodydark2 mb-4">
                 {searchTerm ? `Aucune configuration ne correspond à "${searchTerm}"` : "Aucune configuration API n'a encore été créée."}
               </p>
               <Button 
                 onClick={handleOpenCreate}
-                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+                className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white"
               >
                 <Plus className="h-4 w-4 mr-2" />
                 Créer une configuration
@@ -608,20 +608,20 @@ function ApiConfigPageContent() {
           <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle className="flex items-center space-x-2">
-                <Settings className="h-5 w-5 text-orange-600" />
+                <Settings className="h-5 w-5 text-primary" />
                 <span>Détails de la configuration API</span>
               </DialogTitle>
             </DialogHeader>
             {detailLoading ? (
-              <div className="flex items-center justify-center py-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600"></div>
+              <div className="flex items-center justify-center py-4 sm:py-6">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
               </div>
             ) : detailError ? (
               <ErrorDisplay error={detailError} />
             ) : detailConfig ? (
               <div className="space-y-6">
                 {/* Configuration Overview */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6">
                   <Card className="bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-700">
                     <CardContent className="p-4">
                       <h4 className="font-medium text-blue-800 dark:text-blue-300 mb-3 flex items-center">
@@ -630,19 +630,19 @@ function ApiConfigPageContent() {
                       </h4>
                       <div className="space-y-2">
                         <div>
-                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Nom:</span>
+                          <span className="text-sm font-medium text-body dark:text-bodydark2">Nom:</span>
                           <p className="text-lg font-semibold text-blue-600">
                             {detailConfig.name}
                           </p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">URL de base:</span>
+                          <span className="text-sm font-medium text-body dark:text-bodydark2">URL de base:</span>
                           <p className="text-sm text-gray-900 dark:text-gray-100 font-mono">
                             {detailConfig.base_url}
                           </p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Timeout:</span>
+                          <span className="text-sm font-medium text-body dark:text-bodydark2">Timeout:</span>
                           <p className="text-sm text-gray-900 dark:text-gray-100">
                             {detailConfig.timeout_seconds} secondes
                           </p>
@@ -651,21 +651,21 @@ function ApiConfigPageContent() {
                     </CardContent>
                   </Card>
 
-                  <Card className="bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-700">
+                  <Card className="bg-gray dark:bg-orange-900/20 border-stroke dark:border-orange-700">
                     <CardContent className="p-4">
-                      <h4 className="font-medium text-orange-800 dark:text-orange-300 mb-3 flex items-center">
+                      <h4 className="font-medium text-orange-800 dark:text-secondary mb-3 flex items-center">
                         <Key className="h-5 w-5 mr-2" />
                         Clés API
                       </h4>
                       <div className="space-y-2">
                         <div>
-                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Clé publique:</span>
+                          <span className="text-sm font-medium text-body dark:text-bodydark2">Clé publique:</span>
                           <p className="text-sm text-gray-900 dark:text-gray-100 font-mono break-all">
                             {detailConfig.public_key}
                           </p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Statut:</span>
+                          <span className="text-sm font-medium text-body dark:text-bodydark2">Statut:</span>
                           <div className="mt-1">
                             {getStatusBadge(detailConfig.is_active)}
                           </div>
@@ -676,15 +676,15 @@ function ApiConfigPageContent() {
                 </div>
 
                 {/* Metadata */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4">
                   <div>
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Mis à jour par:</span>
+                    <span className="text-sm font-medium text-body dark:text-bodydark2">Mis à jour par:</span>
                     <p className="text-sm text-gray-900 dark:text-gray-100">
                       {detailConfig.updated_by_name}
                     </p>
                   </div>
                   <div>
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Créé le:</span>
+                    <span className="text-sm font-medium text-body dark:text-bodydark2">Créé le:</span>
                     <p className="text-sm text-gray-900 dark:text-gray-100">
                       {detailConfig.created_at 
                         ? new Date(detailConfig.created_at).toLocaleString()
@@ -693,7 +693,7 @@ function ApiConfigPageContent() {
                     </p>
                   </div>
                   <div>
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Mis à jour le:</span>
+                    <span className="text-sm font-medium text-body dark:text-bodydark2">Mis à jour le:</span>
                     <p className="text-sm text-gray-900 dark:text-gray-100">
                       {detailConfig.updated_at 
                         ? new Date(detailConfig.updated_at).toLocaleString()
@@ -719,7 +719,7 @@ function ApiConfigPageContent() {
           <DialogContent className="max-w-2xl">
             <DialogHeader>
               <DialogTitle className="flex items-center space-x-2">
-                <Settings className="h-5 w-5 text-orange-600" />
+                <Settings className="h-5 w-5 text-primary" />
                 <span>{editConfig ? 'Modifier' : 'Créer'} Configuration API</span>
               </DialogTitle>
             </DialogHeader>
@@ -794,7 +794,7 @@ function ApiConfigPageContent() {
                 />
               </div>
 
-              <div className="flex items-center space-x-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <Switch
                   id="is_active"
                   checked={form.is_active}
@@ -805,11 +805,11 @@ function ApiConfigPageContent() {
                 </Label>
               </div>
 
-              <div className="flex items-center space-x-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex items-center gap-2 sm:gap-4 pt-6 border-t border-stroke dark:border-strokedark">
                 <Button
                   type="submit"
                   disabled={formLoading}
-                  className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+                  className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white"
                 >
                   {formLoading ? (
                     <>
@@ -852,7 +852,7 @@ import { getApiBaseUrl } from "@/lib/env-config"
 
 export default function ApiConfigPage() {
   return (
-    <Suspense fallback={<div className="flex justify-center items-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div></div>}>
+    <Suspense fallback={<div className="flex justify-center items-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
       <ApiConfigPageContent />
     </Suspense>
   )

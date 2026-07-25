@@ -17,7 +17,7 @@ export function BulkActionBar({
 }) {
   if (count <= 0) return null
   return (
-    <Card className="border-orange-300 bg-orange-50/80 dark:bg-orange-900/20 dark:border-orange-700 shadow-md">
+    <Card className="border-orange-300 bg-gray/80 dark:bg-orange-900/20 dark:border-orange-700 shadow-md">
       <CardContent className="p-4 flex flex-col sm:flex-row sm:items-center gap-3">
         <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
           {count} élément{count > 1 ? "s" : ""} sélectionné{count > 1 ? "s" : ""}

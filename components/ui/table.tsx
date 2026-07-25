@@ -6,7 +6,7 @@ const Table = React.forwardRef<
   HTMLTableElement,
   React.HTMLAttributes<HTMLTableElement>
 >(({ className, ...props }, ref) => (
-  <div className="relative w-full overflow-auto rounded-lg border border-gray-200/50 dark:border-gray-700/50">
+  <div className="relative w-full overflow-auto rounded-lg border border-stroke/50 dark:border-strokedark/50">
     <table
       ref={ref}
       className={cn("w-full caption-bottom text-sm", className)}
@@ -20,7 +20,7 @@ const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
-  <thead ref={ref} className={cn("[&_tr]:border-b border-gray-200/50 dark:border-gray-700/50", className)} {...props} />
+  <thead ref={ref} className={cn("[&_tr]:border-b border-stroke/50 dark:border-strokedark/50", className)} {...props} />
 ))
 TableHeader.displayName = "TableHeader"
 
@@ -43,7 +43,7 @@ const TableFooter = React.forwardRef<
   <tfoot
     ref={ref}
     className={cn(
-      "border-t border-gray-200/50 bg-gray-50/50 font-medium [&>tr]:last:border-b-0 dark:border-gray-700/50 dark:bg-gray-800/50",
+      "border-t border-stroke/50 bg-gray-50/50 font-medium [&>tr]:last:border-b-0 dark:border-strokedark/50 dark:bg-boxdark/50",
       className
     )}
     {...props}
@@ -58,7 +58,7 @@ const TableRow = React.forwardRef<
   <tr
     ref={ref}
     className={cn(
-      "border-b border-gray-100/50 transition-all duration-200 hover:bg-gray-50/80 data-[state=selected]:bg-blue-50/80 dark:border-gray-700/50 dark:hover:bg-gray-800/80 dark:data-[state=selected]:bg-blue-900/20",
+      "border-b border-gray-100/50 transition-all duration-200 hover:bg-gray-50/80 data-[state=selected]:bg-blue-50/80 dark:border-strokedark/50 dark:hover:bg-boxdark/80 dark:data-[state=selected]:bg-blue-900/20",
       className
     )}
     {...props}
@@ -73,7 +73,7 @@ const TableHead = React.forwardRef<
   <th
     ref={ref}
     className={cn(
-      "h-14 px-6 text-left align-middle font-semibold text-gray-700 bg-gray-50/80 dark:text-gray-300 dark:bg-gray-800/80 [&:has([role=checkbox])]:pr-0",
+      "h-14 px-6 text-left align-middle font-semibold text-gray-700 bg-gray-50/80 dark:text-bodydark dark:bg-boxdark/80 [&:has([role=checkbox])]:pr-0",
       className
     )}
     {...props}
@@ -99,7 +99,7 @@ const TableCaption = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <caption
     ref={ref}
-    className={cn("mt-4 text-sm text-gray-600 dark:text-gray-400", className)}
+    className={cn("mt-4 text-sm text-body dark:text-bodydark2", className)}
     {...props}
   />
 ))

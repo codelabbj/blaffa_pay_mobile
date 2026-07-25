@@ -45,7 +45,7 @@ export function CopyButton({ value, className, iconClassName }: CopyButtonProps)
             title="Copier"
         >
             {copied ? (
-                <Check className={cn("h-3.5 w-3.5 text-green-500", iconClassName)} />
+                <Check className={cn("h-3.5 w-3.5 text-meta-3", iconClassName)} />
             ) : (
                 <Copy className={cn("h-3.5 w-3.5", iconClassName)} />
             )}

@@ -64,9 +64,9 @@ export function DateRangeFilter({
         <PopoverTrigger asChild>
           <Button
             variant="outline"
-            className={`w-full justify-start text-left font-normal bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 ${
+            className={`w-full justify-start text-left font-normal bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark ${
               hasActiveFilter 
-                ? "border-orange-300 bg-orange-50 dark:bg-orange-900/20 dark:border-orange-600" 
+                ? "border-orange-300 bg-gray dark:bg-orange-900/20 dark:border-primary" 
                 : ""
             }`}
           >
@@ -81,11 +81,11 @@ export function DateRangeFilter({
                 }
               </span>
             ) : (
-              <span className="text-gray-500">{placeholder}</span>
+              <span className="text-body">{placeholder}</span>
             )}
             {hasActiveFilter && (
               <X 
-                className="ml-auto h-4 w-4 text-gray-400 hover:text-gray-600" 
+                className="ml-auto h-4 w-4 text-bodydark2 hover:text-body" 
                 onClick={(e) => {
                   e.stopPropagation()
                   onClear()
@@ -133,7 +133,7 @@ export function DateRangeFilter({
                   <Button
                     size="sm"
                     onClick={() => setIsOpen(false)}
-                    className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+                    className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white"
                   >
                     Appliquer
                   </Button>

@@ -109,12 +109,12 @@ function RemoteCommandCreatePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex items-center justify-center py-12">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:bg-boxdark-2">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
+          <div className="flex items-center justify-center py-6 sm:py-10">
             <div className="flex flex-col items-center space-y-4">
               <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-              <span className="text-gray-600 dark:text-gray-300">{t("remoteCommand.sending") || "Envoi..."}</span>
+              <span className="text-body dark:text-bodydark">{t("remoteCommand.sending") || "Envoi..."}</span>
             </div>
           </div>
         </div>
@@ -123,13 +123,13 @@ function RemoteCommandCreatePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:bg-boxdark-2">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
         
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
+            <div className="flex items-center gap-2 sm:gap-4">
               <Button 
                 variant="outline" 
                 onClick={() => router.back()}
@@ -139,10 +139,10 @@ function RemoteCommandCreatePage() {
                 Retour
               </Button>
               <div>
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   {t("remoteCommand.create") || "Create Remote Command"}
                 </h1>
-                <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+                <p className="text-body dark:text-bodydark mt-2 text-lg">
                   Envoyer des commandes aux appareils à distance
                 </p>
               </div>
@@ -151,17 +151,17 @@ function RemoteCommandCreatePage() {
         </div>
 
         {error && (
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-            <CardContent className="p-6">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+            <CardContent className="p-3 sm:p-4 md:p-6">
               <ErrorDisplay error={error} />
             </CardContent>
           </Card>
         )}
 
         {success && (
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-2 text-green-600">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+            <CardContent className="p-3 sm:p-4 md:p-6">
+              <div className="flex items-center space-x-2 text-meta-3">
                 <CheckCircle className="h-5 w-5" />
                 <span className="font-medium">{success}</span>
               </div>
@@ -171,8 +171,8 @@ function RemoteCommandCreatePage() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Command Details */}
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-            <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <CardHeader className="border-b border-gray-100 dark:border-strokedark">
               <CardTitle className="flex items-center space-x-2">
                 <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
                   <Zap className="h-5 w-5 text-blue-600 dark:text-blue-300" />
@@ -180,9 +180,9 @@ function RemoteCommandCreatePage() {
                 <span>Détails de la commande</span>
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-6 space-y-4">
+            <CardContent className="p-3 sm:p-4 md:p-6 space-y-4">
               <div>
-                <Label htmlFor="command" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                <Label htmlFor="command" className="text-sm font-medium text-gray-700 dark:text-bodydark">
                   {t("remoteCommand.command") || "Command"}
                 </Label>
                 <Input 
@@ -190,16 +190,16 @@ function RemoteCommandCreatePage() {
                   value={command} 
                   onChange={e => setCommand(e.target.value)} 
                   placeholder="Entrer la commande à exécuter"
-                  className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                  className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                   required 
                 />
               </div>
               <div>
-                <Label htmlFor="deviceId" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                <Label htmlFor="deviceId" className="text-sm font-medium text-gray-700 dark:text-bodydark">
                   {t("remoteCommand.deviceId") || "Device ID"}
                 </Label>
                 <Select value={deviceId} onValueChange={setDeviceId}>
-                  <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                  <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                     <SelectValue placeholder={t("remoteCommand.selectDeviceId") || "Sélectionner un appareil"} />
                   </SelectTrigger>
                   <SelectContent>
@@ -215,18 +215,18 @@ function RemoteCommandCreatePage() {
           </Card>
 
           {/* Parameters */}
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-            <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <CardHeader className="border-b border-gray-100 dark:border-strokedark">
               <CardTitle className="flex items-center space-x-2">
                 <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                  <Settings className="h-5 w-5 text-green-600 dark:text-green-300" />
+                  <Settings className="h-5 w-5 text-meta-3 dark:text-green-300" />
                 </div>
                 <span>Paramètres</span>
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-6 space-y-4">
+            <CardContent className="p-3 sm:p-4 md:p-6 space-y-4">
               <div>
-                <Label htmlFor="parameters" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                <Label htmlFor="parameters" className="text-sm font-medium text-gray-700 dark:text-bodydark">
                   {t("remoteCommand.parameters") || "Parameters (JSON)"}
                 </Label>
                 <Textarea 
@@ -234,11 +234,11 @@ function RemoteCommandCreatePage() {
                   value={parameters} 
                   onChange={e => setParameters(e.target.value)} 
                   placeholder='{"key": "value"}'
-                  className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                  className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                   rows={4}
                   required 
                 />
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                <p className="text-sm text-body dark:text-bodydark2 mt-1">
                   Entrer des paramètres JSON valides pour la commande
                 </p>
               </div>
@@ -246,8 +246,8 @@ function RemoteCommandCreatePage() {
           </Card>
 
           {/* Priority Settings */}
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-            <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <CardHeader className="border-b border-gray-100 dark:border-strokedark">
               <CardTitle className="flex items-center space-x-2">
                 <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
                   <Smartphone className="h-5 w-5 text-purple-600 dark:text-purple-300" />
@@ -255,9 +255,9 @@ function RemoteCommandCreatePage() {
                 <span>Paramètres de priorité</span>
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-6 space-y-4">
+            <CardContent className="p-3 sm:p-4 md:p-6 space-y-4">
               <div>
-                <Label htmlFor="priority" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                <Label htmlFor="priority" className="text-sm font-medium text-gray-700 dark:text-bodydark">
                   {t("remoteCommand.priority") || "Priority Level"}
                 </Label>
                 <Input 
@@ -267,10 +267,10 @@ function RemoteCommandCreatePage() {
                   onChange={e => setPriority(Number(e.target.value))} 
                   min="1"
                   max="10"
-                  className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                  className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                   required 
                 />
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                <p className="text-sm text-body dark:text-bodydark2 mt-1">
                   Niveau de priorité de 1 (le plus bas) à 10 (le plus élevé)
                 </p>
               </div>
@@ -278,7 +278,7 @@ function RemoteCommandCreatePage() {
           </Card>
 
           {/* Submit Button */}
-          <div className="flex justify-end space-x-4">
+          <div className="flex justify-end gap-2 sm:gap-4">
             <Button 
               type="button" 
               variant="outline" 

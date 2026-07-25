@@ -141,9 +141,9 @@ export function CreateAuthorizationModal({
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="sm:max-w-[550px] p-0 overflow-hidden border-0 shadow-2xl">
-                <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-6 text-white">
+                <div className="bg-gradient-to-r from-primary to-primary p-3 sm:p-4 md:p-6 text-white">
                     <DialogHeader>
-                        <DialogTitle className="text-2xl font-bold flex items-center gap-2">
+                        <DialogTitle className="text-lg font-bold sm:text-xl flex items-center gap-2">
                             <Shield className="h-6 w-6" />
                             {editingAuth ? <span>{t("aggregator.editAuthorization")}</span> : <span>{t("aggregator.grantAuthorization")}</span>}
                         </DialogTitle>
@@ -153,7 +153,7 @@ export function CreateAuthorizationModal({
                     </DialogHeader>
                 </div>
 
-                <div className="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
+                <div className="p-3 sm:p-4 md:p-6 space-y-6 max-h-[70vh] overflow-y-auto">
                     {error && (
                         <ErrorDisplay
                             error={error}
@@ -162,13 +162,13 @@ export function CreateAuthorizationModal({
                         />
                     )}
                     <form id="authorization-form" onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6">
                             <div className="space-y-2">
-                                <Label className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                <Label className="text-sm font-semibold text-gray-700 dark:text-bodydark">
                                     <span>{t("aggregator.aggregatorUser")}</span>
                                 </Label>
                                 {editingAuth ? (
-                                    <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700 font-medium text-gray-900 dark:text-gray-100 italic">
+                                    <div className="p-3 bg-gray-50 dark:bg-boxdark rounded-lg border border-gray-100 dark:border-strokedark font-medium text-gray-900 dark:text-gray-100 italic">
                                         {editingAuth.user_name || editingAuth.user}
                                     </div>
                                 ) : (
@@ -179,17 +179,17 @@ export function CreateAuthorizationModal({
                                         placeholder={t("aggregator.selectAggregator")}
                                         searchPlaceholder={t("common.searchPlaceholder") || "Search user..."}
                                         emptyMessage={t("common.noResults") || "No user found."}
-                                        className="bg-gray-50 dark:bg-gray-800 border-gray-200"
+                                        className="bg-gray-50 dark:bg-boxdark border-stroke"
                                     />
                                 )}
                             </div>
 
                             <div className="space-y-2">
-                                <Label className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                <Label className="text-sm font-semibold text-gray-700 dark:text-bodydark">
                                     <span>{t("aggregator.paymentNetwork")}</span>
                                 </Label>
                                 {editingAuth ? (
-                                    <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700 font-medium text-gray-900 dark:text-gray-100 italic">
+                                    <div className="p-3 bg-gray-50 dark:bg-boxdark rounded-lg border border-gray-100 dark:border-strokedark font-medium text-gray-900 dark:text-gray-100 italic">
                                         {editingAuth.network_name || editingAuth.network}
                                     </div>
                                 ) : (
@@ -200,17 +200,17 @@ export function CreateAuthorizationModal({
                                         placeholder={t("aggregator.selectNetwork")}
                                         searchPlaceholder={t("common.searchPlaceholder") || "Search network..."}
                                         emptyMessage={t("common.noResults") || "No network found."}
-                                        className="bg-gray-50 dark:bg-gray-800 border-gray-200"
+                                        className="bg-gray-50 dark:bg-boxdark border-stroke"
                                     />
                                 )}
                             </div>
                         </div>
 
-                        <Separator className="bg-gray-100 dark:bg-gray-700" />
+                        <Separator className="bg-gray-100 dark:bg-meta-4" />
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6">
                             <div className="space-y-2">
-                                <Label className="text-sm font-semibold text-gray-700 dark:text-gray-300" htmlFor="user_payin_fee_percent">
+                                <Label className="text-sm font-semibold text-gray-700 dark:text-bodydark" htmlFor="user_payin_fee_percent">
                                     <span>{t("aggregator.payinFee")} (%)</span>
                                 </Label>
                                 <Input
@@ -220,12 +220,12 @@ export function CreateAuthorizationModal({
                                     value={formData.user_payin_fee_percent}
                                     onChange={handleChange}
                                     placeholder="0.00"
-                                    className="bg-gray-50 dark:bg-gray-800 border-gray-200 focus:ring-orange-500"
+                                    className="bg-gray-50 dark:bg-boxdark border-stroke focus:ring-primary"
                                 />
                             </div>
 
                             <div className="space-y-2">
-                                <Label className="text-sm font-semibold text-gray-700 dark:text-gray-300" htmlFor="user_payout_fee_percent">
+                                <Label className="text-sm font-semibold text-gray-700 dark:text-bodydark" htmlFor="user_payout_fee_percent">
                                     <span>{t("aggregator.payoutFee")} (%)</span>
                                 </Label>
                                 <Input
@@ -235,34 +235,34 @@ export function CreateAuthorizationModal({
                                     value={formData.user_payout_fee_percent}
                                     onChange={handleChange}
                                     placeholder="0.00"
-                                    className="bg-gray-50 dark:bg-gray-800 border-gray-200 focus:ring-green-500"
+                                    className="bg-gray-50 dark:bg-boxdark border-stroke focus:ring-green-500"
                                 />
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700">
+                        <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-4 bg-gray-50 dark:bg-boxdark rounded-xl border border-gray-100 dark:border-strokedark">
                             <div className="space-y-0.5">
                                 <Label className="text-sm font-semibold text-gray-900 dark:text-gray-100"><span>{t("aggregator.status")}</span></Label>
-                                <div className="text-xs text-gray-500">{formData.is_active ? <span>{t("common.active")}</span> : <span>{t("aggregator.locked")}</span>}</div>
+                                <div className="text-xs text-body">{formData.is_active ? <span>{t("common.active")}</span> : <span>{t("aggregator.locked")}</span>}</div>
                             </div>
                             <Switch
                                 checked={formData.is_active}
                                 onCheckedChange={(checked) => setFormData(prev => ({ ...prev, is_active: checked }))}
-                                className="data-[state=checked]:bg-orange-500"
+                                className="data-[state=checked]:bg-primary"
                             />
                         </div>
                     </form>
                 </div>
 
-                <DialogFooter className="bg-gray-50 dark:bg-gray-900/50 p-6 border-t dark:border-gray-800 flex items-center justify-end gap-3">
-                    <Button variant="ghost" onClick={() => onOpenChange(false)} disabled={loading} className="hover:bg-gray-100 dark:hover:bg-gray-800">
+                <DialogFooter className="bg-gray-50 dark:bg-boxdark-2/50 p-3 sm:p-4 md:p-6 border-t dark:border-gray-800 flex items-center justify-end gap-3">
+                    <Button variant="ghost" onClick={() => onOpenChange(false)} disabled={loading} className="hover:bg-gray-100 dark:hover:bg-boxdark">
                         <span>{t("common.cancel")}</span>
                     </Button>
                     <Button
                         form="authorization-form"
                         type="submit"
                         disabled={loading}
-                        className="bg-orange-500 hover:bg-orange-600 shadow-md transition-all hover:shadow-lg px-8"
+                        className="bg-primary hover:bg-primary shadow-md transition-all hover:shadow-lg px-3 sm:px-6"
                     >
                         {loading && <Loader className="animate-spin mr-2 h-4 w-4" />}
                         <Save className="mr-2 h-4 w-4" />

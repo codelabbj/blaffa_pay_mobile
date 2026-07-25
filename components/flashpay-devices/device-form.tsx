@@ -319,13 +319,13 @@ export function DeviceForm({
     return (
       <div
         key={tab}
-        className="rounded-xl border border-slate-200 dark:border-gray-600 bg-slate-50/50 dark:bg-gray-900/30 p-4 space-y-4"
+        className="rounded-xl border border-slate-200 dark:border-strokedark bg-slate-50/50 dark:bg-boxdark-2/30 p-4 space-y-4"
       >
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center gap-2">
           <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100">
             {OPERATION_LABELS[tab]}
           </h3>
-          <Badge variant="secondary" className="dark:bg-gray-700 dark:text-gray-200">
+          <Badge variant="secondary" className="dark:bg-meta-4 dark:text-gray-200">
             {stepCount} étape{stepCount > 1 ? "s" : ""}
           </Badge>
         </div>
@@ -333,7 +333,7 @@ export function DeviceForm({
         <UssdFlowBuilder steps={steps} onChange={(next) => patchOperation(tab, next)} />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div className="flex items-center justify-between rounded-lg border border-slate-200 dark:border-gray-600 bg-white dark:bg-gray-800/80 p-3">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center rounded-lg border border-slate-200 dark:border-strokedark bg-white dark:bg-boxdark/80 p-3">
             <span className="text-sm text-gray-900 dark:text-gray-200">Session multi-écrans</span>
             <Switch
               checked={fp[tab]?.session_type === "multi"}
@@ -348,7 +348,7 @@ export function DeviceForm({
             />
           </div>
           {tab === "deposit" && (
-            <div className="flex items-center justify-between rounded-lg border border-slate-200 dark:border-gray-600 bg-white dark:bg-gray-800/80 p-3">
+            <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center rounded-lg border border-slate-200 dark:border-strokedark bg-white dark:bg-boxdark/80 p-3">
               <span className="text-sm text-gray-900 dark:text-gray-200">Auto-transfer</span>
               <Switch
                 checked={fp.deposit.auto_transfer_enabled}
@@ -367,7 +367,7 @@ export function DeviceForm({
             <div>
               <Label>Destination auto-transfer</Label>
               <Input
-                className="mt-1 bg-white dark:bg-gray-900"
+                className="mt-1 bg-white dark:bg-boxdark-2"
                 value={fp.deposit.auto_transfer_to}
                 onChange={(e) =>
                   patchFlashpay({ deposit: { ...fp.deposit, auto_transfer_to: e.target.value } })
@@ -378,7 +378,7 @@ export function DeviceForm({
               <Label>Seuil min (FCFA)</Label>
               <Input
                 type="number"
-                className="mt-1 bg-white dark:bg-gray-900"
+                className="mt-1 bg-white dark:bg-boxdark-2"
                 value={fp.deposit.auto_transfer_min_balance}
                 onChange={(e) =>
                   patchFlashpay({
@@ -394,7 +394,7 @@ export function DeviceForm({
   }
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 sm:gap-6">
+    <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 sm:gap-3 sm:p-4 md:p-6">
       <div className="xl:col-span-2 space-y-4 min-w-0">
         {sample && mode === "create" && (
           <div className={`${flashpayTheme.sampleBanner} flex items-start gap-3`}>
@@ -418,7 +418,7 @@ export function DeviceForm({
             <Label>device_id</Label>
             <Input
               className={cn(
-                "font-mono mt-1 bg-white dark:bg-gray-900",
+                "font-mono mt-1 bg-white dark:bg-boxdark-2",
                 sample && form.device_id.includes("sample") && "border-amber-400 ring-amber-200",
               )}
               value={form.device_id}
@@ -430,7 +430,7 @@ export function DeviceForm({
           <div>
             <Label>Nom affiché</Label>
             <Input
-              className="mt-1 bg-white dark:bg-gray-900"
+              className="mt-1 bg-white dark:bg-boxdark-2"
               value={form.device_name}
               onChange={(e) => patch({ device_name: e.target.value })}
               placeholder="Ex. Téléphone Moov SIM1"
@@ -555,7 +555,7 @@ export function DeviceForm({
                 Sélectionnez un pays pour afficher les réseaux disponibles.
               </p>
             ) : loadingNetworks ? (
-              <div className="flex items-center gap-2 mt-2 text-sm text-slate-500 dark:text-gray-400">
+              <div className="flex items-center gap-2 mt-2 text-sm text-slate-500 dark:text-bodydark2">
                 <Loader2 className="h-4 w-4 animate-spin" />
                 Chargement des réseaux…
               </div>
@@ -613,7 +613,7 @@ export function DeviceForm({
           title="Émetteur SMS"
           description="Active ce device pour envoyer des SMS sortants via FlashPay."
         >
-          <div className="flex items-center justify-between gap-4 rounded-lg border border-slate-200 dark:border-gray-600 px-4 py-3">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center gap-4 rounded-lg border border-slate-200 dark:border-strokedark px-4 py-3">
             <div>
               <p className="font-medium text-gray-900 dark:text-gray-100">Device émetteur SMS</p>
               <p className={flashpayTheme.mutedXs}>
@@ -678,7 +678,7 @@ export function DeviceForm({
             <Button
               type="button"
               variant="outline"
-              className="w-full sm:w-auto border-slate-300 dark:border-gray-600 touch-manipulation"
+              className="w-full sm:w-auto border-slate-300 dark:border-strokedark touch-manipulation"
               onClick={() => configFileInputRef.current?.click()}
             >
               <Upload className="h-4 w-4 mr-2" />
@@ -700,7 +700,7 @@ export function DeviceForm({
             <Label>PIN MoMo</Label>
             <div className="relative mt-1">
               <Input
-                className="pr-11 font-mono bg-white dark:bg-gray-900"
+                className="pr-11 font-mono bg-white dark:bg-boxdark-2"
                 type={showMomoPin ? "text" : "password"}
                 value={fp?.momo_pin || ""}
                 onChange={(e) => patchFlashpay({ momo_pin: e.target.value })}
@@ -708,7 +708,7 @@ export function DeviceForm({
               />
               <button
                 type="button"
-                className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-md p-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-100 touch-manipulation"
+                className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-md p-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-bodydark dark:hover:bg-gray-700 dark:hover:text-gray-100 touch-manipulation"
                 onClick={() => setShowMomoPin((v) => !v)}
                 aria-label={showMomoPin ? "Masquer le PIN MoMo" : "Afficher le PIN MoMo"}
               >

@@ -19,12 +19,12 @@ import { getApiBaseUrl } from "@/lib/env-config"
 
 // Colors for consistent theming - using logo colors
 const COLORS = {
-	primary: '#FF6B35', // Orange (primary from logo)
-	secondary: '#00FF88', // Bright green from logo
+	primary: '#194185', // Orange (primary from logo)
+	secondary: '#10B981', // Bright green from logo
 	accent: '#1E3A8A', // Dark blue from logo
 	danger: '#EF4444',
 	warning: '#F97316',
-	success: '#00FF88', // Using bright green for success
+	success: '#10B981', // Using bright green for success
 	info: '#1E3A8A', // Using dark blue for info
 	purple: '#8B5CF6',
 	pink: '#EC4899',
@@ -187,12 +187,12 @@ export default function TopupPage() {
 
 	if (loading) {
 		return (
-			<div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-					<div className="flex items-center justify-center py-12">
+			<div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+				<div className="w-full">
+					<div className="flex items-center justify-center py-6 sm:py-10">
 						<div className="flex flex-col items-center space-y-4">
-							<Loader2 className="h-8 w-8 animate-spin text-orange-500" />
-							<span className="text-gray-600 dark:text-gray-300"><span>Loading topup requests...</span></span>
+							<Loader2 className="h-8 w-8 animate-spin text-primary" />
+							<span className="text-body dark:text-bodydark"><span>Loading topup requests...</span></span>
 						</div>
 					</div>
 				</div>
@@ -201,17 +201,17 @@ export default function TopupPage() {
 	}
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+		<div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+			<div className="w-full">
 
 				{/* Page Header */}
-				<div className="mb-8">
-					<div className="flex items-center justify-between">
+				<div className="mb-4 sm:mb-6">
+					<div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
 						<div>
-							<h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+							<h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
 								<span>{t("topup.title") || "Top Up Requests"}</span>
 							</h1>
-							<p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+							<p className="text-body dark:text-bodydark mt-2 text-lg">
 								<span>Manage and review topup requests from users</span>
 							</p>
 						</div>
@@ -219,61 +219,61 @@ export default function TopupPage() {
 				</div>
 
 				{/* Summary Cards */}
-				<div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-					<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-						<CardContent className="p-6">
-							<div className="flex items-center space-x-3">
+				<div className="grid grid-cols-1 md:grid-cols-4 gap-3 sm:p-4 md:p-6 mb-4 sm:mb-6">
+					<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+						<CardContent className="p-3 sm:p-4 md:p-6">
+							<div className="flex flex-wrap items-center gap-2 sm:gap-3">
 								{/* <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg">
 									<DollarSign className="h-6 w-6 text-blue-600 dark:text-blue-300" />
 								</div> */}
 								<div>
-									<p className="text-sm font-medium text-gray-600 dark:text-gray-400"><span>Total Amount</span></p>
-									<p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+									<p className="text-sm font-medium text-body dark:text-bodydark2"><span>Total Amount</span></p>
+									<p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
 										<span>{totalAmount.toFixed(2)} FCFA</span>
 									</p>
 								</div>
 							</div>
 						</CardContent>
 					</Card>
-					<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-						<CardContent className="p-6">
-							<div className="flex items-center space-x-3">
+					<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+						<CardContent className="p-3 sm:p-4 md:p-6">
+							<div className="flex flex-wrap items-center gap-2 sm:gap-3">
 								<div className="p-3 bg-yellow-100 dark:bg-yellow-900 rounded-lg">
 									<Clock className="h-6 w-6 text-yellow-600 dark:text-yellow-300" />
 								</div>
 								<div>
-									<p className="text-sm font-medium text-gray-600 dark:text-gray-400"><span>Pending</span></p>
-									<p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+									<p className="text-sm font-medium text-body dark:text-bodydark2"><span>Pending</span></p>
+									<p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
 										<span>{pendingCount}</span>
 									</p>
 								</div>
 							</div>
 						</CardContent>
 					</Card>
-					<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-						<CardContent className="p-6">
-							<div className="flex items-center space-x-3">
+					<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+						<CardContent className="p-3 sm:p-4 md:p-6">
+							<div className="flex flex-wrap items-center gap-2 sm:gap-3">
 								<div className="p-3 bg-green-100 dark:bg-green-900 rounded-lg">
-									<CheckCircle className="h-6 w-6 text-green-600 dark:text-green-300" />
+									<CheckCircle className="h-6 w-6 text-meta-3 dark:text-green-300" />
 								</div>
 								<div>
-									<p className="text-sm font-medium text-gray-600 dark:text-gray-400"><span>Approved</span></p>
-									<p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+									<p className="text-sm font-medium text-body dark:text-bodydark2"><span>Approved</span></p>
+									<p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
 										<span>{approvedCount}</span>
 									</p>
 								</div>
 							</div>
 						</CardContent>
 					</Card>
-					<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-						<CardContent className="p-6">
-							<div className="flex items-center space-x-3">
+					<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+						<CardContent className="p-3 sm:p-4 md:p-6">
+							<div className="flex flex-wrap items-center gap-2 sm:gap-3">
 								<div className="p-3 bg-red-100 dark:bg-red-900 rounded-lg">
 									<XCircle className="h-6 w-6 text-red-600 dark:text-red-300" />
 								</div>
 								<div>
-									<p className="text-sm font-medium text-gray-600 dark:text-gray-400"><span>Rejected</span></p>
-									<p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+									<p className="text-sm font-medium text-body dark:text-bodydark2"><span>Rejected</span></p>
+									<p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
 										<span>{rejectedCount}</span>
 									</p>
 								</div>
@@ -283,8 +283,8 @@ export default function TopupPage() {
 				</div>
 
 				{error && (
-					<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-						<CardContent className="p-6">
+					<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+						<CardContent className="p-3 sm:p-4 md:p-6">
 							<ErrorDisplay
 								error={error}
 								onRetry={() => {
@@ -299,29 +299,29 @@ export default function TopupPage() {
 				)}
 
 				{/* Main Content */}
-				<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-					<CardHeader className="border-b border-gray-100 dark:border-gray-700">
+				<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+					<CardHeader className="border-b border-gray-100 dark:border-strokedark">
 						<CardTitle className="flex items-center space-x-2">
-							<div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-								<Users className="h-5 w-5 text-orange-600 dark:text-orange-300" />
+							<div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+								<Users className="h-5 w-5 text-primary dark:text-secondary" />
 							</div>
 							<span><span>Topup Requests</span></span>
 						</CardTitle>
 					</CardHeader>
-					<CardContent className="p-6">
+					<CardContent className="p-3 sm:p-4 md:p-6">
 						{/* Search & Filter */}
 						<div className="flex flex-col sm:flex-row gap-4 mb-6 items-center">
 							<div className="relative flex-1">
-								<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+								<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-bodydark2 h-4 w-4" />
 								<Input
 									placeholder={t("topup.search") || "Search"}
 									value={searchTerm}
 									onChange={(e) => setSearchTerm(e.target.value)}
-									className="pl-10 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+									className="pl-10 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
 								/>
 							</div>
 							<Select value={statusFilter} onValueChange={setStatusFilter}>
-								<SelectTrigger className="w-full sm:w-48 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+								<SelectTrigger className="w-full sm:w-48 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
 									<SelectValue placeholder={t("topup.allStatuses") || "All Statuses"} />
 								</SelectTrigger>
 								<SelectContent>
@@ -349,10 +349,10 @@ export default function TopupPage() {
 						</div>
 
 						{/* Table */}
-						<div className="rounded-md border border-gray-200 dark:border-gray-700">
+						<div className="rounded-md border border-stroke dark:border-strokedark">
 							<Table>
 								<TableHeader>
-									<TableRow className="bg-gray-50 dark:bg-gray-700">
+									<TableRow className="bg-gray-50 dark:bg-meta-4">
 										<TableHead className="font-semibold"><span>{t("topup.uid") || "UID"}</span></TableHead>
 										<TableHead>
 											<Button variant="ghost" onClick={() => handleSort("amount")} className="h-auto p-0 font-semibold hover:bg-transparent">
@@ -389,15 +389,15 @@ export default function TopupPage() {
 												{getStatusBadge(topup.status_display || topup.status)}
 											</TableCell>
 											<TableCell className="font-medium"><span>{topup.user_name}</span></TableCell>
-											<TableCell className="text-gray-600 dark:text-gray-400"><span>{topup.user_email}</span></TableCell>
+											<TableCell className="text-body dark:text-bodydark2"><span>{topup.user_email}</span></TableCell>
 											<TableCell className="font-mono text-sm"><span>{topup.reference}</span></TableCell>
-											<TableCell className="text-gray-600 dark:text-gray-400">
+											<TableCell className="text-body dark:text-bodydark2">
 												<div className="flex flex-col">
 													<span className="text-sm font-medium">
 														<span>{topup.created_at ? new Date(topup.created_at).toLocaleDateString() : "-"}</span>
 													</span>
 													{topup.created_at && (
-														<span className="text-xs text-gray-500 dark:text-gray-400">
+														<span className="text-xs text-body dark:text-bodydark2">
 															<span>{new Date(topup.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
 														</span>
 													)}
@@ -418,7 +418,7 @@ export default function TopupPage() {
 													<Button
 														size="sm"
 														variant="default"
-														className="bg-green-600 hover:bg-green-700 text-white"
+														className="bg-meta-3 hover:bg-green-700 text-white"
 														disabled={
 															!!disabledTopups[topup.uid]
 															|| ((topup.status_display || topup.status)?.toLowerCase() !== "pending" && (topup.status_display || topup.status)?.toLowerCase() !== "en attente" && (topup.status_display || topup.status)?.toLowerCase() !== "proof_submitted" && (topup.status_display || topup.status)?.toLowerCase() !== "preuve soumise")
@@ -463,8 +463,8 @@ export default function TopupPage() {
 						</div>
 
 						{/* Pagination */}
-						<div className="flex items-center justify-between mt-6">
-							<div className="text-sm text-gray-600 dark:text-gray-400">
+						<div className="flex flex-wrap items-start justify-between gap-3 sm:items-center mt-6">
+							<div className="text-sm text-body dark:text-bodydark2">
 								<span>{`${t("topup.showingResults") || "Showing"}: ${startIndex + 1}-${Math.min(startIndex + itemsPerPage, totalCount)} / ${totalCount}`}</span>
 							</div>
 							<div className="flex items-center space-x-2">
@@ -478,7 +478,7 @@ export default function TopupPage() {
 									<ChevronLeft className="h-4 w-4" />
 									<span>{t("common.previous")}</span>
 								</Button>
-								<div className="text-sm text-gray-600 dark:text-gray-400 px-4">
+								<div className="text-sm text-body dark:text-bodydark2 px-4">
 									<span>{`${t("topup.pageOf") || "Page"}: ${currentPage}/${totalPages}`}</span>
 								</div>
 								<Button
@@ -506,8 +506,8 @@ export default function TopupPage() {
 							</DialogTitle>
 						</DialogHeader>
 						{detailLoading ? (
-							<div className="flex items-center justify-center py-8">
-								<Loader2 className="h-6 w-6 animate-spin text-orange-500" />
+							<div className="flex items-center justify-center py-4 sm:py-6">
+								<Loader2 className="h-6 w-6 animate-spin text-primary" />
 								<span>Loading...</span>
 							</div>
 						) : detailError ? (
@@ -557,7 +557,7 @@ export default function TopupPage() {
 											<span>{t("topup.viewProof") || "View Image"}</span>
 										</Button>
 									) : (
-										<span className="text-gray-500"><span>{t("topup.noProofImage") || "No image"}</span></span>
+										<span className="text-body"><span>{t("topup.noProofImage") || "No image"}</span></span>
 									)}
 								</div>
 								<div><b><span>{t("topup.proofDescription") || "Proof Description"}</span>:</b> <span>{detailTopup.proof_description}</span></div>
@@ -610,7 +610,7 @@ export default function TopupPage() {
 						<DialogHeader>
 							<DialogTitle className="flex items-center space-x-2">
 								{actionType === "approve" ? (
-									<CheckCircle className="h-5 w-5 text-green-600" />
+									<CheckCircle className="h-5 w-5 text-meta-3" />
 								) : (
 									<XCircle className="h-5 w-5 text-red-600" />
 								)}
@@ -629,7 +629,7 @@ export default function TopupPage() {
 						{actionType === "approve" ? (
 							<div className="space-y-4">
 								<div>
-									<Label htmlFor="adminNotes" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+									<Label htmlFor="adminNotes" className="text-sm font-medium text-gray-700 dark:text-bodydark">
 										{t("topup.adminNotes") || "Notes d'administrateur"}
 									</Label>
 									<Input
@@ -637,14 +637,14 @@ export default function TopupPage() {
 										placeholder={t("topup.adminNotes") || "Notes d'administrateur"}
 										value={adminNotes}
 										onChange={e => setAdminNotes(e.target.value)}
-										className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+										className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
 									/>
 								</div>
 							</div>
 						) : (
 							<div className="space-y-4">
 								<div>
-									<Label htmlFor="rejectionReason" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+									<Label htmlFor="rejectionReason" className="text-sm font-medium text-gray-700 dark:text-bodydark">
 										{t("topup.rejectionReason") || "Raison du rejet"}
 									</Label>
 									<Input
@@ -652,7 +652,7 @@ export default function TopupPage() {
 										placeholder={t("topup.rejectionReason") || "Raison du rejet"}
 										value={rejectionReason}
 										onChange={e => setRejectionReason(e.target.value)}
-										className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+										className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
 									/>
 								</div>
 							</div>
@@ -712,7 +712,7 @@ export default function TopupPage() {
 								}
 								className={
 									actionType === "approve"
-										? "bg-green-600 hover:bg-green-700 text-white"
+										? "bg-meta-3 hover:bg-green-700 text-white"
 										: "bg-red-600 hover:bg-red-700 text-white"
 								}
 							>

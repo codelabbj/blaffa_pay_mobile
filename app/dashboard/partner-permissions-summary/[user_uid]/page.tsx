@@ -144,12 +144,12 @@ export default function PartnerDetailsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex items-center justify-center py-12">
+      <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
+          <div className="flex items-center justify-center py-6 sm:py-10">
             <div className="flex flex-col items-center space-y-4">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600"></div>
-              <span className="text-gray-600 dark:text-gray-300">Chargement des détails du partenaire...</span>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+              <span className="text-body dark:text-bodydark">Chargement des détails du partenaire...</span>
             </div>
           </div>
         </div>
@@ -158,13 +158,13 @@ export default function PartnerDetailsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
         
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
+            <div className="flex items-center gap-2 sm:gap-4">
               <Link href="/dashboard/partner-permissions-summary">
                 <Button 
                   variant="outline" 
@@ -175,10 +175,10 @@ export default function PartnerDetailsPage() {
                 </Button>
               </Link>
               <div>
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+                <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
                   Détails du partenaire
                 </h1>
-                <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+                <p className="text-body dark:text-bodydark mt-2 text-lg">
                   Informations complètes du partenaire et de ses permissions
                 </p>
               </div>
@@ -187,8 +187,8 @@ export default function PartnerDetailsPage() {
         </div>
 
         {error && (
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-            <CardContent className="p-6">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+            <CardContent className="p-3 sm:p-4 md:p-6">
               <ErrorDisplay error={error} />
             </CardContent>
           </Card>
@@ -197,7 +197,7 @@ export default function PartnerDetailsPage() {
         {partner && (
           <div className="space-y-6">
             {/* Partner Overview */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:p-4 md:p-6">
               <Card className="bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-700">
                 <CardContent className="p-4">
                   <h4 className="font-medium text-blue-800 dark:text-blue-300 mb-3 flex items-center">
@@ -206,19 +206,19 @@ export default function PartnerDetailsPage() {
                   </h4>
                   <div className="space-y-2">
                     <div>
-                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Nom complet:</span>
+                      <span className="text-sm font-medium text-body dark:text-bodydark2">Nom complet:</span>
                       <p className="text-lg font-semibold text-blue-600">
                         {partner.user_info.display_name}
                       </p>
                     </div>
                     <div>
-                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Email:</span>
+                      <span className="text-sm font-medium text-body dark:text-bodydark2">Email:</span>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {partner.user_info.email}
                       </p>
                     </div>
                     <div>
-                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Statut:</span>
+                      <span className="text-sm font-medium text-body dark:text-bodydark2">Statut:</span>
                       <div className="mt-1">
                         {getStatusBadge(partner.user_info.is_active)}
                       </div>
@@ -227,33 +227,33 @@ export default function PartnerDetailsPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-700">
+              <Card className="bg-gray dark:bg-orange-900/20 border-stroke dark:border-orange-700">
                 <CardContent className="p-4">
-                  <h4 className="font-medium text-orange-800 dark:text-orange-300 mb-3 flex items-center">
+                  <h4 className="font-medium text-orange-800 dark:text-secondary mb-3 flex items-center">
                     <Shield className="h-5 w-5 mr-2" />
                     Permissions
                   </h4>
                   <div className="space-y-2">
                     <div>
-                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Total:</span>
-                      <p className="text-lg font-semibold text-orange-600">
+                      <span className="text-sm font-medium text-body dark:text-bodydark2">Total:</span>
+                      <p className="text-lg font-semibold text-primary">
                         {partner.summary?.active_permissions || 0}
                       </p>
                     </div>
                     <div>
-                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Total plateformes:</span>
+                      <span className="text-sm font-medium text-body dark:text-bodydark2">Total plateformes:</span>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {partner.summary?.total_platforms || 0}
                       </p>
                     </div>
                     <div>
-                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Avec permissions:</span>
+                      <span className="text-sm font-medium text-body dark:text-bodydark2">Avec permissions:</span>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {partner.summary?.platforms_with_permissions || 0}
                       </p>
                     </div>
                     <div>
-                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Sans permissions:</span>
+                      <span className="text-sm font-medium text-body dark:text-bodydark2">Sans permissions:</span>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {partner.summary?.platforms_without_permissions || 0}
                       </p>
@@ -270,25 +270,25 @@ export default function PartnerDetailsPage() {
                   </h4>
                   <div className="space-y-2">
                     <div>
-                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Total:</span>
-                      <p className="text-lg font-semibold text-green-600">
+                      <span className="text-sm font-medium text-body dark:text-bodydark2">Total:</span>
+                      <p className="text-lg font-semibold text-meta-3">
                         {partner.summary?.total_platforms || 0}
                       </p>
                     </div>
                     <div>
-                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Avec permissions:</span>
+                      <span className="text-sm font-medium text-body dark:text-bodydark2">Avec permissions:</span>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {partner.summary?.platforms_with_permissions || 0}
                       </p>
                     </div>
                     <div>
-                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Sans permissions:</span>
+                      <span className="text-sm font-medium text-body dark:text-bodydark2">Sans permissions:</span>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {partner.summary?.platforms_without_permissions || 0}
                       </p>
                     </div>
                     <div>
-                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Permissions actives:</span>
+                      <span className="text-sm font-medium text-body dark:text-bodydark2">Permissions actives:</span>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {partner.summary?.active_permissions || 0}
                       </p>
@@ -300,7 +300,7 @@ export default function PartnerDetailsPage() {
 
             {/* Commission Configuration */}
             {partner.commission_config && (
-              <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
+              <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <Settings className="h-5 w-5 text-purple-600" />
@@ -308,21 +308,21 @@ export default function PartnerDetailsPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:p-4 md:p-6">
                         <div>
-                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Taux dépôt:</span>
+                          <span className="text-sm font-medium text-body dark:text-bodydark2">Taux dépôt:</span>
                           <p className="text-lg font-semibold text-purple-600">
                             {partner.commission_config?.deposit_commission_rate || 0}%
                           </p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Taux retrait:</span>
+                          <span className="text-sm font-medium text-body dark:text-bodydark2">Taux retrait:</span>
                           <p className="text-lg font-semibold text-purple-600">
                             {partner.commission_config?.withdrawal_commission_rate || 0}%
                           </p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Statut:</span>
+                          <span className="text-sm font-medium text-body dark:text-bodydark2">Statut:</span>
                           <div className="mt-1">
                             <Badge variant={partner.commission_config?.status === 'active' ? 'success' : 'secondary'}>
                               {partner.commission_config?.status === 'active' ? 'Actif' : 'Inactif'}
@@ -336,7 +336,7 @@ export default function PartnerDetailsPage() {
 
             {/* Platforms with Permissions */}
             {partner.platforms_with_permissions && partner.platforms_with_permissions.length > 0 && (
-              <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
+              <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <Globe className="h-5 w-5 text-blue-600" />
@@ -346,9 +346,9 @@ export default function PartnerDetailsPage() {
                 <CardContent>
                   <div className="space-y-4">
                         {partner.platforms_with_permissions.map((platform) => (
-                          <div key={platform.platform_uid} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center space-x-3">
+                          <div key={platform.platform_uid} className="border border-stroke dark:border-strokedark rounded-lg p-4">
+                        <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center mb-3">
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                             <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
                               {platform.platform_name.charAt(0).toUpperCase()}
                             </div>
@@ -356,7 +356,7 @@ export default function PartnerDetailsPage() {
                               <h4 className="font-semibold text-gray-900 dark:text-gray-100">
                                 {platform.platform_name}
                               </h4>
-                              <p className="text-sm text-gray-600 dark:text-gray-400">
+                              <p className="text-sm text-body dark:text-bodydark2">
                                 ID: {platform.platform_external_id}
                               </p>
                             </div>
@@ -368,7 +368,7 @@ export default function PartnerDetailsPage() {
                         
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
-                            <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Permissions:</span>
+                            <span className="text-sm font-medium text-body dark:text-bodydark2">Permissions:</span>
                             <div className="flex space-x-2 mt-1">
                               <div className="flex items-center space-x-1">
                                 <span className="text-xs">Dépôt:</span>
@@ -383,8 +383,8 @@ export default function PartnerDetailsPage() {
                           
                           {platform.transaction_stats && (
                             <div>
-                              <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Statistiques:</span>
-                              <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                              <span className="text-sm font-medium text-body dark:text-bodydark2">Statistiques:</span>
+                              <div className="text-sm text-body dark:text-bodydark2 mt-1">
                                 <p>Transactions: {platform.transaction_stats?.total_transactions || 0}</p>
                                 <p>Réussies: {platform.transaction_stats?.successful_transactions || 0}</p>
                                 <p>Montant: {(platform.transaction_stats?.total_amount || 0).toFixed(2)} FCFA</p>
@@ -400,17 +400,17 @@ export default function PartnerDetailsPage() {
             )}
 
             {/* Additional Information */}
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Key className="h-5 w-5 text-gray-600" />
+                  <Key className="h-5 w-5 text-body" />
                   <span>Informations supplémentaires</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6">
                   <div>
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">UID utilisateur:</span>
+                    <span className="text-sm font-medium text-body dark:text-bodydark2">UID utilisateur:</span>
                     <div className="flex items-center space-x-2 mt-1">
                       <p className="text-sm font-mono text-gray-900 dark:text-gray-100">
                         {partner.user_info.uid}
@@ -430,13 +430,13 @@ export default function PartnerDetailsPage() {
                     </div>
                   </div>
                     <div>
-                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Prénom:</span>
+                      <span className="text-sm font-medium text-body dark:text-bodydark2">Prénom:</span>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {partner.user_info.first_name}
                       </p>
                     </div>
                     <div>
-                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Nom:</span>
+                      <span className="text-sm font-medium text-body dark:text-bodydark2">Nom:</span>
                       <p className="text-sm text-gray-900 dark:text-gray-100">
                         {partner.user_info.last_name}
                       </p>
@@ -446,7 +446,7 @@ export default function PartnerDetailsPage() {
             </Card>
 
             {/* Complete Partner Information */}
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <Users className="h-5 w-5 text-indigo-600" />
@@ -456,7 +456,7 @@ export default function PartnerDetailsPage() {
               <CardContent>
                 <div className="space-y-6">
                   {/* Basic Information */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6">
                     <div className="space-y-4">
                       <h4 className="font-semibold text-gray-900 dark:text-gray-100 flex items-center">
                         <Users className="h-4 w-4 mr-2 text-blue-600" />
@@ -464,37 +464,37 @@ export default function PartnerDetailsPage() {
                       </h4>
                       <div className="space-y-3">
                         <div>
-                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Prénom:</span>
+                          <span className="text-sm font-medium text-body dark:text-bodydark2">Prénom:</span>
                           <p className="text-sm text-gray-900 dark:text-gray-100 mt-1">
                             {partner.user_info.first_name || 'Non disponible'}
                           </p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Nom:</span>
+                          <span className="text-sm font-medium text-body dark:text-bodydark2">Nom:</span>
                           <p className="text-sm text-gray-900 dark:text-gray-100 mt-1">
                             {partner.user_info.last_name || 'Non disponible'}
                           </p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Nom d'affichage:</span>
+                          <span className="text-sm font-medium text-body dark:text-bodydark2">Nom d'affichage:</span>
                           <p className="text-sm text-gray-900 dark:text-gray-100 mt-1">
                             {partner.user_info.display_name || 'Non disponible'}
                           </p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Email:</span>
+                          <span className="text-sm font-medium text-body dark:text-bodydark2">Email:</span>
                           <p className="text-sm text-gray-900 dark:text-gray-100 mt-1">
                             {partner.user_info.email || 'Non disponible'}
                           </p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Statut du compte:</span>
+                          <span className="text-sm font-medium text-body dark:text-bodydark2">Statut du compte:</span>
                           <div className="mt-1">
                             {getStatusBadge(partner.user_info.is_active)}
                           </div>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Type de compte:</span>
+                          <span className="text-sm font-medium text-body dark:text-bodydark2">Type de compte:</span>
                           <div className="mt-1">
                             <Badge variant={partner.user_info.is_partner ? 'success' : 'secondary'}>
                               {partner.user_info.is_partner ? 'Partenaire' : 'Utilisateur'}
@@ -511,7 +511,7 @@ export default function PartnerDetailsPage() {
                       </h4>
                       <div className="space-y-3">
                         <div>
-                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">UID utilisateur:</span>
+                          <span className="text-sm font-medium text-body dark:text-bodydark2">UID utilisateur:</span>
                           <div className="flex items-center space-x-2 mt-1">
                             <p className="text-sm font-mono text-gray-900 dark:text-gray-100">
                               {partner.user_info.uid || 'Non disponible'}
@@ -538,7 +538,7 @@ export default function PartnerDetailsPage() {
                   {partner.summary && (
                     <div className="space-y-4">
                       <h4 className="font-semibold text-gray-900 dark:text-gray-100 flex items-center">
-                        <Shield className="h-4 w-4 mr-2 text-orange-600" />
+                        <Shield className="h-4 w-4 mr-2 text-primary" />
                         Résumé des plateformes et permissions
                       </h4>
                       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -549,14 +549,14 @@ export default function PartnerDetailsPage() {
                           </p>
                         </div>
                         <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg">
-                          <span className="text-xs font-medium text-green-600 dark:text-green-400">Avec permissions</span>
+                          <span className="text-xs font-medium text-meta-3 dark:text-green-400">Avec permissions</span>
                           <p className="text-lg font-bold text-green-700 dark:text-green-300">
                             {partner.summary.platforms_with_permissions || 0}
                           </p>
                         </div>
-                        <div className="bg-orange-50 dark:bg-orange-900/20 p-3 rounded-lg">
-                          <span className="text-xs font-medium text-orange-600 dark:text-orange-400">Sans permissions</span>
-                          <p className="text-lg font-bold text-orange-700 dark:text-orange-300">
+                        <div className="bg-gray dark:bg-orange-900/20 p-3 rounded-lg">
+                          <span className="text-xs font-medium text-primary dark:text-primary">Sans permissions</span>
+                          <p className="text-lg font-bold text-orange-700 dark:text-secondary">
                             {partner.summary.platforms_without_permissions || 0}
                           </p>
                         </div>
@@ -584,7 +584,7 @@ export default function PartnerDetailsPage() {
                         <Settings className="h-4 w-4 mr-2 text-purple-600" />
                         Configuration des commissions
                       </h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
                         <div className="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg">
                           <span className="text-xs font-medium text-purple-600 dark:text-purple-400">Taux dépôt</span>
                           <p className="text-lg font-bold text-purple-700 dark:text-purple-300">
@@ -613,8 +613,8 @@ export default function PartnerDetailsPage() {
                         </div>
                       </div>
                       {partner.commission_config.updated_by_name && (
-                        <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
-                          <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Dernière mise à jour:</span>
+                        <div className="bg-gray-50 dark:bg-boxdark p-3 rounded-lg">
+                          <span className="text-xs font-medium text-body dark:text-bodydark2">Dernière mise à jour:</span>
                           <p className="text-sm text-gray-900 dark:text-gray-100">
                             Par {partner.commission_config.updated_by_name} le {partner.commission_config.updated_at ? new Date(partner.commission_config.updated_at).toLocaleDateString() : 'Date inconnue'}
                           </p>
@@ -627,22 +627,22 @@ export default function PartnerDetailsPage() {
                   {partner.platforms_with_permissions && partner.platforms_with_permissions.length > 0 && (
                     <div className="space-y-4">
                       <h4 className="font-semibold text-gray-900 dark:text-gray-100 flex items-center">
-                        <Globe className="h-4 w-4 mr-2 text-green-600" />
+                        <Globe className="h-4 w-4 mr-2 text-meta-3" />
                         Plateformes avec permissions ({partner.platforms_with_permissions.length})
                       </h4>
                       <div className="space-y-4">
                         {partner.platforms_with_permissions.map((platform, index) => (
                           <div key={platform.platform_uid} className="border border-green-200 dark:border-green-700 rounded-lg p-4 bg-green-50 dark:bg-green-900/20">
-                            <div className="flex items-center justify-between mb-4">
-                              <div className="flex items-center space-x-3">
-                                <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                            <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center mb-4">
+                              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                                <div className="w-10 h-10 bg-gradient-to-br from-meta-3 to-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
                                   {platform.platform_name?.charAt(0)?.toUpperCase() || 'P'}
                                 </div>
                                 <div>
                                   <h5 className="font-semibold text-gray-900 dark:text-gray-100">
                                     {platform.platform_name || 'Nom non disponible'}
                                   </h5>
-                                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                                  <p className="text-sm text-body dark:text-bodydark2">
                                     ID externe: {platform.platform_external_id || 'Non disponible'}
                                   </p>
                                 </div>
@@ -651,13 +651,13 @@ export default function PartnerDetailsPage() {
                                 <Badge variant={platform.is_active ? 'success' : 'secondary'}>
                                   {platform.is_active ? 'Actif' : 'Inactif'}
                                 </Badge>
-                                <span className="text-xs text-gray-500">#{index + 1}</span>
+                                <span className="text-xs text-body">#{index + 1}</span>
                               </div>
                             </div>
                             
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4">
                               <div>
-                                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Permissions:</span>
+                                <span className="text-sm font-medium text-body dark:text-bodydark2">Permissions:</span>
                                 <div className="flex space-x-2 mt-1">
                                   <div className="flex items-center space-x-1">
                                     <span className="text-xs">Dépôt:</span>
@@ -671,8 +671,8 @@ export default function PartnerDetailsPage() {
                               </div>
                               
                               <div>
-                                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Limites:</span>
-                                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                                <span className="text-sm font-medium text-body dark:text-bodydark2">Limites:</span>
+                                <div className="text-sm text-body dark:text-bodydark2 mt-1 space-y-1">
                                   <p>• Dépôt: {platform.min_deposit_amount} - {platform.max_deposit_amount} FCFA</p>
                                   <p>• Retrait: {platform.min_withdrawal_amount} - {platform.max_withdrawal_amount} FCFA</p>
                                 </div>
@@ -680,8 +680,8 @@ export default function PartnerDetailsPage() {
                               
                               {platform.transaction_stats && (
                                 <div>
-                                  <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Statistiques:</span>
-                                  <div className="text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                                  <span className="text-sm font-medium text-body dark:text-bodydark2">Statistiques:</span>
+                                  <div className="text-sm text-body dark:text-bodydark2 mt-1 space-y-1">
                                     <p>• Total: {platform.transaction_stats.total_transactions || 0}</p>
                                     <p>• Réussies: {platform.transaction_stats.successful_transactions || 0}</p>
                                     <p>• Montant: {(platform.transaction_stats.total_amount || 0).toFixed(2)} FCFA</p>
@@ -700,22 +700,22 @@ export default function PartnerDetailsPage() {
                   {partner.platforms_without_permissions && partner.platforms_without_permissions.length > 0 && (
                     <div className="space-y-4">
                       <h4 className="font-semibold text-gray-900 dark:text-gray-100 flex items-center">
-                        <Globe className="h-4 w-4 mr-2 text-orange-600" />
+                        <Globe className="h-4 w-4 mr-2 text-primary" />
                         Plateformes sans permissions ({partner.platforms_without_permissions.length})
                       </h4>
                       <div className="space-y-4">
                         {partner.platforms_without_permissions.map((platform, index) => (
-                          <div key={platform.platform_uid} className="border border-orange-200 dark:border-orange-700 rounded-lg p-4 bg-orange-50 dark:bg-orange-900/20">
-                            <div className="flex items-center justify-between mb-4">
-                              <div className="flex items-center space-x-3">
-                                <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                          <div key={platform.platform_uid} className="border border-stroke dark:border-orange-700 rounded-lg p-4 bg-gray dark:bg-orange-900/20">
+                            <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center mb-4">
+                              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                                <div className="w-10 h-10 bg-gradient-to-br from-primary to-red-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
                                   {platform.platform_name?.charAt(0)?.toUpperCase() || 'P'}
                                 </div>
                                 <div>
                                   <h5 className="font-semibold text-gray-900 dark:text-gray-100">
                                     {platform.platform_name || 'Nom non disponible'}
                                   </h5>
-                                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                                  <p className="text-sm text-body dark:text-bodydark2">
                                     ID externe: {platform.platform_external_id || 'Non disponible'}
                                   </p>
                                 </div>
@@ -724,13 +724,13 @@ export default function PartnerDetailsPage() {
                                 <Badge variant={platform.platform_is_active ? 'success' : 'secondary'}>
                                   {platform.platform_is_active ? 'Plateforme active' : 'Plateforme inactive'}
                                 </Badge>
-                                <span className="text-xs text-gray-500">#{index + 1}</span>
+                                <span className="text-xs text-body">#{index + 1}</span>
                               </div>
                             </div>
                             
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4">
                               <div>
-                                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Permissions:</span>
+                                <span className="text-sm font-medium text-body dark:text-bodydark2">Permissions:</span>
                                 <div className="flex space-x-2 mt-1">
                                   <div className="flex items-center space-x-1">
                                     <span className="text-xs">Dépôt:</span>
@@ -744,8 +744,8 @@ export default function PartnerDetailsPage() {
                               </div>
                               
                               <div>
-                                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Limites:</span>
-                                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                                <span className="text-sm font-medium text-body dark:text-bodydark2">Limites:</span>
+                                <div className="text-sm text-body dark:text-bodydark2 mt-1 space-y-1">
                                   <p>• Dépôt: {platform.min_deposit_amount} - {platform.max_deposit_amount} FCFA</p>
                                   <p>• Retrait: {platform.min_withdrawal_amount} - {platform.max_withdrawal_amount} FCFA</p>
                                 </div>
@@ -753,8 +753,8 @@ export default function PartnerDetailsPage() {
                               
                               {platform.transaction_stats && (
                                 <div>
-                                  <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Statistiques:</span>
-                                  <div className="text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                                  <span className="text-sm font-medium text-body dark:text-bodydark2">Statistiques:</span>
+                                  <div className="text-sm text-body dark:text-bodydark2 mt-1 space-y-1">
                                     <p>• Total: {platform.transaction_stats.total_transactions || 0}</p>
                                     <p>• Réussies: {platform.transaction_stats.successful_transactions || 0}</p>
                                     <p>• Montant: {(platform.transaction_stats.total_amount || 0).toFixed(2)} FCFA</p>

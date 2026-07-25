@@ -143,9 +143,9 @@ export function CreateNetworkMappingModal({
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="sm:max-w-[650px] p-0 overflow-hidden border-0 shadow-2xl">
-                <div className="bg-gradient-to-r from-orange-500 to-green-600 p-6 text-white">
+                <div className="bg-gradient-to-r from-primary to-meta-3 p-3 sm:p-4 md:p-6 text-white">
                     <DialogHeader>
-                        <DialogTitle className="text-2xl font-bold flex items-center gap-2">
+                        <DialogTitle className="text-lg font-bold sm:text-xl flex items-center gap-2">
                             <Zap className="h-6 w-6" />
                             {editingMapping ? <span>{t("aggregator.editMapping")}</span> : <span>{t("aggregator.createMapping")}</span>}
                         </DialogTitle>
@@ -155,7 +155,7 @@ export function CreateNetworkMappingModal({
                     </DialogHeader>
                 </div>
 
-                <div className="p-6 space-y-6 max-h-[70vh] overflow-y-auto custom-scrollbar">
+                <div className="p-3 sm:p-4 md:p-6 space-y-6 max-h-[70vh] overflow-y-auto custom-scrollbar">
                     {error && (
                         <ErrorDisplay
                             error={error}
@@ -164,9 +164,9 @@ export function CreateNetworkMappingModal({
                         />
                     )}
                     <form id="network-mapping-form" onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6">
                             <div className="space-y-2">
-                                <Label className="text-sm font-semibold text-gray-700 dark:text-gray-300" htmlFor="network">
+                                <Label className="text-sm font-semibold text-gray-700 dark:text-bodydark" htmlFor="network">
                                     <span>{t("aggregator.network")}</span>
                                 </Label>
                                 <AsyncCombobox
@@ -188,7 +188,7 @@ export function CreateNetworkMappingModal({
                             </div>
 
                             <div className="space-y-2">
-                                <Label className="text-sm font-semibold text-gray-700 dark:text-gray-300" htmlFor="network_name">
+                                <Label className="text-sm font-semibold text-gray-700 dark:text-bodydark" htmlFor="network_name">
                                     <span>{t("aggregator.displayName")}</span>
                                 </Label>
                                 <Input
@@ -196,18 +196,18 @@ export function CreateNetworkMappingModal({
                                     value={formData.network_name}
                                     onChange={handleChange}
                                     placeholder="ex: MTN Côte d'Ivoire"
-                                    className="bg-gray-50 dark:bg-gray-800 border-gray-200"
+                                    className="bg-gray-50 dark:bg-boxdark border-stroke"
                                 />
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6">
                             <div className="space-y-2">
-                                <Label className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                <Label className="text-sm font-semibold text-gray-700 dark:text-bodydark">
                                     <span>{t("aggregator.processor")}</span>
                                 </Label>
                                 <Select value={formData.payin_processor} onValueChange={(v) => handleSelectChange("payin_processor", v)}>
-                                    <SelectTrigger className="bg-gray-50 dark:bg-gray-800 border-gray-200">
+                                    <SelectTrigger className="bg-gray-50 dark:bg-boxdark border-stroke">
                                         <SelectValue placeholder={t("aggregator.selectNetwork")} />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -221,7 +221,7 @@ export function CreateNetworkMappingModal({
                             </div>
 
                             <div className="space-y-2">
-                                <Label className="text-sm font-semibold text-gray-700 dark:text-gray-300" htmlFor="network_payin_fee_percent">
+                                <Label className="text-sm font-semibold text-gray-700 dark:text-bodydark" htmlFor="network_payin_fee_percent">
                                     <span>{t("aggregator.baseFee")} (%)</span>
                                 </Label>
                                 <Input
@@ -230,13 +230,13 @@ export function CreateNetworkMappingModal({
                                     step="0.01"
                                     value={formData.network_payin_fee_percent}
                                     onChange={handleChange}
-                                    className="bg-gray-50 dark:bg-gray-800 border-gray-200"
+                                    className="bg-gray-50 dark:bg-boxdark border-stroke"
                                 />
                             </div>
                         </div>
 
                         <div className="space-y-2">
-                            <Label className="text-sm font-semibold text-gray-700 dark:text-gray-300" htmlFor="payin_url">
+                            <Label className="text-sm font-semibold text-gray-700 dark:text-bodydark" htmlFor="payin_url">
                                 <span>{t("aggregator.gatewayUrl")}</span>
                             </Label>
                             <Input
@@ -244,13 +244,13 @@ export function CreateNetworkMappingModal({
                                 value={formData.payin_url}
                                 onChange={handleChange}
                                 placeholder="https://api.processor.com/v1"
-                                className="bg-gray-50 dark:bg-gray-800 border-gray-200"
+                                className="bg-gray-50 dark:bg-boxdark border-stroke"
                             />
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6">
                             <div className="space-y-2">
-                                <Label className="text-sm font-semibold text-gray-700 dark:text-gray-300" htmlFor="min_amount">
+                                <Label className="text-sm font-semibold text-gray-700 dark:text-bodydark" htmlFor="min_amount">
                                     <span>{t("aggregator.minAmount")}</span>
                                 </Label>
                                 <Input
@@ -258,12 +258,12 @@ export function CreateNetworkMappingModal({
                                     type="number"
                                     value={formData.min_amount}
                                     onChange={handleChange}
-                                    className="bg-gray-50 dark:bg-gray-800 border-gray-200"
+                                    className="bg-gray-50 dark:bg-boxdark border-stroke"
                                 />
                             </div>
 
                             <div className="space-y-2">
-                                <Label className="text-sm font-semibold text-gray-700 dark:text-gray-300" htmlFor="max_amount">
+                                <Label className="text-sm font-semibold text-gray-700 dark:text-bodydark" htmlFor="max_amount">
                                     <span>{t("aggregator.maxAmount")}</span>
                                 </Label>
                                 <Input
@@ -271,13 +271,13 @@ export function CreateNetworkMappingModal({
                                     type="number"
                                     value={formData.max_amount}
                                     onChange={handleChange}
-                                    className="bg-gray-50 dark:bg-gray-800 border-gray-200"
+                                    className="bg-gray-50 dark:bg-boxdark border-stroke"
                                 />
                             </div>
                         </div>
 
                         <div className="grid grid-cols-1 gap-4">
-                            <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm">
+                            <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-4 bg-gray-50 dark:bg-boxdark rounded-xl border border-gray-100 dark:border-strokedark shadow-sm">
                                 <Label className="text-sm font-semibold text-gray-900 dark:text-gray-100 cursor-pointer" htmlFor="enable_payin">
                                     <span>{t("aggregator.enablePayin")}</span>
                                 </Label>
@@ -285,22 +285,22 @@ export function CreateNetworkMappingModal({
                                     id="enable_payin"
                                     checked={formData.enable_payin}
                                     onCheckedChange={(checked) => setFormData(prev => ({ ...prev, enable_payin: checked }))}
-                                    className="data-[state=checked]:bg-orange-500"
+                                    className="data-[state=checked]:bg-primary"
                                 />
                             </div>
                         </div>
                     </form>
                 </div>
 
-                <DialogFooter className="bg-gray-50 dark:bg-gray-900/50 p-6 border-t dark:border-gray-800 flex items-center justify-end gap-3">
-                    <Button variant="ghost" onClick={() => onOpenChange(false)} disabled={loading} className="hover:bg-gray-100 dark:hover:bg-gray-800">
+                <DialogFooter className="bg-gray-50 dark:bg-boxdark-2/50 p-3 sm:p-4 md:p-6 border-t dark:border-gray-800 flex items-center justify-end gap-3">
+                    <Button variant="ghost" onClick={() => onOpenChange(false)} disabled={loading} className="hover:bg-gray-100 dark:hover:bg-boxdark">
                         <span>{t("common.cancel")}</span>
                     </Button>
                     <Button
                         form="network-mapping-form"
                         type="submit"
                         disabled={loading}
-                        className="bg-orange-600 hover:bg-orange-700 text-white shadow-md hover:shadow-lg transition-all px-8"
+                        className="bg-primary hover:bg-opacity-90 text-white shadow-md hover:shadow-lg transition-all px-3 sm:px-6"
                     >
                         {loading && <Loader className="animate-spin mr-2 h-4 w-4" />}
                         <span>{t("common.save")}</span>

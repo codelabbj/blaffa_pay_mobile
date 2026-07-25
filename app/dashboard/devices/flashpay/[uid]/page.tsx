@@ -171,7 +171,7 @@ export default function FlashPayDeviceEditPage() {
               </p>
               {completion && (
                 <div className="mt-2 flex items-center gap-2 max-w-md">
-                  <span className="text-xs text-slate-600 dark:text-gray-400 whitespace-nowrap">
+                  <span className="text-xs text-slate-600 dark:text-bodydark2 whitespace-nowrap">
                     Config {completion.percent}% · {formatDeviceMode(completion.mode)}
                   </span>
                   <div className={`${flashpayTheme.progressTrack} max-w-[140px]`}>
@@ -186,11 +186,11 @@ export default function FlashPayDeviceEditPage() {
             </div>
           </div>
           <div className="flex flex-col w-full sm:w-auto sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2 sm:gap-3">
-            <div className="flex items-center justify-between gap-2 rounded-lg border border-slate-200 dark:border-gray-600 px-3 py-2">
+            <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center gap-2 rounded-lg border border-slate-200 dark:border-strokedark px-3 py-2">
               {form.is_paused ? (
-                <Pause className="h-4 w-4 text-orange-500" />
+                <Pause className="h-4 w-4 text-primary" />
               ) : (
-                <Play className="h-4 w-4 text-green-600 dark:text-green-400" />
+                <Play className="h-4 w-4 text-meta-3 dark:text-green-400" />
               )}
               <span className="text-sm text-gray-900 dark:text-gray-100">
                 {form.is_paused ? "En pause" : "Actif"}

@@ -20,12 +20,12 @@ import { getApiBaseUrl } from "@/lib/env-config"
 
 // Colors for consistent theming - using logo colors
 const COLORS = {
-  primary: '#FF6B35', // Orange (primary from logo)
-  secondary: '#00FF88', // Bright green from logo
+  primary: '#194185', // Orange (primary from logo)
+  secondary: '#10B981', // Bright green from logo
   accent: '#1E3A8A', // Dark blue from logo
   danger: '#EF4444',
   warning: '#F97316',
-  success: '#00FF88', // Using bright green for success
+  success: '#10B981', // Using bright green for success
   info: '#1E3A8A', // Using dark blue for info
   purple: '#8B5CF6',
   pink: '#EC4899',
@@ -227,33 +227,33 @@ export default function CreatePlatformPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
         
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center space-x-4 mb-4">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex items-center gap-2 sm:gap-4 mb-4">
             <Link href="/dashboard/platforms/list">
-              <Button variant="outline" size="sm" className="bg-white dark:bg-gray-800">
+              <Button variant="outline" size="sm" className="bg-white dark:bg-boxdark">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Retour
               </Button>
             </Link>
           </div>
           <div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+            <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
               Créer une Plateforme de Paris
             </h1>
-            <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+            <p className="text-body dark:text-bodydark mt-2 text-lg">
               Ajouter une nouvelle plateforme de paris sportifs
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:p-5 md:p-8">
           {/* External Platforms Selection */}
           <div className="lg:col-span-1">
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <ExternalLink className="h-5 w-5 text-blue-600" />
@@ -262,10 +262,10 @@ export default function CreatePlatformPage() {
               </CardHeader>
               <CardContent>
                 {externalPlatformsLoading ? (
-                  <div className="flex items-center justify-center py-8">
+                  <div className="flex items-center justify-center py-4 sm:py-6">
                     <div className="flex flex-col items-center space-y-4">
                       <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-                      <span className="text-gray-600 dark:text-gray-300">Chargement...</span>
+                      <span className="text-body dark:text-bodydark">Chargement...</span>
                     </div>
                   </div>
                 ) : externalPlatformsError ? (
@@ -277,12 +277,12 @@ export default function CreatePlatformPage() {
                         key={platform.id}
                         className={`p-3 rounded-lg border cursor-pointer transition-all duration-200 ${
                           selectedExternalPlatform?.id === platform.id
-                            ? "border-orange-500 bg-orange-50 dark:bg-orange-900/20"
-                            : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
+                            ? "border-primary bg-gray dark:bg-orange-900/20"
+                            : "border-stroke dark:border-strokedark hover:border-stroke dark:hover:border-gray-600"
                         }`}
                         onClick={() => handleExternalPlatformSelect(platform)}
                       >
-                        <div className="flex items-center space-x-3">
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                           {platform.image ? (
                             <img 
                               src={platform.image} 
@@ -290,7 +290,7 @@ export default function CreatePlatformPage() {
                               className="w-10 h-10 rounded-lg object-cover"
                             />
                           ) : (
-                            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-green-600 rounded-lg flex items-center justify-center text-white font-semibold text-sm">
+                            <div className="w-10 h-10 bg-gradient-to-br from-primary to-meta-3 rounded-lg flex items-center justify-center text-white font-semibold text-sm">
                               {platform.name.charAt(0).toUpperCase()}
                             </div>
                           )}
@@ -298,7 +298,7 @@ export default function CreatePlatformPage() {
                             <div className="font-medium text-gray-900 dark:text-gray-100 truncate">
                               {platform.name}
                             </div>
-                            <div className="text-sm text-gray-500 dark:text-gray-400">
+                            <div className="text-sm text-body dark:text-bodydark2">
                               {platform.public_name}
                             </div>
                             <div className="flex items-center space-x-2 mt-1">
@@ -315,7 +315,7 @@ export default function CreatePlatformPage() {
                           </div>
                         </div>
                         {selectedExternalPlatform?.id === platform.id && (
-                          <div className="mt-2 text-xs text-orange-600 dark:text-orange-400">
+                          <div className="mt-2 text-xs text-primary dark:text-primary">
                             ✓ Sélectionné
                           </div>
                         )}
@@ -329,10 +329,10 @@ export default function CreatePlatformPage() {
 
           {/* Platform Form */}
           <div className="lg:col-span-2">
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <BarChart3 className="h-5 w-5 text-orange-600" />
+                  <BarChart3 className="h-5 w-5 text-primary" />
                   <span>Informations de la Plateforme</span>
                 </CardTitle>
               </CardHeader>
@@ -389,7 +389,7 @@ export default function CreatePlatformPage() {
                     <Label htmlFor="logo">Logo de la plateforme</Label>
                     {form.logo && (
                       <div className="mb-3">
-                        <div className="relative h-24 w-24 overflow-hidden rounded-lg border-2 border-orange-100 dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center justify-center shadow-md p-1">
+                        <div className="relative h-24 w-24 overflow-hidden rounded-lg border-2 border-orange-100 dark:border-strokedark bg-white dark:bg-boxdark flex items-center justify-center shadow-md p-1">
                           <img 
                             src={URL.createObjectURL(form.logo)} 
                             alt="Logo preview" 
@@ -407,7 +407,7 @@ export default function CreatePlatformPage() {
                           handleInputChange("logo", e.target.files[0]);
                         }
                       }}
-                      className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 cursor-pointer"
+                      className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark cursor-pointer"
                     />
                   </div>
 
@@ -484,7 +484,7 @@ export default function CreatePlatformPage() {
                   {/* Commission Rates (optional) */}
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Commissions (optionnel)</h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-sm text-body dark:text-bodydark2">
                       Laissez vide pour utiliser le taux partner, puis 1% par défaut.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -520,7 +520,7 @@ export default function CreatePlatformPage() {
                   </div>
 
                   {/* Status */}
-                  <div className="flex items-center space-x-3">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                     <Switch
                       id="is_active"
                       checked={form.is_active}
@@ -532,11 +532,11 @@ export default function CreatePlatformPage() {
                   </div>
 
                   {/* Form Actions */}
-                  <div className="flex items-center space-x-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center gap-2 sm:gap-4 pt-6 border-t border-stroke dark:border-strokedark">
                     <Button
                       type="submit"
                       disabled={loading}
-                      className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+                      className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white"
                     >
                       {loading ? (
                         <>
@@ -576,16 +576,16 @@ export default function CreatePlatformPage() {
 
         {/* Selected Platform Preview */}
         {selectedExternalPlatform && (
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mt-8">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mt-8">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <CheckCircle className="h-5 w-5 text-green-600" />
+                <CheckCircle className="h-5 w-5 text-meta-3" />
                 <span>Plateforme Sélectionnée</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="flex items-center space-x-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:p-4 md:p-6">
+                <div className="flex items-center gap-2 sm:gap-4">
                   {selectedExternalPlatform.image ? (
                     <img 
                       src={selectedExternalPlatform.image} 
@@ -593,7 +593,7 @@ export default function CreatePlatformPage() {
                       className="w-16 h-16 rounded-lg object-cover"
                     />
                   ) : (
-                    <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-green-600 rounded-lg flex items-center justify-center text-white font-semibold text-lg">
+                    <div className="w-16 h-16 bg-gradient-to-br from-primary to-meta-3 rounded-lg flex items-center justify-center text-white font-semibold text-lg">
                       {selectedExternalPlatform.name.charAt(0).toUpperCase()}
                     </div>
                   )}
@@ -601,7 +601,7 @@ export default function CreatePlatformPage() {
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                       {selectedExternalPlatform.name}
                     </h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-sm text-body dark:text-bodydark2">
                       {selectedExternalPlatform.public_name}
                     </p>
                   </div>
@@ -609,7 +609,7 @@ export default function CreatePlatformPage() {
                 
                 <div>
                   <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-2">Limites de Dépôt</h4>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                  <div className="text-sm text-body dark:text-bodydark2">
                     <div>Min: {selectedExternalPlatform.minimun_deposit} FCFA</div>
                     <div>Max: {selectedExternalPlatform.max_deposit} FCFA</div>
                   </div>
@@ -617,7 +617,7 @@ export default function CreatePlatformPage() {
                 
                 <div>
                   <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-2">Limites de Retrait</h4>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                  <div className="text-sm text-body dark:text-bodydark2">
                     <div>Min: {selectedExternalPlatform.minimun_with} FCFA</div>
                     <div>Max: {selectedExternalPlatform.max_win} FCFA</div>
                   </div>

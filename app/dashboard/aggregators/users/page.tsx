@@ -84,42 +84,42 @@ export default function AggregatorUsersPage() {
     }
 
     return (
-        <div className="space-y-6 px-4 py-8 max-w-7xl mx-auto">
+        <div className="space-y-6 px-4 py-4 sm:py-6 max-w-7xl mx-auto">
             <div className="flex justify-between items-end">
                 <div>
-                    <h1 className="text-3xl font-bold tracking-tight mb-1">{t("aggregators.usersTitle")}</h1>
+                    <h1 className="text-lg font-bold sm:text-xl tracking-tight mb-1">{t("aggregators.usersTitle")}</h1>
                     <p className="text-muted-foreground text-slate-500">{t("aggregators.usersSub")}</p>
                 </div>
             </div>
 
             {/* Stats Overview */}
             {data?.stats && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:p-4 md:p-6">
                     <Card>
                         <CardContent className="pt-6">
-                            <div className="flex items-center justify-between">
+                            <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
                                 <span className="text-sm font-medium text-slate-500">{t("aggregators.totalAggregators")}</span>
                                 <Users size={16} className="text-blue-600" />
                             </div>
-                            <div className="text-2xl font-bold mt-2">{data.stats.total_aggregators}</div>
+                            <div className="text-lg font-bold sm:text-xl mt-2">{data.stats.total_aggregators}</div>
                         </CardContent>
                     </Card>
                     <Card>
                         <CardContent className="pt-6">
-                            <div className="flex items-center justify-between">
+                            <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
                                 <span className="text-sm font-medium text-slate-500">{t("aggregators.activeAggregators")}</span>
-                                <div className="h-2 w-2 rounded-full bg-green-500" />
+                                <div className="h-2 w-2 rounded-full bg-meta-3" />
                             </div>
-                            <div className="text-2xl font-bold mt-2 text-green-600">{data.stats.active_aggregators}</div>
+                            <div className="text-lg font-bold sm:text-xl mt-2 text-meta-3">{data.stats.active_aggregators}</div>
                         </CardContent>
                     </Card>
                     <Card>
                         <CardContent className="pt-6">
-                            <div className="flex items-center justify-between">
+                            <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
                                 <span className="text-sm font-medium text-slate-500">{t("aggregators.inactiveAggregators")}</span>
                                 <div className="h-2 w-2 rounded-full bg-slate-300" />
                             </div>
-                            <div className="text-2xl font-bold mt-2 text-slate-400">{data.stats.inactive_aggregators}</div>
+                            <div className="text-lg font-bold sm:text-xl mt-2 text-slate-400">{data.stats.inactive_aggregators}</div>
                         </CardContent>
                     </Card>
                 </div>
@@ -162,7 +162,7 @@ export default function AggregatorUsersPage() {
                                 <TableBody>
                                     {data?.aggregators.length === 0 ? (
                                         <TableRow>
-                                            <TableCell colSpan={6} className="text-center py-12 text-slate-400">
+                                            <TableCell colSpan={6} className="text-center py-6 sm:py-10 text-slate-400">
                                                 {t("aggregators.noAggregatorsFound")}
                                             </TableCell>
                                         </TableRow>
@@ -211,7 +211,7 @@ export default function AggregatorUsersPage() {
                                                                 </DropdownMenuItem>
                                                                 <DropdownMenuSeparator />
                                                                 <DropdownMenuItem
-                                                                    className={agg.is_active ? "text-red-600" : "text-green-600"}
+                                                                    className={agg.is_active ? "text-red-600" : "text-meta-3"}
                                                                     onClick={() => handleToggleStatus(agg.uid, agg.is_active)}
                                                                 >
                                                                     <Shield size={14} className="mr-2" /> {agg.is_active ? t("aggregators.deactivateAggregator") : t("aggregators.activateAggregator")}
@@ -230,7 +230,7 @@ export default function AggregatorUsersPage() {
 
                     {/* Pagination */}
                     {data?.pagination && data.pagination.total_pages > 1 && (
-                        <div className="flex items-center justify-between mt-6">
+                        <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center mt-6">
                             <div className="text-sm text-slate-500">
                                 {t("aggregators.showingXofY")
                                     .replace("{start}", data.pagination.start_index.toString())

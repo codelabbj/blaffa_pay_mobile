@@ -26,7 +26,7 @@ export function AdvancedSettingsEditor({ settings, onApply }: AdvancedSettingsEd
       </p>
       <Label>JSON custom_settings</Label>
       <Textarea
-        className="mt-2 font-mono text-xs bg-white dark:bg-gray-800"
+        className="mt-2 font-mono text-xs bg-white dark:bg-boxdark"
         rows={12}
         value={text}
         onChange={(e) => {

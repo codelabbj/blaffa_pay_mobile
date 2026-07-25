@@ -22,12 +22,12 @@ import { DateRangeFilter } from "@/components/ui/date-range-filter"
 
 // Colors for consistent theming - using logo colors
 const COLORS = {
-	primary: '#FF6B35', // Orange (primary from logo)
-	secondary: '#00FF88', // Bright green from logo
+	primary: '#194185', // Orange (primary from logo)
+	secondary: '#10B981', // Bright green from logo
 	accent: '#1E3A8A', // Dark blue from logo
 	danger: '#EF4444',
 	warning: '#F97316',
-	success: '#00FF88', // Using bright green for success
+	success: '#10B981', // Using bright green for success
 	info: '#1E3A8A', // Using dark blue for info
 	purple: '#8B5CF6',
 	pink: '#EC4899',
@@ -158,25 +158,25 @@ function EarningManagementPageContent() {
 	const completedEarnings = earnings.filter(e => e.status === 'completed').reduce((sum, earning) => sum + (parseFloat(earning.amount) || 0), 0)
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+		<div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+			<div className="w-full">
 
 				{/* Page Header */}
-				<div className="mb-8">
-					<div className="flex items-center justify-between">
+				<div className="mb-4 sm:mb-6">
+					<div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
 						<div>
-							<h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+							<h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
 								<span>{t("earning.title") || "Earning Management"}</span>
 							</h1>
-							<p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+							<p className="text-body dark:text-bodydark mt-2 text-lg">
 								<span>Surveiller et gérer les paiements de commission</span>
 							</p>
 						</div>
-						<div className="flex items-center space-x-4">
-							<div className="bg-white dark:bg-gray-800 rounded-lg px-4 py-2 shadow-sm">
+						<div className="flex items-center gap-2 sm:gap-4">
+							<div className="bg-white dark:bg-boxdark rounded-lg px-4 py-2 shadow-sm">
 								<div className="flex items-center space-x-2">
-									<DollarSign className="h-5 w-5 text-green-600" />
-									<span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+									<DollarSign className="h-5 w-5 text-meta-3" />
+									<span className="text-sm font-medium text-gray-700 dark:text-bodydark">
 										<span>{totalCount} paiements</span>
 									</span>
 								</div>
@@ -186,16 +186,16 @@ function EarningManagementPageContent() {
 				</div>
 
 				{/* Summary Cards */}
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-					<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-						<CardContent className="p-6">
-							<div className="flex items-center space-x-3">
+				<div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:p-4 md:p-6 mb-4 sm:mb-6">
+					<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+						<CardContent className="p-3 sm:p-4 md:p-6">
+							<div className="flex flex-wrap items-center gap-2 sm:gap-3">
 								<div className="p-3 bg-green-100 dark:bg-green-900 rounded-lg">
-									<TrendingUp className="h-6 w-6 text-green-600 dark:text-green-300" />
+									<TrendingUp className="h-6 w-6 text-meta-3 dark:text-green-300" />
 								</div>
 								<div>
-									<p className="text-sm font-medium text-gray-600 dark:text-gray-400"><span>Gains totaux</span></p>
-									<p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+									<p className="text-sm font-medium text-body dark:text-bodydark2"><span>Gains totaux</span></p>
+									<p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
 										<span>{totalEarnings.toFixed(2)} FCFA</span>
 									</p>
 								</div>
@@ -203,15 +203,15 @@ function EarningManagementPageContent() {
 						</CardContent>
 					</Card>
 
-					<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-						<CardContent className="p-6">
-							<div className="flex items-center space-x-3">
+					<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+						<CardContent className="p-3 sm:p-4 md:p-6">
+							<div className="flex flex-wrap items-center gap-2 sm:gap-3">
 								<div className="p-3 bg-yellow-100 dark:bg-yellow-900 rounded-lg">
 									<Clock className="h-6 w-6 text-yellow-600 dark:text-yellow-300" />
 								</div>
 								<div>
-									<p className="text-sm font-medium text-gray-600 dark:text-gray-400"><span>En attente</span></p>
-									<p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+									<p className="text-sm font-medium text-body dark:text-bodydark2"><span>En attente</span></p>
+									<p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
 										<span>{pendingEarnings.toFixed(2)} FCFA</span>
 									</p>
 								</div>
@@ -219,15 +219,15 @@ function EarningManagementPageContent() {
 						</CardContent>
 					</Card>
 
-					<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-						<CardContent className="p-6">
-							<div className="flex items-center space-x-3">
-								<div className="p-3 bg-orange-100 dark:bg-orange-900 rounded-lg">
-									<CheckCircle className="h-6 w-6 text-orange-600 dark:text-orange-300" />
+					<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+						<CardContent className="p-3 sm:p-4 md:p-6">
+							<div className="flex flex-wrap items-center gap-2 sm:gap-3">
+								<div className="p-3 bg-meta-2 dark:bg-orange-900 rounded-lg">
+									<CheckCircle className="h-6 w-6 text-primary dark:text-secondary" />
 								</div>
 								<div>
-									<p className="text-sm font-medium text-gray-600 dark:text-gray-400"><span>Terminé</span></p>
-									<p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+									<p className="text-sm font-medium text-body dark:text-bodydark2"><span>Terminé</span></p>
+									<p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
 										<span>{completedEarnings.toFixed(2)} FCFA</span>
 									</p>
 								</div>
@@ -237,23 +237,23 @@ function EarningManagementPageContent() {
 				</div>
 
 				{/* Filters and Search */}
-				<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-					<CardContent className="p-6">
-						<div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+				<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+					<CardContent className="p-3 sm:p-4 md:p-6">
+						<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
 							{/* Search */}
 							<div className="relative">
-								<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+								<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-bodydark2" />
 								<Input
 									placeholder="Rechercher des gains..."
 									value={searchTerm}
 									onChange={(e) => setSearchTerm(e.target.value)}
-									className="pl-10 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+									className="pl-10 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
 								/>
 							</div>
 
 							{/* Status Filter */}
 							<Select value={statusFilter} onValueChange={setStatusFilter}>
-								<SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+								<SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
 									<SelectValue placeholder="Filtrer par statut" />
 								</SelectTrigger>
 								<SelectContent>
@@ -269,7 +269,7 @@ function EarningManagementPageContent() {
 								value={sortField || ""}
 								onValueChange={(value) => setSortField(value as "amount" | "created_at" | "status" | null)}
 							>
-								<SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+								<SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
 									<SelectValue placeholder="Trier par" />
 								</SelectTrigger>
 								<SelectContent>
@@ -297,32 +297,32 @@ function EarningManagementPageContent() {
 				</Card>
 
 				{/* Earnings Table */}
-				<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-					<CardHeader className="border-b border-gray-100 dark:border-gray-700">
+				<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+					<CardHeader className="border-b border-gray-100 dark:border-strokedark">
 						<CardTitle className="flex items-center space-x-2">
 							<div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-								<DollarSign className="h-5 w-5 text-green-600 dark:text-green-300" />
+								<DollarSign className="h-5 w-5 text-meta-3 dark:text-green-300" />
 							</div>
 							<span><span>Liste des gains</span></span>
 						</CardTitle>
 					</CardHeader>
 					<CardContent className="p-0">
 						{loading ? (
-							<div className="flex items-center justify-center py-12">
+							<div className="flex items-center justify-center py-6 sm:py-10">
 								<div className="flex flex-col items-center space-y-4">
-									<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-									<span className="text-gray-600 dark:text-gray-300"><span>Chargement des gains...</span></span>
+									<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+									<span className="text-body dark:text-bodydark"><span>Chargement des gains...</span></span>
 								</div>
 							</div>
 						) : error ? (
-							<div className="p-6 text-center">
+							<div className="p-3 sm:p-4 md:p-6 text-center">
 								<ErrorDisplay error={error} onRetry={() => {/* retry function */ }} />
 							</div>
 						) : (
 							<div className="overflow-x-auto">
 								<Table>
 									<TableHeader>
-										<TableRow className="bg-gray-50 dark:bg-gray-900/50">
+										<TableRow className="bg-gray-50 dark:bg-boxdark-2/50">
 											<TableHead className="font-semibold"><span>Utilisateur</span></TableHead>
 											<TableHead className="font-semibold"><span>Montant</span></TableHead>
 											<TableHead className="font-semibold"><span>Statut</span></TableHead>
@@ -332,31 +332,31 @@ function EarningManagementPageContent() {
 									</TableHeader>
 									<TableBody>
 										{earnings.map((earning) => (
-											<TableRow key={earning.uid} className="hover:bg-gray-50 dark:hover:bg-gray-900/50">
-												<TableCell>
-													<div className="flex items-center space-x-3">
-														<div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-green-600 rounded-full flex items-center justify-center text-white font-semibold">
+											<TableRow key={earning.uid} className="hover:bg-gray-50 dark:hover:bg-boxdark-2/50">
+												<TableCell data-label="Utilisateur">
+													<div className="flex flex-wrap items-center gap-2 sm:gap-3">
+														<div className="w-10 h-10 bg-gradient-to-br from-primary to-meta-3 rounded-full flex items-center justify-center text-white font-semibold">
 															{earning.user_name?.charAt(0)?.toUpperCase() || 'U'}
 														</div>
 														<div>
 															<div className="font-medium text-gray-900 dark:text-gray-100">
 																<span>{earning.user_name || 'Utilisateur inconnu'}</span>
 															</div>
-															<div className="text-sm text-gray-500 dark:text-gray-400">
+															<div className="text-sm text-body dark:text-bodydark2">
 																<span>{earning.user_id || earning.uid}</span>
 															</div>
 														</div>
 													</div>
 												</TableCell>
-												<TableCell>
+												<TableCell data-label="Montant">
 													<div className="flex items-center space-x-1">
-														{/* <DollarSign className="h-4 w-4 text-gray-400" /> */}
+														{/* <DollarSign className="h-4 w-4 text-bodydark2" /> */}
 														<span className="font-medium text-gray-900 dark:text-gray-100">
 															<span>{parseFloat(earning.amount).toFixed(2)} FCFA</span>
 														</span>
 													</div>
 												</TableCell>
-												<TableCell>
+												<TableCell data-label="Statut">
 													<Badge
 														className={
 															earning.status === 'completed'
@@ -378,15 +378,15 @@ function EarningManagementPageContent() {
 														</div>
 													</Badge>
 												</TableCell>
-												<TableCell>
-													<div className="text-sm text-gray-600 dark:text-gray-400">
+												<TableCell data-label="Date">
+													<div className="text-sm text-body dark:text-bodydark2">
 														<span>{earning.created_at
 															? new Date(earning.created_at).toLocaleString()
 															: 'Inconnu'
 														}</span>
 													</div>
 												</TableCell>
-												<TableCell>
+												<TableCell data-label="Actions">
 													<Button
 														variant="outline"
 														size="sm"
@@ -406,8 +406,8 @@ function EarningManagementPageContent() {
 
 				{/* Pagination */}
 				{totalPages > 1 && (
-					<div className="flex items-center justify-between mt-6">
-						<div className="text-sm text-gray-600 dark:text-gray-400">
+					<div className="flex flex-wrap items-start justify-between gap-3 sm:items-center mt-6">
+						<div className="text-sm text-body dark:text-bodydark2">
 							<span>Affichage de {startIndex + 1} à {Math.min(startIndex + itemsPerPage, totalCount)} sur {totalCount} résultats</span>
 						</div>
 						<div className="flex items-center space-x-2">
@@ -433,7 +433,7 @@ function EarningManagementPageContent() {
                   
                   return pages.map((page, index) => {
                     if (page === '...') {
-                      return <span key={`ellipsis-${index}`} className="px-2 text-gray-500 text-sm">...</span>;
+                      return <span key={`ellipsis-${index}`} className="px-2 text-body text-sm">...</span>;
                     }
                     return (
                       <Button
@@ -441,7 +441,7 @@ function EarningManagementPageContent() {
                         variant={currentPage === page ? "default" : "outline"}
                         size="sm"
                         onClick={() => handlePageChange(page as number)}
-                        className={currentPage === page ? "bg-orange-500 hover:bg-orange-600 text-white border-orange-500" : "border-gray-200 dark:border-gray-600"}
+                        className={currentPage === page ? "bg-primary hover:bg-primary text-white border-primary" : "border-stroke dark:border-strokedark"}
                       >
                         {page}
                       </Button>
@@ -464,13 +464,13 @@ function EarningManagementPageContent() {
 
 				{/* Empty State */}
 				{!loading && !error && earnings.length === 0 && (
-					<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mt-6">
+					<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mt-6">
 						<CardContent className="p-12 text-center">
-							<DollarSign className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-							<h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+							<DollarSign className="h-12 w-12 text-bodydark2 mx-auto mb-4" />
+							<h3 className="text-sm font-medium sm:text-base text-gray-900 dark:text-gray-100 mb-2">
 								<span>Aucun gain trouvé</span>
 							</h3>
-							<p className="text-gray-500 dark:text-gray-400 mb-4">
+							<p className="text-body dark:text-bodydark2 mb-4">
 								<span>{searchTerm ? `Aucun gain ne correspond à "${searchTerm}"` : "Aucun gain n'a encore été enregistré."}</span>
 							</p>
 						</CardContent>
@@ -482,12 +482,12 @@ function EarningManagementPageContent() {
 					<DialogContent className="max-w-2xl">
 						<DialogHeader>
 							<DialogTitle className="flex items-center space-x-2">
-								<DollarSign className="h-5 w-5 text-green-600" />
+								<DollarSign className="h-5 w-5 text-meta-3" />
 								<span><span>Détails du gain</span></span>
 							</DialogTitle>
 						</DialogHeader>
 						{detailLoading ? (
-							<div className="flex items-center justify-center py-8">
+							<div className="flex items-center justify-center py-4 sm:py-6">
 								<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
 							</div>
 						) : detailError ? (
@@ -497,8 +497,8 @@ function EarningManagementPageContent() {
 								{/* Basic Information */}
 								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">UID</label>
-										<div className="flex items-center space-x-2 bg-gray-100 dark:bg-gray-700 p-2 rounded">
+										<label className="text-sm font-medium text-body dark:text-bodydark2">UID</label>
+										<div className="flex items-center space-x-2 bg-gray-100 dark:bg-meta-4 p-2 rounded">
 											<p className="text-sm font-mono text-gray-900 dark:text-gray-100 flex-1">
 												{detailEarning.uid || 'Non disponible'}
 											</p>
@@ -521,8 +521,8 @@ function EarningManagementPageContent() {
 										</div>
 									</div>
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">Référence</label>
-										<div className="flex items-center space-x-2 bg-gray-100 dark:bg-gray-700 p-2 rounded">
+										<label className="text-sm font-medium text-body dark:text-bodydark2">Référence</label>
+										<div className="flex items-center space-x-2 bg-gray-100 dark:bg-meta-4 p-2 rounded">
 											<p className="text-sm font-mono text-gray-900 dark:text-gray-100 flex-1">
 												{detailEarning.reference || 'Non disponible'}
 											</p>
@@ -549,13 +549,13 @@ function EarningManagementPageContent() {
 								{/* Amount Information */}
 								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">Montant</label>
-										<p className="text-lg font-semibold text-green-600">
+										<label className="text-sm font-medium text-body dark:text-bodydark2">Montant</label>
+										<p className="text-lg font-semibold text-meta-3">
 											{detailEarning.formatted_amount || `${parseFloat(detailEarning.amount || 0).toFixed(2)} FCFA`}
 										</p>
 									</div>
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">Montant brut</label>
+										<label className="text-sm font-medium text-body dark:text-bodydark2">Montant brut</label>
 										<p className="text-sm text-gray-900 dark:text-gray-100">
 											{detailEarning.amount || 'Non disponible'}
 										</p>
@@ -565,7 +565,7 @@ function EarningManagementPageContent() {
 								{/* Period Information */}
 								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">Début de période</label>
+										<label className="text-sm font-medium text-body dark:text-bodydark2">Début de période</label>
 										<p className="text-sm text-gray-900 dark:text-gray-100">
 											{detailEarning.period_start
 												? new Date(detailEarning.period_start).toLocaleString()
@@ -574,7 +574,7 @@ function EarningManagementPageContent() {
 										</p>
 									</div>
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">Fin de période</label>
+										<label className="text-sm font-medium text-body dark:text-bodydark2">Fin de période</label>
 										<p className="text-sm text-gray-900 dark:text-gray-100">
 											{detailEarning.period_end
 												? new Date(detailEarning.period_end).toLocaleString()
@@ -587,13 +587,13 @@ function EarningManagementPageContent() {
 								{/* User Information */}
 								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">Nom d'utilisateur</label>
+										<label className="text-sm font-medium text-body dark:text-bodydark2">Nom d'utilisateur</label>
 										<p className="text-sm text-gray-900 dark:text-gray-100">
 											{detailEarning.user_name || 'Non disponible'}
 										</p>
 									</div>
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">Payé par</label>
+										<label className="text-sm font-medium text-body dark:text-bodydark2">Payé par</label>
 										<p className="text-sm text-gray-900 dark:text-gray-100">
 											{detailEarning.paid_by_name || 'Non disponible'}
 										</p>
@@ -602,7 +602,7 @@ function EarningManagementPageContent() {
 
 								{/* Transaction Count */}
 								<div>
-									<label className="text-sm font-medium text-gray-600 dark:text-gray-400">Nombre de transactions</label>
+									<label className="text-sm font-medium text-body dark:text-bodydark2">Nombre de transactions</label>
 									<p className="text-sm text-gray-900 dark:text-gray-100">
 										{detailEarning.transactions_count || 0}
 									</p>
@@ -611,7 +611,7 @@ function EarningManagementPageContent() {
 								{/* Admin Notes */}
 								{detailEarning.admin_notes && (
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">Notes d'administrateur</label>
+										<label className="text-sm font-medium text-body dark:text-bodydark2">Notes d'administrateur</label>
 										<p className="text-sm text-gray-900 dark:text-gray-100 bg-blue-50 dark:bg-blue-900/20 p-3 rounded border">
 											{detailEarning.admin_notes}
 										</p>
@@ -621,7 +621,7 @@ function EarningManagementPageContent() {
 								{/* Timestamps */}
 								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">Créé le</label>
+										<label className="text-sm font-medium text-body dark:text-bodydark2">Créé le</label>
 										<p className="text-sm text-gray-900 dark:text-gray-100">
 											{detailEarning.created_at
 												? new Date(detailEarning.created_at).toLocaleString()
@@ -630,7 +630,7 @@ function EarningManagementPageContent() {
 										</p>
 									</div>
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">Statut</label>
+										<label className="text-sm font-medium text-body dark:text-bodydark2">Statut</label>
 										<Badge
 											className={
 												detailEarning.status === 'completed'
@@ -660,7 +660,7 @@ import { getApiBaseUrl } from "@/lib/env-config"
 
 export default function EarningManagementPage() {
   return (
-    <Suspense fallback={<div className="flex justify-center items-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div></div>}>
+    <Suspense fallback={<div className="flex justify-center items-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
       <EarningManagementPageContent />
     </Suspense>
   )

@@ -22,12 +22,12 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation"
 
 // Colors for consistent theming - using logo colors
 const COLORS = {
-  primary: '#FF6B35', // Orange (primary from logo)
-  secondary: '#00FF88', // Bright green from logo
+  primary: '#194185', // Orange (primary from logo)
+  secondary: '#10B981', // Bright green from logo
   accent: '#1E3A8A', // Dark blue from logo
   danger: '#EF4444',
   warning: '#F97316',
-  success: '#00FF88', // Using bright green for success
+  success: '#10B981', // Using bright green for success
   info: '#1E3A8A', // Using dark blue for info
   purple: '#8B5CF6',
   pink: '#EC4899',
@@ -292,7 +292,7 @@ function PermissionsListPageContent() {
       )
     } else if (canWithdraw) {
       return (
-        <Badge className="bg-orange-100 text-orange-800 dark:bg-orange-900/20 dark:text-orange-300">
+        <Badge className="bg-meta-2 text-orange-800 dark:bg-orange-900/20 dark:text-secondary">
           <div className="flex items-center space-x-1">
             <TrendingUp className="h-3 w-3" />
             <span>Retrait uniquement</span>
@@ -301,7 +301,7 @@ function PermissionsListPageContent() {
       )
     } else {
       return (
-        <Badge className="bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-300">
+        <Badge className="bg-gray-100 text-gray-800 dark:bg-boxdark-2/20 dark:text-bodydark">
           <div className="flex items-center space-x-1">
             <XCircle className="h-3 w-3" />
             <span>Aucune permission</span>
@@ -317,31 +317,31 @@ function PermissionsListPageContent() {
   const withdrawPermissions = permissions.filter(p => p.can_withdraw).length
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+      <div className="w-full">
         
         {/* Page Header */}
-        <div className="mb-8">
+        <div className="mb-4 sm:mb-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+              <h1 className="text-2xl sm:text-3xl lg:text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
                 Gestion des Permissions
               </h1>
-              <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm sm:text-base lg:text-lg">
+              <p className="text-body dark:text-bodydark mt-2 text-sm sm:text-base lg:text-lg">
                 Gérer les permissions des partenaires sur les plateformes de paris
               </p>
             </div>
-            <div className="flex items-center space-x-2 sm:space-x-4">
-              <div className="bg-white dark:bg-gray-800 rounded-lg px-3 sm:px-4 py-2 shadow-sm">
+            <div className="flex items-center space-x-2 sm:gap-2 sm:gap-4">
+              <div className="bg-white dark:bg-boxdark rounded-lg px-3 sm:px-4 py-2 shadow-sm">
                 <div className="flex items-center space-x-2">
-                  <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-orange-500" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+                  <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-bodydark">
                     {totalCount} permissions
                   </span>
                 </div>
               </div>
               <Link href="/dashboard/permissions/create">
-                <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-xs sm:text-sm">
+                <Button className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white text-xs sm:text-sm">
                   <Plus className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                   <span className="hidden sm:inline">Nouvelle Permission</span>
                   <span className="sm:hidden">Nouvelle</span>
@@ -352,16 +352,16 @@ function PermissionsListPageContent() {
         </div>
 
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-            <CardContent className="p-4 sm:p-6">
-              <div className="flex items-center space-x-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-3 sm:p-4 md:p-6 mb-4 sm:mb-6">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <CardContent className="p-4 sm:p-3 sm:p-4 md:p-6">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="p-2 sm:p-3 bg-green-100 dark:bg-green-900 rounded-lg">
-                  <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-green-600 dark:text-green-300" />
+                  <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-meta-3 dark:text-green-300" />
                 </div>
                 <div>
-                  <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">Permissions actives</p>
-                  <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  <p className="text-xs sm:text-sm font-medium text-body dark:text-bodydark2">Permissions actives</p>
+                  <p className="text-xl sm:text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
                     {activePermissions}
                   </p>
                 </div>
@@ -369,15 +369,15 @@ function PermissionsListPageContent() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-            <CardContent className="p-4 sm:p-6">
-              <div className="flex items-center space-x-3">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <CardContent className="p-4 sm:p-3 sm:p-4 md:p-6">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg">
                   <DollarSign className="h-6 w-6 text-blue-600 dark:text-blue-300" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Permissions de dépôt</p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  <p className="text-sm font-medium text-body dark:text-bodydark2">Permissions de dépôt</p>
+                  <p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
                     {depositPermissions}
                   </p>
                 </div>
@@ -385,15 +385,15 @@ function PermissionsListPageContent() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-            <CardContent className="p-4 sm:p-6">
-              <div className="flex items-center space-x-3">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <CardContent className="p-4 sm:p-3 sm:p-4 md:p-6">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="p-3 bg-purple-100 dark:bg-purple-900 rounded-lg">
                   <TrendingUp className="h-6 w-6 text-purple-600 dark:text-purple-300" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Permissions de retrait</p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  <p className="text-sm font-medium text-body dark:text-bodydark2">Permissions de retrait</p>
+                  <p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
                     {withdrawPermissions}
                   </p>
                 </div>
@@ -403,23 +403,23 @@ function PermissionsListPageContent() {
         </div>
 
         {/* Filters and Search */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-          <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+          <CardContent className="p-3 sm:p-4 md:p-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2 sm:gap-4">
               {/* Search */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-bodydark2" />
                 <Input
                   placeholder="Rechercher des permissions..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                  className="pl-10 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                 />
               </div>
 
               {/* Status Filter */}
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                   <SelectValue placeholder="Filtrer par statut" />
                 </SelectTrigger>
                 <SelectContent>
@@ -431,7 +431,7 @@ function PermissionsListPageContent() {
 
               {/* Platform Filter */}
               <Select value={platformFilter} onValueChange={setPlatformFilter}>
-                <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                   <SelectValue placeholder="Filtrer par plateforme" />
                 </SelectTrigger>
                 <SelectContent>
@@ -449,7 +449,7 @@ function PermissionsListPageContent() {
 
               {/* Can Deposit Filter */}
               <Select value={canDepositFilter} onValueChange={setCanDepositFilter}>
-                <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                   <SelectValue placeholder="Filtrer par dépôt" />
                 </SelectTrigger>
                 <SelectContent>
@@ -477,32 +477,32 @@ function PermissionsListPageContent() {
         </Card>
 
         {/* Permissions Table */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-          <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+          <CardHeader className="border-b border-gray-100 dark:border-strokedark">
             <CardTitle className="flex items-center space-x-2">
-              <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                <Shield className="h-5 w-5 text-orange-600 dark:text-orange-300" />
+              <div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                <Shield className="h-5 w-5 text-primary dark:text-secondary" />
               </div>
               <span>Liste des permissions</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             {loading ? (
-              <div className="flex items-center justify-center py-12">
+              <div className="flex items-center justify-center py-6 sm:py-10">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Chargement des permissions...</span>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                  <span className="text-body dark:text-bodydark">Chargement des permissions...</span>
                 </div>
               </div>
             ) : error ? (
-              <div className="p-6 text-center">
+              <div className="p-3 sm:p-4 md:p-6 text-center">
                 <ErrorDisplay error={error} onRetry={() => {/* retry function */}} />
               </div>
             ) : (
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-gray-50 dark:bg-gray-900/50">
+                    <TableRow className="bg-gray-50 dark:bg-boxdark-2/50">
                       <TableHead className="font-semibold">Partenaire</TableHead>
                       <TableHead className="font-semibold">Plateforme</TableHead>
                       <TableHead className="font-semibold">Permissions</TableHead>
@@ -514,57 +514,57 @@ function PermissionsListPageContent() {
                   </TableHeader>
                   <TableBody>
                     {permissions.map((permission) => (
-                      <TableRow key={permission.uid} className="hover:bg-gray-50 dark:hover:bg-gray-900/50">
-                        <TableCell>
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-green-600 rounded-full flex items-center justify-center text-white font-semibold">
+                      <TableRow key={permission.uid} className="hover:bg-gray-50 dark:hover:bg-boxdark-2/50">
+                        <TableCell data-label="Partenaire">
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                            <div className="w-10 h-10 bg-gradient-to-br from-primary to-meta-3 rounded-full flex items-center justify-center text-white font-semibold">
                               {permission.partner_name?.charAt(0)?.toUpperCase() || 'P'}
                             </div>
                             <div>
                               <div className="font-medium text-gray-900 dark:text-gray-100">
                                 {permission.partner_name}
                               </div>
-                              <div className="text-sm text-gray-500 dark:text-gray-400">
+                              <div className="text-sm text-body dark:text-bodydark2">
                                 ID: {permission.partner}
                               </div>
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell>
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-green-600 rounded-full flex items-center justify-center text-white font-semibold">
+                        <TableCell data-label="Plateforme">
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                            <div className="w-10 h-10 bg-gradient-to-br from-primary to-meta-3 rounded-full flex items-center justify-center text-white font-semibold">
                               {permission.platform_name?.charAt(0)?.toUpperCase() || 'P'}
                             </div>
                             <div>
                               <div className="font-medium text-gray-900 dark:text-gray-100">
                                 {permission.platform_name}
                               </div>
-                              <div className="text-sm text-gray-500 dark:text-gray-400">
+                              <div className="text-sm text-body dark:text-bodydark2">
                                 ID: {permission.platform_external_id}
                               </div>
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Permissions">
                           {getPermissionBadge(permission.can_deposit, permission.can_withdraw)}
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Statut">
                           {getStatusBadge(permission.is_active)}
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Limites">
                           <div className="text-sm">
-                            <div className="text-gray-600 dark:text-gray-400">
+                            <div className="text-body dark:text-bodydark2">
                               Dépôt: {parseFloat(permission.platform_min_deposit).toFixed(0)} - {parseFloat(permission.platform_max_deposit).toFixed(0)} FCFA
                             </div>
-                            <div className="text-gray-600 dark:text-gray-400">
+                            <div className="text-body dark:text-bodydark2">
                               Retrait: {parseFloat(permission.platform_min_withdrawal).toFixed(0)} - {parseFloat(permission.platform_max_withdrawal).toFixed(0)} FCFA
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Créé le">
                           <div className="flex items-center space-x-2">
-                            <Calendar className="h-4 w-4 text-gray-400" />
-                            <span className="text-sm text-gray-600 dark:text-gray-400">
+                            <Calendar className="h-4 w-4 text-bodydark2" />
+                            <span className="text-sm text-body dark:text-bodydark2">
                               {permission.created_at 
                                 ? new Date(permission.created_at).toLocaleDateString()
                                 : 'Inconnu'
@@ -572,7 +572,7 @@ function PermissionsListPageContent() {
                             </span>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Actions">
                           <div className="flex items-center space-x-2">
                             <Button 
                               variant="outline" 
@@ -587,7 +587,7 @@ function PermissionsListPageContent() {
                               variant="outline" 
                               size="sm"
                               onClick={() => handleOpenEdit(permission)}
-                              className="bg-orange-50 text-orange-700 border-orange-200 hover:bg-orange-100 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-700 dark:hover:bg-orange-900/30"
+                              className="bg-gray text-orange-700 border-stroke hover:bg-meta-2 dark:bg-orange-900/20 dark:text-secondary dark:border-orange-700 dark:hover:bg-orange-900/30"
                             >
                               <Edit className="h-4 w-4 mr-1" />
                               Modifier
@@ -614,8 +614,8 @@ function PermissionsListPageContent() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-between mt-6">
-            <div className="text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center mt-6">
+            <div className="text-sm text-body dark:text-bodydark2">
               Affichage de {startIndex + 1} à {Math.min(startIndex + itemsPerPage, totalCount)} sur {totalCount} résultats
             </div>
             <div className="flex items-center space-x-2">
@@ -641,7 +641,7 @@ function PermissionsListPageContent() {
                   
                   return pages.map((page, index) => {
                     if (page === '...') {
-                      return <span key={`ellipsis-${index}`} className="px-2 text-gray-500 text-sm">...</span>;
+                      return <span key={`ellipsis-${index}`} className="px-2 text-body text-sm">...</span>;
                     }
                     return (
                       <Button
@@ -649,7 +649,7 @@ function PermissionsListPageContent() {
                         variant={currentPage === page ? "default" : "outline"}
                         size="sm"
                         onClick={() => handlePageChange(page as number)}
-                        className={currentPage === page ? "bg-orange-500 hover:bg-orange-600 text-white border-orange-500" : "border-gray-200 dark:border-gray-600"}
+                        className={currentPage === page ? "bg-primary hover:bg-primary text-white border-primary" : "border-stroke dark:border-strokedark"}
                       >
                         {page}
                       </Button>
@@ -672,17 +672,17 @@ function PermissionsListPageContent() {
 
         {/* Empty State */}
         {!loading && !error && permissions.length === 0 && (
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mt-6">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mt-6">
             <CardContent className="p-12 text-center">
-              <Shield className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+              <Shield className="h-12 w-12 text-bodydark2 mx-auto mb-4" />
+              <h3 className="text-sm font-medium sm:text-base text-gray-900 dark:text-gray-100 mb-2">
                 Aucune permission trouvée
               </h3>
-              <p className="text-gray-500 dark:text-gray-400 mb-4">
+              <p className="text-body dark:text-bodydark2 mb-4">
                 {searchTerm ? `Aucune permission ne correspond à "${searchTerm}"` : "Aucune permission n'a encore été créée."}
               </p>
               <Link href="/dashboard/permissions/create">
-                <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white">
+                <Button className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white">
                   <Plus className="h-4 w-4 mr-2" />
                   Créer une permission
                 </Button>
@@ -696,20 +696,20 @@ function PermissionsListPageContent() {
           <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle className="flex items-center space-x-2">
-                <Shield className="h-5 w-5 text-orange-600" />
+                <Shield className="h-5 w-5 text-primary" />
                 <span>Détails de la permission</span>
               </DialogTitle>
             </DialogHeader>
             {detailLoading ? (
-              <div className="flex items-center justify-center py-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600"></div>
+              <div className="flex items-center justify-center py-4 sm:py-6">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
               </div>
             ) : detailError ? (
               <ErrorDisplay error={detailError} />
             ) : detailPermission ? (
               <div className="space-y-6">
                 {/* Partner and Platform Information */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6">
                   <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
                     <h4 className="font-medium text-blue-800 dark:text-blue-300 mb-3 flex items-center">
                       <User className="h-5 w-5 mr-2" />
@@ -717,13 +717,13 @@ function PermissionsListPageContent() {
                     </h4>
                     <div className="space-y-2">
                       <div>
-                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Nom:</span>
+                        <span className="text-sm font-medium text-body dark:text-bodydark2">Nom:</span>
                         <p className="text-lg font-semibold text-blue-600">
                           {detailPermission.partner_name}
                         </p>
                       </div>
                       <div>
-                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">ID:</span>
+                        <span className="text-sm font-medium text-body dark:text-bodydark2">ID:</span>
                         <p className="text-sm text-gray-900 dark:text-gray-100">
                           {detailPermission.partner}
                         </p>
@@ -731,20 +731,20 @@ function PermissionsListPageContent() {
                     </div>
                   </div>
 
-                  <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg">
-                    <h4 className="font-medium text-orange-800 dark:text-orange-300 mb-3 flex items-center">
+                  <div className="bg-gray dark:bg-orange-900/20 p-4 rounded-lg">
+                    <h4 className="font-medium text-orange-800 dark:text-secondary mb-3 flex items-center">
                       <BarChart3 className="h-5 w-5 mr-2" />
                       Plateforme
                     </h4>
                     <div className="space-y-2">
                       <div>
-                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Nom:</span>
-                        <p className="text-lg font-semibold text-orange-600">
+                        <span className="text-sm font-medium text-body dark:text-bodydark2">Nom:</span>
+                        <p className="text-lg font-semibold text-primary">
                           {detailPermission.platform_name}
                         </p>
                       </div>
                       <div>
-                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">ID Externe:</span>
+                        <span className="text-sm font-medium text-body dark:text-bodydark2">ID Externe:</span>
                         <p className="text-sm text-gray-900 dark:text-gray-100">
                           {detailPermission.platform_external_id}
                         </p>
@@ -759,22 +759,22 @@ function PermissionsListPageContent() {
                     <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-3">Permissions</h4>
                     <div className="space-y-2">
                       <div className="flex items-center space-x-2">
-                        <DollarSign className="h-4 w-4 text-gray-400" />
-                        <span className="text-sm text-gray-600 dark:text-gray-400">Peut déposer:</span>
+                        <DollarSign className="h-4 w-4 text-bodydark2" />
+                        <span className="text-sm text-body dark:text-bodydark2">Peut déposer:</span>
                         <Badge className={detailPermission.can_deposit ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300" : "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300"}>
                           {detailPermission.can_deposit ? "Oui" : "Non"}
                         </Badge>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <TrendingUp className="h-4 w-4 text-gray-400" />
-                        <span className="text-sm text-gray-600 dark:text-gray-400">Peut retirer:</span>
+                        <TrendingUp className="h-4 w-4 text-bodydark2" />
+                        <span className="text-sm text-body dark:text-bodydark2">Peut retirer:</span>
                         <Badge className={detailPermission.can_withdraw ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300" : "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300"}>
                           {detailPermission.can_withdraw ? "Oui" : "Non"}
                         </Badge>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-gray-400" />
-                        <span className="text-sm text-gray-600 dark:text-gray-400">Statut:</span>
+                        <CheckCircle className="h-4 w-4 text-bodydark2" />
+                        <span className="text-sm text-body dark:text-bodydark2">Statut:</span>
                         {getStatusBadge(detailPermission.is_active)}
                       </div>
                     </div>
@@ -784,13 +784,13 @@ function PermissionsListPageContent() {
                     <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-3">Limites de la Plateforme</h4>
                     <div className="space-y-2">
                       <div>
-                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Dépôt:</span>
+                        <span className="text-sm font-medium text-body dark:text-bodydark2">Dépôt:</span>
                         <p className="text-sm text-gray-900 dark:text-gray-100">
                           {parseFloat(detailPermission.platform_min_deposit).toFixed(2)} - {parseFloat(detailPermission.platform_max_deposit).toFixed(2)} FCFA
                         </p>
                       </div>
                       <div>
-                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Retrait:</span>
+                        <span className="text-sm font-medium text-body dark:text-bodydark2">Retrait:</span>
                         <p className="text-sm text-gray-900 dark:text-gray-100">
                           {parseFloat(detailPermission.platform_min_withdrawal).toFixed(2)} - {parseFloat(detailPermission.platform_max_withdrawal).toFixed(2)} FCFA
                         </p>
@@ -800,15 +800,15 @@ function PermissionsListPageContent() {
                 </div>
 
                 {/* Metadata */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4">
                   <div>
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Accordé par:</span>
+                    <span className="text-sm font-medium text-body dark:text-bodydark2">Accordé par:</span>
                     <p className="text-sm text-gray-900 dark:text-gray-100">
                       {detailPermission.granted_by_name}
                     </p>
                   </div>
                   <div>
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Créé le:</span>
+                    <span className="text-sm font-medium text-body dark:text-bodydark2">Créé le:</span>
                     <p className="text-sm text-gray-900 dark:text-gray-100">
                       {detailPermission.created_at 
                         ? new Date(detailPermission.created_at).toLocaleString()
@@ -817,7 +817,7 @@ function PermissionsListPageContent() {
                     </p>
                   </div>
                   <div>
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Mis à jour le:</span>
+                    <span className="text-sm font-medium text-body dark:text-bodydark2">Mis à jour le:</span>
                     <p className="text-sm text-gray-900 dark:text-gray-100">
                       {detailPermission.updated_at 
                         ? new Date(detailPermission.updated_at).toLocaleString()
@@ -836,7 +836,7 @@ function PermissionsListPageContent() {
           <DialogContent className="max-w-2xl">
             <DialogHeader>
               <DialogTitle className="flex items-center space-x-2">
-                <Edit className="h-5 w-5 text-orange-600" />
+                <Edit className="h-5 w-5 text-primary" />
                 <span>Modifier la permission</span>
               </DialogTitle>
             </DialogHeader>
@@ -848,50 +848,50 @@ function PermissionsListPageContent() {
               )}
 
               {editPermission && (
-                <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                <div className="bg-gray-50 dark:bg-meta-4 p-4 rounded-lg">
                   <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-2">
                     {editPermission.partner_name} - {editPermission.platform_name}
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-body dark:text-bodydark2">
                     Modifier les permissions pour cette combinaison partenaire/plateforme
                   </p>
                 </div>
               )}
 
               <div className="space-y-4">
-                <div className="flex items-center space-x-3">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                   <input
                     type="checkbox"
                     id="can_deposit"
                     checked={editForm.can_deposit}
                     onChange={(e) => setEditForm(prev => ({ ...prev, can_deposit: e.target.checked }))}
-                    className="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-primary focus:ring-primary border-stroke rounded"
                   />
                   <label htmlFor="can_deposit" className="text-sm font-medium text-gray-900 dark:text-gray-100">
                     Peut effectuer des dépôts
                   </label>
                 </div>
 
-                <div className="flex items-center space-x-3">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                   <input
                     type="checkbox"
                     id="can_withdraw"
                     checked={editForm.can_withdraw}
                     onChange={(e) => setEditForm(prev => ({ ...prev, can_withdraw: e.target.checked }))}
-                    className="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-primary focus:ring-primary border-stroke rounded"
                   />
                   <label htmlFor="can_withdraw" className="text-sm font-medium text-gray-900 dark:text-gray-100">
                     Peut effectuer des retraits
                   </label>
                 </div>
 
-                <div className="flex items-center space-x-3">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                   <input
                     type="checkbox"
                     id="is_active"
                     checked={editForm.is_active}
                     onChange={(e) => setEditForm(prev => ({ ...prev, is_active: e.target.checked }))}
-                    className="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-primary focus:ring-primary border-stroke rounded"
                   />
                   <label htmlFor="is_active" className="text-sm font-medium text-gray-900 dark:text-gray-100">
                     Permission active
@@ -899,11 +899,11 @@ function PermissionsListPageContent() {
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex items-center gap-2 sm:gap-4 pt-6 border-t border-stroke dark:border-strokedark">
                 <Button
                   type="submit"
                   disabled={editLoading}
-                  className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+                  className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white"
                 >
                   {editLoading ? (
                     <>
@@ -941,7 +941,7 @@ import { getApiBaseUrl } from "@/lib/env-config"
 
 export default function PermissionsListPage() {
   return (
-    <Suspense fallback={<div className="flex justify-center items-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div></div>}>
+    <Suspense fallback={<div className="flex justify-center items-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
       <PermissionsListPageContent />
     </Suspense>
   )

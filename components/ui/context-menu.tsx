@@ -46,7 +46,7 @@ const ContextMenuSubContent = React.forwardRef<
   <ContextMenuPrimitive.SubContent
     ref={ref}
     className={cn(
-      "z-50 min-w-[8rem] overflow-hidden rounded-lg border-2 border-gray-200/50 bg-white/95 backdrop-blur-md p-2 text-gray-900 shadow-xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 dark:border-gray-700/50 dark:bg-gray-800/95 dark:text-gray-100",
+      "z-50 min-w-[8rem] overflow-hidden rounded-lg border-2 border-stroke/50 bg-white/95 backdrop-blur-md p-2 text-gray-900 shadow-xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 dark:border-strokedark/50 dark:bg-boxdark/95 dark:text-gray-100",
       className
     )}
     {...props}
@@ -62,7 +62,7 @@ const ContextMenuContent = React.forwardRef<
     <ContextMenuPrimitive.Content
       ref={ref}
       className={cn(
-        "z-50 min-w-[8rem] overflow-hidden rounded-lg border-2 border-gray-200/50 bg-white/95 backdrop-blur-md p-2 text-gray-900 shadow-xl animate-in fade-in-80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 dark:border-gray-700/50 dark:bg-gray-800/95 dark:text-gray-100",
+        "z-50 min-w-[8rem] overflow-hidden rounded-lg border-2 border-stroke/50 bg-white/95 backdrop-blur-md p-2 text-gray-900 shadow-xl animate-in fade-in-80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 dark:border-strokedark/50 dark:bg-boxdark/95 dark:text-gray-100",
         className
       )}
       {...props}
@@ -144,7 +144,7 @@ const ContextMenuLabel = React.forwardRef<
   <ContextMenuPrimitive.Label
     ref={ref}
     className={cn(
-      "px-3 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300",
+      "px-3 py-2 text-sm font-semibold text-gray-700 dark:text-bodydark",
       inset && "pl-8",
       className
     )}
@@ -172,7 +172,7 @@ const ContextMenuShortcut = ({
   return (
     <span
       className={cn(
-        "ml-auto text-xs tracking-widest text-gray-500 dark:text-gray-400",
+        "ml-auto text-xs tracking-widest text-body dark:text-bodydark2",
         className
       )}
       {...props}

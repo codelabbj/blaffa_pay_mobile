@@ -16,12 +16,12 @@ import { getApiBaseUrl, getApiToken } from "@/lib/env-config"
 
 // Colors for consistent theming - using logo colors
 const COLORS = {
-  primary: '#FF6B35', // Orange (primary from logo)
-  secondary: '#00FF88', // Bright green from logo
+  primary: '#194185', // Orange (primary from logo)
+  secondary: '#10B981', // Bright green from logo
   accent: '#1E3A8A', // Dark blue from logo
   danger: '#EF4444',
   warning: '#F97316',
-  success: '#00FF88', // Using bright green for success
+  success: '#10B981', // Using bright green for success
   info: '#1E3A8A', // Using dark blue for info
   purple: '#8B5CF6',
   pink: '#EC4899',
@@ -141,13 +141,13 @@ export default function RegisterUserForm() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+      <div className="mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
 
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
+            <div className="flex items-center gap-2 sm:gap-4">
               {/* <Button 
                 variant="outline" 
                 onClick={() => router.back()}
@@ -157,10 +157,10 @@ export default function RegisterUserForm() {
                 Retour
               </Button> */}
               <div>
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+                <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
                   {t("register.title") || "Enregistrer un utilisateur"}
                 </h1>
-                <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+                <p className="text-body dark:text-bodydark mt-2 text-lg">
                   Créer un nouveau compte utilisateur
                 </p>
               </div>
@@ -169,17 +169,17 @@ export default function RegisterUserForm() {
         </div>
 
         {error && (
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-            <CardContent className="p-6">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+            <CardContent className="p-3 sm:p-4 md:p-6">
               <ErrorDisplay error={error} />
             </CardContent>
           </Card>
         )}
 
         {success && (
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-2 text-green-600">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+            <CardContent className="p-3 sm:p-4 md:p-6">
+              <div className="flex items-center space-x-2 text-meta-3">
                 <UserPlus className="h-5 w-5" />
                 <span className="font-medium">{success}</span>
               </div>
@@ -189,9 +189,9 @@ export default function RegisterUserForm() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Personal Information */}
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
 
-            <CardContent className="p-6 space-y-4">
+            <CardContent className="p-3 sm:p-4 md:p-6 space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="first_name">Prénom</Label>
@@ -201,7 +201,7 @@ export default function RegisterUserForm() {
                     value={form.first_name}
                     onChange={handleChange}
                     placeholder="Entrez le prénom"
-                    className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                     required
                   />
                 </div>
@@ -213,7 +213,7 @@ export default function RegisterUserForm() {
                     value={form.last_name}
                     onChange={handleChange}
                     placeholder="Entrez le nom de famille"
-                    className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                     required
                   />
                 </div>
@@ -226,10 +226,10 @@ export default function RegisterUserForm() {
                   value={form.identifier}
                   onChange={handleChange}
                   placeholder="Entrez l'email ou le numéro de téléphone"
-                  className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                  className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                   required
                 />
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                <p className="text-sm text-body dark:text-bodydark2 mt-1">
                   Entrez soit une adresse email soit un numéro de téléphone
                 </p>
               </div>
@@ -243,7 +243,7 @@ export default function RegisterUserForm() {
                     value={form.password}
                     onChange={handleChange}
                     placeholder="Entrez le mot de passe"
-                    className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                     required
                   />
                 </div>
@@ -256,7 +256,7 @@ export default function RegisterUserForm() {
                     value={form.password_confirm}
                     onChange={handleChange}
                     placeholder="Confirmez le mot de passe"
-                    className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                     required
                   />
                 </div>
@@ -265,16 +265,16 @@ export default function RegisterUserForm() {
           </Card>
 
           {/* Contact Information */}
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-            {/* <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            {/* <CardHeader className="border-b border-gray-100 dark:border-strokedark">
               <CardTitle className="flex items-center space-x-2">
                 <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                  <Mail className="h-5 w-5 text-green-600 dark:text-green-300" />
+                  <Mail className="h-5 w-5 text-meta-3 dark:text-green-300" />
                 </div>
                 <span>Informations de contact</span>
               </CardTitle>
             </CardHeader> */}
-            {/* <CardContent className="p-6 space-y-4">
+            {/* <CardContent className="p-3 sm:p-4 md:p-6 space-y-4">
               <div>
                 <Label htmlFor="identifier">Email ou téléphone</Label>
                 <Input
@@ -283,10 +283,10 @@ export default function RegisterUserForm() {
                   value={form.identifier}
                   onChange={handleChange}
                   placeholder="Entrez l'email ou le numéro de téléphone"
-                  className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                  className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                   required
                 />
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                <p className="text-sm text-body dark:text-bodydark2 mt-1">
                   Entrez soit une adresse email soit un numéro de téléphone
                 </p>
               </div>
@@ -294,8 +294,8 @@ export default function RegisterUserForm() {
           </Card>
 
           {/* Security */}
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-            {/* <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            {/* <CardHeader className="border-b border-gray-100 dark:border-strokedark">
               <CardTitle className="flex items-center space-x-2">
                 <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
                   <Shield className="h-5 w-5 text-blue-600 dark:text-blue-300" />
@@ -303,7 +303,7 @@ export default function RegisterUserForm() {
                 <span>Sécurité</span>
               </CardTitle>
             </CardHeader> */}
-            {/* <CardContent className="p-6 space-y-4">
+            {/* <CardContent className="p-3 sm:p-4 md:p-6 space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="password">Mot de passe</Label>
@@ -314,7 +314,7 @@ export default function RegisterUserForm() {
                     value={form.password}
                     onChange={handleChange}
                     placeholder="Entrez le mot de passe"
-                    className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                     required
                   />
                 </div>
@@ -327,7 +327,7 @@ export default function RegisterUserForm() {
                     value={form.password_confirm}
                     onChange={handleChange}
                     placeholder="Confirmez le mot de passe"
-                    className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                     required
                   />
                 </div>
@@ -336,16 +336,16 @@ export default function RegisterUserForm() {
           </Card>
 
           {/* User Type */}
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-            {/* <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            {/* <CardHeader className="border-b border-gray-100 dark:border-strokedark">
               <CardTitle className="flex items-center space-x-2">
-                <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                  <UserPlus className="h-5 w-5 text-orange-600 dark:text-orange-300" />
+                <div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                  <UserPlus className="h-5 w-5 text-primary dark:text-secondary" />
                 </div>
                 <span>Type d'utilisateur</span>
               </CardTitle>
             </CardHeader> */}
-            <CardContent className="p-6 space-y-4">
+            <CardContent className="p-3 sm:p-4 md:p-6 space-y-4">
               <div className="flex items-center space-x-2">
                 <Switch
                   id="is_partner"
@@ -355,11 +355,11 @@ export default function RegisterUserForm() {
                 />
                 <Label htmlFor="is_partner">S'enregistrer comme partenaire</Label>
               </div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm text-body dark:text-bodydark2">
                 Les partenaires ont accès au suivi des commissions et à des fonctionnalités supplémentaires
               </p>
 
-              <div className="flex items-center space-x-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex items-center space-x-2 pt-2 border-t border-stroke dark:border-strokedark">
                 <Switch
                   id="can_process_ussd_transaction"
                   name="can_process_ussd_transaction"
@@ -368,11 +368,11 @@ export default function RegisterUserForm() {
                 />
                 <Label htmlFor="can_process_ussd_transaction">Peut traiter les transactions USSD</Label>
               </div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm text-body dark:text-bodydark2">
                 Autorise l'utilisateur à effectuer des transactions via USSD
               </p>
 
-              <div className="flex items-center space-x-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex items-center space-x-2 pt-2 border-t border-stroke dark:border-strokedark">
                 <Switch
                   id="can_process_momo"
                   name="can_process_momo"
@@ -382,7 +382,7 @@ export default function RegisterUserForm() {
                 <Label htmlFor="can_process_momo">{t("register.canProcessMomo") || "Peut traiter MoMo"}</Label>
               </div>
 
-              <div className="flex items-center space-x-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex items-center space-x-2 pt-2 border-t border-stroke dark:border-strokedark">
                 <Switch
                   id="can_process_mobcash"
                   name="can_process_mobcash"
@@ -392,7 +392,7 @@ export default function RegisterUserForm() {
                 <Label htmlFor="can_process_mobcash">{t("register.canProcessMobcash") || "Peut traiter Mobcash"}</Label>
               </div>
 
-              <div className="flex items-center space-x-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex items-center space-x-2 pt-2 border-t border-stroke dark:border-strokedark">
                 <Switch
                   id="can_process_bulk_payment"
                   name="can_process_bulk_payment"
@@ -405,7 +405,7 @@ export default function RegisterUserForm() {
           </Card>
 
           {/* Submit Button */}
-          <div className="flex justify-end space-x-4">
+          <div className="flex justify-end gap-2 sm:gap-4">
             <Button
               type="button"
               variant="outline"
@@ -416,7 +416,7 @@ export default function RegisterUserForm() {
             <Button
               type="submit"
               disabled={loading}
-              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+              className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white"
             >
               {loading ? (
                 <>

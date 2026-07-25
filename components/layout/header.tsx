@@ -1,112 +1,121 @@
 "use client"
 
+import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { LanguageSwitcher } from "@/components/ui/language-switcher"
 import { useLanguage } from "@/components/providers/language-provider"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
-import { Bell, Settings, User, LogOut, Menu } from "lucide-react"
-
-const pageNames: Record<string, string> = {
-  "/dashboard": "dashboard.title",
-  "/dashboard/users": "users.title",
-  "/dashboard/transactions": "transactions.title",
-  "/dashboard/country": "country.title",
-  "/dashboard/network": "network.title",
-  "/dashboard/devices": "devices.title",
-  "/dashboard/sms-logs": "smsLogs.title",
-  "/dashboard/fcm-logs": "fcmLogs.title",
-  "/dashboard/partner": "partners.title",
-  "/dashboard/topup": "topup.title",
-  "/dashboard/earning-management": "earning.title",
-  "/dashboard/wave-business-transaction": "Wave Business Transaction",
-  "/dashboard/momo-pay": "MoMo Pay",
-}
+import {
+  DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Bell, Settings, User, LogOut, Search, Menu } from "lucide-react"
+import { clearTokens } from "@/lib/api"
+import { useRouter } from "next/navigation"
+import { getAppName } from "@/lib/env-config"
 
 interface HeaderProps {
   onMobileMenuClick?: () => void
 }
 
 export function Header({ onMobileMenuClick }: HeaderProps) {
-  const pathname = usePathname()
   const { t } = useLanguage()
+  const router = useRouter()
+  const appName = getAppName()
 
-  const pageTitle = pageNames[pathname] || "dashboard.title"
+  const handleLogout = () => {
+    clearTokens()
+    if (typeof document !== "undefined")
+      document.cookie = "accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; samesite=strict"
+    localStorage.removeItem("isAuthenticated")
+    router.push("/")
+  }
 
   return (
-    <header className="bg-white dark:bg-gray-900 shadow-sm border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 justify-between items-center">
-          <div className="flex items-center">
-            {/* Mobile hamburger menu button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="lg:hidden mr-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-              onClick={onMobileMenuClick}
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
+    <header className="sticky top-0 z-999 flex w-full bg-white shadow-sm dark:bg-boxdark">
+      <div className="flex flex-grow items-center justify-between px-3 py-3 md:px-6 md:py-4">
 
-            <h1 className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
-              <span>{t(pageTitle)}</span>
-            </h1>
+        {/* Left: hamburger + app name */}
+        <div className="flex items-center gap-3">
+          {/* Hamburger — visible only on mobile */}
+          <button
+            aria-label="Open menu"
+            onClick={onMobileMenuClick}
+            className="flex h-9 w-9 items-center justify-center rounded-sm border border-stroke bg-white text-body shadow-sm hover:bg-gray dark:border-strokedark dark:bg-boxdark dark:text-bodydark dark:hover:bg-meta-4 lg:hidden"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
+          {/* App name — visible on mobile only */}
+          <span className="text-sm font-bold text-black dark:text-white lg:hidden">{appName}</span>
+        </div>
+
+        {/* Search bar — hidden on mobile, visible md+ */}
+        <div className="hidden flex-1 px-4 md:block">
+          <div className="relative max-w-sm">
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-bodydark2" />
+            <input
+              type="text"
+              placeholder="Rechercher..."
+              className="w-full rounded-lg border border-stroke bg-gray py-2 pl-10 pr-4 text-sm outline-none focus:border-primary dark:border-strokedark dark:bg-meta-4 dark:text-white"
+            />
           </div>
-          <div className="flex items-center space-x-2 sm:space-x-4">
-            {/* Notifications - hidden on mobile */}
-            <button className="hidden sm:block relative p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
-              <Bell className="h-5 w-5" />
-              <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full"></span>
-            </button>
+        </div>
 
-            {/* Theme Toggle */}
-            <ThemeToggle />
+        {/* Actions */}
+        <div className="flex items-center gap-2 md:gap-3">
 
-            {/* Language Switcher - hidden on mobile */}
-            <div className="hidden sm:block">
-              <LanguageSwitcher />
-            </div>
+          {/* Search icon — mobile only */}
+          <button className="flex h-9 w-9 items-center justify-center rounded-full border border-stroke bg-gray text-body hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-bodydark md:hidden">
+            <Search className="h-4 w-4" />
+          </button>
 
-            {/* User Menu */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Avatar className="h-8 w-8 cursor-pointer ring-2 ring-gray-200 dark:ring-gray-700 hover:ring-orange-500 dark:hover:ring-orange-400 transition-colors">
-                  <AvatarImage src="/placeholder-user.jpg" alt="User" />
-                  <AvatarFallback className="bg-gradient-to-br from-orange-500 to-orange-600 text-white font-semibold">
-                    JD
-                  </AvatarFallback>
+          {/* Notifications */}
+          <button className="relative flex h-9 w-9 items-center justify-center rounded-full border border-stroke bg-gray text-body hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-bodydark">
+            <Bell className="h-4 w-4" />
+            <span className="absolute right-0.5 top-0.5 h-2 w-2 rounded-full bg-danger" />
+          </button>
+
+          {/* Theme toggle */}
+          <ThemeToggle />
+
+          {/* Language — hidden on small mobile */}
+          <div className="hidden sm:block">
+            <LanguageSwitcher />
+          </div>
+
+          {/* User avatar + dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="focus:outline-none">
+                <Avatar className="h-8 w-8 ring-2 ring-stroke transition-colors hover:ring-primary dark:ring-strokedark dark:hover:ring-primary sm:h-9 sm:w-9">
+                  <AvatarImage src="/placeholder-user.jpg" alt="Admin" />
+                  <AvatarFallback className="bg-primary text-xs font-bold text-white">AD</AvatarFallback>
                 </Avatar>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
-                <div className="flex items-center justify-start gap-2 p-2">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src="/placeholder-user.jpg" alt="User" />
-                    <AvatarFallback className="bg-gradient-to-br from-orange-500 to-orange-600 text-white text-sm">
-                      JD
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none"><span>John Doe</span></p>
-                    <p className="text-xs leading-none text-muted-foreground"><span>john@example.com</span></p>
-                  </div>
-                </div>
-                <DropdownMenuItem>
-                  <User className="mr-2 h-4 w-4" />
-                  <a href="/dashboard/profile"><span>Profile</span></a>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Settings className="mr-2 h-4 w-4" />
-                  <span>Settings</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="text-red-600 dark:text-red-400">
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Logout</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-52 border-stroke dark:border-strokedark dark:bg-boxdark">
+              <div className="flex items-center gap-3 border-b border-stroke px-3 py-3 dark:border-strokedark">
+                <Avatar className="h-9 w-9">
+                  <AvatarFallback className="bg-primary text-sm font-bold text-white">AD</AvatarFallback>
+                </Avatar>
+                <p className="text-sm font-semibold text-black dark:text-white">Admin</p>
+              </div>
+              <DropdownMenuItem asChild>
+                <Link href="/dashboard/profile" className="flex cursor-pointer items-center gap-2 px-3 py-2 text-sm text-black dark:text-white">
+                  <User className="h-4 w-4 text-body" /> Profile
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/dashboard/api-config" className="flex cursor-pointer items-center gap-2 px-3 py-2 text-sm text-black dark:text-white">
+                  <Settings className="h-4 w-4 text-body" /> Paramètres
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleLogout}
+                className="flex cursor-pointer items-center gap-2 px-3 py-2 text-sm text-danger hover:bg-danger/5">
+                <LogOut className="h-4 w-4" /> Déconnexion
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>

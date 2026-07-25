@@ -21,12 +21,12 @@ import { getApiBaseUrl } from "@/lib/env-config"
 
 // Colors for consistent theming - using logo colors
 const COLORS = {
-  primary: '#FF6B35', // Orange (primary from logo)
-  secondary: '#00FF88', // Bright green from logo
+  primary: '#194185', // Orange (primary from logo)
+  secondary: '#10B981', // Bright green from logo
   accent: '#1E3A8A', // Dark blue from logo
   danger: '#EF4444',
   warning: '#F97316',
-  success: '#00FF88', // Using bright green for success
+  success: '#10B981', // Using bright green for success
   info: '#1E3A8A', // Using dark blue for info
   purple: '#8B5CF6',
   pink: '#EC4899',
@@ -236,33 +236,33 @@ export default function CreatePermissionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
 
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center space-x-4 mb-4">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex items-center gap-2 sm:gap-4 mb-4">
             <Link href="/dashboard/permissions/list">
-              <Button variant="outline" size="sm" className="bg-white dark:bg-gray-800">
+              <Button variant="outline" size="sm" className="bg-white dark:bg-boxdark">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Retour
               </Button>
             </Link>
           </div>
           <div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+            <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
               Créer une Permission
             </h1>
-            <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+            <p className="text-body dark:text-bodydark mt-2 text-lg">
               Accorder des permissions à un partenaire sur une plateforme de paris
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:p-5 md:p-8">
           {/* Partners Selection */}
           <div className="lg:col-span-1">
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <User className="h-5 w-5 text-blue-600" />
@@ -271,10 +271,10 @@ export default function CreatePermissionPage() {
               </CardHeader>
               <CardContent>
                 {partnersLoading && partners.length === 0 ? (
-                  <div className="flex items-center justify-center py-8">
+                  <div className="flex items-center justify-center py-4 sm:py-6">
                     <div className="flex flex-col items-center space-y-4">
                       <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-                      <span className="text-gray-600 dark:text-gray-300">Chargement...</span>
+                      <span className="text-body dark:text-bodydark">Chargement...</span>
                     </div>
                   </div>
                 ) : partnersError ? (
@@ -286,11 +286,11 @@ export default function CreatePermissionPage() {
                         key={partner.uid}
                         className={`p-3 rounded-lg border cursor-pointer transition-all duration-200 ${selectedPartner?.uid === partner.uid
                             ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
-                            : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
+                            : "border-stroke dark:border-strokedark hover:border-stroke dark:hover:border-gray-600"
                           }`}
                         onClick={() => handlePartnerSelect(partner.uid)}
                       >
-                        <div className="flex items-center space-x-3">
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                           <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-semibold">
                             {partner.display_name?.charAt(0)?.toUpperCase() || 'P'}
                           </div>
@@ -298,7 +298,7 @@ export default function CreatePermissionPage() {
                             <div className="font-medium text-gray-900 dark:text-gray-100 truncate">
                               {partner.display_name}
                             </div>
-                            <div className="text-sm text-gray-500 dark:text-gray-400">
+                            <div className="text-sm text-body dark:text-bodydark2">
                               {partner.email}
                             </div>
                             <div className="flex items-center space-x-2 mt-1">
@@ -329,19 +329,19 @@ export default function CreatePermissionPage() {
 
           {/* Platforms Selection */}
           <div className="lg:col-span-1">
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <BarChart3 className="h-5 w-5 text-orange-600" />
+                  <BarChart3 className="h-5 w-5 text-primary" />
                   <span>Plateformes</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 {platformsLoading && platforms.length === 0 ? (
-                  <div className="flex items-center justify-center py-8">
+                  <div className="flex items-center justify-center py-4 sm:py-6">
                     <div className="flex flex-col items-center space-y-4">
-                      <Loader2 className="h-8 w-8 animate-spin text-orange-600" />
-                      <span className="text-gray-600 dark:text-gray-300">Chargement...</span>
+                      <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                      <span className="text-body dark:text-bodydark">Chargement...</span>
                     </div>
                   </div>
                 ) : platformsError ? (
@@ -352,20 +352,20 @@ export default function CreatePermissionPage() {
                       <div
                         key={platform.uid}
                         className={`p-3 rounded-lg border cursor-pointer transition-all duration-200 ${selectedPlatform?.uid === platform.uid
-                            ? "border-orange-500 bg-orange-50 dark:bg-orange-900/20"
-                            : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
+                            ? "border-primary bg-gray dark:bg-orange-900/20"
+                            : "border-stroke dark:border-strokedark hover:border-stroke dark:hover:border-gray-600"
                           }`}
                         onClick={() => handlePlatformSelect(platform.uid)}
                       >
-                        <div className="flex items-center space-x-3">
-                          <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-green-600 rounded-lg flex items-center justify-center text-white font-semibold">
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                          <div className="w-10 h-10 bg-gradient-to-br from-primary to-meta-3 rounded-lg flex items-center justify-center text-white font-semibold">
                             {platform.name?.charAt(0)?.toUpperCase() || 'P'}
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="font-medium text-gray-900 dark:text-gray-100 truncate">
                               {platform.name}
                             </div>
-                            <div className="text-sm text-gray-500 dark:text-gray-400">
+                            <div className="text-sm text-body dark:text-bodydark2">
                               {platform.description}
                             </div>
                             <div className="flex items-center space-x-2 mt-1">
@@ -382,7 +382,7 @@ export default function CreatePermissionPage() {
                           </div>
                         </div>
                         {selectedPlatform?.uid === platform.uid && (
-                          <div className="mt-2 text-xs text-orange-600 dark:text-orange-400">
+                          <div className="mt-2 text-xs text-primary dark:text-primary">
                             ✓ Sélectionné
                           </div>
                         )}
@@ -396,10 +396,10 @@ export default function CreatePermissionPage() {
 
           {/* Permission Form */}
           <div className="lg:col-span-1">
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Shield className="h-5 w-5 text-green-600" />
+                  <Shield className="h-5 w-5 text-meta-3" />
                   <span>Permissions</span>
                 </CardTitle>
               </CardHeader>
@@ -457,7 +457,7 @@ export default function CreatePermissionPage() {
                                   />
                                   <div className="flex flex-col">
                                     <span>{partner.display_name}</span>
-                                    <span className="text-xs text-gray-500">{partner.email}</span>
+                                    <span className="text-xs text-body">{partner.email}</span>
                                   </div>
                                 </CommandItem>
                               ))}
@@ -495,7 +495,7 @@ export default function CreatePermissionPage() {
                           <CommandList>
                             {platformsLoading && (
                               <div className="flex items-center justify-center py-2">
-                                <Loader2 className="h-4 w-4 animate-spin text-orange-600" />
+                                <Loader2 className="h-4 w-4 animate-spin text-primary" />
                               </div>
                             )}
                             <CommandEmpty>Aucune plateforme trouvée.</CommandEmpty>
@@ -526,7 +526,7 @@ export default function CreatePermissionPage() {
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Permissions</h3>
 
-                    <div className="flex items-center space-x-3">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                       <Switch
                         id="can_deposit"
                         checked={form.can_deposit}
@@ -537,7 +537,7 @@ export default function CreatePermissionPage() {
                       </Label>
                     </div>
 
-                    <div className="flex items-center space-x-3">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                       <Switch
                         id="can_withdraw"
                         checked={form.can_withdraw}
@@ -550,11 +550,11 @@ export default function CreatePermissionPage() {
                   </div>
 
                   {/* Form Actions */}
-                  <div className="space-y-3 pt-6 border-t border-gray-200 dark:border-gray-700">
+                  <div className="space-y-3 pt-6 border-t border-stroke dark:border-strokedark">
                     <Button
                       type="submit"
                       disabled={loading || !form.partner || !form.platform}
-                      className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+                      className="w-full bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white"
                     >
                       {loading ? (
                         <>
@@ -598,15 +598,15 @@ export default function CreatePermissionPage() {
 
         {/* Selected Items Preview */}
         {(selectedPartner || selectedPlatform) && (
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mt-8">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mt-8">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <CheckCircle className="h-5 w-5 text-green-600" />
+                <CheckCircle className="h-5 w-5 text-meta-3" />
                 <span>Prévisualisation</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6">
                 {selectedPartner && (
                   <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
                     <h4 className="font-medium text-blue-800 dark:text-blue-300 mb-3 flex items-center">
@@ -615,19 +615,19 @@ export default function CreatePermissionPage() {
                     </h4>
                     <div className="space-y-2">
                       <div>
-                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Nom:</span>
+                        <span className="text-sm font-medium text-body dark:text-bodydark2">Nom:</span>
                         <p className="text-lg font-semibold text-blue-600">
                           {selectedPartner.display_name}
                         </p>
                       </div>
                       <div>
-                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Email:</span>
+                        <span className="text-sm font-medium text-body dark:text-bodydark2">Email:</span>
                         <p className="text-sm text-gray-900 dark:text-gray-100">
                           {selectedPartner.email}
                         </p>
                       </div>
                       <div>
-                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Téléphone:</span>
+                        <span className="text-sm font-medium text-body dark:text-bodydark2">Téléphone:</span>
                         <p className="text-sm text-gray-900 dark:text-gray-100">
                           {selectedPartner.phone_number || 'Non renseigné'}
                         </p>
@@ -637,26 +637,26 @@ export default function CreatePermissionPage() {
                 )}
 
                 {selectedPlatform && (
-                  <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg">
-                    <h4 className="font-medium text-orange-800 dark:text-orange-300 mb-3 flex items-center">
+                  <div className="bg-gray dark:bg-orange-900/20 p-4 rounded-lg">
+                    <h4 className="font-medium text-orange-800 dark:text-secondary mb-3 flex items-center">
                       <BarChart3 className="h-5 w-5 mr-2" />
                       Plateforme Sélectionnée
                     </h4>
                     <div className="space-y-2">
                       <div>
-                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Nom:</span>
-                        <p className="text-lg font-semibold text-orange-600">
+                        <span className="text-sm font-medium text-body dark:text-bodydark2">Nom:</span>
+                        <p className="text-lg font-semibold text-primary">
                           {selectedPlatform.name}
                         </p>
                       </div>
                       <div>
-                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Description:</span>
+                        <span className="text-sm font-medium text-body dark:text-bodydark2">Description:</span>
                         <p className="text-sm text-gray-900 dark:text-gray-100">
                           {selectedPlatform.description}
                         </p>
                       </div>
                       <div>
-                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Limites:</span>
+                        <span className="text-sm font-medium text-body dark:text-bodydark2">Limites:</span>
                         <div className="text-sm text-gray-900 dark:text-gray-100">
                           <div>Dépôt: {parseFloat(selectedPlatform.min_deposit_amount).toFixed(0)} - {parseFloat(selectedPlatform.max_deposit_amount).toFixed(0)} FCFA</div>
                           <div>Retrait: {parseFloat(selectedPlatform.min_withdrawal_amount).toFixed(0)} - {parseFloat(selectedPlatform.max_withdrawal_amount).toFixed(0)} FCFA</div>
@@ -675,15 +675,15 @@ export default function CreatePermissionPage() {
                 </h4>
                 <div className="flex items-center space-x-6">
                   <div className="flex items-center space-x-2">
-                    <DollarSign className="h-4 w-4 text-gray-400" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Dépôt:</span>
+                    <DollarSign className="h-4 w-4 text-bodydark2" />
+                    <span className="text-sm text-body dark:text-bodydark2">Dépôt:</span>
                     <Badge className={form.can_deposit ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300" : "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300"}>
                       {form.can_deposit ? "Autorisé" : "Interdit"}
                     </Badge>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <TrendingUp className="h-4 w-4 text-gray-400" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Retrait:</span>
+                    <TrendingUp className="h-4 w-4 text-bodydark2" />
+                    <span className="text-sm text-body dark:text-bodydark2">Retrait:</span>
                     <Badge className={form.can_withdraw ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300" : "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300"}>
                       {form.can_withdraw ? "Autorisé" : "Interdit"}
                     </Badge>

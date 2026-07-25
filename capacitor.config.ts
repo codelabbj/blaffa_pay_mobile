@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'Blaffa Pay',
   webDir: 'out',
   server: {
-    url: 'https://blaffa-pay.vercel.app',
+    url: 'https://blaffa-pay-mobile-amber.vercel.app',
     cleartext: false,
   },
 };

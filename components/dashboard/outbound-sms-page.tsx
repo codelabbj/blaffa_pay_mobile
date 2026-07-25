@@ -212,7 +212,7 @@ export function OutboundSmsPageContent() {
           </CardHeader>
           <CardContent>
             {loading ? (
-              <div className="flex justify-center py-12">
+              <div className="flex justify-center py-6 sm:py-10">
                 <Loader2 className={`h-8 w-8 animate-spin ${flashpayTheme.spinner}`} />
               </div>
             ) : jobs.length === 0 ? (
@@ -220,14 +220,14 @@ export function OutboundSmsPageContent() {
             ) : (
               <div className="space-y-3">
                 {jobs.map((job) => (
-                  <div key={job.uid} className="rounded-lg border border-slate-200 dark:border-gray-600 p-4 space-y-2">
+                  <div key={job.uid} className="rounded-lg border border-slate-200 dark:border-strokedark p-4 space-y-2">
                     <div className="flex flex-wrap items-center gap-2 justify-between">
                       <p className="font-mono text-sm font-semibold">{job.to_phone}</p>
                       <Badge variant="outline" className={STATUS_VARIANT[job.status] ?? ""}>
                         {job.status_display || job.status}
                       </Badge>
                     </div>
-                    <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{job.message}</p>
+                    <p className="text-sm text-gray-700 dark:text-bodydark whitespace-pre-wrap">{job.message}</p>
                     <p className={`text-xs ${flashpayTheme.muted}`}>
                       {job.device_id ? `Device: ${job.device_id}` : "Device: auto"}
                       {job.network_name ? ` · ${job.network_name}` : ""}

@@ -20,12 +20,12 @@ const baseUrl = getApiBaseUrl()
 
 // Colors for consistent theming - using logo colors
 const COLORS = {
-  primary: '#FF6B35', // Orange (primary from logo)
-  secondary: '#00FF88', // Bright green from logo
+  primary: '#194185', // Orange (primary from logo)
+  secondary: '#10B981', // Bright green from logo
   accent: '#1E3A8A', // Dark blue from logo
   danger: '#EF4444',
   warning: '#F97316',
-  success: '#00FF88', // Using bright green for success
+  success: '#10B981', // Using bright green for success
   info: '#1E3A8A', // Using dark blue for info
   purple: '#8B5CF6',
   pink: '#EC4899',
@@ -145,33 +145,33 @@ export default function DevicesListPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+      <div className="w-full">
         
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+              <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
                 {t("devices.list")}
               </h1>
-              <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+              <p className="text-body dark:text-bodydark mt-2 text-lg">
                 Surveiller et gérer les appareils connectés
               </p>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="bg-white dark:bg-gray-800 rounded-lg px-4 py-2 shadow-sm">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="bg-white dark:bg-boxdark rounded-lg px-4 py-2 shadow-sm">
                 <div className="flex items-center space-x-2">
-                  <Monitor className="h-5 w-5 text-orange-500" />
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <Monitor className="h-5 w-5 text-primary" />
+                  <span className="text-sm font-medium text-gray-700 dark:text-bodydark">
                     {devices.length} appareils
                   </span>
                 </div>
               </div>
-              <div className="bg-white dark:bg-gray-800 rounded-lg px-4 py-2 shadow-sm">
+              <div className="bg-white dark:bg-boxdark rounded-lg px-4 py-2 shadow-sm">
                 <div className="flex items-center space-x-2">
-                  <Activity className="h-5 w-5 text-green-600" />
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <Activity className="h-5 w-5 text-meta-3" />
+                  <span className="text-sm font-medium text-gray-700 dark:text-bodydark">
                     {devices.filter(d => d.is_online).length} en ligne
                   </span>
                 </div>
@@ -181,23 +181,23 @@ export default function DevicesListPage() {
         </div>
 
         {/* Filters and Search */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-          <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+          <CardContent className="p-3 sm:p-4 md:p-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
               {/* Search */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-bodydark2" />
             <Input
                   placeholder="Rechercher des appareils..."
               value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                  className="pl-10 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
             />
           </div>
 
               {/* Status Filter */}
           <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                   <SelectValue placeholder="Filtrer par statut" />
                 </SelectTrigger>
                 <SelectContent>
@@ -225,7 +225,7 @@ export default function DevicesListPage() {
                 value={sortField || ""} 
                 onValueChange={(value) => setSortField(value as "name" | "is_online" | null)}
               >
-                <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                   <SelectValue placeholder="Trier par" />
             </SelectTrigger>
             <SelectContent>
@@ -238,32 +238,32 @@ export default function DevicesListPage() {
         </Card>
 
         {/* Devices Table */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-          <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+          <CardHeader className="border-b border-gray-100 dark:border-strokedark">
             <CardTitle className="flex items-center space-x-2">
-                <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                  <Monitor className="h-5 w-5 text-orange-600 dark:text-orange-300" />
+                <div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                  <Monitor className="h-5 w-5 text-primary dark:text-secondary" />
               </div>
               <span>Liste des appareils</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
         {loading ? (
-              <div className="flex items-center justify-center py-12">
+              <div className="flex items-center justify-center py-6 sm:py-10">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Chargement des appareils...</span>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                  <span className="text-body dark:text-bodydark">Chargement des appareils...</span>
                 </div>
               </div>
         ) : error ? (
-              <div className="p-6 text-center">
+              <div className="p-3 sm:p-4 md:p-6 text-center">
                 <ErrorDisplay error={error} onRetry={() => {/* retry function */}} />
               </div>
             ) : (
               <div className="overflow-x-auto">
           <Table>
             <TableHeader>
-                    <TableRow className="bg-gray-50 dark:bg-gray-900/50">
+                    <TableRow className="bg-gray-50 dark:bg-boxdark-2/50">
                       <TableHead className="font-semibold">Nom de l'appareil</TableHead>
                       <TableHead className="font-semibold">ID de l'appareil</TableHead>
                       <TableHead className="font-semibold">Utilisateur</TableHead>
@@ -277,10 +277,10 @@ export default function DevicesListPage() {
             </TableHeader>
             <TableBody>
                     {filteredDevices.map((device) => (
-                      <TableRow key={device.device_id || device.id} className="hover:bg-gray-50 dark:hover:bg-gray-900/50">
-                        <TableCell>
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-green-600 rounded-full flex items-center justify-center text-white font-semibold">
+                      <TableRow key={device.device_id || device.id} className="hover:bg-gray-50 dark:hover:bg-boxdark-2/50">
+                        <TableCell data-label="Nom de l'appareil">
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                            <div className="w-10 h-10 bg-gradient-to-br from-primary to-meta-3 rounded-full flex items-center justify-center text-white font-semibold">
                               {device.device_name?.charAt(0)?.toUpperCase() || 'D'}
                             </div>
                             <div>
@@ -290,27 +290,27 @@ export default function DevicesListPage() {
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="ID de l'appareil">
                           <Badge variant="outline" className="font-mono text-xs">
                             {device.device_id || device.id}
                           </Badge>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Utilisateur">
                           <div className="text-sm text-gray-900 dark:text-gray-100">
                             {device.user_name || 'Utilisateur inconnu'}
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Réseau">
                           <Badge variant="secondary" className="text-xs">
                             {device.network_name || 'Réseau inconnu'}
                           </Badge>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Transactions">
                           <div className="text-sm text-gray-900 dark:text-gray-100 font-medium">
                             {device.total_transactions || 0}
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Taux de succès">
                           <Badge 
                             className={
                               parseFloat(device.success_rate || "0") >= 80
@@ -323,7 +323,7 @@ export default function DevicesListPage() {
                             {device.success_rate || "0.00"}%
                           </Badge>
                         </TableCell>
-                        <TableCell>
+                        <TableCell data-label="Statut">
                           <Badge 
                             className={
                               device.is_online 
@@ -341,15 +341,15 @@ export default function DevicesListPage() {
                             </div>
                           </Badge>
                         </TableCell>
-                        <TableCell>
-                          <div className="text-sm text-gray-600 dark:text-gray-400">
+                        <TableCell data-label="Dernière activité">
+                          <div className="text-sm text-body dark:text-bodydark2">
                             {device.last_seen 
                               ? new Date(device.last_seen).toLocaleString()
                               : 'Jamais'
                             }
                           </div>
                         </TableCell>
-                  <TableCell>
+                  <TableCell data-label="Actions">
                           {/* <div className="flex items-center space-x-2">
                             <Button variant="outline" size="sm">
                               <Pencil className="h-4 w-4 mr-1" />
@@ -361,7 +361,7 @@ export default function DevicesListPage() {
                               className={
                                 device.is_online 
                                   ? "text-red-600 border-red-200 hover:bg-red-50 dark:text-red-400 dark:border-red-700 dark:hover:bg-red-900/20" 
-                                  : "text-green-600 border-green-200 hover:bg-green-50 dark:text-green-400 dark:border-green-700 dark:hover:bg-green-900/20"
+                                  : "text-meta-3 border-green-200 hover:bg-green-50 dark:text-green-400 dark:border-green-700 dark:hover:bg-green-900/20"
                               }
                             >
                               {device.is_online ? 'Déconnecter' : 'Connecter'}
@@ -379,13 +379,13 @@ export default function DevicesListPage() {
 
         {/* Empty State */}
         {!loading && !error && filteredDevices.length === 0 && (
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mt-6">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mt-6">
             <CardContent className="p-12 text-center">
-              <Monitor className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+              <Monitor className="h-12 w-12 text-bodydark2 mx-auto mb-4" />
+              <h3 className="text-sm font-medium sm:text-base text-gray-900 dark:text-gray-100 mb-2">
                 Aucun appareil trouvé
               </h3>
-              <p className="text-gray-500 dark:text-gray-400 mb-4">
+              <p className="text-body dark:text-bodydark2 mb-4">
                 {searchTerm ? `Aucun appareil ne correspond à "${searchTerm}"` : "Aucun appareil n'a encore été enregistré."}
               </p>
             </CardContent>

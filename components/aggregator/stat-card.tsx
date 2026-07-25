@@ -29,11 +29,11 @@ export function StatCard({
     return (
         <Card className={cn("relative overflow-hidden border-0 shadow-lg", className)}>
             <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
-            <CardContent className="p-6">
-                <div className="flex items-center justify-between">
+            <CardContent className="p-3 sm:p-4 md:p-6">
+                <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
                     <div>
                         <p className="text-sm font-medium opacity-80 mb-1"><span>{title}</span></p>
-                        <p className="text-3xl font-bold"><span>{value}</span></p>
+                        <p className="text-lg font-bold sm:text-xl"><span>{value}</span></p>
                         {trend && (
                             <div className="flex items-center mt-2">
                                 <span

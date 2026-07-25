@@ -41,7 +41,7 @@ const InputOTPSlot = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "relative flex h-12 w-12 items-center justify-center border-2 border-gray-200 bg-gray-50 text-lg font-semibold transition-all duration-200 first:rounded-l-lg first:border-l last:rounded-r-lg dark:border-gray-600 dark:bg-gray-700",
+        "relative flex h-12 w-12 items-center justify-center border-2 border-stroke bg-gray-50 text-lg font-semibold transition-all duration-200 first:rounded-l-lg first:border-l last:rounded-r-lg dark:border-strokedark dark:bg-meta-4",
         isActive && "z-10 ring-2 ring-blue-500 ring-offset-background border-blue-500 dark:ring-blue-400 dark:border-blue-400",
         className
       )}
@@ -62,7 +62,7 @@ const InputOTPSeparator = React.forwardRef<
   React.ElementRef<"div">,
   React.ComponentPropsWithoutRef<"div">
 >(({ ...props }, ref) => (
-  <div ref={ref} role="separator" className="text-gray-400 dark:text-gray-500" {...props}>
+  <div ref={ref} role="separator" className="text-bodydark2 dark:text-body" {...props}>
     <Dot />
   </div>
 ))

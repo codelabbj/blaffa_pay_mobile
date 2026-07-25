@@ -83,7 +83,7 @@ export function PartnerSelectionModal({
                             <CommandEmpty>
                                 {loading ? (
                                     <div className="flex items-center justify-center py-6">
-                                        <Loader2 className="h-6 w-6 animate-spin text-orange-500" />
+                                        <Loader2 className="h-6 w-6 animate-spin text-primary" />
                                     </div>
                                 ) : (
                                     <span>{t("partners.noPartnersFound")}</span>
@@ -97,14 +97,14 @@ export function PartnerSelectionModal({
                                             onSelect(partner)
                                             onOpenChange(false)
                                         }}
-                                        className="flex items-center justify-between py-3 cursor-pointer"
+                                        className="flex flex-wrap items-start justify-between gap-3 sm:items-center py-3 cursor-pointer"
                                     >
                                         <div className="flex flex-col">
                                             <span className="font-medium">{partner.display_name || partner.phone_number}</span>
                                             <span className="text-xs text-muted-foreground">{partner.email}</span>
                                         </div>
                                         {selectedPartnerUid === partner.uid && (
-                                            <Check className="h-4 w-4 text-orange-500" />
+                                            <Check className="h-4 w-4 text-primary" />
                                         )}
                                     </CommandItem>
                                 ))}

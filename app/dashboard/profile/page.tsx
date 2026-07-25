@@ -160,10 +160,10 @@ export default function ProfilePage() {
 
   if (loading && !profile) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:bg-boxdark-2">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
           <Skeleton className="h-12 w-1/3 mb-6" />
-          <div className="grid gap-6">
+          <div className="grid gap-3 sm:p-4 md:p-6">
             {[...Array(5)].map((_, i) => (
               <Skeleton key={i} className="h-20 w-full" />
             ))}
@@ -175,11 +175,11 @@ export default function ProfilePage() {
 
   if (!profile) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:bg-boxdark-2">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6 text-center">
           <div className="flex flex-col items-center space-y-4">
             <XCircle className="h-12 w-12 text-red-500" />
-            <p className="text-lg text-gray-600 dark:text-gray-300"><span>Échec du chargement du profil. Veuillez réessayer plus tard.</span></p>
+            <p className="text-lg text-body dark:text-bodydark"><span>Échec du chargement du profil. Veuillez réessayer plus tard.</span></p>
           </div>
         </div>
       </div>
@@ -193,17 +193,17 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:bg-boxdark-2">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6 space-y-6">
 
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 <span>Mon profil</span>
               </h1>
-              <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+              <p className="text-body dark:text-bodydark mt-2 text-lg">
                 <span>Gérez vos informations de compte et paramètres</span>
               </p>
             </div>
@@ -240,24 +240,24 @@ export default function ProfilePage() {
         </div>
 
         {/* Profile Overview */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-          <CardHeader className="border-b border-gray-100 dark:border-gray-700">
-            <CardTitle className="flex items-center space-x-4">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+          <CardHeader className="border-b border-gray-100 dark:border-strokedark">
+            <CardTitle className="flex items-center gap-2 sm:gap-4">
               <Avatar className="h-20 w-20">
                 <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white text-2xl font-semibold">
                   {getInitials(profile.display_name)}
                 </AvatarFallback>
               </Avatar>
               <div>
-                <div className="text-3xl font-bold text-gray-900 dark:text-gray-100"><span>{profile.display_name}</span></div>
-                <div className="text-gray-600 dark:text-gray-400 mt-1">
+                <div className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100"><span>{profile.display_name}</span></div>
+                <div className="text-body dark:text-bodydark2 mt-1">
                   <span>Membre depuis</span> <span>{new Date(profile.created_at).toLocaleDateString()}</span>
                 </div>
               </div>
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6">
-            <div className="grid gap-6">
+          <CardContent className="p-3 sm:p-4 md:p-6">
+            <div className="grid gap-3 sm:p-4 md:p-6">
               {/* Personal Information */}
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center space-x-2">
@@ -266,7 +266,7 @@ export default function ProfilePage() {
                   </div>
                   <span>Informations personnelles</span>
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6">
                   <div className="space-y-2">
                     <Label htmlFor="first_name">Prénom</Label>
                     {editing ? (
@@ -297,23 +297,23 @@ export default function ProfilePage() {
               </div>
 
               {/* Contact Information */}
-              <div className="space-y-4 pt-6 border-t border-gray-100 dark:border-gray-700">
+              <div className="space-y-4 pt-6 border-t border-gray-100 dark:border-strokedark">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center space-x-2">
                   <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                    <Mail className="h-4 w-4 text-green-600 dark:text-green-300" />
+                    <Mail className="h-4 w-4 text-meta-3 dark:text-green-300" />
                   </div>
                   <span>Informations de contact</span>
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6">
                   <div className="space-y-2">
-                    <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Adresse e-mail</div>
+                    <div className="text-sm font-medium text-gray-700 dark:text-bodydark">Adresse e-mail</div>
                     <div className="flex items-center space-x-2">
                       <span className="text-gray-900 dark:text-gray-100 font-medium"><span>{profile.email}</span></span>
                       {profile.email_verified && <Badge className="bg-green-100 text-green-800"><span>Vérifié</span></Badge>}
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Numéro de téléphone</div>
+                    <div className="text-sm font-medium text-gray-700 dark:text-bodydark">Numéro de téléphone</div>
                     <div className="flex items-center space-x-2">
                       <span className="text-gray-900 dark:text-gray-100 font-medium"><span>{profile.phone}</span></span>
                       {profile.phone_verified && <Badge className="bg-green-100 text-green-800"><span>Vérifié</span></Badge>}
@@ -323,23 +323,23 @@ export default function ProfilePage() {
               </div>
 
               {/* Account Information */}
-              <div className="space-y-4 pt-6 border-t border-gray-100 dark:border-gray-700">
+              <div className="space-y-4 pt-6 border-t border-gray-100 dark:border-strokedark">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center space-x-2">
-                  <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                    <Calendar className="h-4 w-4 text-orange-600 dark:text-orange-300" />
+                  <div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                    <Calendar className="h-4 w-4 text-primary dark:text-secondary" />
                   </div>
                   <span>Informations du compte</span>
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6">
                   <div className="space-y-2">
-                    <div className="text-sm font-medium text-gray-700 dark:text-gray-300">ID utilisateur</div>
-                    <div className="flex items-center space-x-2 font-mono text-sm bg-gray-50 dark:bg-gray-900 p-2 rounded border border-gray-200 dark:border-gray-700">
+                    <div className="text-sm font-medium text-gray-700 dark:text-bodydark">ID utilisateur</div>
+                    <div className="flex items-center space-x-2 font-mono text-sm bg-gray-50 dark:bg-boxdark-2 p-2 rounded border border-stroke dark:border-strokedark">
                       <span className="truncate"><span>{profile.uid}</span></span>
                       <CopyButton value={profile.uid} className="h-6 w-6" />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Dernière mise à jour</div>
+                    <div className="text-sm font-medium text-gray-700 dark:text-bodydark">Dernière mise à jour</div>
                     <div className="text-gray-900 dark:text-gray-100 p-2">
                       <span>{new Date(profile.updated_at).toLocaleDateString()}</span>
                     </div>
@@ -351,8 +351,8 @@ export default function ProfilePage() {
         </Card>
 
         {/* Change Password Card */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-          <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+          <CardHeader className="border-b border-gray-100 dark:border-strokedark">
             <CardTitle className="flex items-center space-x-2">
               <div className="p-2 bg-red-100 dark:bg-red-900 rounded-lg">
                 <Lock className="h-4 w-4 text-red-600 dark:text-red-300" />
@@ -360,7 +360,7 @@ export default function ProfilePage() {
               <span><span>Sécurité</span></span>
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6">
+          <CardContent className="p-3 sm:p-4 md:p-6">
             <form onSubmit={handlePasswordUpdate} className="space-y-4 max-w-md">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Modifier le mot de passe</h3>
 
@@ -409,7 +409,7 @@ export default function ProfilePage() {
               <Button
                 type="submit"
                 disabled={passwordLoading}
-                className="bg-orange-500 hover:bg-orange-600 text-white"
+                className="bg-primary hover:bg-primary text-white"
               >
                 {passwordLoading ? (
                   <>

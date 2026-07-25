@@ -17,12 +17,12 @@ import { getApiBaseUrl } from "@/lib/env-config"
 
 // Colors for consistent theming - using logo colors
 const COLORS = {
-  primary: '#FF6B35', // Orange (primary from logo)
-  secondary: '#00FF88', // Bright green from logo
+  primary: '#194185', // Orange (primary from logo)
+  secondary: '#10B981', // Bright green from logo
   accent: '#1E3A8A', // Dark blue from logo
   danger: '#EF4444',
   warning: '#F97316',
-  success: '#00FF88', // Using bright green for success
+  success: '#10B981', // Using bright green for success
   info: '#1E3A8A', // Using dark blue for info
   purple: '#8B5CF6',
   pink: '#EC4899',
@@ -116,12 +116,12 @@ export default function CommissionStatPage({ params }: { params: { user_id: stri
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex items-center justify-center py-12">
+      <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
+          <div className="flex items-center justify-center py-6 sm:py-10">
             <div className="flex flex-col items-center space-y-4">
-              <Loader2 className="h-8 w-8 animate-spin text-orange-500" />
-              <span className="text-gray-600 dark:text-gray-300">Chargement des statistiques de commission...</span>
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
+              <span className="text-body dark:text-bodydark">Chargement des statistiques de commission...</span>
             </div>
           </div>
         </div>
@@ -130,13 +130,13 @@ export default function CommissionStatPage({ params }: { params: { user_id: stri
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
 
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
+            <div className="flex items-center gap-2 sm:gap-4">
               <Button
                 variant="outline"
                 onClick={() => router.back()}
@@ -146,10 +146,10 @@ export default function CommissionStatPage({ params }: { params: { user_id: stri
                 Retour
               </Button>
               <div>
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+                <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
                   Statistiques de commission
                 </h1>
-                <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+                <p className="text-body dark:text-bodydark mt-2 text-lg">
                   Voir et gérer les données de commission des partenaires
                 </p>
               </div>
@@ -157,7 +157,7 @@ export default function CommissionStatPage({ params }: { params: { user_id: stri
             <Dialog open={modalOpen} onOpenChange={setModalOpen}>
               <DialogTrigger asChild>
                 <Button
-                  className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
+                  className="bg-gradient-to-r from-meta-3 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
                   onClick={handlePayClick}
                 >
                   <DollarSign className="h-4 w-4 mr-2" />
@@ -167,7 +167,7 @@ export default function CommissionStatPage({ params }: { params: { user_id: stri
               <DialogContent className="sm:max-w-md">
                 <DialogHeader>
                   <DialogTitle className="flex items-center space-x-2">
-                    <DollarSign className="h-5 w-5 text-green-600" />
+                    <DollarSign className="h-5 w-5 text-meta-3" />
                     <span>Payer la commission</span>
                   </DialogTitle>
                 </DialogHeader>
@@ -186,7 +186,7 @@ export default function CommissionStatPage({ params }: { params: { user_id: stri
                       placeholder="Montant (ex: 25000.00)"
                       value={amount}
                       onChange={e => setAmount(e.target.value)}
-                      className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                      className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                     />
                   </div>
                   <div>
@@ -196,7 +196,7 @@ export default function CommissionStatPage({ params }: { params: { user_id: stri
                       placeholder="Notes optionnelles sur ce paiement"
                       value={adminNote}
                       onChange={e => setAdminNote(e.target.value)}
-                      className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                      className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                       rows={3}
                     />
                   </div>
@@ -208,7 +208,7 @@ export default function CommissionStatPage({ params }: { params: { user_id: stri
                   <Button
                     onClick={handlePayCommissionClick}
                     disabled={!amount}
-                    className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
+                    className="bg-gradient-to-r from-meta-3 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
                   >
                     <Save className="h-4 w-4 mr-2" />
                     Payer la commission
@@ -220,8 +220,8 @@ export default function CommissionStatPage({ params }: { params: { user_id: stri
         </div>
 
         {error && (
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-            <CardContent className="p-6">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+            <CardContent className="p-3 sm:p-4 md:p-6">
               <ErrorDisplay error={error} />
             </CardContent>
           </Card>
@@ -230,46 +230,46 @@ export default function CommissionStatPage({ params }: { params: { user_id: stri
         {stats && (
           <div className="space-y-6">
             {/* Summary Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="p-3 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                      <DollarSign className="h-6 w-6 text-orange-600 dark:text-orange-300" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:p-4 md:p-6">
+              <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                    <div className="p-3 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                      <DollarSign className="h-6 w-6 text-primary dark:text-secondary" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Commissions totales</p>
-                      <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                      <p className="text-sm font-medium text-body dark:text-bodydark2">Commissions totales</p>
+                      <p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
                         XOF {parseFloat(stats.total_commissions || 0).toFixed(2)}
                       </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-              <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
+              <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                     <div className="p-3 bg-green-100 dark:bg-green-900 rounded-lg">
-                      <TrendingUp className="h-6 w-6 text-green-600 dark:text-green-300" />
+                      <TrendingUp className="h-6 w-6 text-meta-3 dark:text-green-300" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Commissions en attente</p>
-                      <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                      <p className="text-sm font-medium text-body dark:text-bodydark2">Commissions en attente</p>
+                      <p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
                         XOF {parseFloat(stats.pending_commissions || 0).toFixed(2)}
                       </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-              <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="p-3 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                      <Users className="h-6 w-6 text-orange-600 dark:text-orange-300" />
+              <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                    <div className="p-3 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                      <Users className="h-6 w-6 text-primary dark:text-secondary" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Transactions totales</p>
-                      <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                      <p className="text-sm font-medium text-body dark:text-bodydark2">Transactions totales</p>
+                      <p className="text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
                         {stats.total_transactions || 0}
                       </p>
                     </div>
@@ -279,30 +279,30 @@ export default function CommissionStatPage({ params }: { params: { user_id: stri
             </div>
 
             {/* Period Information */}
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-              <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+              <CardHeader className="border-b border-gray-100 dark:border-strokedark">
                 <CardTitle className="flex items-center space-x-2">
-                  <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                    <Calendar className="h-5 w-5 text-orange-600 dark:text-orange-300" />
+                  <div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                    <Calendar className="h-5 w-5 text-primary dark:text-secondary" />
                   </div>
                   <span>Informations sur la période</span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="flex items-center space-x-3">
-                    <Calendar className="h-5 w-5 text-gray-400" />
+              <CardContent className="p-3 sm:p-4 md:p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                    <Calendar className="h-5 w-5 text-bodydark2" />
                     <div>
-                      <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Début de période</p>
+                      <p className="text-sm font-medium text-body dark:text-bodydark2">Début de période</p>
                       <p className="text-gray-900 dark:text-gray-100">
                         {stats.period_info?.start ? new Date(stats.period_info.start).toLocaleString() : 'Non défini'}
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <Calendar className="h-5 w-5 text-gray-400" />
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                    <Calendar className="h-5 w-5 text-bodydark2" />
                     <div>
-                      <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Fin de période</p>
+                      <p className="text-sm font-medium text-body dark:text-bodydark2">Fin de période</p>
                       <p className="text-gray-900 dark:text-gray-100">
                         {stats.period_info?.end ? new Date(stats.period_info.end).toLocaleString() : 'Non défini'}
                       </p>
@@ -313,29 +313,29 @@ export default function CommissionStatPage({ params }: { params: { user_id: stri
             </Card>
 
             {/* Commission History */}
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-              <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+              <CardHeader className="border-b border-gray-100 dark:border-strokedark">
                 <CardTitle className="flex items-center space-x-2">
                   <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                    <TrendingUp className="h-5 w-5 text-green-600 dark:text-green-300" />
+                    <TrendingUp className="h-5 w-5 text-meta-3 dark:text-green-300" />
                   </div>
                   <span>Historique des commissions</span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
+              <CardContent className="p-3 sm:p-4 md:p-6">
                 {stats.commission_history && stats.commission_history.length > 0 ? (
                   <div className="space-y-4">
                     {stats.commission_history.map((commission: any, index: number) => (
-                      <div key={index} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                        <div className="flex items-center space-x-4">
-                          <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
+                      <div key={index} className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-4 bg-gray-50 dark:bg-meta-4 rounded-lg">
+                        <div className="flex items-center gap-2 sm:gap-4">
+                          <div className="w-10 h-10 bg-gradient-to-br from-meta-3 to-emerald-600 rounded-full flex items-center justify-center">
                             <DollarSign className="h-5 w-5 text-white" />
                           </div>
                           <div>
                             <p className="font-medium text-gray-900 dark:text-gray-100">
                               XOF {parseFloat(commission.amount || 0).toFixed(2)}
                             </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">
+                            <p className="text-sm text-body dark:text-bodydark2">
                               {commission.period_start && commission.period_end ?
                                 `${new Date(commission.period_start).toLocaleString()} - ${new Date(commission.period_end).toLocaleString()}` :
                                 'Période non spécifiée'
@@ -369,12 +369,12 @@ export default function CommissionStatPage({ params }: { params: { user_id: stri
                     ))}
                   </div>
                 ) : (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <TrendingUp className="h-8 w-8 text-gray-400" />
+                  <div className="text-center py-4 sm:py-6">
+                    <div className="w-16 h-16 bg-gray-100 dark:bg-meta-4 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <TrendingUp className="h-8 w-8 text-bodydark2" />
                     </div>
-                    <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">Aucun historique de commission</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Aucun paiement de commission n'a encore été effectué.</p>
+                    <h3 className="text-sm font-medium sm:text-base text-gray-900 dark:text-gray-100 mb-2">Aucun historique de commission</h3>
+                    <p className="text-body dark:text-bodydark2">Aucun paiement de commission n'a encore été effectué.</p>
                   </div>
                 )}
               </CardContent>
@@ -387,7 +387,7 @@ export default function CommissionStatPage({ params }: { params: { user_id: stri
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
               <DialogTitle className="flex items-center space-x-2">
-                <AlertTriangle className="h-5 w-5 text-orange-600" />
+                <AlertTriangle className="h-5 w-5 text-primary" />
                 <span>Confirmer le paiement</span>
               </DialogTitle>
             </DialogHeader>
@@ -398,10 +398,10 @@ export default function CommissionStatPage({ params }: { params: { user_id: stri
                   <span className="text-sm">{payError}</span>
                 </div>
               )}
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-body dark:text-bodydark2">
                 Êtes-vous sûr de vouloir payer une commission de <span className="font-semibold">XOF {amount || '0.00'}</span> ?
               </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm text-body dark:text-bodydark2">
                 Cette action ne peut pas être annulée et sera enregistrée dans l'historique des commissions.
               </p>
             </div>
@@ -412,7 +412,7 @@ export default function CommissionStatPage({ params }: { params: { user_id: stri
               <Button
                 onClick={handleConfirmPay}
                 disabled={payLoading}
-                className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
+                className="bg-gradient-to-r from-meta-3 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
               >
                 {payLoading ? (
                   <>

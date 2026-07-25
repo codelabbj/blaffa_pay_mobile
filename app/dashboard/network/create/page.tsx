@@ -18,12 +18,12 @@ const baseUrl = getApiBaseUrl()
 
 // Colors for consistent theming - using logo colors
 const COLORS = {
-  primary: '#FF6B35', // Orange (primary from logo)
-  secondary: '#00FF88', // Bright green from logo
+  primary: '#194185', // Orange (primary from logo)
+  secondary: '#10B981', // Bright green from logo
   accent: '#1E3A8A', // Dark blue from logo
   danger: '#EF4444',
   warning: '#F97316',
-  success: '#00FF88', // Using bright green for success
+  success: '#10B981', // Using bright green for success
   info: '#1E3A8A', // Using dark blue for info
   purple: '#8B5CF6',
   pink: '#EC4899',
@@ -125,13 +125,13 @@ export default function NetworkCreatePage() {
   }
 
     return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
         
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
+            <div className="flex items-center gap-2 sm:gap-4">
               <Button 
                 variant="outline" 
                 onClick={() => router.back()}
@@ -142,10 +142,10 @@ export default function NetworkCreatePage() {
                 Retour
               </Button>
               <div>
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+                <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
                   {t("network.create") || "Create Network"}
                 </h1>
-                <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+                <p className="text-body dark:text-bodydark mt-2 text-lg">
                   Ajouter une nouvelle configuration de réseau
                 </p>
               </div>
@@ -154,8 +154,8 @@ export default function NetworkCreatePage() {
       </div>
 
         {error && (
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-            <CardContent className="p-6">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+            <CardContent className="p-3 sm:p-4 md:p-6">
               <ErrorDisplay error={error} />
             </CardContent>
           </Card>
@@ -163,16 +163,16 @@ export default function NetworkCreatePage() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Basic Information */}
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-            <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <CardHeader className="border-b border-gray-100 dark:border-strokedark">
               <CardTitle className="flex items-center space-x-2">
-                <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                  <Globe className="h-5 w-5 text-orange-600 dark:text-orange-300" />
+                <div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                  <Globe className="h-5 w-5 text-primary dark:text-secondary" />
                 </div>
                 <span>Informations de base</span>
               </CardTitle>
       </CardHeader>
-            <CardContent className="p-6 space-y-4">
+            <CardContent className="p-3 sm:p-4 md:p-6 space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
                   <Label htmlFor="nom">Nom du réseau</Label>
@@ -181,7 +181,7 @@ export default function NetworkCreatePage() {
                     value={nom}
                     onChange={(e) => setNom(e.target.value)}
                     placeholder="ex: MTN, Orange, Airtel"
-                    className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                     required
                   />
           </div>
@@ -192,14 +192,14 @@ export default function NetworkCreatePage() {
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
                     placeholder="ex: MTN, ORG, AIR"
-                    className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                     required
                   />
           </div>
           <div>
                   <Label htmlFor="country">Pays</Label>
                   <Select value={country} onValueChange={setCountry}>
-                    <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                    <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                       <SelectValue placeholder="Sélectionner le pays" />
               </SelectTrigger>
               <SelectContent>
@@ -218,7 +218,7 @@ export default function NetworkCreatePage() {
                     value={ussdBaseCode}
                     onChange={(e) => setUssdBaseCode(e.target.value)}
                     placeholder="ex: *123#"
-                    className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                   />
             </div>
             <div>
@@ -226,7 +226,7 @@ export default function NetworkCreatePage() {
                   
                   {image && (
                     <div className="mb-3">
-                      <div className="relative h-24 w-24 overflow-hidden rounded-lg border-2 border-orange-100 dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center justify-center shadow-md p-1 group">
+                      <div className="relative h-24 w-24 overflow-hidden rounded-lg border-2 border-orange-100 dark:border-strokedark bg-white dark:bg-boxdark flex items-center justify-center shadow-md p-1 group">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img 
                           src={URL.createObjectURL(image)} 
@@ -246,7 +246,7 @@ export default function NetworkCreatePage() {
                         setImage(e.target.files[0]);
                       }
                     }}
-                    className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 cursor-pointer"
+                    className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark cursor-pointer"
                   />
             </div>
               </div>
@@ -254,17 +254,17 @@ export default function NetworkCreatePage() {
           </Card>
 
           {/* Settings */}
-          <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-            <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+          <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <CardHeader className="border-b border-gray-100 dark:border-strokedark">
               <CardTitle className="flex items-center space-x-2">
                 <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                  <Settings className="h-5 w-5 text-green-600 dark:text-green-300" />
+                  <Settings className="h-5 w-5 text-meta-3 dark:text-green-300" />
                 </div>
                 <span>Paramètres</span>
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-6 space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <CardContent className="p-3 sm:p-4 md:p-6 space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4">
                 <div className="flex items-center space-x-2">
                   <Switch
                     id="isActive"
@@ -294,7 +294,7 @@ export default function NetworkCreatePage() {
     </Card>
 
           {/* Submit Button */}
-          <div className="flex justify-end space-x-4">
+          <div className="flex justify-end gap-2 sm:gap-4">
             <Button 
               type="button" 
               variant="outline" 
@@ -305,7 +305,7 @@ export default function NetworkCreatePage() {
             <Button 
               type="submit" 
               disabled={loading}
-              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+              className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white"
             >
               {loading ? (
                 <>

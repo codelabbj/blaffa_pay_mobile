@@ -46,13 +46,13 @@ export function DevicePickerDrawer({ open, onOpenChange, devices, onSelect }: De
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="w-full sm:max-w-md overflow-y-auto bg-white dark:bg-gray-900 border-slate-200 dark:border-gray-700">
+      <SheetContent side="right" className="w-full sm:max-w-md overflow-y-auto bg-white dark:bg-boxdark-2 border-slate-200 dark:border-strokedark">
         <SheetHeader>
           <SheetTitle className="text-[#0B2545] dark:text-gray-100">Choisir un modèle</SheetTitle>
         </SheetHeader>
         <div className="mt-4 space-y-3">
           <Input
-            className="bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-600"
+            className="bg-gray-50 dark:bg-boxdark border-stroke dark:border-strokedark"
             placeholder="Rechercher…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -82,7 +82,7 @@ export function DevicePickerDrawer({ open, onOpenChange, devices, onSelect }: De
               <button
                 key={device.uid}
                 type="button"
-                className="w-full text-left rounded-xl border border-slate-200 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 transition hover:border-[#D4A24C] hover:shadow-sm hover:bg-orange-50/40 dark:hover:!bg-gray-700/90"
+                className="w-full text-left rounded-xl border border-slate-200 dark:border-strokedark bg-white dark:bg-boxdark p-4 transition hover:border-[#D4A24C] hover:shadow-sm hover:bg-gray/40 dark:hover:!bg-gray-700/90"
                 onClick={() => {
                   onSelect(device)
                   onOpenChange(false)

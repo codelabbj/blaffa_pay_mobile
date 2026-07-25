@@ -195,12 +195,12 @@ export default function DeviceAuthorizationsPage() {
     const totalPages = Math.ceil(totalCount / itemsPerPage)
 
     return (
-        <div className="min-h-screen bg-slate-50/50 dark:bg-slate-950/50 p-4 md:p-8">
-            <div className="max-w-7xl mx-auto space-y-8">
+        <div className="min-h-screen bg-slate-50/50 dark:bg-slate-950/50 p-4 md:p-3 sm:p-5 md:p-8">
+            <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div className="space-y-1">
-                        <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50">
+                        <h1 className="text-lg font-bold sm:text-xl tracking-tight text-slate-900 dark:text-slate-50">
                             {t("deviceAuthorizations.title")}
                         </h1>
                         <p className="text-slate-500 dark:text-slate-400">
@@ -209,7 +209,7 @@ export default function DeviceAuthorizationsPage() {
                     </div>
                     <Button
                         onClick={() => setIsCreateModalOpen(true)}
-                        className="bg-orange-600 hover:bg-orange-700 text-white shadow-lg shadow-orange-600/20 transition-all font-medium"
+                        className="bg-primary hover:bg-opacity-90 text-white shadow-lg shadow-orange-600/20 transition-all font-medium"
                     >
                         <Plus className="mr-2 h-4 w-4" />
                         {t("deviceAuthorizations.create")}
@@ -218,19 +218,19 @@ export default function DeviceAuthorizationsPage() {
 
                 {/* Filters */}
                 <Card className="border-none shadow-sm bg-white dark:bg-slate-900">
-                    <CardContent className="p-4 md:p-6">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <CardContent className="p-4 md:p-3 sm:p-4 md:p-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4">
                             <div className="relative group">
-                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 group-focus-within:text-orange-500 transition-colors" />
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 group-focus-within:text-primary transition-colors" />
                                 <Input
                                     placeholder={t("deviceAuthorizations.searchPlaceholder")}
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="pl-10 dark:bg-slate-800 border-slate-200 dark:border-slate-800 focus-visible:ring-orange-500/20"
+                                    className="pl-10 dark:bg-slate-800 border-slate-200 dark:border-slate-800 focus-visible:ring-primary/20"
                                 />
                             </div>
                             <Select value={statusFilter} onValueChange={setStatusFilter}>
-                                <SelectTrigger className="dark:bg-slate-800 border-slate-200 dark:border-slate-800 focus:ring-orange-500/20">
+                                <SelectTrigger className="dark:bg-slate-800 border-slate-200 dark:border-slate-800 focus:ring-primary/20">
                                     <SelectValue placeholder={t("users.filterByStatus")} />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -257,9 +257,9 @@ export default function DeviceAuthorizationsPage() {
                 {/* Table */}
                 <Card className="border-none shadow-sm bg-white dark:bg-slate-900 overflow-hidden">
                     <CardHeader className="border-b border-slate-100 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm px-6 py-4">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
                             <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                                <ShieldCheck className="h-5 w-5 text-orange-600" />
+                                <ShieldCheck className="h-5 w-5 text-primary" />
                                 {t("deviceAuthorizations.title")}
                             </CardTitle>
                             <Badge variant="secondary" className="font-mono text-[10px] uppercase tracking-wider">
@@ -270,7 +270,7 @@ export default function DeviceAuthorizationsPage() {
                     <CardContent className="p-0">
                         {loading ? (
                             <div className="flex flex-col items-center justify-center py-24 space-y-4">
-                                <Loader2 className="h-10 w-10 text-orange-600 animate-spin" />
+                                <Loader2 className="h-10 w-10 text-primary animate-spin" />
                                 <p className="text-sm text-slate-500 animate-pulse">{t("common.loading")}</p>
                             </div>
                         ) : data.length === 0 ? (
@@ -326,7 +326,7 @@ export default function DeviceAuthorizationsPage() {
                                                     >
                                                         <span className={cn(
                                                             "w-1.5 h-1.5 rounded-full mr-1.5",
-                                                            item.is_active ? "bg-green-500" : "bg-slate-400"
+                                                            item.is_active ? "bg-meta-3" : "bg-slate-400"
                                                         )} />
                                                         {item.is_active ? t("common.active") : t("common.inactive")}
                                                     </Badge>
@@ -355,7 +355,7 @@ export default function DeviceAuthorizationsPage() {
                                                                 onClick={() => handleToggleStatus(item.uid, item.is_active)}
                                                                 className={cn(
                                                                     "cursor-pointer",
-                                                                    item.is_active ? "text-slate-600" : "text-green-600"
+                                                                    item.is_active ? "text-slate-600" : "text-meta-3"
                                                                 )}
                                                             >
                                                                 {item.is_active ? (
@@ -410,16 +410,16 @@ export default function DeviceAuthorizationsPage() {
             {/* Create Modal */}
             <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
                 <DialogContent className="sm:max-w-[500px] border-none shadow-2xl overflow-hidden p-0 bg-white dark:bg-slate-900">
-                    <div className="bg-orange-600 p-6">
+                    <div className="bg-primary p-3 sm:p-4 md:p-6">
                         <DialogHeader>
-                            <DialogTitle className="text-2xl font-bold text-white flex items-center gap-2">
+                            <DialogTitle className="text-lg font-bold sm:text-xl text-white flex items-center gap-2">
                                 <Plus className="h-6 w-6" />
                                 {t("deviceAuthorizations.create")}
                             </DialogTitle>
                         </DialogHeader>
                     </div>
 
-                    <div className="p-6 space-y-6">
+                    <div className="p-3 sm:p-4 md:p-6 space-y-6">
                         <div className="space-y-4">
                             <div className="space-y-2">
                                 <Label className="text-xs font-bold uppercase tracking-wider text-slate-500">
@@ -474,11 +474,11 @@ export default function DeviceAuthorizationsPage() {
                                     placeholder={t("deviceAuthorizations.notesPlaceholder")}
                                     value={notes}
                                     onChange={(e) => setNotes(e.target.value)}
-                                    className="h-11 bg-slate-50/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-800 focus-visible:ring-orange-500/20"
+                                    className="h-11 bg-slate-50/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-800 focus-visible:ring-primary/20"
                                 />
                             </div>
 
-                            <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-800">
+                            <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-800">
                                 <div className="space-y-0.5">
                                     <Label className="text-sm font-semibold">{t("deviceAuthorizations.status")}</Label>
                                     <p className="text-xs text-slate-500">
@@ -488,13 +488,13 @@ export default function DeviceAuthorizationsPage() {
                                 <Switch
                                     checked={isActive}
                                     onCheckedChange={setIsActive}
-                                    className="data-[state=checked]:bg-orange-600"
+                                    className="data-[state=checked]:bg-primary"
                                 />
                             </div>
                         </div>
                     </div>
 
-                    <DialogFooter className="p-6 bg-slate-50 dark:bg-slate-800/30 border-t border-slate-100 dark:border-slate-800">
+                    <DialogFooter className="p-3 sm:p-4 md:p-6 bg-slate-50 dark:bg-slate-800/30 border-t border-slate-100 dark:border-slate-800">
                         <DialogClose asChild>
                             <Button variant="ghost" disabled={createLoading}>
                                 {t("common.cancel")}
@@ -503,7 +503,7 @@ export default function DeviceAuthorizationsPage() {
                         <Button
                             onClick={handleCreate}
                             disabled={createLoading || !selectedPartner || !selectedDevice}
-                            className="bg-orange-600 hover:bg-orange-700 text-white min-w-[120px]"
+                            className="bg-primary hover:bg-opacity-90 text-white min-w-[120px]"
                         >
                             {createLoading ? (
                                 <Loader2 className="h-4 w-4 animate-spin" />

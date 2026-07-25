@@ -22,7 +22,7 @@ export function Toaster() {
             <div className="grid gap-2 flex-1">
               <div className="flex items-start gap-3">
                 {variant === "success" && (
-                  <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="h-5 w-5 text-meta-3 dark:text-green-400 mt-0.5 flex-shrink-0" />
                 )}
                 <div className="flex-1">
                   {title && <ToastTitle><span>{title}</span></ToastTitle>}

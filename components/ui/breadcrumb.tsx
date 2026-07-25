@@ -19,7 +19,7 @@ const BreadcrumbList = React.forwardRef<
   <ol
     ref={ref}
     className={cn(
-      "flex flex-wrap items-center gap-2 break-words text-sm text-gray-600 dark:text-gray-400 sm:gap-3",
+      "flex flex-wrap items-center gap-2 break-words text-sm text-body dark:text-bodydark2 sm:gap-3",
       className
     )}
     {...props}
@@ -80,7 +80,7 @@ const BreadcrumbSeparator = ({
   <li
     role="presentation"
     aria-hidden="true"
-    className={cn("[&>svg]:w-4 [&>svg]:h-4 text-gray-400 dark:text-gray-500", className)}
+    className={cn("[&>svg]:w-4 [&>svg]:h-4 text-bodydark2 dark:text-body", className)}
     {...props}
   >
     {children ?? <ChevronRight />}
@@ -95,7 +95,7 @@ const BreadcrumbEllipsis = ({
   <span
     role="presentation"
     aria-hidden="true"
-    className={cn("flex h-10 w-10 items-center justify-center text-gray-500 dark:text-gray-400", className)}
+    className={cn("flex h-10 w-10 items-center justify-center text-body dark:text-bodydark2", className)}
     {...props}
   >
     <MoreHorizontal className="h-4 w-4" />

@@ -54,7 +54,7 @@ export default function AggregatorUserStatsPage() {
 
     if (error) {
         return (
-            <div className="p-8">
+            <div className="p-3 sm:p-5 md:p-8">
                 <Button variant="ghost" onClick={() => router.back()} className="mb-4">
                     <ArrowLeft className="mr-2 h-4 w-4" /> {t("common.back")}
                 </Button>
@@ -66,13 +66,13 @@ export default function AggregatorUserStatsPage() {
     if (!stats) return null
 
     return (
-        <div className="space-y-8 px-4 py-8 max-w-7xl mx-auto">
+        <div className="space-y-4 sm:space-y-6 px-4 py-4 sm:py-6 max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                     <Button variant="ghost" onClick={() => router.back()} className="mb-2 p-0 hover:bg-transparent">
                         <ArrowLeft className="mr-2 h-4 w-4" /> {t("aggregators.backToUsers")}
                     </Button>
-                    <h1 className="text-3xl font-bold tracking-tight mb-1">{stats.display_name}</h1>
+                    <h1 className="text-lg font-bold sm:text-xl tracking-tight mb-1">{stats.display_name}</h1>
                     <p className="text-muted-foreground text-slate-500">{stats.email}</p>
                 </div>
                 <div className="flex gap-2">
@@ -83,13 +83,13 @@ export default function AggregatorUserStatsPage() {
             </div>
 
             {/* Account Info Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:p-4 md:p-6">
                 <Card className="hover:shadow-md transition-shadow">
                     <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium text-slate-500">{t("aggregators.accountBalance")}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold text-blue-600">
+                        <div className="text-lg font-bold sm:text-xl text-blue-600">
                             {stats.account_info.balance.toLocaleString()} {stats.account_info.currency}
                         </div>
                         <div className="mt-2">
@@ -107,7 +107,7 @@ export default function AggregatorUserStatsPage() {
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">{stats.payin_stats.total_count}</div>
+                        <div className="text-lg font-bold sm:text-xl">{stats.payin_stats.total_count}</div>
                         <div className="text-sm text-slate-500 mt-1">
                             {t("common.amount")}: {stats.payin_stats.total_amount.toLocaleString()} {stats.account_info.currency}
                         </div>
@@ -121,7 +121,7 @@ export default function AggregatorUserStatsPage() {
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">{stats.payout_stats.total_count}</div>
+                        <div className="text-lg font-bold sm:text-xl">{stats.payout_stats.total_count}</div>
                         <div className="text-sm text-slate-500 mt-1">
                             {t("common.amount")}: {stats.payout_stats.total_amount.toLocaleString()} {stats.account_info.currency}
                         </div>
@@ -135,7 +135,7 @@ export default function AggregatorUserStatsPage() {
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">{stats.security_stats.total_reset_attempts}</div>
+                        <div className="text-lg font-bold sm:text-xl">{stats.security_stats.total_reset_attempts}</div>
                         <div className="text-sm text-slate-500 mt-1">
                             {stats.security_stats.pending_reset_codes} {t("aggregators.pendingResetCodes")}
                         </div>
@@ -144,16 +144,16 @@ export default function AggregatorUserStatsPage() {
             </div>
 
             {/* Detailed Stats */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:p-5 md:p-8">
                 {/* Payin Stats */}
                 <Card>
                     <CardHeader className="bg-slate-50 border-b">
-                        <CardTitle className="text-lg flex items-center gap-2"><TrendingUp size={18} className="text-green-600" /> {t("aggregators.payinPerformance")}</CardTitle>
+                        <CardTitle className="text-lg flex items-center gap-2"><TrendingUp size={18} className="text-meta-3" /> {t("aggregators.payinPerformance")}</CardTitle>
                     </CardHeader>
                     <CardContent className="pt-6 space-y-4">
                         <div className="flex justify-between p-3 rounded-lg bg-slate-50">
                             <span className="text-slate-600">{t("aggregators.successfulTransactions")}</span>
-                            <span className="font-bold text-green-600">{stats.payin_stats.success_count}</span>
+                            <span className="font-bold text-meta-3">{stats.payin_stats.success_count}</span>
                         </div>
                         <div className="flex justify-between p-3 rounded-lg bg-slate-50">
                             <span className="text-slate-600">{t("aggregators.failedTransactions")}</span>
@@ -180,7 +180,7 @@ export default function AggregatorUserStatsPage() {
                     <CardContent className="pt-6 space-y-4">
                         <div className="flex justify-between p-3 rounded-lg bg-slate-50">
                             <span className="text-slate-600">{t("aggregators.successfulTransactions")}</span>
-                            <span className="font-bold text-green-600">{stats.payout_stats.success_count}</span>
+                            <span className="font-bold text-meta-3">{stats.payout_stats.success_count}</span>
                         </div>
                         <div className="flex justify-between p-3 rounded-lg bg-slate-50">
                             <span className="text-slate-600">{t("aggregators.failedTransactions")}</span>

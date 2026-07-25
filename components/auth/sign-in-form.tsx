@@ -20,12 +20,12 @@ import { getAppName } from "@/lib/env-config"
 
 // Colors for consistent theming - using logo colors
 const COLORS = {
-  primary: '#FF6B35', // Orange (primary from logo)
-  secondary: '#00FF88', // Bright green from logo
+  primary: '#194185', // Orange (primary from logo)
+  secondary: '#10B981', // Bright green from logo
   accent: '#1E3A8A', // Dark blue from logo
   danger: '#EF4444',
   warning: '#F97316',
-  success: '#00FF88', // Using bright green for success
+  success: '#10B981', // Using bright green for success
   info: '#1E3A8A', // Using dark blue for info
   purple: '#8B5CF6',
   pink: '#EC4899',
@@ -206,24 +206,24 @@ export function SignInForm() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-orange-50/30 via-transparent to-green-50/30 dark:from-gray-900/50 dark:via-transparent dark:to-gray-800/50">
-      <div className="w-full max-w-md space-y-8">
+      <div className="w-full max-w-md space-y-4 sm:space-y-6">
         <div className="text-center space-y-2">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+          <h2 className="text-lg font-bold sm:text-xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
             {appName}
           </h2>
         </div>
 
-        <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-orange-200/20 dark:border-orange-800/20 shadow-2xl shadow-orange-500/10">
+        <Card className="bg-white/90 dark:bg-boxdark/90 backdrop-blur-sm border border-stroke/20 dark:border-orange-800/20 shadow-2xl shadow-orange-500/10">
           <CardHeader className="space-y-4 pb-6">
             <div className="text-center space-y-2">
-              <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">
+              <CardTitle className="text-lg font-bold sm:text-xl text-gray-900 dark:text-white">
                 {flow === "login" && <span>{t("auth.welcome")} à {appName}</span>}
                 {flow === "forgot-password" && <span>Mot de passe oublié</span>}
                 {flow === "otp" && <span>Vérification OTP</span>}
                 {flow === "reset-password" && <span>Nouveau mot de passe</span>}
                 {flow === "success" && <span>Succès !</span>}
               </CardTitle>
-              <CardDescription className="text-gray-600 dark:text-gray-400">
+              <CardDescription className="text-body dark:text-bodydark2">
                 {flow === "login" && "Accédez à votre tableau de bord administrateur"}
                 {flow === "forgot-password" && "Entrez votre identifiant pour recevoir un code OTP"}
                 {flow === "otp" && `Entrez le code envoyé à ${identifier}`}
@@ -237,8 +237,8 @@ export function SignInForm() {
             {flow === "login" && (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-3">
-                  <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center space-x-2">
-                    <Mail className="h-4 w-4 text-orange-500" />
+                  <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-bodydark flex items-center space-x-2">
+                    <Mail className="h-4 w-4 text-primary" />
                     <span>{t("auth.email")}</span>
                   </Label>
                   <div className="relative">
@@ -248,15 +248,15 @@ export function SignInForm() {
                       value={identifier}
                       onChange={(e) => setIdentifier(e.target.value)}
                       required
-                      className="pl-12 pr-4 py-3 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 focus:border-orange-500 focus:ring-orange-500 transition-all duration-200"
+                      className="pl-12 pr-4 py-3 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark focus:border-primary focus:ring-primary transition-all duration-200"
                     />
-                    <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                    <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-bodydark2" />
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  <Label htmlFor="password" className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center space-x-2">
-                    <Lock className="h-4 w-4 text-orange-500" />
+                  <Label htmlFor="password" className="text-sm font-medium text-gray-700 dark:text-bodydark flex items-center space-x-2">
+                    <Lock className="h-4 w-4 text-primary" />
                     <span>{t("auth.password")}</span>
                   </Label>
                   <div className="relative">
@@ -266,12 +266,12 @@ export function SignInForm() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      className="pl-12 pr-12 py-3 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 focus:border-orange-500 focus:ring-orange-500 transition-all duration-200"
+                      className="pl-12 pr-12 py-3 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark focus:border-primary focus:ring-primary transition-all duration-200"
                     />
-                    <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                    <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-bodydark2" />
                     <button
                       type="button"
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-bodydark2 hover:text-body dark:hover:text-gray-300 transition-colors duration-200"
                       onClick={() => setShowPassword((v) => !v)}
                     >
                       {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
@@ -279,28 +279,28 @@ export function SignInForm() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
+                <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                     <Checkbox
                       id="remember"
                       checked={rememberMe}
                       onCheckedChange={(checked) => setRememberMe(checked as boolean)}
                     />
-                    <Label htmlFor="remember" className="text-sm text-gray-700 dark:text-gray-300">
+                    <Label htmlFor="remember" className="text-sm text-gray-700 dark:text-bodydark">
                       <span>{t("auth.rememberMe")}</span>
                     </Label>
                   </div>
                   <Button
                     type="button"
                     variant="link"
-                    className="px-0 text-sm text-orange-600 hover:text-orange-700"
+                    className="px-0 text-sm text-primary hover:text-orange-700"
                     onClick={() => setFlow("forgot-password")}
                   >
                     Mot de passe oublié ?
                   </Button>
                 </div>
 
-                <Button type="submit" className="w-full py-3 bg-gradient-to-r from-orange-500 to-orange-600" disabled={loading}>
+                <Button type="submit" className="w-full py-3 bg-gradient-to-r from-primary to-primary" disabled={loading}>
                   {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <ArrowRight className="h-4 w-4 mr-2" />}
                   {loading ? <span>{t("auth.loggingIn")}</span> : <span>{t("auth.signIn")}</span>}
                 </Button>
@@ -388,7 +388,7 @@ export function SignInForm() {
               <div className="text-center space-y-6">
                 <div className="flex justify-center">
                   <div className="p-3 bg-green-100 rounded-full">
-                    <CheckCircle className="h-10 w-10 text-green-600" />
+                    <CheckCircle className="h-10 w-10 text-meta-3" />
                   </div>
                 </div>
                 <p>Votre mot de passe a été mis à jour avec succès. Vous pouvez maintenant vous connecter.</p>

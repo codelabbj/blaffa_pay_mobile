@@ -21,12 +21,12 @@ import { getApiBaseUrl } from "@/lib/env-config"
 
 // Colors for consistent theming - using logo colors
 const COLORS = {
-  primary: '#FF6B35', // Orange (primary from logo)
-  secondary: '#00FF88', // Bright green from logo
+  primary: '#194185', // Orange (primary from logo)
+  secondary: '#10B981', // Bright green from logo
   accent: '#1E3A8A', // Dark blue from logo
   danger: '#EF4444',
   warning: '#F97316',
-  success: '#00FF88', // Using bright green for success
+  success: '#10B981', // Using bright green for success
   info: '#1E3A8A', // Using dark blue for info
   purple: '#8B5CF6',
   pink: '#EC4899',
@@ -225,12 +225,12 @@ export default function EditPlatformPage() {
 
   if (fetchLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex items-center justify-center py-12">
+      <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
+          <div className="flex items-center justify-center py-6 sm:py-10">
             <div className="flex flex-col items-center space-y-4">
-              <Loader2 className="h-8 w-8 animate-spin text-orange-600" />
-              <span className="text-gray-600 dark:text-gray-300">Chargement de la plateforme...</span>
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
+              <span className="text-body dark:text-bodydark">Chargement de la plateforme...</span>
             </div>
           </div>
         </div>
@@ -240,12 +240,12 @@ export default function EditPlatformPage() {
 
   if (fetchError) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="mb-8">
-            <div className="flex items-center space-x-4 mb-4">
+      <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
+          <div className="mb-4 sm:mb-6">
+            <div className="flex items-center gap-2 sm:gap-4 mb-4">
               <Link href="/dashboard/platforms/list">
-                <Button variant="outline" size="sm" className="bg-white dark:bg-gray-800">
+                <Button variant="outline" size="sm" className="bg-white dark:bg-boxdark">
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Retour
                 </Button>
@@ -260,12 +260,12 @@ export default function EditPlatformPage() {
 
   if (!platform) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="mb-8">
-            <div className="flex items-center space-x-4 mb-4">
+      <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
+          <div className="mb-4 sm:mb-6">
+            <div className="flex items-center gap-2 sm:gap-4 mb-4">
               <Link href="/dashboard/platforms/list">
-                <Button variant="outline" size="sm" className="bg-white dark:bg-gray-800">
+                <Button variant="outline" size="sm" className="bg-white dark:bg-boxdark">
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Retour
                 </Button>
@@ -279,33 +279,33 @@ export default function EditPlatformPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
         
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center space-x-4 mb-4">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex items-center gap-2 sm:gap-4 mb-4">
             <Link href="/dashboard/platforms/list">
-              <Button variant="outline" size="sm" className="bg-white dark:bg-gray-800">
+              <Button variant="outline" size="sm" className="bg-white dark:bg-boxdark">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Retour
               </Button>
             </Link>
           </div>
           <div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+            <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
               Modifier la Plateforme
             </h1>
-            <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+            <p className="text-body dark:text-bodydark mt-2 text-lg">
               Modifier les informations de {platform.name}
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:p-5 md:p-8">
           {/* Platform Info */}
           <div className="lg:col-span-1">
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <BarChart3 className="h-5 w-5 text-blue-600" />
@@ -314,8 +314,8 @@ export default function EditPlatformPage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-16 h-16 overflow-hidden bg-gradient-to-br from-orange-500 to-green-600 rounded-lg flex items-center justify-center text-white font-semibold shadow-md">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                    <div className="w-16 h-16 overflow-hidden bg-gradient-to-br from-primary to-meta-3 rounded-lg flex items-center justify-center text-white font-semibold shadow-md">
                       {platform.logo ? (
                         <img 
                           src={platform.logo.startsWith('http') ? platform.logo : `${baseUrl.replace(/\/$/, "")}/${platform.logo.replace(/^\//, "")}`} 
@@ -334,7 +334,7 @@ export default function EditPlatformPage() {
                       <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                         {platform.name}
                       </h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                      <p className="text-sm text-body dark:text-bodydark2">
                         ID: {platform.external_id}
                       </p>
                     </div>
@@ -352,7 +352,7 @@ export default function EditPlatformPage() {
                     </Badge>
                   </div>
                   
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                  <div className="text-sm text-body dark:text-bodydark2">
                     <div>Partenaires actifs: {platform.active_partners_count}</div>
                     <div>Transactions: {platform.total_transactions_count}</div>
                     <div>Créé le: {new Date(platform.created_at).toLocaleDateString()}</div>
@@ -365,10 +365,10 @@ export default function EditPlatformPage() {
 
           {/* Platform Form */}
           <div className="lg:col-span-2">
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <BarChart3 className="h-5 w-5 text-orange-600" />
+                  <BarChart3 className="h-5 w-5 text-primary" />
                   <span>Modifier la Plateforme</span>
                 </CardTitle>
               </CardHeader>
@@ -399,9 +399,9 @@ export default function EditPlatformPage() {
                         id="external_id"
                         value={platform.external_id}
                         disabled
-                        className="mt-1 bg-gray-100 dark:bg-gray-700"
+                        className="mt-1 bg-gray-100 dark:bg-meta-4"
                       />
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      <p className="text-xs text-body dark:text-bodydark2 mt-1">
                         L'ID externe ne peut pas être modifié
                       </p>
                     </div>
@@ -426,10 +426,10 @@ export default function EditPlatformPage() {
                     <Label htmlFor="logo">Logo de la plateforme</Label>
                     
                     {(platform.logo || form.logo) && (
-                      <div className="mb-3 flex items-center space-x-4">
+                      <div className="mb-3 flex items-center gap-2 sm:gap-4">
                         <div className="space-y-1">
-                          <p className="text-xs text-gray-500 dark:text-gray-400">Aperçu</p>
-                          <div className="relative h-24 w-24 overflow-hidden rounded-lg border-2 border-orange-100 dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center justify-center shadow-md p-1">
+                          <p className="text-xs text-body dark:text-bodydark2">Aperçu</p>
+                          <div className="relative h-24 w-24 overflow-hidden rounded-lg border-2 border-orange-100 dark:border-strokedark bg-white dark:bg-boxdark flex items-center justify-center shadow-md p-1">
                             <img 
                               src={form.logo ? URL.createObjectURL(form.logo) : (platform.logo?.startsWith('http') ? platform.logo : `${baseUrl.replace(/\/$/, "")}/${platform.logo?.replace(/^\//, "")}`)} 
                               alt="Logo preview" 
@@ -452,9 +452,9 @@ export default function EditPlatformPage() {
                           handleInputChange("logo", e.target.files[0]);
                         }
                       }}
-                      className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 cursor-pointer"
+                      className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark cursor-pointer"
                     />
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                    <p className="text-xs text-body dark:text-bodydark2">
                       Laissez vide pour conserver le logo actuel
                     </p>
                   </div>
@@ -532,7 +532,7 @@ export default function EditPlatformPage() {
                   {/* Commission Rates (optional) */}
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Commissions (optionnel)</h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-sm text-body dark:text-bodydark2">
                       Laissez vide pour réinitialiser au fallback (taux partner, puis 1%).
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -568,7 +568,7 @@ export default function EditPlatformPage() {
                   </div>
 
                   {/* Status */}
-                  <div className="flex items-center space-x-3">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                     <Switch
                       id="is_active"
                       checked={form.is_active}
@@ -580,11 +580,11 @@ export default function EditPlatformPage() {
                   </div>
 
                   {/* Form Actions */}
-                  <div className="flex items-center space-x-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center gap-2 sm:gap-4 pt-6 border-t border-stroke dark:border-strokedark">
                     <Button
                       type="submit"
                       disabled={loading}
-                      className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+                      className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white"
                     >
                       {loading ? (
                         <>
@@ -623,27 +623,27 @@ export default function EditPlatformPage() {
         </div>
 
         {/* Current Limits Preview */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mt-8">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mt-8">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <CheckCircle className="h-5 w-5 text-green-600" />
+              <CheckCircle className="h-5 w-5 text-meta-3" />
               <span>Limites Actuelles</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg">
-                <h4 className="font-medium text-orange-800 dark:text-orange-300 mb-3">Limites de Dépôt</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6">
+              <div className="bg-gray dark:bg-orange-900/20 p-4 rounded-lg">
+                <h4 className="font-medium text-orange-800 dark:text-secondary mb-3">Limites de Dépôt</h4>
                 <div className="space-y-2">
                   <div>
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Minimum:</span>
-                    <span className="ml-2 text-lg font-semibold text-orange-600">
+                    <span className="text-sm font-medium text-body dark:text-bodydark2">Minimum:</span>
+                    <span className="ml-2 text-lg font-semibold text-primary">
                       {parseFloat(platform.min_deposit_amount).toFixed(2)} FCFA
                     </span>
                   </div>
                   <div>
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Maximum:</span>
-                    <span className="ml-2 text-lg font-semibold text-orange-600">
+                    <span className="text-sm font-medium text-body dark:text-bodydark2">Maximum:</span>
+                    <span className="ml-2 text-lg font-semibold text-primary">
                       {parseFloat(platform.max_deposit_amount).toFixed(2)} FCFA
                     </span>
                   </div>
@@ -654,14 +654,14 @@ export default function EditPlatformPage() {
                 <h4 className="font-medium text-green-800 dark:text-green-300 mb-3">Limites de Retrait</h4>
                 <div className="space-y-2">
                   <div>
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Minimum:</span>
-                    <span className="ml-2 text-lg font-semibold text-green-600">
+                    <span className="text-sm font-medium text-body dark:text-bodydark2">Minimum:</span>
+                    <span className="ml-2 text-lg font-semibold text-meta-3">
                       {parseFloat(platform.min_withdrawal_amount).toFixed(2)} FCFA
                     </span>
                   </div>
                   <div>
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Maximum:</span>
-                    <span className="ml-2 text-lg font-semibold text-green-600">
+                    <span className="text-sm font-medium text-body dark:text-bodydark2">Maximum:</span>
+                    <span className="ml-2 text-lg font-semibold text-meta-3">
                       {parseFloat(platform.max_withdrawal_amount).toFixed(2)} FCFA
                     </span>
                   </div>

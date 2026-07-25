@@ -29,12 +29,12 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 
 // Colors for consistent theming - using logo colors
 const COLORS = {
-	primary: '#FF6B35', // Orange (primary from logo)
-	secondary: '#00FF88', // Bright green from logo
+	primary: '#194185', // Orange (primary from logo)
+	secondary: '#10B981', // Bright green from logo
 	accent: '#1E3A8A', // Dark blue from logo
 	danger: '#EF4444',
 	warning: '#F97316',
-	success: '#00FF88', // Using bright green for success
+	success: '#10B981', // Using bright green for success
 	info: '#1E3A8A', // Using dark blue for info
 	purple: '#8B5CF6',
 	pink: '#EC4899',
@@ -501,25 +501,25 @@ function PartnerPageContent() {
 	const totalCommission = partners.reduce((sum, partner) => sum + (parseFloat(partner.total_commission) || 0), 0)
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+		<div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+			<div className="w-full">
 
 				{/* Page Header */}
-				<div className="mb-8">
+				<div className="mb-4 sm:mb-6">
 					<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 						<div>
-							<h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+							<h1 className="text-2xl sm:text-3xl lg:text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
 								{t("partners.title") || "Partner Management"}
 							</h1>
-							<p className="text-gray-600 dark:text-gray-300 mt-2 text-sm sm:text-base lg:text-lg">
+							<p className="text-body dark:text-bodydark mt-2 text-sm sm:text-base lg:text-lg">
 								Gérer les comptes partenaires et le suivi des commissions
 							</p>
 						</div>
-						<div className="flex items-center space-x-2 sm:space-x-4">
-							<div className="bg-white dark:bg-gray-800 rounded-lg px-3 sm:px-4 py-2 shadow-sm">
+						<div className="flex items-center space-x-2 sm:gap-2 sm:gap-4">
+							<div className="bg-white dark:bg-boxdark rounded-lg px-3 sm:px-4 py-2 shadow-sm">
 								<div className="flex items-center space-x-2">
-									<Users className="h-4 w-4 sm:h-5 sm:w-5 text-orange-500" />
-									<span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
+									<Users className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+									<span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-bodydark">
 										{totalCount} partenaires
 									</span>
 								</div>
@@ -529,16 +529,16 @@ function PartnerPageContent() {
 				</div>
 
 				{/* Summary Cards */}
-				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8">
-					<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-						<CardContent className="p-4 sm:p-6">
-							<div className="flex items-center space-x-3">
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3 sm:p-4 md:p-6 mb-4 sm:mb-6">
+					<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+						<CardContent className="p-4 sm:p-3 sm:p-4 md:p-6">
+							<div className="flex flex-wrap items-center gap-2 sm:gap-3">
 								<div className="p-2 sm:p-3 bg-green-100 dark:bg-green-900 rounded-lg">
-									<UserCheck className="h-5 w-5 sm:h-6 sm:w-6 text-green-600 dark:text-green-300" />
+									<UserCheck className="h-5 w-5 sm:h-6 sm:w-6 text-meta-3 dark:text-green-300" />
 								</div>
 								<div>
-									<p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">Partenaires actifs</p>
-									<p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">
+									<p className="text-xs sm:text-sm font-medium text-body dark:text-bodydark2">Partenaires actifs</p>
+									<p className="text-xl sm:text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
 										{activePartners}
 									</p>
 								</div>
@@ -546,15 +546,15 @@ function PartnerPageContent() {
 						</CardContent>
 					</Card>
 
-					<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-						<CardContent className="p-4 sm:p-6">
-							<div className="flex items-center space-x-3">
-								<div className="p-2 sm:p-3 bg-orange-100 dark:bg-orange-900 rounded-lg">
-									<Copy className="h-5 w-5 sm:h-6 sm:w-6 text-orange-600 dark:text-orange-300" />
+					<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+						<CardContent className="p-4 sm:p-3 sm:p-4 md:p-6">
+							<div className="flex flex-wrap items-center gap-2 sm:gap-3">
+								<div className="p-2 sm:p-3 bg-meta-2 dark:bg-orange-900 rounded-lg">
+									<Copy className="h-5 w-5 sm:h-6 sm:w-6 text-primary dark:text-secondary" />
 								</div>
 								<div>
-									<p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">Commission totale</p>
-									<p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">
+									<p className="text-xs sm:text-sm font-medium text-body dark:text-bodydark2">Commission totale</p>
+									<p className="text-xl sm:text-lg font-bold sm:text-xl text-gray-900 dark:text-gray-100">
 										XOF {totalCommission.toFixed(2)}
 									</p>
 								</div>
@@ -564,23 +564,23 @@ function PartnerPageContent() {
 				</div>
 
 				{/* Filters and Search */}
-				<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-					<CardContent className="p-4 sm:p-6">
+				<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+					<CardContent className="p-4 sm:p-3 sm:p-4 md:p-6">
 						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
 							{/* Search */}
 							<div className="relative">
-								<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+								<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-bodydark2" />
 								<Input
 									placeholder="Rechercher des partenaires..."
 									value={searchTerm}
 									onChange={(e) => handleSearchChange(e.target.value)}
-									className="pl-10 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+									className="pl-10 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
 								/>
 							</div>
 
 							{/* Status Filter */}
 							<Select value={statusFilter} onValueChange={handleStatusChange}>
-								<SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+								<SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
 									<SelectValue placeholder="Filtrer par statut" />
 								</SelectTrigger>
 								<SelectContent>
@@ -595,7 +595,7 @@ function PartnerPageContent() {
 								value={sortField || ""}
 								onValueChange={(value) => handleSortChange(value as "display_name" | "email" | "created_at")}
 							>
-								<SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+								<SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
 									<SelectValue placeholder="Trier par" />
 								</SelectTrigger>
 								<SelectContent>
@@ -618,7 +618,7 @@ function PartnerPageContent() {
 
 							{/* MoMo Filter */}
 							<Select value={momoFilter} onValueChange={handleMomoChange}>
-								<SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+								<SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
 									<SelectValue placeholder="MoMo" />
 								</SelectTrigger>
 								<SelectContent>
@@ -630,7 +630,7 @@ function PartnerPageContent() {
 							
 							{/* Mobcash Filter */}
 							<Select value={mobcashFilter} onValueChange={handleMobcashChange}>
-								<SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+								<SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
 									<SelectValue placeholder="Mobcash" />
 								</SelectTrigger>
 								<SelectContent>
@@ -642,7 +642,7 @@ function PartnerPageContent() {
 							
 							{/* Bulk Filter */}
 							<Select value={bulkFilter} onValueChange={handleBulkChange}>
-								<SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+								<SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
 									<SelectValue placeholder="Paiement en masse" />
 								</SelectTrigger>
 								<SelectContent>
@@ -656,32 +656,32 @@ function PartnerPageContent() {
 				</Card>
 
 				{/* Partners Table */}
-				<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-					<CardHeader className="border-b border-gray-100 dark:border-gray-700">
+				<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+					<CardHeader className="border-b border-gray-100 dark:border-strokedark">
 						<CardTitle className="flex items-center space-x-2">
-							<div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-								<Users className="h-5 w-5 text-orange-600 dark:text-orange-300" />
+							<div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+								<Users className="h-5 w-5 text-primary dark:text-secondary" />
 							</div>
 							<span>Liste des partenaires</span>
 						</CardTitle>
 					</CardHeader>
 					<CardContent className="p-0">
 						{loading ? (
-							<div className="flex items-center justify-center py-12">
+							<div className="flex items-center justify-center py-6 sm:py-10">
 								<div className="flex flex-col items-center space-y-4">
-									<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-									<span className="text-gray-600 dark:text-gray-300">Chargement des partenaires...</span>
+									<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+									<span className="text-body dark:text-bodydark">Chargement des partenaires...</span>
 								</div>
 							</div>
 						) : error ? (
-							<div className="p-6 text-center">
+							<div className="p-3 sm:p-4 md:p-6 text-center">
 								<ErrorDisplay error={error} onRetry={() => {/* retry function */ }} />
 							</div>
 						) : (
 							<div className="overflow-x-auto">
 								<Table>
 									<TableHeader>
-										<TableRow className="bg-gray-50 dark:bg-gray-900/50">
+										<TableRow className="bg-gray-50 dark:bg-boxdark-2/50">
 											<TableHead className="font-semibold text-xs sm:text-sm">Partenaire</TableHead>
 											<TableHead className="font-semibold text-xs sm:text-sm">E-mail</TableHead>
 											<TableHead className="font-semibold text-xs sm:text-sm">Statut</TableHead>
@@ -694,10 +694,10 @@ function PartnerPageContent() {
 									</TableHeader>
 									<TableBody>
 										{partners.map((partner) => (
-											<TableRow key={partner.uid} className="hover:bg-gray-50 dark:hover:bg-gray-900/50">
-												<TableCell>
+											<TableRow key={partner.uid} className="hover:bg-gray-50 dark:hover:bg-boxdark-2/50">
+												<TableCell data-label="Partenaire">
 													<div className="flex items-center space-x-2 sm:space-x-3">
-														<div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-orange-500 to-green-600 rounded-full flex items-center justify-center text-white font-semibold text-sm sm:text-base">
+														<div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-meta-3 rounded-full flex items-center justify-center text-white font-semibold text-sm sm:text-base">
 															{partner.display_name?.charAt(0)?.toUpperCase() || 'P'}
 														</div>
 														<div>
@@ -706,21 +706,21 @@ function PartnerPageContent() {
 																<CopyButton value={partner.uid} className="h-4 w-4" iconClassName="h-3 w-3" />
 															</div>
 
-															<div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+															<div className="text-xs sm:text-sm text-body dark:text-bodydark2">
 																{partner.phone_number || 'Aucun téléphone'}
 															</div>
 														</div>
 													</div>
 												</TableCell>
-												<TableCell>
+												<TableCell data-label="E-mail">
 													<div className="flex items-center space-x-2">
-														<Mail className="h-3 w-3 sm:h-4 sm:w-4 text-gray-400" />
-														<span className="text-xs sm:text-sm text-gray-700 dark:text-gray-300">
+														<Mail className="h-3 w-3 sm:h-4 sm:w-4 text-bodydark2" />
+														<span className="text-xs sm:text-sm text-gray-700 dark:text-bodydark">
 															{partner.email || 'Aucun e-mail'}
 														</span>
 													</div>
 												</TableCell>
-												<TableCell>
+												<TableCell data-label="Statut">
 													<Badge
 														className={
 															partner.is_active
@@ -738,12 +738,12 @@ function PartnerPageContent() {
 														</div>
 													</Badge>
 												</TableCell>
-												<TableCell>
+												<TableCell data-label="USSD">
 													<Badge
 														className={
 															partner.can_process_ussd_transaction
 																? "bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300"
-																: "bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-300"
+																: "bg-gray-100 text-gray-800 dark:bg-boxdark-2/20 dark:text-bodydark"
 														}
 													>
 														<div className="flex items-center space-x-1">
@@ -756,38 +756,38 @@ function PartnerPageContent() {
 														</div>
 													</Badge>
 												</TableCell>
-												<TableCell>
+												<TableCell data-label="Commission">
 													<div className="flex items-center space-x-1">
-														<Copy className="h-3 w-3 sm:h-4 sm:w-4 text-gray-400" />
+														<Copy className="h-3 w-3 sm:h-4 sm:w-4 text-bodydark2" />
 														<span className="font-medium text-gray-900 dark:text-gray-100 text-xs sm:text-sm">
 															XOF {parseFloat(partner.total_commission || 0).toFixed(2)}
 														</span>
 													</div>
 												</TableCell>
-												<TableCell>
+												<TableCell data-label="Solde Compte">
 													<div className="flex items-center space-x-1">
-														<Wallet className="h-3 w-3 sm:h-4 sm:w-4 text-gray-400" />
-														<span className="font-medium text-green-600 dark:text-green-400 text-xs sm:text-sm">
+														<Wallet className="h-3 w-3 sm:h-4 sm:w-4 text-bodydark2" />
+														<span className="font-medium text-meta-3 dark:text-green-400 text-xs sm:text-sm">
 															XOF {parseFloat(partner.account_balance || 0).toFixed(2)}
 														</span>
 													</div>
 												</TableCell>
-												<TableCell>
+												<TableCell data-label="Rejoint">
 													<div className="flex items-center space-x-2">
-														<Calendar className="h-3 w-3 sm:h-4 sm:w-4 text-gray-400" />
+														<Calendar className="h-3 w-3 sm:h-4 sm:w-4 text-bodydark2" />
 														<div className="flex flex-col">
-															<span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+															<span className="text-sm font-medium text-gray-700 dark:text-bodydark">
 																{partner.created_at ? new Date(partner.created_at).toLocaleDateString() : 'Inconnu'}
 															</span>
 															{partner.created_at && (
-																<span className="text-xs text-gray-500 dark:text-gray-400">
+																<span className="text-xs text-body dark:text-bodydark2">
 																	{new Date(partner.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
 																</span>
 															)}
 														</div>
 													</div>
 												</TableCell>
-												<TableCell>
+												<TableCell data-label="Actions">
 													<DropdownMenu>
 														<DropdownMenuTrigger asChild>
 															<Button variant="outline" size="sm" className="h-8 w-8 p-0">
@@ -798,12 +798,12 @@ function PartnerPageContent() {
 														<DropdownMenuContent align="end" className="w-56">
 															<DropdownMenuItem asChild>
 																<Link href={`/dashboard/partner/commission/${partner.uid}`} className="flex items-center">
-																	<DollarSign className="h-4 w-4 mr-2 text-green-600" />
+																	<DollarSign className="h-4 w-4 mr-2 text-meta-3" />
 																	<span>Commission momo</span>
 																</Link>
 															</DropdownMenuItem>
 															<DropdownMenuItem onClick={() => handleOpenBettingCommission(partner)}>
-																<TrendingUp className="h-4 w-4 mr-2 text-orange-600" />
+																<TrendingUp className="h-4 w-4 mr-2 text-primary" />
 																<span>Commissions Paris</span>
 															</DropdownMenuItem>
 															<DropdownMenuItem onClick={() => handleOpenTransfers(partner)}>
@@ -844,8 +844,8 @@ function PartnerPageContent() {
 
 				{/* Pagination */}
 				{totalPages > 1 && (
-					<div className="flex items-center justify-between mt-6">
-						<div className="text-sm text-gray-600 dark:text-gray-400">
+					<div className="flex flex-wrap items-start justify-between gap-3 sm:items-center mt-6">
+						<div className="text-sm text-body dark:text-bodydark2">
 							Affichage de {startIndex + 1} à {Math.min(startIndex + itemsPerPage, totalCount)} sur {totalCount} résultats
 						</div>
 						<div className="flex items-center space-x-2">
@@ -871,7 +871,7 @@ function PartnerPageContent() {
                   
                   return pages.map((page, index) => {
                     if (page === '...') {
-                      return <span key={`ellipsis-${index}`} className="px-2 text-gray-500 text-sm">...</span>;
+                      return <span key={`ellipsis-${index}`} className="px-2 text-body text-sm">...</span>;
                     }
                     return (
                       <Button
@@ -879,7 +879,7 @@ function PartnerPageContent() {
                         variant={currentPage === page ? "default" : "outline"}
                         size="sm"
                         onClick={() => handlePageChange(page as number)}
-                        className={currentPage === page ? "bg-orange-500 hover:bg-orange-600 text-white border-orange-500" : "border-gray-200 dark:border-gray-600"}
+                        className={currentPage === page ? "bg-primary hover:bg-primary text-white border-primary" : "border-stroke dark:border-strokedark"}
                       >
                         {page}
                       </Button>
@@ -902,13 +902,13 @@ function PartnerPageContent() {
 
 				{/* Empty State */}
 				{!loading && !error && partners.length === 0 && (
-					<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mt-6">
+					<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mt-6">
 						<CardContent className="p-12 text-center">
-							<Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-							<h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+							<Users className="h-12 w-12 text-bodydark2 mx-auto mb-4" />
+							<h3 className="text-sm font-medium sm:text-base text-gray-900 dark:text-gray-100 mb-2">
 								Aucun partenaire trouvé
 							</h3>
-							<p className="text-gray-500 dark:text-gray-400 mb-4">
+							<p className="text-body dark:text-bodydark2 mb-4">
 								{searchTerm ? `Aucun partenaire ne correspond à "${searchTerm}"` : "Aucun partenaire n'a encore été enregistré."}
 							</p>
 						</CardContent>
@@ -925,7 +925,7 @@ function PartnerPageContent() {
 							</DialogTitle>
 						</DialogHeader>
 						{detailLoading ? (
-							<div className="flex items-center justify-center py-8">
+							<div className="flex items-center justify-center py-4 sm:py-6">
 								<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
 							</div>
 						) : detailError ? (
@@ -934,25 +934,25 @@ function PartnerPageContent() {
 							<div className="space-y-4">
 								<div className="grid grid-cols-2 gap-4">
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">Nom</label>
+										<label className="text-sm font-medium text-body dark:text-bodydark2">Nom</label>
 										<p className="text-lg font-semibold text-gray-900 dark:text-gray-100">
 											{detailPartner.display_name || 'Inconnu'}
 										</p>
 									</div>
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">E-mail</label>
+										<label className="text-sm font-medium text-body dark:text-bodydark2">E-mail</label>
 										<p className="text-sm text-gray-900 dark:text-gray-100">
 											{detailPartner.email || 'Aucun e-mail'}
 										</p>
 									</div>
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">Téléphone</label>
+										<label className="text-sm font-medium text-body dark:text-bodydark2">Téléphone</label>
 										<p className="text-sm text-gray-900 dark:text-gray-100">
 											{detailPartner.phone_number || 'Aucun téléphone'}
 										</p>
 									</div>
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">Statut</label>
+										<label className="text-sm font-medium text-body dark:text-bodydark2">Statut</label>
 										<Badge
 											className={
 												detailPartner.is_active
@@ -964,13 +964,13 @@ function PartnerPageContent() {
 										</Badge>
 									</div>
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">Commission totale</label>
-										<p className="text-lg font-semibold text-green-600">
+										<label className="text-sm font-medium text-body dark:text-bodydark2">Commission totale</label>
+										<p className="text-lg font-semibold text-meta-3">
 											XOF {parseFloat(detailPartner.total_commission || 0).toFixed(2)}
 										</p>
 									</div>
 									<div>
-										<label className="text-sm font-medium text-gray-600 dark:text-gray-400">Rejoint</label>
+										<label className="text-sm font-medium text-body dark:text-bodydark2">Rejoint</label>
 										<p className="text-sm text-gray-900 dark:text-gray-100">
 											{detailPartner.created_at
 												? new Date(detailPartner.created_at).toLocaleString()
@@ -994,7 +994,7 @@ function PartnerPageContent() {
 							</DialogTitle>
 						</DialogHeader>
 						{transferLoading ? (
-							<div className="flex items-center justify-center py-8">
+							<div className="flex items-center justify-center py-4 sm:py-6">
 								<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
 							</div>
 						) : transferError ? (
@@ -1002,12 +1002,12 @@ function PartnerPageContent() {
 						) : (
 							<div className="space-y-4">
 								{partnerTransfers.length === 0 ? (
-									<div className="text-center py-8">
-										<ArrowUpDownIcon className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-										<h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+									<div className="text-center py-4 sm:py-6">
+										<ArrowUpDownIcon className="h-12 w-12 text-bodydark2 mx-auto mb-4" />
+										<h3 className="text-sm font-medium sm:text-base text-gray-900 dark:text-gray-100 mb-2">
 											Aucun transfert trouvé
 										</h3>
-										<p className="text-gray-500 dark:text-gray-400">
+										<p className="text-body dark:text-bodydark2">
 											Ce partenaire n'a effectué aucun transfert.
 										</p>
 									</div>
@@ -1015,55 +1015,51 @@ function PartnerPageContent() {
 									<div className="overflow-x-auto">
 										<Table>
 											<TableHeader>
-												<TableRow className="bg-gray-50 dark:bg-gray-900/50">
+												<TableRow className="bg-gray-50 dark:bg-boxdark-2/50">
 													<TableHead className="font-semibold">Référence</TableHead>
 													<TableHead className="font-semibold">Type</TableHead>
 													<TableHead className="font-semibold">Contrepartie</TableHead>
 													<TableHead className="font-semibold">Montant</TableHead>
-													<TableHead className="font-semibold">Statut</TableHead>
-													<TableHead className="font-semibold">Date</TableHead>
-												</TableRow>
-											</TableHeader>
-											<TableBody>
+													<TableHead className=
 												{partnerTransfers.map((transfer) => (
-													<TableRow key={transfer.uid} className="hover:bg-gray-50 dark:hover:bg-gray-900/50">
-														<TableCell>
+													<TableRow key={transfer.uid} className="hover:bg-gray-50 dark:hover:bg-boxdark-2/50">
+														<TableCell data-label="Partenaire">
 															<div className="flex items-center space-x-2">
-																<Copy className="h-4 w-4 text-gray-400" />
-																<span className="text-sm font-mono text-gray-700 dark:text-gray-300">
+																<Copy className="h-4 w-4 text-bodydark2" />
+																<span className="text-sm font-mono text-gray-700 dark:text-bodydark">
 																	{transfer.reference}
 																</span>
 															</div>
 														</TableCell>
-														<TableCell>
+														<TableCell data-label="E-mail">
 															<Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300">
 																{transfer.sender === transferPartner?.id ? 'Envoi' : 'Réception'}
 															</Badge>
 														</TableCell>
-														<TableCell>
-															<div className="flex items-center space-x-3">
-																<div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-green-600 rounded-full flex items-center justify-center text-white font-semibold text-xs">
+														<TableCell data-label="Statut">
+															<div className="flex flex-wrap items-center gap-2 sm:gap-3">
+																<div className="w-8 h-8 bg-gradient-to-br from-primary to-meta-3 rounded-full flex items-center justify-center text-white font-semibold text-xs">
 																	{(transfer.sender === transferPartner?.id ? transfer.receiver_name : transfer.sender_name)?.charAt(0)?.toUpperCase() || 'U'}
 																</div>
 																<div>
 																	<div className="font-medium text-gray-900 dark:text-gray-100 text-sm">
 																		{transfer.sender === transferPartner?.id ? transfer.receiver_name : transfer.sender_name}
 																	</div>
-																	<div className="text-xs text-gray-500 dark:text-gray-400">
+																	<div className="text-xs text-body dark:text-bodydark2">
 																		{transfer.sender === transferPartner?.id ? transfer.receiver_email : transfer.sender_email}
 																	</div>
 																</div>
 															</div>
 														</TableCell>
-														<TableCell>
+														<TableCell data-label="USSD">
 															<div className="flex items-center space-x-1">
-																<DollarSign className="h-4 w-4 text-gray-400" />
-																<span className={`font-medium ${transfer.sender === transferPartner?.id ? 'text-red-600' : 'text-green-600'}`}>
+																<DollarSign className="h-4 w-4 text-bodydark2" />
+																<span className={`font-medium ${transfer.sender === transferPartner?.id ? 'text-red-600' : 'text-meta-3'}`}>
 																	{transfer.sender === transferPartner?.id ? '-' : '+'}XOF {parseFloat(transfer.amount).toFixed(2)}
 																</span>
 															</div>
 														</TableCell>
-														<TableCell>
+														<TableCell data-label="Commission">
 															{transfer.status === 'completed' ? (
 																<Badge className="bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300">
 																	<div className="flex items-center space-x-1">
@@ -1087,13 +1083,20 @@ function PartnerPageContent() {
 																</Badge>
 															)}
 														</TableCell>
-														<TableCell>
+														<TableCell data-label="Solde Compte">
 															<div className="flex items-center space-x-2">
-																<Calendar className="h-4 w-4 text-gray-400" />
-																<span className="text-sm text-gray-600 dark:text-gray-400">
+																<Calendar className="h-4 w-4 text-bodydark2" />
+																<span className="text-sm text-body dark:text-bodydark2">
 																	{transfer.created_at
 																		? new Date(transfer.created_at).toLocaleDateString()
 																		: 'Inconnu'
+																	}
+																</span>
+															</div>
+														</TableCell>
+													</TableRow>
+												))}
+																													: 'Inconnu'
 																	}
 																</span>
 															</div>
@@ -1119,7 +1122,7 @@ function PartnerPageContent() {
 							</DialogTitle>
 						</DialogHeader>
 						{accountTransactionsLoading ? (
-							<div className="flex items-center justify-center py-8">
+							<div className="flex items-center justify-center py-4 sm:py-6">
 								<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
 							</div>
 						) : accountTransactionsError ? (
@@ -1129,23 +1132,23 @@ function PartnerPageContent() {
 								{/* User Info Card */}
 								{accountTransactionsUserInfo && (
 									<Card className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 border-indigo-200 dark:border-indigo-700">
-										<CardContent className="p-6">
-											<div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+										<CardContent className="p-3 sm:p-4 md:p-6">
+											<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
 												<div>
-													<p className="text-sm font-medium text-gray-600 dark:text-gray-400">Nom</p>
+													<p className="text-sm font-medium text-body dark:text-bodydark2">Nom</p>
 													<p className="text-lg font-bold text-indigo-600">{accountTransactionsUserInfo.display_name || 'N/A'}</p>
 												</div>
 												<div>
-													<p className="text-sm font-medium text-gray-600 dark:text-gray-400">Email</p>
+													<p className="text-sm font-medium text-body dark:text-bodydark2">Email</p>
 													<p className="text-sm text-gray-900 dark:text-gray-100">{accountTransactionsUserInfo.email || 'N/A'}</p>
 												</div>
 												<div>
-													<p className="text-sm font-medium text-gray-600 dark:text-gray-400">Téléphone</p>
+													<p className="text-sm font-medium text-body dark:text-bodydark2">Téléphone</p>
 													<p className="text-sm text-gray-900 dark:text-gray-100">{accountTransactionsUserInfo.phone || 'N/A'}</p>
 												</div>
 												<div>
-													<p className="text-sm font-medium text-gray-600 dark:text-gray-400">Solde Actuel</p>
-													<p className="text-lg font-bold text-green-600">{parseFloat(accountTransactionsUserInfo.current_balance || 0).toFixed(2)} FCFA</p>
+													<p className="text-sm font-medium text-body dark:text-bodydark2">Solde Actuel</p>
+													<p className="text-lg font-bold text-meta-3">{parseFloat(accountTransactionsUserInfo.current_balance || 0).toFixed(2)} FCFA</p>
 												</div>
 											</div>
 										</CardContent>
@@ -1153,40 +1156,34 @@ function PartnerPageContent() {
 								)}
 
 								{accountTransactions.length === 0 ? (
-									<div className="text-center py-8">
-										<History className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-										<h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+									<div className="text-center py-4 sm:py-6">
+										<History className="h-12 w-12 text-bodydark2 mx-auto mb-4" />
+										<h3 className="text-sm font-medium sm:text-base text-gray-900 dark:text-gray-100 mb-2">
 											Aucune transaction trouvée
 										</h3>
-										<p className="text-gray-500 dark:text-gray-400">
+										<p className="text-body dark:text-bodydark2">
 											Ce compte n'a effectué aucune transaction.
 										</p>
 									</div>
 								) : (
 									<>
-										<div className="flex items-center justify-between mb-4">
-											<p className="text-sm text-gray-600 dark:text-gray-400">
+										<div className="flex flex-wrap items-start justify-between gap-3 sm:items-center mb-4">
+											<p className="text-sm text-body dark:text-bodydark2">
 												Total: {accountTransactionsCount} transactions
 											</p>
 										</div>
 										<div className="overflow-x-auto">
 											<Table>
 												<TableHeader>
-													<TableRow className="bg-gray-50 dark:bg-gray-900/50">
+													<TableRow className="bg-gray-50 dark:bg-boxdark-2/50">
 														<TableHead className="font-semibold">Type</TableHead>
 														<TableHead className="font-semibold">Référence</TableHead>
 														<TableHead className="font-semibold">Montant</TableHead>
 														<TableHead className="font-semibold">Solde Avant</TableHead>
-														<TableHead className="font-semibold">Solde Après</TableHead>
-														<TableHead className="font-semibold">Description</TableHead>
-														<TableHead className="font-semibold">Transaction Liée</TableHead>
-														<TableHead className="font-semibold">Date</TableHead>
-													</TableRow>
-												</TableHeader>
-												<TableBody>
+														<TableHead className="font-semibold">Solde Après</Tab
 													{accountTransactions.map((transaction) => (
-														<TableRow key={transaction.uid} className="hover:bg-gray-50 dark:hover:bg-gray-900/50">
-															<TableCell>
+														<TableRow key={transaction.uid} className="hover:bg-gray-50 dark:hover:bg-boxdark-2/50">
+															<TableCell data-label="Partenaire">
 																<Badge className={transaction.is_credit
 																	? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300"
 																	: "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300"
@@ -1194,53 +1191,63 @@ function PartnerPageContent() {
 																	{transaction.type_display}
 																</Badge>
 															</TableCell>
-															<TableCell>
+															<TableCell data-label="E-mail">
 																<div className="flex items-center space-x-2">
-																	<Copy className="h-4 w-4 text-gray-400" />
-																	<span className="text-sm font-mono text-gray-700 dark:text-gray-300">
+																	<Copy className="h-4 w-4 text-bodydark2" />
+																	<span className="text-sm font-mono text-gray-700 dark:text-bodydark">
 																		{transaction.reference}
 																	</span>
 																</div>
 															</TableCell>
-															<TableCell>
+															<TableCell data-label="Statut">
 																<div className="flex items-center space-x-1">
-																	<DollarSign className={`h-4 w-4 ${transaction.is_credit ? 'text-green-600' : 'text-red-600'}`} />
-																	<span className={`font-medium ${transaction.is_credit ? 'text-green-600' : 'text-red-600'}`}>
+																	<DollarSign className={`h-4 w-4 ${transaction.is_credit ? 'text-meta-3' : 'text-red-600'}`} />
+																	<span className={`font-medium ${transaction.is_credit ? 'text-meta-3' : 'text-red-600'}`}>
 																		{transaction.formatted_amount || `${transaction.is_credit ? '+' : '-'}${parseFloat(transaction.amount).toFixed(2)} FCFA`}
 																	</span>
 																</div>
 															</TableCell>
-															<TableCell>
-																<span className="text-sm text-gray-600 dark:text-gray-400">
+															<TableCell data-label="USSD">
+																<span className="text-sm text-body dark:text-bodydark2">
 																	{parseFloat(transaction.balance_before).toFixed(2)} FCFA
 																</span>
 															</TableCell>
-															<TableCell>
-																<span className="text-sm text-gray-600 dark:text-gray-400">
+															<TableCell data-label="Commission">
+																<span className="text-sm text-body dark:text-bodydark2">
 																	{parseFloat(transaction.balance_after).toFixed(2)} FCFA
 																</span>
 															</TableCell>
-															<TableCell>
-																<span className="text-sm text-gray-700 dark:text-gray-300">
+															<TableCell data-label="Solde Compte">
+																<span className="text-sm text-gray-700 dark:text-bodydark">
 																	{transaction.description}
 																</span>
 															</TableCell>
-															<TableCell>
+															<TableCell data-label="Rejoint">
 																{transaction.related_payment_reference ? (
 																	<div className="flex items-center space-x-2">
-																		<Copy className="h-3 w-3 text-gray-400" />
-																		<span className="text-xs font-mono text-gray-600 dark:text-gray-400">
+																		<Copy className="h-3 w-3 text-bodydark2" />
+																		<span className="text-xs font-mono text-body dark:text-bodydark2">
 																			{transaction.related_payment_reference}
 																		</span>
 																	</div>
 																) : (
-																	<span className="text-xs text-gray-400">N/A</span>
+																	<span className="text-xs text-bodydark2">N/A</span>
 																)}
 															</TableCell>
-															<TableCell>
+															<TableCell data-label="Actions">
 																<div className="flex items-center space-x-2">
-																	<Calendar className="h-4 w-4 text-gray-400" />
-																	<span className="text-sm text-gray-600 dark:text-gray-400">
+																	<Calendar className="h-4 w-4 text-bodydark2" />
+																	<span className="text-sm text-body dark:text-bodydark2">
+																		{transaction.created_at
+																			? new Date(transaction.created_at).toLocaleString()
+																			: 'Inconnu'
+																		}
+																	</span>
+																</div>
+															</TableCell>
+														</TableRow>
+													))}
+												odydark2">
 																		{transaction.created_at
 																			? new Date(transaction.created_at).toLocaleString()
 																			: 'Inconnu'
@@ -1256,7 +1263,7 @@ function PartnerPageContent() {
 
 										{/* Pagination */}
 										{(accountTransactionsNext || accountTransactionsPrevious) && (
-											<div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+											<div className="flex flex-wrap items-start justify-between gap-3 sm:items-center pt-4 border-t border-stroke dark:border-strokedark">
 												<Button
 													variant="outline"
 													size="sm"
@@ -1271,7 +1278,7 @@ function PartnerPageContent() {
 													<ChevronLeft className="h-4 w-4 mr-1" />
 													Précédent
 												</Button>
-												<div className="text-sm text-gray-600 dark:text-gray-400">
+												<div className="text-sm text-body dark:text-bodydark2">
 													Page {accountTransactionsCurrentPage} ({accountTransactionsCount} total)
 												</div>
 												<Button
@@ -1302,13 +1309,13 @@ function PartnerPageContent() {
 					<DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
 						<DialogHeader>
 							<DialogTitle className="flex items-center space-x-2">
-								<TrendingUp className="h-5 w-5 text-orange-600" />
+								<TrendingUp className="h-5 w-5 text-primary" />
 								<span>Commissions de Paris - {bettingCommissionPartner?.display_name || 'Partenaire'}</span>
 							</DialogTitle>
 						</DialogHeader>
 						{bettingCommissionLoading ? (
-							<div className="flex items-center justify-center py-8">
-								<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600"></div>
+							<div className="flex items-center justify-center py-4 sm:py-6">
+								<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
 							</div>
 						) : bettingCommissionError ? (
 							<ErrorDisplay error={bettingCommissionError} />
@@ -1317,15 +1324,15 @@ function PartnerPageContent() {
 								{/* Partner Balance */}
 								{partnerAccountInfo && (
 									<Card className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-700">
-										<CardContent className="p-6">
-											<div className="flex items-center justify-between">
-												<div className="flex items-center space-x-3">
+										<CardContent className="p-3 sm:p-4 md:p-6">
+											<div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
+												<div className="flex flex-wrap items-center gap-2 sm:gap-3">
 													<div className="p-3 bg-green-100 dark:bg-green-900 rounded-lg">
-														<Wallet className="h-6 w-6 text-green-600" />
+														<Wallet className="h-6 w-6 text-meta-3" />
 													</div>
 													<div>
-														<p className="text-sm font-medium text-gray-600 dark:text-gray-400">Solde du Compte</p>
-														<p className="text-2xl font-bold text-green-600">{partnerAccountInfo.formatted_balance}</p>
+														<p className="text-sm font-medium text-body dark:text-bodydark2">Solde du Compte</p>
+														<p className="text-lg font-bold sm:text-xl text-meta-3">{partnerAccountInfo.formatted_balance}</p>
 													</div>
 												</div>
 											</div>
@@ -1337,7 +1344,7 @@ function PartnerPageContent() {
 								{bettingCommissionStats && bettingCommissionStats.commissions && (
 									<div className="space-y-4">
 										{/* First Row - Main Stats */}
-										<div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+										<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
 											<Card className="bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-700">
 												<CardContent className="p-4">
 													<div className="flex items-center space-x-2">
@@ -1352,21 +1359,21 @@ function PartnerPageContent() {
 											<Card className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-700">
 												<CardContent className="p-4">
 													<div className="flex items-center space-x-2">
-														<TrendingUp className="h-5 w-5 text-green-600" />
+														<TrendingUp className="h-5 w-5 text-meta-3" />
 														<div>
 															<p className="text-sm font-medium text-green-800 dark:text-green-300">Total Gagné</p>
-															<p className="text-lg font-bold text-green-600">XOF {parseFloat(bettingCommissionStats.commissions.total_earned || 0).toFixed(2)}</p>
+															<p className="text-lg font-bold text-meta-3">XOF {parseFloat(bettingCommissionStats.commissions.total_earned || 0).toFixed(2)}</p>
 														</div>
 													</div>
 												</CardContent>
 											</Card>
-											<Card className="bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-700">
+											<Card className="bg-gray dark:bg-orange-900/20 border-stroke dark:border-orange-700">
 												<CardContent className="p-4">
 													<div className="flex items-center space-x-2">
-														<CheckCircle className="h-5 w-5 text-orange-600" />
+														<CheckCircle className="h-5 w-5 text-primary" />
 														<div>
-															<p className="text-sm font-medium text-orange-800 dark:text-orange-300">Commission Payée</p>
-															<p className="text-lg font-bold text-orange-600">XOF {parseFloat(bettingCommissionStats.commissions.total_paid || 0).toFixed(2)}</p>
+															<p className="text-sm font-medium text-orange-800 dark:text-secondary">Commission Payée</p>
+															<p className="text-lg font-bold text-primary">XOF {parseFloat(bettingCommissionStats.commissions.total_paid || 0).toFixed(2)}</p>
 														</div>
 													</div>
 												</CardContent>
@@ -1385,7 +1392,7 @@ function PartnerPageContent() {
 										</div>
 
 										{/* Second Row - Additional Stats */}
-										<div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+										<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
 											<Card className="bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-700">
 												<CardContent className="p-4">
 													<div className="flex items-center space-x-2">
@@ -1435,10 +1442,10 @@ function PartnerPageContent() {
 								)}
 
 								{/* Commission Configuration Form */}
-								<Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
+								<Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
 									<CardHeader>
 										<CardTitle className="flex items-center space-x-2">
-											<Settings className="h-5 w-5 text-orange-600" />
+											<Settings className="h-5 w-5 text-primary" />
 											<span>Configuration des Commissions</span>
 										</CardTitle>
 									</CardHeader>
@@ -1481,11 +1488,11 @@ function PartnerPageContent() {
 												</div>
 											</div>
 
-											<div className="flex items-center space-x-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+											<div className="flex items-center gap-2 sm:gap-4 pt-4 border-t border-stroke dark:border-strokedark">
 												<Button
 													type="submit"
 													disabled={bettingCommissionLoading}
-													className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+													className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white"
 												>
 													{bettingCommissionLoading ? (
 														<>
@@ -1519,35 +1526,35 @@ function PartnerPageContent() {
 
 								{/* Current Configuration Display */}
 								{bettingCommissionConfig && (
-									<Card className="bg-gray-50 dark:bg-gray-700 border-0 shadow-lg">
+									<Card className="bg-gray-50 dark:bg-meta-4 border-0 shadow-lg">
 										<CardHeader>
 											<CardTitle className="flex items-center space-x-2">
-												<CheckCircle className="h-5 w-5 text-green-600" />
+												<CheckCircle className="h-5 w-5 text-meta-3" />
 												<span>Configuration Actuelle</span>
 											</CardTitle>
 										</CardHeader>
 										<CardContent>
 											<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 												<div>
-													<span className="text-sm font-medium text-gray-600 dark:text-gray-400">Taux de Commission Dépôt:</span>
+													<span className="text-sm font-medium text-body dark:text-bodydark2">Taux de Commission Dépôt:</span>
 													<p className="text-lg font-semibold text-gray-900 dark:text-gray-100">
 														{bettingCommissionConfig.deposit_commission_rate}%
 													</p>
 												</div>
 												<div>
-													<span className="text-sm font-medium text-gray-600 dark:text-gray-400">Taux de Commission Retrait:</span>
+													<span className="text-sm font-medium text-body dark:text-bodydark2">Taux de Commission Retrait:</span>
 													<p className="text-lg font-semibold text-gray-900 dark:text-gray-100">
 														{bettingCommissionConfig.withdrawal_commission_rate}%
 													</p>
 												</div>
 												<div>
-													<span className="text-sm font-medium text-gray-600 dark:text-gray-400">Mis à jour par:</span>
+													<span className="text-sm font-medium text-body dark:text-bodydark2">Mis à jour par:</span>
 													<p className="text-sm text-gray-900 dark:text-gray-100">
 														{bettingCommissionConfig.updated_by_name}
 													</p>
 												</div>
 												<div>
-													<span className="text-sm font-medium text-gray-600 dark:text-gray-400">Dernière mise à jour:</span>
+													<span className="text-sm font-medium text-body dark:text-bodydark2">Dernière mise à jour:</span>
 													<p className="text-sm text-gray-900 dark:text-gray-100">
 														{bettingCommissionConfig.updated_at
 															? new Date(bettingCommissionConfig.updated_at).toLocaleString()
@@ -1569,7 +1576,7 @@ function PartnerPageContent() {
 					<DialogContent className="max-w-2xl">
 						<DialogHeader>
 							<DialogTitle className="flex items-center space-x-2">
-								<CreditCard className="h-5 w-5 text-green-600" />
+								<CreditCard className="h-5 w-5 text-meta-3" />
 								<span>Payer Commission de Paris</span>
 							</DialogTitle>
 						</DialogHeader>
@@ -1580,11 +1587,11 @@ function PartnerPageContent() {
 								</div>
 							)}
 
-							<div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg">
-								<h3 className="font-medium text-orange-800 dark:text-orange-300 mb-2">
+							<div className="bg-gray dark:bg-orange-900/20 p-4 rounded-lg">
+								<h3 className="font-medium text-orange-800 dark:text-secondary mb-2">
 									Partennaire: {bettingCommissionPartner?.display_name}
 								</h3>
-								<p className="text-sm text-orange-700 dark:text-orange-400">
+								<p className="text-sm text-orange-700 dark:text-primary">
 									Cette action va payer toutes les commissions impayées pour ce partenaire.
 								</p>
 							</div>
@@ -1601,7 +1608,7 @@ function PartnerPageContent() {
 										onChange={(e) => setBettingCommissionPaymentForm(prev => ({ ...prev, amount: e.target.value }))}
 										className="mt-1"
 									/>
-									<p className="text-xs text-gray-500 mt-1">Si vide, tout le solde impayé sera payé.</p>
+									<p className="text-xs text-body mt-1">Si vide, tout le solde impayé sera payé.</p>
 								</div>
 								<div>
 									<Label htmlFor="admin_notes">Notes Administrateur</Label>
@@ -1616,11 +1623,11 @@ function PartnerPageContent() {
 								</div>
 							</div>
 
-							<div className="flex items-center space-x-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+							<div className="flex items-center gap-2 sm:gap-4 pt-6 border-t border-stroke dark:border-strokedark">
 								<Button
 									type="submit"
 									disabled={bettingCommissionPaymentLoading}
-									className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white"
+									className="bg-gradient-to-r from-meta-3 to-meta-3 hover:from-meta-3 hover:to-green-700 text-white"
 								>
 									{bettingCommissionPaymentLoading ? (
 										<>
@@ -1715,7 +1722,7 @@ function PartnerPageContent() {
 								/>
 							</div>
 
-							<div className="flex items-center space-x-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+							<div className="flex items-center gap-2 sm:gap-4 pt-6 border-t border-stroke dark:border-strokedark">
 								<Button
 									type="submit"
 									disabled={grantPermissionLoading}
@@ -1757,7 +1764,7 @@ import { getApiBaseUrl } from "@/lib/env-config"
 
 export default function PartnerPage() {
   return (
-    <Suspense fallback={<div className="flex justify-center items-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div></div>}>
+    <Suspense fallback={<div className="flex justify-center items-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
       <PartnerPageContent />
     </Suspense>
   )

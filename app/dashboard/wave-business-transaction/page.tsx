@@ -34,12 +34,12 @@ import { DateRangeFilter } from "@/components/ui/date-range-filter"
 
 // Colors for consistent theming - using logo colors
 const COLORS = {
-  primary: '#FF6B35', // Orange (primary from logo)
-  secondary: '#00FF88', // Bright green from logo
+  primary: '#194185', // Orange (primary from logo)
+  secondary: '#10B981', // Bright green from logo
   accent: '#1E3A8A', // Dark blue from logo
   danger: '#EF4444',
   warning: '#F97316',
-  success: '#00FF88', // Using bright green for success
+  success: '#10B981', // Using bright green for success
   info: '#1E3A8A', // Using dark blue for info
   purple: '#8B5CF6',
   pink: '#EC4899',
@@ -302,21 +302,21 @@ function WaveBusinessPageContent() {
         )
       case "confirmed":
         return (
-          <Badge className="bg-green-100 text-green-500 dark:bg-green-900/20 dark:text-green-300">
+          <Badge className="bg-green-100 text-meta-3 dark:bg-green-900/20 dark:text-green-300">
             <CheckCircle className="h-3 w-3 mr-1" />
             Confirmé
           </Badge>
         )
       case "cancelled":
         return (
-          <Badge className="bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-300">
+          <Badge className="bg-gray-100 text-gray-800 dark:bg-boxdark-2/20 dark:text-bodydark">
             <XCircle className="h-3 w-3 mr-1" />
             Annulé
           </Badge>
         )
       default:
         return (
-          <Badge className="bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-300">
+          <Badge className="bg-gray-100 text-gray-800 dark:bg-boxdark-2/20 dark:text-bodydark">
             {status}
           </Badge>
         )
@@ -434,25 +434,25 @@ function WaveBusinessPageContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+      <div className="w-full">
 
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+              <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
                 <span>Transactions Wave Business</span>
               </h1>
-              <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+              <p className="text-body dark:text-bodydark mt-2 text-lg">
                 <span>Gérer et surveiller les transactions Wave Business</span>
               </p>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="bg-white dark:bg-gray-800 rounded-lg px-4 py-2 shadow-sm">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="bg-white dark:bg-boxdark rounded-lg px-4 py-2 shadow-sm">
                 <div className="flex items-center space-x-2">
-                  <DollarSign className="h-5 w-5 text-green-600" />
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <DollarSign className="h-5 w-5 text-meta-3" />
+                  <span className="text-sm font-medium text-gray-700 dark:text-bodydark">
                     <span>{totalCount} transactions</span>
                   </span>
                 </div>
@@ -462,34 +462,34 @@ function WaveBusinessPageContent() {
         </div>
 
         {/* Filters and Search */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-          <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+          <CardContent className="p-3 sm:p-4 md:p-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2 sm:gap-4">
               {/* Search */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-bodydark2" />
                 <Input
                   placeholder="Rechercher par référence..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                  className="pl-10 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                 />
               </div>
 
               {/* Phone Filter */}
               <div className="relative">
-                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-bodydark2" />
                 <Input
                   placeholder="Filtrer par téléphone..."
                   value={phoneFilter}
                   onChange={(e) => setPhoneFilter(e.target.value)}
-                  className="pl-10 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                  className="pl-10 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                 />
               </div>
 
               {/* Status Filter */}
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                   <SelectValue placeholder="Tous les statuts" />
                 </SelectTrigger>
                 <SelectContent>
@@ -502,13 +502,13 @@ function WaveBusinessPageContent() {
               </Select>
 
               {/* Include Expired Switch */}
-              <div className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 p-3 bg-gray-50 dark:bg-meta-4 rounded-lg border border-stroke dark:border-strokedark">
                 <Switch
                   id="include-expired"
                   checked={includeExpired}
                   onCheckedChange={setIncludeExpired}
                 />
-                <label htmlFor="include-expired" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label htmlFor="include-expired" className="text-sm font-medium text-gray-700 dark:text-bodydark">
                   Inclure les expirés
                 </label>
               </div>
@@ -527,8 +527,8 @@ function WaveBusinessPageContent() {
                 className="col-span-1"
               />
             </div>
-            <div className="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
-              <Filter className="h-4 w-4 text-gray-500" />
+            <div className="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-gray-100 dark:border-strokedark">
+              <Filter className="h-4 w-4 text-body" />
               <Select
                 value={`${sortField || "created_at"}:${sortDirection}`}
                 onValueChange={(v) => {
@@ -539,7 +539,7 @@ function WaveBusinessPageContent() {
                   updateUrl({ sort_field: field, sort_dir: dir, page: 1 })
                 }}
               >
-                <SelectTrigger className="w-[200px] h-9 bg-gray-50 dark:bg-gray-700">
+                <SelectTrigger className="w-[200px] h-9 bg-gray-50 dark:bg-meta-4">
                   <SelectValue placeholder="Tri" />
                 </SelectTrigger>
                 <SelectContent>
@@ -574,25 +574,25 @@ function WaveBusinessPageContent() {
         </BulkActionBar>
 
         {/* Transactions Table */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-          <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+          <CardHeader className="border-b border-gray-100 dark:border-strokedark">
             <CardTitle className="flex items-center space-x-2">
-              <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                <DollarSign className="h-5 w-5 text-orange-600 dark:text-orange-300" />
+              <div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                <DollarSign className="h-5 w-5 text-primary dark:text-secondary" />
               </div>
               <span>Liste des Transactions</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             {loading ? (
-              <div className="flex items-center justify-center py-12">
+              <div className="flex items-center justify-center py-6 sm:py-10">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-                  <span className="text-gray-600 dark:text-gray-300"><span>Chargement des transactions...</span></span>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                  <span className="text-body dark:text-bodydark"><span>Chargement des transactions...</span></span>
                 </div>
               </div>
             ) : error ? (
-              <div className="p-6 text-center">
+              <div className="p-3 sm:p-4 md:p-6 text-center">
                 <ErrorDisplay
                   error={error}
                   onRetry={() => {
@@ -607,7 +607,7 @@ function WaveBusinessPageContent() {
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-gray-50 dark:bg-gray-900/50">
+                    <TableRow className="bg-gray-50 dark:bg-boxdark-2/50">
                       <TableHead className="w-10">
                         <Checkbox
                           checked={selection.allSelected ? true : selection.someSelected ? "indeterminate" : false}
@@ -626,7 +626,13 @@ function WaveBusinessPageContent() {
                   </TableHeader>
                   <TableBody>
                     {transactions.map((transaction) => (
-                      <TableRow key={transaction.uid} className="hover:bg-gray-50 dark:hover:bg-gray-900/50">
+                      <TableRow key={transaction.uid} className={`transition-colors hover:brightness-95 ${
+                        ["completed","success","confirmed"].includes(transaction.status) ? "bg-meta-3/5 dark:bg-meta-3/10 border-l-4 border-l-meta-3" :
+                        ["pending"].includes(transaction.status) ? "bg-warning/5 dark:bg-warning/10 border-l-4 border-l-warning" :
+                        ["processing","sent_to_user"].includes(transaction.status) ? "bg-primary/5 dark:bg-primary/10 border-l-4 border-l-primary" :
+                        ["failed","cancelled","timeout"].includes(transaction.status) ? "bg-danger/5 dark:bg-danger/10 border-l-4 border-l-danger" :
+                        ["expired"].includes(transaction.status) ? "bg-gray dark:bg-meta-4/30 border-l-4 border-l-bodydark2" : ""
+                      }`}>
                         <TableCell>
                           <Checkbox
                             checked={selection.selected.has(transaction.uid)}
@@ -634,17 +640,17 @@ function WaveBusinessPageContent() {
                             aria-label={`Sélectionner ${transaction.reference}`}
                           />
                         </TableCell>
-                        <TableCell className="font-mono text-sm">
+                        <TableCell className="font-mono text-sm" data-label="Date d'expiration">
                           <div className="flex items-center space-x-2">
-                            <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-green-600 rounded-full flex items-center justify-center text-white font-semibold text-xs">
+                            <div className="w-8 h-8 bg-gradient-to-br from-primary to-meta-3 rounded-full flex items-center justify-center text-white font-semibold text-xs">
                               {transaction.reference.charAt(0).toUpperCase()}
                             </div>
                             <span>{transaction.reference}</span>
                           </div>
                         </TableCell>
-                        <TableCell className="font-medium">
+                        <TableCell className="font-medium" data-label="Actions">
                           <div className="flex items-center space-x-2">
-                            {/* <DollarSign className="h-4 w-4 text-green-600" /> */}
+                            {/* <DollarSign className="h-4 w-4 text-meta-3" /> */}
                             <span>{formatAmount(transaction.amount)}</span>
                           </div>
                         </TableCell>
@@ -659,12 +665,12 @@ function WaveBusinessPageContent() {
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center space-x-2">
-                            <Calendar className="h-4 w-4 text-gray-400" />
+                            <Calendar className="h-4 w-4 text-bodydark2" />
                             <div className="flex flex-col">
-                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                              <span className="text-sm font-medium text-gray-700 dark:text-bodydark">
                                 {new Date(transaction.created_at).toLocaleDateString()}
                               </span>
-                              <span className="text-xs text-gray-500 dark:text-gray-400">
+                              <span className="text-xs text-body dark:text-bodydark2">
                                 {new Date(transaction.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                               </span>
                             </div>
@@ -672,48 +678,38 @@ function WaveBusinessPageContent() {
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center space-x-2">
-                            <Clock className="h-4 w-4 text-orange-600" />
+                            <Clock className="h-4 w-4 text-primary" />
                             <span>{formatDate(transaction.expires_at)}</span>
                           </div>
                         </TableCell>
-                        <TableCell className="text-right">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                                <MoreHorizontal className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700">
-                              <DropdownMenuItem onClick={() => handleOpenDetail(transaction)} className="cursor-pointer">
-                                <Eye className="mr-2 h-4 w-4" />
-                                Voir les détails
-                              </DropdownMenuItem>
-                              {["pending", "expired"].includes(transaction.status) && (
-                                <DropdownMenuItem
-                                  onClick={() => {
-                                    setSelectedTransactionForSuccess(transaction);
-                                    setSuccessModalOpen(true);
-                                  }}
-                                  className="cursor-pointer text-green-600 focus:text-green-700 focus:bg-green-50 dark:focus:bg-green-900/20"
-                                >
-                                  <CheckCircle className="mr-2 h-4 w-4" />
-                                  Marquer comme succès
-                                </DropdownMenuItem>
-                              )}
-                              {["pending", "confirmed", "accept", "successfull"].includes(transaction.status) && (
-                                <DropdownMenuItem
-                                  onClick={() => {
-                                    setSelectedTransactionForFailed(transaction);
-                                    setFailedModalOpen(true);
-                                  }}
-                                  className="cursor-pointer text-red-600 focus:text-red-700 focus:bg-red-50 dark:focus:bg-red-900/20"
-                                >
-                                  <XCircle className="mr-2 h-4 w-4" />
-                                  Marquer comme échoué
-                                </DropdownMenuItem>
-                              )}
-                            </DropdownMenuContent>
-                          </DropdownMenu>
+                        <TableCell className="text-right" data-label="Actions">
+                          <div className="flex flex-wrap gap-1.5">
+                            <button
+                              onClick={() => handleOpenDetail(transaction)}
+                              className="inline-flex items-center gap-1.5 rounded-md border border-stroke bg-white px-2.5 py-1.5 text-xs font-medium text-body shadow-sm hover:border-primary hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-bodydark"
+                            >
+                              <Eye className="h-3.5 w-3.5 flex-shrink-0" />
+                              Détails
+                            </button>
+                            {["pending", "expired"].includes(transaction.status) && (
+                              <button
+                                onClick={() => { setSelectedTransactionForSuccess(transaction); setSuccessModalOpen(true); }}
+                                className="inline-flex items-center gap-1.5 rounded-md bg-meta-3 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-opacity-90"
+                              >
+                                <CheckCircle className="h-3.5 w-3.5 flex-shrink-0" />
+                                Succès
+                              </button>
+                            )}
+                            {["pending", "confirmed", "accept", "successfull"].includes(transaction.status) && (
+                              <button
+                                onClick={() => { setSelectedTransactionForFailed(transaction); setFailedModalOpen(true); }}
+                                className="inline-flex items-center gap-1.5 rounded-md bg-danger px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-opacity-90"
+                              >
+                                <XCircle className="h-3.5 w-3.5 flex-shrink-0" />
+                                Échoué
+                              </button>
+                            )}
+                          </div>
                         </TableCell>
                       </TableRow>
                     ))}
@@ -726,8 +722,8 @@ function WaveBusinessPageContent() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-between mt-6">
-            <div className="text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center mt-6">
+            <div className="text-sm text-body dark:text-bodydark2">
               Résultats affichés : {startIndex + 1}-{Math.min(startIndex + itemsPerPage, totalCount)} sur {totalCount}
             </div>
             <div className="flex items-center space-x-2">
@@ -736,7 +732,7 @@ function WaveBusinessPageContent() {
                 size="sm"
                 onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}
-                className="border-gray-200 dark:border-gray-600"
+                className="border-stroke dark:border-strokedark"
               >
                 <ChevronLeft className="h-4 w-4" />
                 <span>Précédent</span>
@@ -754,7 +750,7 @@ function WaveBusinessPageContent() {
                   
                   return pages.map((page, index) => {
                     if (page === '...') {
-                      return <span key={`ellipsis-${index}`} className="px-2 text-gray-500 text-sm">...</span>;
+                      return <span key={`ellipsis-${index}`} className="px-2 text-body text-sm">...</span>;
                     }
                     return (
                       <Button
@@ -762,7 +758,7 @@ function WaveBusinessPageContent() {
                         variant={currentPage === page ? "default" : "outline"}
                         size="sm"
                         onClick={() => handlePageChange(page as number)}
-                        className={currentPage === page ? "bg-orange-500 hover:bg-orange-600 text-white border-orange-500" : "border-gray-200 dark:border-gray-600"}
+                        className={currentPage === page ? "bg-primary hover:bg-primary text-white border-primary" : "border-stroke dark:border-strokedark"}
                       >
                         {page}
                       </Button>
@@ -775,7 +771,7 @@ function WaveBusinessPageContent() {
                 size="sm"
                 onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
                 disabled={currentPage === totalPages}
-                className="border-gray-200 dark:border-gray-600"
+                className="border-stroke dark:border-strokedark"
               >
                 <span>Suivant</span>
                 <ChevronRight className="h-4 w-4" />
@@ -786,20 +782,20 @@ function WaveBusinessPageContent() {
 
         {/* Modal des détails de la transaction */}
         <Dialog open={detailModalOpen} onOpenChange={(open) => { if (!open) handleCloseDetail() }}>
-          <DialogContent className="bg-white dark:bg-gray-800 border-0 shadow-xl max-w-2xl">
+          <DialogContent className="bg-white dark:bg-boxdark border-0 shadow-xl max-w-2xl">
             <DialogHeader>
               <DialogTitle className="flex items-center space-x-2">
-                <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                  <Eye className="h-5 w-5 text-orange-600" />
+                <div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                  <Eye className="h-5 w-5 text-primary" />
                 </div>
                 <span>Détails de la transaction</span>
               </DialogTitle>
             </DialogHeader>
             {detailLoading ? (
-              <div className="flex items-center justify-center py-12">
+              <div className="flex items-center justify-center py-6 sm:py-10">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-                  <span className="text-gray-600 dark:text-gray-300"><span>Chargement des détails...</span></span>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                  <span className="text-body dark:text-bodydark"><span>Chargement des détails...</span></span>
                 </div>
               </div>
             ) : detailError ? (
@@ -812,12 +808,12 @@ function WaveBusinessPageContent() {
             ) : detailTransaction ? (
               <div className="space-y-4 max-h-96 overflow-y-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 p-3 bg-gray-50 dark:bg-boxdark-2/50 rounded-lg">
                     <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
                       <DollarSign className="h-4 w-4 text-blue-600" />
                     </div>
                     <div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">UID</div>
+                      <div className="text-sm text-body dark:text-bodydark2">UID</div>
                       <div className="flex items-center space-x-2">
                         <span className="font-mono text-sm font-medium">{detailTransaction.uid}</span>
                         <Button
@@ -832,12 +828,12 @@ function WaveBusinessPageContent() {
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 p-3 bg-gray-50 dark:bg-boxdark-2/50 rounded-lg">
                     <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
                       <DollarSign className="h-4 w-4 text-purple-600" />
                     </div>
                     <div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">Référence</div>
+                      <div className="text-sm text-body dark:text-bodydark2">Référence</div>
                       <div className="flex items-center space-x-2">
                         <span className="font-mono text-sm font-medium">{detailTransaction.reference}</span>
                         <Button
@@ -852,66 +848,66 @@ function WaveBusinessPageContent() {
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 p-3 bg-gray-50 dark:bg-boxdark-2/50 rounded-lg">
                     <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                      <DollarSign className="h-4 w-4 text-green-600" />
+                      <DollarSign className="h-4 w-4 text-meta-3" />
                     </div>
                     <div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">Montant</div>
+                      <div className="text-sm text-body dark:text-bodydark2">Montant</div>
                       <div className="font-medium">{formatAmount(detailTransaction.amount)}</div>
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 p-3 bg-gray-50 dark:bg-boxdark-2/50 rounded-lg">
                     <div className="p-2 bg-indigo-100 dark:bg-indigo-900 rounded-lg">
                       <Phone className="h-4 w-4 text-indigo-600" />
                     </div>
                     <div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">Téléphone</div>
+                      <div className="text-sm text-body dark:text-bodydark2">Téléphone</div>
                       <div className="font-medium">{detailTransaction.recipient_phone}</div>
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
-                    <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                      <Calendar className="h-4 w-4 text-orange-600" />
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 p-3 bg-gray-50 dark:bg-boxdark-2/50 rounded-lg">
+                    <div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                      <Calendar className="h-4 w-4 text-primary" />
                     </div>
                     <div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">Créé le</div>
+                      <div className="text-sm text-body dark:text-bodydark2">Créé le</div>
                       <div className="font-medium">{formatDate(detailTransaction.created_at)}</div>
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 p-3 bg-gray-50 dark:bg-boxdark-2/50 rounded-lg">
                     <div className="p-2 bg-red-100 dark:bg-red-900 rounded-lg">
                       <Clock className="h-4 w-4 text-red-600" />
                     </div>
                     <div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">Expire le</div>
+                      <div className="text-sm text-body dark:text-bodydark2">Expire le</div>
                       <div className="font-medium">{formatDate(detailTransaction.expires_at)}</div>
                     </div>
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+                  <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-gray-50 dark:bg-boxdark-2/50 rounded-lg">
                     <span className="text-sm font-medium">Statut</span>
                     {getStatusBadge(detailTransaction.status, detailTransaction.is_expired)}
                   </div>
 
-                  <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+                  <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-gray-50 dark:bg-boxdark-2/50 rounded-lg">
                     <span className="text-sm font-medium">Créé par</span>
                     <span className="text-sm">{detailTransaction.created_by}</span>
                   </div>
 
-                  <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+                  <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-gray-50 dark:bg-boxdark-2/50 rounded-lg">
                     <span className="text-sm font-medium">Notifications FCM</span>
                     <span className="text-sm">{detailTransaction.fcm_notifications.length} notification(s)</span>
                   </div>
 
-                  <div className="p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+                  <div className="p-3 bg-gray-50 dark:bg-boxdark-2/50 rounded-lg">
                     <div className="text-sm font-medium mb-2">URL de callback</div>
-                    <div className="text-sm break-all text-gray-600 dark:text-gray-400">{detailTransaction.callback_url}</div>
+                    <div className="text-sm break-all text-body dark:text-bodydark2">{detailTransaction.callback_url}</div>
                   </div>
                 </div>
               </div>
@@ -926,17 +922,17 @@ function WaveBusinessPageContent() {
 
         {/* Success Modal */}
         <Dialog open={successModalOpen} onOpenChange={setSuccessModalOpen}>
-          <DialogContent className="bg-white dark:bg-gray-800 border-0 shadow-xl max-w-md">
+          <DialogContent className="bg-white dark:bg-boxdark border-0 shadow-xl max-w-md">
             <DialogHeader>
               <DialogTitle className="flex items-center space-x-2">
                 <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <CheckCircle className="h-5 w-5 text-meta-3" />
                 </div>
                 <span>Marquer comme succès</span>
               </DialogTitle>
             </DialogHeader>
             <div className="space-y-4 py-4">
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-body dark:text-bodydark2">
                 Voulez-vous vraiment marquer cette transaction comme réussie ? Cette action est irréversible.
               </p>
               <div className="space-y-2">
@@ -946,7 +942,7 @@ function WaveBusinessPageContent() {
                   placeholder="Ex: Confirmation manuelle reçue"
                   value={successReason}
                   onChange={(e) => setSuccessReason(e.target.value)}
-                  className="bg-gray-50 dark:bg-gray-700"
+                  className="bg-gray-50 dark:bg-meta-4"
                 />
               </div>
             </div>
@@ -961,7 +957,7 @@ function WaveBusinessPageContent() {
               <Button
                 onClick={handleMarkAsSuccess}
                 disabled={successLoading}
-                className="bg-green-600 hover:bg-green-700 text-white"
+                className="bg-meta-3 hover:bg-green-700 text-white"
               >
                 {successLoading ? (
                   <>
@@ -978,7 +974,7 @@ function WaveBusinessPageContent() {
 
         {/* Failed Modal */}
         <Dialog open={failedModalOpen} onOpenChange={setFailedModalOpen}>
-          <DialogContent className="bg-white dark:bg-gray-800 border-0 shadow-xl max-w-md">
+          <DialogContent className="bg-white dark:bg-boxdark border-0 shadow-xl max-w-md">
             <DialogHeader>
               <DialogTitle className="flex items-center space-x-2">
                 <div className="p-2 bg-red-100 dark:bg-red-900 rounded-lg">
@@ -988,7 +984,7 @@ function WaveBusinessPageContent() {
               </DialogTitle>
             </DialogHeader>
             <div className="space-y-4 py-4">
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-body dark:text-bodydark2">
                 Voulez-vous vraiment marquer cette transaction comme échouée ? Cette action est irréversible.
               </p>
               <div className="space-y-2">
@@ -998,7 +994,7 @@ function WaveBusinessPageContent() {
                   placeholder="Ex: Paiement non reçu après vérification"
                   value={failedReason}
                   onChange={(e) => setFailedReason(e.target.value)}
-                  className="bg-gray-50 dark:bg-gray-700"
+                  className="bg-gray-50 dark:bg-meta-4"
                 />
               </div>
             </div>
@@ -1037,7 +1033,7 @@ import { getApiBaseUrl } from "@/lib/env-config"
 
 export default function WaveBusinessPage() {
   return (
-    <Suspense fallback={<div className="flex justify-center items-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div></div>}>
+    <Suspense fallback={<div className="flex justify-center items-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
       <WaveBusinessPageContent />
     </Suspense>
   )

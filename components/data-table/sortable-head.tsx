@@ -25,10 +25,10 @@ export function SortableHead<T extends string>({
       <button
         type="button"
         onClick={() => onSort(field)}
-        className="inline-flex items-center gap-1 font-semibold hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+        className="inline-flex items-center gap-1 font-semibold hover:text-primary dark:hover:text-primary transition-colors"
       >
         {label}
-        <Icon className={`h-3.5 w-3.5 ${active ? "text-orange-500" : "text-gray-400"}`} />
+        <Icon className={`h-3.5 w-3.5 ${active ? "text-primary" : "text-bodydark2"}`} />
       </button>
     </TableHead>
   )

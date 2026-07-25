@@ -153,10 +153,10 @@ export default function AggregatorAuthorizationsPage() {
 
     return (
 
-        <div className="space-y-6 px-4 py-8 max-w-7xl mx-auto">
+        <div className="space-y-6 px-4 py-4 sm:py-6 max-w-7xl mx-auto">
             <div className="flex justify-between items-center">
                 <div>
-                    <h1 className="text-3xl font-bold tracking-tight mb-1">{t("aggregators.authorizationsTitle")}</h1>
+                    <h1 className="text-lg font-bold sm:text-xl tracking-tight mb-1">{t("aggregators.authorizationsTitle")}</h1>
                     <p className="text-muted-foreground text-slate-500">{t("aggregators.authorizationsSub")}</p>
                 </div>
                 <Button onClick={() => {
@@ -203,7 +203,7 @@ export default function AggregatorAuthorizationsPage() {
             <Card>
                 <CardContent className="pt-6">
                     {loading ? (
-                        <div className="flex items-center justify-center py-12">
+                        <div className="flex items-center justify-center py-6 sm:py-10">
                             <Loader className="animate-spin mr-2 h-8 w-8 text-blue-600" />
                             <span className="text-lg font-semibold">{t("common.loading")}</span>
                         </div>
@@ -226,7 +226,7 @@ export default function AggregatorAuthorizationsPage() {
                                 <TableBody>
                                     {authorizations.length === 0 ? (
                                         <TableRow>
-                                            <TableCell colSpan={7} className="text-center py-12 text-slate-400">
+                                            <TableCell colSpan={7} className="text-center py-6 sm:py-10 text-slate-400">
                                                 {t("aggregators.noAuthorizationsFound")}
                                             </TableCell>
                                         </TableRow>
@@ -244,7 +244,7 @@ export default function AggregatorAuthorizationsPage() {
                                                     </div>
                                                 </TableCell>
                                                 <TableCell className="text-center">
-                                                    <Badge variant="outline" className="text-green-600 border-green-200">{auth.user_payin_fee_percent}%</Badge>
+                                                    <Badge variant="outline" className="text-meta-3 border-green-200">{auth.user_payin_fee_percent}%</Badge>
                                                 </TableCell>
                                                 <TableCell className="text-center">
                                                     <Badge variant="outline" className="text-blue-600 border-blue-200">{auth.user_payout_fee_percent}%</Badge>

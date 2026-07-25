@@ -142,10 +142,10 @@ export default function NetworkMappingsPage() {
     }
 
     return (
-        <div className="space-y-6 px-4 py-8 max-w-7xl mx-auto">
+        <div className="space-y-6 px-4 py-4 sm:py-6 max-w-7xl mx-auto">
             <div className="flex justify-between items-center">
                 <div>
-                    <h1 className="text-3xl font-bold tracking-tight mb-1">{t("aggregators.networkMappingsTitle")}</h1>
+                    <h1 className="text-lg font-bold sm:text-xl tracking-tight mb-1">{t("aggregators.networkMappingsTitle")}</h1>
                     <p className="text-muted-foreground text-slate-500">{t("aggregators.networkMappingsSub")}</p>
                 </div>
                 <Button onClick={() => {
@@ -181,7 +181,7 @@ export default function NetworkMappingsPage() {
             ) : error ? (
                 <ErrorDisplay error={error} onRetry={fetchData} />
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:p-4 md:p-6">
                     {mappings.map((mapping) => (
                         <Card key={mapping.uid} className={`overflow-hidden border-t-4 ${mapping.is_active ? 'border-t-green-500' : 'border-t-slate-300'}`}>
                             <CardHeader className="pb-2">
@@ -203,18 +203,18 @@ export default function NetworkMappingsPage() {
                                     </div>
                                     <div className="bg-slate-50 p-2 rounded flex flex-col items-center border border-slate-100">
                                         <span className="text-[10px] uppercase text-slate-400 font-bold">{t("aggregators.payoutFeePercent")}</span>
-                                        <span className="font-bold text-lg text-orange-600">{mapping.network_payout_fee_percent}%</span>
+                                        <span className="font-bold text-lg text-primary">{mapping.network_payout_fee_percent}%</span>
                                     </div>
                                 </div>
 
                                 <div className="space-y-2">
                                     <div className="flex justify-between text-sm">
                                         <span className="text-slate-500">{t("aggregators.payinEnabled")}:</span>
-                                        {mapping.enable_payin ? <Check className="text-green-500" size={16} /> : <X className="text-red-500" size={16} />}
+                                        {mapping.enable_payin ? <Check className="text-meta-3" size={16} /> : <X className="text-red-500" size={16} />}
                                     </div>
                                     <div className="flex justify-between text-sm">
                                         <span className="text-slate-500">{t("aggregators.payoutEnabled")}:</span>
-                                        {mapping.enable_payout ? <Check className="text-green-500" size={16} /> : <X className="text-red-500" size={16} />}
+                                        {mapping.enable_payout ? <Check className="text-meta-3" size={16} /> : <X className="text-red-500" size={16} />}
                                     </div>
                                     <div className="flex justify-between text-sm">
                                         <span className="text-slate-500">Min/Max:</span>
@@ -284,7 +284,7 @@ export default function NetworkMappingsPage() {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-8 border-t pt-4">
+                            <div className="grid grid-cols-2 gap-3 sm:p-5 md:p-8 border-t pt-4">
                                 <div className="space-y-4">
                                     <h3 className="font-bold text-sm text-green-700">{t("aggregators.payinSettings")}</h3>
                                     <div className="flex items-center gap-2">
@@ -380,7 +380,7 @@ export default function NetworkMappingsPage() {
                             <div className="space-y-6 py-4">
                                 <div className="flex justify-between items-start">
                                     <div>
-                                        <h3 className="text-2xl font-bold">{selectedMapping.network_name}</h3>
+                                        <h3 className="text-lg font-bold sm:text-xl">{selectedMapping.network_name}</h3>
                                         <Badge variant="outline" className="mt-1 font-mono">{selectedMapping.network_code}</Badge>
                                     </div>
                                     <Badge variant={selectedMapping.is_active ? "success" : "secondary"}>
@@ -388,14 +388,14 @@ export default function NetworkMappingsPage() {
                                     </Badge>
                                 </div>
 
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div className="grid grid-cols-2 md:grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
                                     <div className="bg-blue-50 p-3 rounded-lg border border-blue-100">
                                         <p className="text-[10px] uppercase text-blue-600 font-bold mb-1">{t("aggregators.payinFeePercent")}</p>
-                                        <p className="text-xl font-bold text-blue-700">{selectedMapping.network_payin_fee_percent}%</p>
+                                        <p className="text-base font-bold sm:text-lg text-blue-700">{selectedMapping.network_payin_fee_percent}%</p>
                                     </div>
-                                    <div className="bg-orange-50 p-3 rounded-lg border border-orange-100">
-                                        <p className="text-[10px] uppercase text-orange-600 font-bold mb-1">{t("aggregators.payoutFeePercent")}</p>
-                                        <p className="text-xl font-bold text-orange-700">{selectedMapping.network_payout_fee_percent}%</p>
+                                    <div className="bg-gray p-3 rounded-lg border border-orange-100">
+                                        <p className="text-[10px] uppercase text-primary font-bold mb-1">{t("aggregators.payoutFeePercent")}</p>
+                                        <p className="text-base font-bold sm:text-lg text-orange-700">{selectedMapping.network_payout_fee_percent}%</p>
                                     </div>
                                     <div className="bg-slate-50 p-3 rounded-lg border border-slate-100">
                                         <p className="text-[10px] uppercase text-slate-500 font-bold mb-1">{t("aggregators.minAmount")}</p>
@@ -407,7 +407,7 @@ export default function NetworkMappingsPage() {
                                     </div>
                                 </div>
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6 pt-4 border-t">
                                     <div className="space-y-4">
                                         <h4 className="font-semibold flex items-center gap-2"><ArrowUpRight size={16} className="text-blue-600" /> {t("aggregators.payinSettings")}</h4>
                                         <div className="space-y-2">
@@ -432,7 +432,7 @@ export default function NetworkMappingsPage() {
                                     </div>
 
                                     <div className="space-y-4">
-                                        <h4 className="font-semibold flex items-center gap-2"><ArrowDownLeft size={16} className="text-orange-600" /> {t("aggregators.payoutSettings")}</h4>
+                                        <h4 className="font-semibold flex items-center gap-2"><ArrowDownLeft size={16} className="text-primary" /> {t("aggregators.payoutSettings")}</h4>
                                         <div className="space-y-2">
                                             <div className="flex justify-between text-sm">
                                                 <span className="text-slate-500">{t("aggregators.processor")}:</span>

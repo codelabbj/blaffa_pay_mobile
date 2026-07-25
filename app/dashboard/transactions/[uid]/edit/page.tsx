@@ -155,10 +155,10 @@ export default function EditTransactionPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:bg-boxdark-2 flex items-center justify-center">
         <div className="flex flex-col items-center space-y-4">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          <span className="text-gray-600 dark:text-gray-300 text-lg">Chargement de la transaction...</span>
+          <span className="text-body dark:text-bodydark text-lg">Chargement de la transaction...</span>
         </div>
       </div>
     )
@@ -166,7 +166,7 @@ export default function EditTransactionPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:bg-boxdark-2 flex items-center justify-center">
         <div className="max-w-md w-full">
           <ErrorDisplay error={error} />
         </div>
@@ -175,36 +175,36 @@ export default function EditTransactionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:bg-boxdark-2">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
         
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
+            <div className="flex items-center gap-2 sm:gap-4">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => router.back()}
-                className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600"
+                className="bg-white dark:bg-boxdark border-stroke dark:border-strokedark"
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Retour
               </Button>
               <div>
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Modifier la transaction
                 </h1>
-                <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+                <p className="text-body dark:text-bodydark mt-2 text-lg">
                   Mettre à jour les détails de la transaction et consulter les journaux
                 </p>
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="bg-white dark:bg-gray-800 rounded-lg px-4 py-2 shadow-sm">
+              <div className="bg-white dark:bg-boxdark rounded-lg px-4 py-2 shadow-sm">
                 <div className="flex items-center space-x-2">
                   <FileText className="h-5 w-5 text-blue-600" />
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <span className="text-sm font-medium text-gray-700 dark:text-bodydark">
                     ID: {uid}
                   </span>
                 </div>
@@ -214,8 +214,8 @@ export default function EditTransactionPage() {
         </div>
 
         {/* Transaction Information */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-          <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+          <CardHeader className="border-b border-gray-100 dark:border-strokedark">
             <CardTitle className="flex items-center space-x-2">
               <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
                 <FileText className="h-5 w-5 text-blue-600 dark:text-blue-300" />
@@ -223,14 +223,14 @@ export default function EditTransactionPage() {
               <span>Détails de la transaction</span>
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="flex items-center space-x-3">
+          <CardContent className="p-3 sm:p-4 md:p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:p-4 md:p-6">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
                   <FileText className="h-4 w-4 text-blue-600" />
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Référence</div>
+                  <div className="text-sm text-body dark:text-bodydark2">Référence</div>
                   <div className="flex items-center space-x-2">
                     <span className="font-medium text-gray-900 dark:text-gray-100">{transaction.reference}</span>
                     <Button
@@ -242,110 +242,110 @@ export default function EditTransactionPage() {
                     >
                       <Copy className="h-3 w-3" />
                     </Button>
-                    {copied && <span className="text-xs text-green-600">Copié!</span>}
+                    {copied && <span className="text-xs text-meta-3">Copié!</span>}
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                  <DollarSign className="h-4 w-4 text-green-600" />
+                  <DollarSign className="h-4 w-4 text-meta-3" />
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Montant</div>
+                  <div className="text-sm text-body dark:text-bodydark2">Montant</div>
                   <div className="font-medium text-gray-900 dark:text-gray-100">{transaction.amount}</div>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
                   <Network className="h-4 w-4 text-purple-600" />
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Réseau</div>
+                  <div className="text-sm text-body dark:text-bodydark2">Réseau</div>
                   <div className="font-medium text-gray-900 dark:text-gray-100">{transaction.network_name}</div>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-3">
-                <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                  <User className="h-4 w-4 text-orange-600" />
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                  <User className="h-4 w-4 text-primary" />
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Destinataire</div>
+                  <div className="text-sm text-body dark:text-bodydark2">Destinataire</div>
                   <div className="font-medium text-gray-900 dark:text-gray-100">
                     {transaction.display_recipient_name || transaction.recipient_name}
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="p-2 bg-indigo-100 dark:bg-indigo-900 rounded-lg">
                   <Phone className="h-4 w-4 text-indigo-600" />
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Téléphone du destinataire</div>
+                  <div className="text-sm text-body dark:text-bodydark2">Téléphone du destinataire</div>
                   <div className="font-medium text-gray-900 dark:text-gray-100">{transaction.recipient_phone}</div>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="p-2 bg-yellow-100 dark:bg-yellow-900 rounded-lg">
                   <Calendar className="h-4 w-4 text-yellow-600" />
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Créé</div>
+                  <div className="text-sm text-body dark:text-bodydark2">Créé</div>
                   <div className="font-medium text-gray-900 dark:text-gray-100">
                     {transaction.created_at ? new Date(transaction.created_at).toLocaleString() : "-"}
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-3">
-                <div className="p-2 bg-gray-100 dark:bg-gray-900 rounded-lg">
-                  <CheckCircle className="h-4 w-4 text-gray-600" />
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <div className="p-2 bg-gray-100 dark:bg-boxdark-2 rounded-lg">
+                  <CheckCircle className="h-4 w-4 text-body" />
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Statut</div>
+                  <div className="text-sm text-body dark:text-bodydark2">Statut</div>
                   <div>{getStatusBadge(transaction.status)}</div>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
                   <User className="h-4 w-4 text-blue-600" />
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Traité par</div>
+                  <div className="text-sm text-body dark:text-bodydark2">Traité par</div>
                   <div className="font-medium text-gray-900 dark:text-gray-100">{transaction.processed_by_name}</div>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                  <DollarSign className="h-4 w-4 text-green-600" />
+                  <DollarSign className="h-4 w-4 text-meta-3" />
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Frais</div>
+                  <div className="text-sm text-body dark:text-bodydark2">Frais</div>
                   <div className="font-medium text-gray-900 dark:text-gray-100">{transaction.fees ?? "-"}</div>
                 </div>
               </div>
             </div>
 
             {/* Balance Information */}
-            <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
-              <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Informations sur le solde</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="mt-6 p-4 bg-gray-50 dark:bg-boxdark-2/50 rounded-lg">
+              <h3 className="text-sm font-medium text-gray-700 dark:text-bodydark mb-3">Informations sur le solde</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4">
                 <div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Solde avant</div>
+                  <div className="text-sm text-body dark:text-bodydark2">Solde avant</div>
                   <div className="font-medium text-gray-900 dark:text-gray-100">{transaction.balance_before ?? "-"}</div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Solde après</div>
+                  <div className="text-sm text-body dark:text-bodydark2">Solde après</div>
                   <div className="font-medium text-gray-900 dark:text-gray-100">{transaction.balance_after ?? "-"}</div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Type</div>
+                  <div className="text-sm text-body dark:text-bodydark2">Type</div>
                   <Badge variant="outline">{t(`transactions.${transaction.type}`)}</Badge>
                 </div>
               </div>
@@ -357,7 +357,7 @@ export default function EditTransactionPage() {
                 {transaction.confirmation_message && (
                   <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-lg">
                     <div className="flex items-center space-x-2 mb-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      <CheckCircle className="h-4 w-4 text-meta-3" />
                       <span className="font-medium text-green-800 dark:text-green-200">Message de confirmation</span>
                     </div>
                     <div className="text-sm text-green-700 dark:text-green-300">{transaction.confirmation_message}</div>
@@ -378,9 +378,9 @@ export default function EditTransactionPage() {
             {/* USSD Path */}
             {transaction.ussd_path && Array.isArray(transaction.ussd_path) && (
               <div className="mt-6">
-                <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Chemin USSD</h3>
-                <div className="bg-gray-50 dark:bg-gray-900/50 p-4 rounded-lg">
-                  <pre className="text-xs whitespace-pre-wrap font-mono text-gray-700 dark:text-gray-300">
+                <h3 className="text-sm font-medium text-gray-700 dark:text-bodydark mb-3">Chemin USSD</h3>
+                <div className="bg-gray-50 dark:bg-boxdark-2/50 p-4 rounded-lg">
+                  <pre className="text-xs whitespace-pre-wrap font-mono text-gray-700 dark:text-bodydark">
                     {transaction.ussd_path.map((step: string, idx: number) => {
                       const [key, ...rest] = step.split(":")
                       const value = rest.join(":").trim()
@@ -399,51 +399,51 @@ export default function EditTransactionPage() {
         </Card>
 
         {/* Edit Form */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-6">
-          <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4">
+          <CardHeader className="border-b border-gray-100 dark:border-strokedark">
             <CardTitle className="flex items-center space-x-2">
               <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                <Save className="h-5 w-5 text-green-600 dark:text-green-300" />
+                <Save className="h-5 w-5 text-meta-3 dark:text-green-300" />
               </div>
               <span>Modifier la transaction</span>
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6">
+          <CardContent className="p-3 sm:p-4 md:p-6">
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-4 md:p-6">
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-bodydark mb-2">
                     {t("transactions.recipientName") || "Recipient Name"}
                   </label>
                   <Input 
                     name="recipient_name" 
                     value={form.recipient_name} 
                     onChange={handleChange}
-                    className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Objet</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-bodydark mb-2">Objet</label>
                   <Input 
                     name="objet" 
                     value={form.objet} 
                     onChange={handleChange}
-                    className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-bodydark mb-2">
                     {t("transactions.externalTransactionId")}
                   </label>
                   <Input 
                     name="external_transaction_id" 
                     value={form.external_transaction_id} 
                     onChange={handleChange}
-                    className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                   />
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-bodydark mb-2">
                     {t("transactions.rawSms")}
                   </label>
                   <Textarea 
@@ -452,18 +452,18 @@ export default function EditTransactionPage() {
                     onChange={handleChange} 
                     rows={4} 
                     placeholder="Entrer le contenu du SMS brut..."
-                    className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                   />
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-bodydark mb-2">
                     Traité par téléphone
                   </label>
                   <Input 
                     name="processed_by_phone" 
                     value={form.processed_by_phone} 
                     onChange={handleChange}
-                    className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                   />
                 </div>
               </div>
@@ -489,7 +489,7 @@ export default function EditTransactionPage() {
                   type="button" 
                   variant="outline" 
                   onClick={() => router.back()}
-                  className="border-gray-200 dark:border-gray-600"
+                  className="border-stroke dark:border-strokedark"
                 >
                   {t("common.cancel")}
                 </Button>
@@ -499,9 +499,9 @@ export default function EditTransactionPage() {
         </Card>
 
         {/* Transaction Logs */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-          <CardHeader className="border-b border-gray-100 dark:border-gray-700">
-            <div className="flex items-center justify-between">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+          <CardHeader className="border-b border-gray-100 dark:border-strokedark">
+            <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
               <CardTitle className="flex items-center space-x-2">
                 <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
                   <FileText className="h-5 w-5 text-purple-600 dark:text-purple-300" />
@@ -513,7 +513,7 @@ export default function EditTransactionPage() {
                 size="sm" 
                 onClick={fetchTransactionLogs} 
                 disabled={logsLoading}
-                className="border-gray-200 dark:border-gray-600"
+                className="border-stroke dark:border-strokedark"
               >
                 {logsLoading ? (
                   <>
@@ -529,34 +529,34 @@ export default function EditTransactionPage() {
               </Button>
             </div>
           </CardHeader>
-          <CardContent className="p-6">
+          <CardContent className="p-3 sm:p-4 md:p-6">
             {logsError && (
               <div className="mb-6">
                 <ErrorDisplay error={logsError} onRetry={fetchTransactionLogs} />
               </div>
             )}
             {logsLoading && !logs.length ? (
-              <div className="flex items-center justify-center py-12">
+              <div className="flex items-center justify-center py-6 sm:py-10">
                 <div className="flex flex-col items-center space-y-4">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Chargement des journaux...</span>
+                  <span className="text-body dark:text-bodydark">Chargement des journaux...</span>
                 </div>
               </div>
             ) : logs.length === 0 ? (
-              <div className="text-center py-12">
-                <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-500 dark:text-gray-400">{t("transactionLogs.empty") || "Aucun journal pour cette transaction."}</p>
+              <div className="text-center py-6 sm:py-10">
+                <FileText className="h-12 w-12 text-bodydark2 mx-auto mb-4" />
+                <p className="text-body dark:text-bodydark2">{t("transactionLogs.empty") || "Aucun journal pour cette transaction."}</p>
               </div>
             ) : (
               <div className="space-y-4">
                 {logs.map((log: any, idx: number) => (
-                  <div key={log.uid || log.id || idx} className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                  <div key={log.uid || log.id || idx} className="bg-gray-50 dark:bg-boxdark-2/50 rounded-lg p-4 border border-stroke dark:border-strokedark">
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                       <div className="flex items-center space-x-2">
                         <div className="p-1 bg-blue-100 dark:bg-blue-900 rounded">
                           <FileText className="h-3 w-3 text-blue-600" />
                         </div>
-                        <span className="text-sm text-gray-600 dark:text-gray-400">
+                        <span className="text-sm text-body dark:text-bodydark2">
                           {new Date(log.created_at || log.timestamp || Date.now()).toLocaleString()}
                         </span>
                       </div>
@@ -568,8 +568,8 @@ export default function EditTransactionPage() {
                       <div className="text-sm text-gray-900 dark:text-gray-100 mb-3">{log.message}</div>
                     )}
                     {(log.data || log.payload || log.meta) && (
-                      <div className="bg-white dark:bg-gray-800 p-3 rounded border border-gray-200 dark:border-gray-600">
-                        <pre className="text-xs whitespace-pre-wrap break-words text-gray-700 dark:text-gray-300">
+                      <div className="bg-white dark:bg-boxdark p-3 rounded border border-stroke dark:border-strokedark">
+                        <pre className="text-xs whitespace-pre-wrap break-words text-gray-700 dark:text-bodydark">
                           {JSON.stringify(log.data || log.payload || log.meta, null, 2)}
                         </pre>
                       </div>

@@ -68,7 +68,7 @@ const ToastAction = React.forwardRef<
   <ToastPrimitives.Action
     ref={ref}
     className={cn(
-      "inline-flex h-8 shrink-0 items-center justify-center rounded-md border-2 border-gray-200 bg-transparent px-3 text-sm font-medium ring-offset-background transition-all duration-200 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-blue-400",
+      "inline-flex h-8 shrink-0 items-center justify-center rounded-md border-2 border-stroke bg-transparent px-3 text-sm font-medium ring-offset-background transition-all duration-200 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:border-strokedark dark:hover:bg-gray-700 dark:focus:ring-blue-400",
       className
     )}
     {...props}
@@ -83,7 +83,7 @@ const ToastClose = React.forwardRef<
   <ToastPrimitives.Close
     ref={ref}
     className={cn(
-      "absolute right-2 top-2 rounded-lg p-1 text-gray-500 opacity-0 transition-all duration-200 hover:bg-gray-100 hover:text-gray-700 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500 group-hover:opacity-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200 dark:focus:ring-blue-400",
+      "absolute right-2 top-2 rounded-lg p-1 text-body opacity-0 transition-all duration-200 hover:bg-gray-100 hover:text-gray-700 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500 group-hover:opacity-100 dark:text-bodydark2 dark:hover:bg-gray-700 dark:hover:text-gray-200 dark:focus:ring-blue-400",
       className
     )}
     toast-close=""

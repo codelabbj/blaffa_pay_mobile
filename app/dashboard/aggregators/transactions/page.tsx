@@ -176,19 +176,19 @@ export default function AggregatorTransactionsPage() {
     }
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6 animate-in fade-in duration-500">
+        <div className="w-full space-y-6 animate-in fade-in duration-500">
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+                    <h1 className="text-lg font-bold sm:text-xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
                         {t("aggregator.auditLog")}
                     </h1>
-                    <p className="text-gray-600 dark:text-gray-300 mt-1">
+                    <p className="text-body dark:text-bodydark mt-1">
                         {t("aggregator.auditTrailDesc")}
                     </p>
                 </div>
                 <div className="flex items-center gap-3">
-                    <Button onClick={fetchTransactions} variant="outline" className="border-orange-200">
+                    <Button onClick={fetchTransactions} variant="outline" className="border-stroke">
                         <RefreshCw className={cn("mr-2 h-4 w-4", loading && "animate-spin")} />
                         <span>{t("common.refresh")}</span>
                     </Button>
@@ -204,17 +204,17 @@ export default function AggregatorTransactionsPage() {
                     <div className="flex flex-col gap-4">
                         <div className="flex flex-wrap gap-4">
                             <div className="relative flex-1 min-w-[200px]">
-                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-bodydark2" />
                                 <Input
                                     placeholder={t("transactions.searchReference")}
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="pl-10 bg-gray-50 dark:bg-gray-800"
+                                    className="pl-10 bg-gray-50 dark:bg-boxdark"
                                 />
                             </div>
                             <div className="w-[150px]">
                                 <Select value={status} onValueChange={setStatus}>
-                                    <SelectTrigger className="bg-gray-50 dark:bg-gray-800">
+                                    <SelectTrigger className="bg-gray-50 dark:bg-boxdark">
                                         <SelectValue placeholder={t("aggregator.status")} />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -227,7 +227,7 @@ export default function AggregatorTransactionsPage() {
                             </div>
                             <div className="w-[150px]">
                                 <Select value={type} onValueChange={setType}>
-                                    <SelectTrigger className="bg-gray-50 dark:bg-gray-800">
+                                    <SelectTrigger className="bg-gray-50 dark:bg-boxdark">
                                         <SelectValue placeholder={t("aggregator.type")} />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -244,7 +244,7 @@ export default function AggregatorTransactionsPage() {
                                     placeholder={t("aggregator.userUid")}
                                     value={userUid}
                                     onChange={(e) => setUserUid(e.target.value)}
-                                    className="bg-gray-50 dark:bg-gray-800"
+                                    className="bg-gray-50 dark:bg-boxdark"
                                 />
                             </div>
                             <div className="w-[300px]">
@@ -267,26 +267,26 @@ export default function AggregatorTransactionsPage() {
 
             {/* Transactions Table */}
             <Card className="border-0 shadow-lg overflow-hidden">
-                <CardHeader className="border-b bg-gray-50/50 dark:bg-gray-900/50">
+                <CardHeader className="border-b bg-gray-50/50 dark:bg-boxdark-2/50">
                     <CardTitle className="text-lg flex items-center gap-2">
-                        <Activity className="h-5 w-5 text-orange-500" />
+                        <Activity className="h-5 w-5 text-primary" />
                         {t("aggregator.financialFlows")}
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
                     {loading && transactions.length === 0 ? (
                         <div className="flex flex-col items-center justify-center py-20">
-                            <Loader className="animate-spin h-8 w-8 text-orange-500 mb-2" />
-                            <span className="text-gray-500">{t("aggregator.loadingAudit")}</span>
+                            <Loader className="animate-spin h-8 w-8 text-primary mb-2" />
+                            <span className="text-body">{t("aggregator.loadingAudit")}</span>
                         </div>
                     ) : error ? (
                         <div className="py-20 text-center text-red-500">{error}</div>
                     ) : transactions.length === 0 ? (
-                        <div className="py-20 text-center text-gray-500">{t("aggregator.noTransactions")}</div>
+                        <div className="py-20 text-center text-body">{t("aggregator.noTransactions")}</div>
                     ) : (
                         <div className="overflow-x-auto">
                             <Table>
-                                <TableHeader className="bg-gray-50/50 dark:bg-gray-900/50">
+                                <TableHeader className="bg-gray-50/50 dark:bg-boxdark-2/50">
                                     <TableRow>
                                         <TableHead className="text-xs">UID</TableHead>
                                         <TableHead>{t("common.reference")}</TableHead>
@@ -305,14 +305,14 @@ export default function AggregatorTransactionsPage() {
                                 <TableBody>
                                     {transactions.length === 0 ? (
                                         <TableRow>
-                                            <TableCell colSpan={12} className="text-center py-12 text-slate-400">
+                                            <TableCell colSpan={12} className="text-center py-6 sm:py-10 text-slate-400" data-label="UID">
                                                 {t("aggregators.noTransactionsMatch")}
                                             </TableCell>
                                         </TableRow>
                                     ) : (
                                         transactions.map((tx) => (
                                             <TableRow key={tx.uid}>
-                                                <TableCell className="font-mono text-[10px] text-slate-400 max-w-[90px] truncate">
+                                                <TableCell className="font-mono text-[10px] text-slate-400 max-w-[90px] truncate" data-label="UID">
                                                     <span title={tx.uid}>{tx.uid.slice(0, 8)}…</span>
                                                 </TableCell>
                                                 <TableCell className="font-mono text-xs">
@@ -326,15 +326,15 @@ export default function AggregatorTransactionsPage() {
                                                 <TableCell className="text-xs font-mono text-slate-600">
                                                     <span>{tx.recipient_phone || "—"}</span>
                                                 </TableCell>
-                                                <TableCell className="text-xs text-slate-600">
+                                                <TableCell className="text-xs text-slate-600" data-label="Processor">
                                                     <span>{tx.processor_type || "—"}</span>
                                                 </TableCell>
                                                 <TableCell>
                                                     <div className="flex items-center gap-1">
                                                         {tx.transaction_type === 'payout' ? (
-                                                            <ArrowDownLeft size={14} className="text-orange-500" />
+                                                            <ArrowDownLeft size={14} className="text-primary" />
                                                         ) : (
-                                                            <ArrowUpRight size={14} className="text-green-500" />
+                                                            <ArrowUpRight size={14} className="text-meta-3" />
                                                         )}
                                                         <span className="capitalize text-sm">{tx.transaction_type}</span>
                                                     </div>
@@ -350,14 +350,14 @@ export default function AggregatorTransactionsPage() {
                                                         <span>{tx.status}</span>
                                                     </Badge>
                                                 </TableCell>
-                                                <TableCell>
+                                                <TableCell data-label="Webhook">
                                                     {tx.webhook_sent ? (
-                                                        <CheckCircle2 size={16} className="text-green-500" />
+                                                        <CheckCircle2 size={16} className="text-meta-3" />
                                                     ) : (
                                                         <XCircle size={16} className="text-slate-300" />
                                                     )}
                                                 </TableCell>
-                                                <TableCell className="text-xs text-slate-600">
+                                                <TableCell className="text-xs text-slate-600" data-label="W. Code">
                                                     <span>{tx.webhook_response_code ?? "—"}</span>
                                                 </TableCell>
                                                 <TableCell>
@@ -379,8 +379,8 @@ export default function AggregatorTransactionsPage() {
                     )}
                 </CardContent>
                 {pagination.total_pages > 1 && (
-                    <div className="p-4 border-t bg-gray-50/30 dark:bg-gray-900/30 flex items-center justify-between">
-                        <p className="text-sm text-gray-500">
+                    <div className="p-4 border-t bg-gray-50/30 dark:bg-boxdark-2/30 flex flex-wrap items-start justify-between gap-3 sm:items-center">
+                        <p className="text-sm text-body">
                             <span>{t("common.showing")}</span> <span className="font-medium">{transactions.length}</span> <span>{t("common.of")}</span> <span className="font-medium">{pagination.total_count}</span>
                         </p>
                         <div className="flex gap-2">
@@ -485,7 +485,7 @@ export default function AggregatorTransactionsPage() {
                                             <span>Montant brut :</span>
                                             <span>{selectedTx.underlying_amount}</span>
                                         </div>
-                                        <div className="flex justify-between text-orange-600">
+                                        <div className="flex justify-between text-primary">
                                             <span>{t("common.networkFee")} :</span>
                                             <span>-{selectedTx.network_fee_amount || selectedTx.network_fee} ({selectedTx.network_fee_percent}%)</span>
                                         </div>
@@ -513,7 +513,7 @@ export default function AggregatorTransactionsPage() {
                                     <div>
                                         <div className="text-slate-500 text-xs mb-1">Envoyé</div>
                                         {selectedTx.webhook_sent ? (
-                                            <Badge variant="outline" className="text-green-600 border-green-300 bg-green-50">Oui</Badge>
+                                            <Badge variant="outline" className="text-meta-3 border-green-300 bg-green-50">Oui</Badge>
                                         ) : (
                                             <Badge variant="outline" className="text-slate-400">Non</Badge>
                                         )}

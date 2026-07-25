@@ -54,19 +54,19 @@ const appName = getAppName()
 
 // Colors for charts and UI elements - using logo colors
 const COLORS = {
-  primary: '#FF6B35', // Orange (primary from logo)
-  secondary: '#00FF88', // Bright green from logo
+  primary: '#194185', // Orange (primary from logo)
+  secondary: '#10B981', // Bright green from logo
   accent: '#1E3A8A', // Dark blue from logo
   danger: '#EF4444',
   warning: '#F97316',
-  success: '#00FF88', // Using bright green for success
+  success: '#10B981', // Using bright green for success
   info: '#1E3A8A', // Using dark blue for info
   purple: '#8B5CF6',
   pink: '#EC4899',
   indigo: '#6366F1'
 };
 
-const CHART_COLORS = ['#FF6B35', '#00FF88', '#1E3A8A', '#EF4444', '#8B5CF6', '#EC4899'];
+const CHART_COLORS = ['#194185', '#10B981', '#1E3A8A', '#EF4444', '#8B5CF6', '#EC4899'];
 
 export default function DashboardPage() {
   const [stats, setStats] = useState<any>(null)
@@ -289,7 +289,7 @@ export default function DashboardPage() {
     return (
       <div className="flex items-center justify-center h-96">
         <div className="flex flex-col items-center space-y-4">
-          <Loader className="animate-spin h-8 w-8 text-orange-500" />
+          <Loader className="animate-spin h-8 w-8 text-primary" />
           <span className="text-lg font-semibold"><span>Chargement...</span></span>
         </div>
       </div>
@@ -336,22 +336,22 @@ export default function DashboardPage() {
       </Dialog>
 
       {/* Main Dashboard Content */}
-      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+        <div className="w-full">
 
           {/* Dashboard Header */}
-          <div className="mb-8">
+          <div className="mb-4 sm:mb-6">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+                <h1 className="text-2xl sm:text-3xl lg:text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
                   <span>{appName}</span>
                 </h1>
-                <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm sm:text-base lg:text-lg">
+                <p className="text-body dark:text-bodydark mt-2 text-sm sm:text-base lg:text-lg">
                   <span>Tableau de bord administrateur</span>
                 </p>
               </div>
-              <div className="flex items-center space-x-2 sm:space-x-4">
-                <div className="flex items-center space-x-2 bg-white dark:bg-gray-800 rounded-lg px-3 sm:px-4 py-2 shadow-sm">
+              <div className="flex items-center space-x-2 sm:gap-2 sm:gap-4">
+                <div className="flex items-center space-x-2 bg-white dark:bg-boxdark rounded-lg px-3 sm:px-4 py-2 shadow-sm">
                   <Switch
                     id="active-users-toggle"
                     checked={showOnlyActiveUsers}
@@ -362,10 +362,10 @@ export default function DashboardPage() {
                     <span className="sm:hidden">Utilisateurs actifs</span>
                   </label>
                 </div>
-                {/* <div className="bg-white dark:bg-gray-800 rounded-lg px-4 py-2 shadow-sm">
+                {/* <div className="bg-white dark:bg-boxdark rounded-lg px-4 py-2 shadow-sm">
                     <div className="flex items-center space-x-2">
-                      <Clock className="h-4 w-4 text-gray-500" />
-                      <span className="text-sm text-gray-600 dark:text-gray-300">
+                      <Clock className="h-4 w-4 text-body" />
+                      <span className="text-sm text-body dark:text-bodydark">
                         {new Date().toLocaleTimeString()}
                       </span>
                       </div>
@@ -375,15 +375,15 @@ export default function DashboardPage() {
           </div>
 
           {/* Key Metrics Overview */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 sm:gap-3 sm:p-4 md:p-6 mb-4 sm:mb-6">
             {/* Total Users */}
-            <Card className="relative overflow-hidden bg-gradient-to-br from-orange-500 to-orange-600 text-white border-0 shadow-lg">
+            <Card className="relative overflow-hidden bg-gradient-to-br from-primary to-primary text-white border-0 shadow-lg">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
-              <CardContent className="p-4 sm:p-6">
-                <div className="flex items-center justify-between">
+              <CardContent className="p-4 sm:p-3 sm:p-4 md:p-6">
+                <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
                   <div>
                     <p className="text-blue-100 text-xs sm:text-sm font-medium"><span>Utilisateurs totaux</span></p>
-                    <p className="text-2xl sm:text-3xl font-bold"><span>{stats.user_stats.total_users}</span></p>
+                    <p className="text-2xl sm:text-lg font-bold sm:text-xl"><span>{stats.user_stats.total_users}</span></p>
                     <div className="flex items-center mt-1 sm:mt-2">
                       <ArrowUpRight className="h-3 w-3 sm:h-4 sm:w-4 text-green-300" />
                       <span className="text-xs sm:text-sm text-blue-100 ml-1"><span>{`+${stats.user_stats.users_registered_today}`}</span> <span>aujourd'hui</span></span>
@@ -397,13 +397,13 @@ export default function DashboardPage() {
             </Card>
 
             {/* Active Tasks */}
-            <Card className="relative overflow-hidden bg-gradient-to-br from-green-500 to-green-600 text-white border-0 shadow-lg">
+            <Card className="relative overflow-hidden bg-gradient-to-br from-meta-3 to-meta-3 text-white border-0 shadow-lg">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
-              <CardContent className="p-4 sm:p-6">
-                <div className="flex items-center justify-between">
+              <CardContent className="p-4 sm:p-3 sm:p-4 md:p-6">
+                <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
                   <div>
                     <p className="text-green-100 text-xs sm:text-sm font-medium"><span>Tâches actives</span></p>
-                    <p className="text-2xl sm:text-3xl font-bold"><span>{stats.task_stats.active}</span></p>
+                    <p className="text-2xl sm:text-lg font-bold sm:text-xl"><span>{stats.task_stats.active}</span></p>
                     <div className="flex items-center mt-1 sm:mt-2">
                       <Activity className="h-3 w-3 sm:h-4 sm:w-4 text-green-300" />
                       <span className="text-xs sm:text-sm text-green-100 ml-1"><span>En cours</span></span>
@@ -417,13 +417,13 @@ export default function DashboardPage() {
             </Card>
 
             {/* Today's Revenue */}
-            <Card className="relative overflow-hidden bg-gradient-to-br from-green-500 to-green-600 text-white border-0 shadow-lg">
+            <Card className="relative overflow-hidden bg-gradient-to-br from-meta-3 to-meta-3 text-white border-0 shadow-lg">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
-              <CardContent className="p-4 sm:p-6">
-                <div className="flex items-center justify-between">
+              <CardContent className="p-4 sm:p-3 sm:p-4 md:p-6">
+                <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
                   <div>
                     <p className="text-purple-100 text-xs sm:text-sm font-medium"><span>Revenus d'aujourd'hui</span></p>
-                    <p className="text-xl sm:text-2xl lg:text-3xl font-bold">
+                    <p className="text-xl sm:text-2xl lg:text-lg font-bold sm:text-xl">
                       <span>{summary ? `${parseFloat(summary.today_revenue || 0).toFixed(2)}` : '0.00'}</span> <span>FCFA</span>
                     </p>
                     <div className="flex items-center mt-1 sm:mt-2">
@@ -441,13 +441,13 @@ export default function DashboardPage() {
             </Card>
 
             {/* System Status */}
-            <Card className="relative overflow-hidden bg-gradient-to-br from-orange-500 to-orange-600 text-white border-0 shadow-lg">
+            <Card className="relative overflow-hidden bg-gradient-to-br from-primary to-primary text-white border-0 shadow-lg">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
-              <CardContent className="p-4 sm:p-6">
-                <div className="flex items-center justify-between">
+              <CardContent className="p-4 sm:p-3 sm:p-4 md:p-6">
+                <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
                   <div>
                     <p className="text-orange-100 text-xs sm:text-sm font-medium"><span>Statut du système</span></p>
-                    <p className="text-xl sm:text-2xl lg:text-3xl font-bold">
+                    <p className="text-xl sm:text-2xl lg:text-lg font-bold sm:text-xl">
                       <span>{stats.notification_info.async_enabled ? 'En ligne' : 'Hors ligne'}</span>
                     </p>
                     <div className="flex items-center mt-1 sm:mt-2">
@@ -470,19 +470,19 @@ export default function DashboardPage() {
           </div>
 
           {/* Charts Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-3 sm:p-4 md:p-6 lg:gap-3 sm:p-5 md:p-8 mb-4 sm:mb-6">
             {/* Financial Overview Chart */}
             {financialChartData.length > 0 && (
-              <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-                <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+              <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+                <CardHeader className="border-b border-gray-100 dark:border-strokedark">
                   <CardTitle className="flex items-center space-x-2">
-                    <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                      <TrendingUp className="h-5 w-5 text-orange-600 dark:text-orange-300" />
+                    <div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                      <TrendingUp className="h-5 w-5 text-primary dark:text-secondary" />
                     </div>
                     <span><span>Aperçu financier</span></span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-4 sm:p-6">
+                <CardContent className="p-4 sm:p-3 sm:p-4 md:p-6">
                   <div className="h-64 sm:h-80">
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
@@ -511,16 +511,16 @@ export default function DashboardPage() {
 
             {/* Transaction Trends */}
             {transactionTrendData.length > 0 && (
-              <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-                <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+              <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+                <CardHeader className="border-b border-gray-100 dark:border-strokedark">
                   <CardTitle className="flex items-center space-x-2">
                     <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                      <BarChart3 className="h-5 w-5 text-green-600 dark:text-green-300" />
+                      <BarChart3 className="h-5 w-5 text-meta-3 dark:text-green-300" />
                     </div>
                     <span><span>Tendances des transactions</span></span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-4 sm:p-6">
+                <CardContent className="p-4 sm:p-3 sm:p-4 md:p-6">
                   <div className="h-64 sm:h-80">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={transactionTrendData}>
@@ -537,32 +537,32 @@ export default function DashboardPage() {
           </div>
 
           {/* Detailed Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:p-4 md:p-6 mb-4 sm:mb-6">
             {/* User Statistics */}
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark hover:shadow-xl transition-shadow">
+              <CardHeader className="border-b border-gray-100 dark:border-strokedark">
                 <CardTitle className="flex items-center space-x-2">
-                  <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                    <Users className="h-5 w-5 text-orange-600 dark:text-orange-300" />
+                  <div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                    <Users className="h-5 w-5 text-primary dark:text-secondary" />
                   </div>
                   <span><span>Statistiques des utilisateurs</span></span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
+              <CardContent className="p-3 sm:p-4 md:p-6">
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                  <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                     <span className="text-sm font-medium">Utilisateurs totaux</span>
                     <Badge className="bg-blue-600 text-white">{stats.user_stats.total_users}</Badge>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                  <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
                     <span className="text-sm font-medium">Utilisateurs actifs</span>
-                    <Badge className="bg-green-600 text-white">{stats.user_stats.active_users}</Badge>
+                    <Badge className="bg-meta-3 text-white">{stats.user_stats.active_users}</Badge>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+                  <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
                     <span className="text-sm font-medium">Utilisateurs en attente</span>
                     <Badge className="bg-yellow-600 text-white">{stats.user_stats.pending_users}</Badge>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                  <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
                     <span className="text-sm font-medium">Utilisateurs vérifiés</span>
                     <Badge className="bg-purple-600 text-white">{stats.user_stats.verified_users}</Badge>
                   </div>
@@ -571,36 +571,36 @@ export default function DashboardPage() {
             </Card>
 
             {/* Task Statistics */}
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark hover:shadow-xl transition-shadow">
+              <CardHeader className="border-b border-gray-100 dark:border-strokedark">
                 <CardTitle className="flex items-center space-x-2">
                   <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                    <ClipboardList className="h-5 w-5 text-green-600 dark:text-green-300" />
+                    <ClipboardList className="h-5 w-5 text-meta-3 dark:text-green-300" />
                   </div>
                   <span><span>Statistiques des tâches</span></span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
+              <CardContent className="p-3 sm:p-4 md:p-6">
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                  <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
                     <span className="text-sm font-medium">Tâches actives</span>
-                    <Badge className="bg-green-600 text-white">{stats.task_stats.active}</Badge>
+                    <Badge className="bg-meta-3 text-white">{stats.task_stats.active}</Badge>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                  <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                     <span className="text-sm font-medium">Tâches programmées</span>
                     <Badge className="bg-blue-600 text-white">{stats.task_stats.scheduled}</Badge>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                  <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-gray dark:bg-orange-900/20 rounded-lg">
                     <span className="text-sm font-medium">Tâches réservées</span>
-                    <Badge className="bg-orange-600 text-white">{stats.task_stats.reserved}</Badge>
+                    <Badge className="bg-primary text-white">{stats.task_stats.reserved}</Badge>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             {/* System Information */}
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark hover:shadow-xl transition-shadow">
+              <CardHeader className="border-b border-gray-100 dark:border-strokedark">
                 <CardTitle className="flex items-center space-x-2">
                   <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
                     <Settings className="h-5 w-5 text-purple-600 dark:text-purple-300" />
@@ -608,25 +608,25 @@ export default function DashboardPage() {
                   <span><span>Informations système</span></span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
+              <CardContent className="p-3 sm:p-4 md:p-6">
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/20 rounded-lg">
+                  <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-gray-50 dark:bg-boxdark-2/20 rounded-lg">
                     <span className="text-sm font-medium">Service email</span>
                     <Badge variant="outline">{stats.notification_info.email_service}</Badge>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/20 rounded-lg">
+                  <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-gray-50 dark:bg-boxdark-2/20 rounded-lg">
                     <span className="text-sm font-medium">Service SMS</span>
                     <Badge variant="outline">{stats.notification_info.sms_service}</Badge>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/20 rounded-lg">
+                  <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-gray-50 dark:bg-boxdark-2/20 rounded-lg">
                     <span className="text-sm font-medium">Asynchrone activé</span>
-                    <Badge className={stats.notification_info.async_enabled ? "bg-green-600 text-white" : "bg-red-600 text-white"}>
+                    <Badge className={stats.notification_info.async_enabled ? "bg-meta-3 text-white" : "bg-red-600 text-white"}>
                       {stats.notification_info.async_enabled ? 'Oui' : 'Non'}
                     </Badge>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/20 rounded-lg">
+                  <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-gray-50 dark:bg-boxdark-2/20 rounded-lg">
                     <span className="text-sm font-medium">Journalisation activée</span>
-                    <Badge className={stats.notification_info.logging_enabled ? "bg-green-600 text-white" : "bg-red-600 text-white"}>
+                    <Badge className={stats.notification_info.logging_enabled ? "bg-meta-3 text-white" : "bg-red-600 text-white"}>
                       {stats.notification_info.logging_enabled ? 'Oui' : 'Non'}
                     </Badge>
                   </div>
@@ -636,10 +636,10 @@ export default function DashboardPage() {
           </div>
 
           {/* Payment & Transaction Details */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-3 sm:p-4 md:p-6 lg:gap-3 sm:p-5 md:p-8 mb-4 sm:mb-6">
             {/* Payment Summary */}
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-              <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+              <CardHeader className="border-b border-gray-100 dark:border-strokedark">
                 <CardTitle className="flex items-center space-x-2">
                   <div className="p-2 bg-indigo-100 dark:bg-indigo-900 rounded-lg">
                     <CreditCard className="h-5 w-5 text-indigo-600 dark:text-indigo-300" />
@@ -647,9 +647,9 @@ export default function DashboardPage() {
                   <span><span>Résumé des paiements</span></span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-4 sm:p-6">
+              <CardContent className="p-4 sm:p-3 sm:p-4 md:p-6">
                 {summaryLoading ? (
-                  <div className="flex items-center justify-center py-8">
+                  <div className="flex items-center justify-center py-4 sm:py-6">
                     <Loader className="animate-spin mr-2" /> Chargement...
                   </div>
                 ) : summaryError ? (
@@ -657,31 +657,31 @@ export default function DashboardPage() {
                 ) : summary ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-3 sm:p-4 rounded-lg">
-                      <div className="text-xs sm:text-sm text-orange-600 dark:text-orange-300 font-medium">Transactions d'aujourd'hui</div>
-                      <div className="text-xl sm:text-2xl font-bold text-orange-900 dark:text-orange-100"><span>{summary.today_transactions}</span></div>
+                      <div className="text-xs sm:text-sm text-primary dark:text-secondary font-medium">Transactions d'aujourd'hui</div>
+                      <div className="text-xl sm:text-lg font-bold sm:text-xl text-orange-900 dark:text-orange-100"><span>{summary.today_transactions}</span></div>
                     </div>
                     <div className="bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 p-3 sm:p-4 rounded-lg">
-                      <div className="text-xs sm:text-sm text-green-600 dark:text-green-300 font-medium">Terminées</div>
-                      <div className="text-xl sm:text-2xl font-bold text-green-900 dark:text-green-100"><span>{summary.today_completed}</span></div>
+                      <div className="text-xs sm:text-sm text-meta-3 dark:text-green-300 font-medium">Terminées</div>
+                      <div className="text-xl sm:text-lg font-bold sm:text-xl text-green-900 dark:text-green-100"><span>{summary.today_completed}</span></div>
                     </div>
                     <div className="bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 p-3 sm:p-4 rounded-lg">
                       <div className="text-xs sm:text-sm text-purple-600 dark:text-purple-300 font-medium">Revenus</div>
-                      <div className="text-xl sm:text-2xl font-bold text-purple-900 dark:text-purple-100"><span>{parseFloat(summary.today_revenue || 0).toFixed(2)}</span> <span>FCFA</span></div>
+                      <div className="text-xl sm:text-lg font-bold sm:text-xl text-purple-900 dark:text-purple-100"><span>{parseFloat(summary.today_revenue || 0).toFixed(2)}</span> <span>FCFA</span></div>
                     </div>
                     <div className="bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 p-3 sm:p-4 rounded-lg">
-                      <div className="text-xs sm:text-sm text-orange-600 dark:text-orange-300 font-medium">Taux de réussite</div>
-                      <div className="text-xl sm:text-2xl font-bold text-orange-900 dark:text-orange-100"><span>{summary.today_success_rate?.toFixed(1)}%</span></div>
+                      <div className="text-xs sm:text-sm text-primary dark:text-secondary font-medium">Taux de réussite</div>
+                      <div className="text-xl sm:text-lg font-bold sm:text-xl text-orange-900 dark:text-orange-100"><span>{summary.today_success_rate?.toFixed(1)}%</span></div>
                     </div>
                   </div>
                 ) : (
-                  <div className="text-gray-500 text-center py-8">Aucune donnée disponible</div>
+                  <div className="text-body text-center py-4 sm:py-6">Aucune donnée disponible</div>
                 )}
               </CardContent>
             </Card>
 
             {/* System Events */}
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-              <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+              <CardHeader className="border-b border-gray-100 dark:border-strokedark">
                 <CardTitle className="flex items-center space-x-2">
                   <div className="p-2 bg-cyan-100 dark:bg-cyan-900 rounded-lg">
                     <AlertCircle className="h-5 w-5 text-cyan-600 dark:text-cyan-300" />
@@ -689,9 +689,9 @@ export default function DashboardPage() {
                   <span><span>Événements système récents</span></span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
+              <CardContent className="p-3 sm:p-4 md:p-6">
                 {systemEventsLoading ? (
-                  <div className="flex items-center justify-center py-8">
+                  <div className="flex items-center justify-center py-4 sm:py-6">
                     <Loader className="animate-spin mr-2" /> Chargement...
                   </div>
                 ) : systemEventsError ? (
@@ -699,20 +699,20 @@ export default function DashboardPage() {
                 ) : systemEvents && systemEvents.length > 0 ? (
                   <div className="space-y-4 max-h-80 overflow-y-auto">
                     {systemEvents.slice(0, 5).map((event, idx) => (
-                      <div key={event.uid} className="p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
-                        <div className="flex items-center justify-between mb-2">
+                      <div key={event.uid} className="p-4 bg-gray-50 dark:bg-boxdark-2/50 rounded-lg">
+                        <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center mb-2">
                           <span className="font-semibold text-sm">{event.event_type.replace(/_/g, " ").toUpperCase()}</span>
                           <Badge variant="outline" className="text-xs">{event.level}</Badge>
                         </div>
-                        <div className="text-sm text-gray-600 dark:text-gray-300 mb-2">{event.description}</div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400">
+                        <div className="text-sm text-body dark:text-bodydark mb-2">{event.description}</div>
+                        <div className="text-xs text-body dark:text-bodydark2">
                           {new Date(event.created_at).toLocaleString()}
                         </div>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <div className="text-gray-500 text-center py-8">Aucun événement récent</div>
+                  <div className="text-body text-center py-4 sm:py-6">Aucun événement récent</div>
                 )}
               </CardContent>
             </Card>
@@ -720,8 +720,8 @@ export default function DashboardPage() {
 
           {/* Additional Stats Cards */}
           {rechargeStats && (
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-8">
-              <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4 sm:mb-6">
+              <CardHeader className="border-b border-gray-100 dark:border-strokedark">
                 <CardTitle className="flex items-center space-x-2">
                   <div className="p-2 bg-sky-100 dark:bg-sky-900 rounded-lg">
                     <RefreshCw className="h-5 w-5 text-sky-600 dark:text-sky-300" />
@@ -729,19 +729,19 @@ export default function DashboardPage() {
                   <span><span>Aperçu des demandes de recharge</span></span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <CardContent className="p-3 sm:p-4 md:p-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:p-4 md:p-6">
                   <div className="text-center p-4 bg-sky-50 dark:bg-sky-900/20 rounded-lg">
-                    <div className="text-2xl font-bold text-sky-600 dark:text-sky-300"><span>{rechargeStats.total_requests}</span></div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Demandes totales</div>
+                    <div className="text-lg font-bold sm:text-xl text-sky-600 dark:text-sky-300"><span>{rechargeStats.total_requests}</span></div>
+                    <div className="text-sm text-body dark:text-bodydark">Demandes totales</div>
                   </div>
                   <div className="text-center p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
-                    <div className="text-2xl font-bold text-amber-600 dark:text-amber-300"><span>{rechargeStats.pending_review}</span></div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">En attente de révision</div>
+                    <div className="text-lg font-bold sm:text-xl text-amber-600 dark:text-amber-300"><span>{rechargeStats.pending_review}</span></div>
+                    <div className="text-sm text-body dark:text-bodydark">En attente de révision</div>
                   </div>
                   <div className="text-center p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg">
-                    <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-300"><span>{parseFloat(rechargeStats.total_approved_amount || 0).toFixed(2)}</span> <span>FCFA</span></div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Montant approuvé</div>
+                    <div className="text-lg font-bold sm:text-xl text-emerald-600 dark:text-emerald-300"><span>{parseFloat(rechargeStats.total_approved_amount || 0).toFixed(2)}</span> <span>FCFA</span></div>
+                    <div className="text-sm text-body dark:text-bodydark">Montant approuvé</div>
                   </div>
                 </div>
               </CardContent>
@@ -750,8 +750,8 @@ export default function DashboardPage() {
 
           {/* Balance Operations */}
           {balanceOps && (
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg mb-8">
-              <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-4 sm:mb-6">
+              <CardHeader className="border-b border-gray-100 dark:border-strokedark">
                 <CardTitle className="flex items-center space-x-2">
                   <div className="p-2 bg-emerald-100 dark:bg-emerald-900 rounded-lg">
                     <DollarSign className="h-5 w-5 text-emerald-600 dark:text-emerald-300" />
@@ -759,23 +759,23 @@ export default function DashboardPage() {
                   <span><span>Opérations de solde</span></span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <CardContent className="p-3 sm:p-4 md:p-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
                   <div className="text-center p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg">
-                    <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-300"><span>{balanceOps.adjustments.total_count}</span></div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Ajustements totaux</div>
+                    <div className="text-lg font-bold sm:text-xl text-emerald-600 dark:text-emerald-300"><span>{balanceOps.adjustments.total_count}</span></div>
+                    <div className="text-sm text-body dark:text-bodydark">Ajustements totaux</div>
                   </div>
                   <div className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                    <div className="text-2xl font-bold text-orange-600 dark:text-orange-300"><span>{balanceOps.adjustments.total_credits.count}</span></div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Crédits</div>
+                    <div className="text-lg font-bold sm:text-xl text-primary dark:text-secondary"><span>{balanceOps.adjustments.total_credits.count}</span></div>
+                    <div className="text-sm text-body dark:text-bodydark">Crédits</div>
                   </div>
-                  <div className="text-center p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
-                    <div className="text-2xl font-bold text-orange-600 dark:text-orange-300"><span>{balanceOps.adjustments.total_debits.count}</span></div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Débits</div>
+                  <div className="text-center p-4 bg-gray dark:bg-orange-900/20 rounded-lg">
+                    <div className="text-lg font-bold sm:text-xl text-primary dark:text-secondary"><span>{balanceOps.adjustments.total_debits.count}</span></div>
+                    <div className="text-sm text-body dark:text-bodydark">Débits</div>
                   </div>
                   <div className="text-center p-4 bg-red-50 dark:bg-red-900/20 rounded-lg">
-                    <div className="text-2xl font-bold text-red-600 dark:text-red-300"><span>{balanceOps.refunds.total_count}</span></div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Remboursements</div>
+                    <div className="text-lg font-bold sm:text-xl text-red-600 dark:text-red-300"><span>{balanceOps.refunds.total_count}</span></div>
+                    <div className="text-sm text-body dark:text-bodydark">Remboursements</div>
                   </div>
                 </div>
               </CardContent>
@@ -783,20 +783,20 @@ export default function DashboardPage() {
           )}
 
           {/* Payment Methods Statistics */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:p-5 md:p-8 mb-4 sm:mb-6">
             {/* MoMo Pay Statistics */}
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-              <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+              <CardHeader className="border-b border-gray-100 dark:border-strokedark">
                 <CardTitle className="flex items-center space-x-2">
                   <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                    <Smartphone className="h-5 w-5 text-green-600 dark:text-green-300" />
+                    <Smartphone className="h-5 w-5 text-meta-3 dark:text-green-300" />
                   </div>
                   <span><span>Statistiques MoMo Pay</span></span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
+              <CardContent className="p-3 sm:p-4 md:p-6">
                 {momoPayLoading ? (
-                  <div className="flex items-center justify-center py-8">
+                  <div className="flex items-center justify-center py-4 sm:py-6">
                     <Loader className="animate-spin mr-2" /> Chargement...
                   </div>
                 ) : momoPayError ? (
@@ -805,54 +805,54 @@ export default function DashboardPage() {
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 p-4 rounded-lg">
-                        <div className="text-sm text-green-600 dark:text-green-300 font-medium">Total Transactions</div>
-                        <div className="text-2xl font-bold text-green-900 dark:text-green-100"><span>{momoPayStats.total_transactions || 0}</span></div>
+                        <div className="text-sm text-meta-3 dark:text-green-300 font-medium">Total Transactions</div>
+                        <div className="text-lg font-bold sm:text-xl text-green-900 dark:text-green-100"><span>{momoPayStats.total_transactions || 0}</span></div>
                       </div>
                       <div className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-4 rounded-lg">
-                        <div className="text-sm text-orange-600 dark:text-orange-300 font-medium">Montant Total</div>
-                        <div className="text-2xl font-bold text-orange-900 dark:text-orange-100"><span>{parseFloat((momoPayStats.total_amount || 0).toString()).toFixed(2)}</span> <span>FCFA</span></div>
+                        <div className="text-sm text-primary dark:text-secondary font-medium">Montant Total</div>
+                        <div className="text-lg font-bold sm:text-xl text-orange-900 dark:text-orange-100"><span>{parseFloat((momoPayStats.total_amount || 0).toString()).toFixed(2)}</span> <span>FCFA</span></div>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-gradient-to-r from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 p-4 rounded-lg">
                         <div className="text-sm text-emerald-600 dark:text-emerald-300 font-medium">Confirmées</div>
-                        <div className="text-2xl font-bold text-emerald-900 dark:text-green-100"><span>{momoPayStats.confirmed_count || 0}</span></div>
+                        <div className="text-lg font-bold sm:text-xl text-emerald-900 dark:text-green-100"><span>{momoPayStats.confirmed_count || 0}</span></div>
                       </div>
                       <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 p-4 rounded-lg">
                         <div className="text-sm text-yellow-600 dark:text-yellow-300 font-medium">En Attente</div>
-                        <div className="text-2xl font-bold text-yellow-900 dark:text-yellow-100"><span>{momoPayStats.pending_count || 0}</span></div>
+                        <div className="text-lg font-bold sm:text-xl text-yellow-900 dark:text-yellow-100"><span>{momoPayStats.pending_count || 0}</span></div>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-gradient-to-r from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 p-4 rounded-lg">
                         <div className="text-sm text-red-600 dark:text-red-300 font-medium">Annulées</div>
-                        <div className="text-2xl font-bold text-red-900 dark:text-red-100"><span>{momoPayStats.cancelled_count || 0}</span></div>
+                        <div className="text-lg font-bold sm:text-xl text-red-900 dark:text-red-100"><span>{momoPayStats.cancelled_count || 0}</span></div>
                       </div>
                       <div className="bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 p-4 rounded-lg">
-                        <div className="text-sm text-orange-600 dark:text-orange-300 font-medium">Échouées</div>
-                        <div className="text-2xl font-bold text-orange-900 dark:text-orange-100"><span>{momoPayStats.failed_count || 0}</span></div>
+                        <div className="text-sm text-primary dark:text-secondary font-medium">Échouées</div>
+                        <div className="text-lg font-bold sm:text-xl text-orange-900 dark:text-orange-100"><span>{momoPayStats.failed_count || 0}</span></div>
                       </div>
                     </div>
                   </div>
                 ) : (
-                  <div className="text-gray-500 text-center py-8">Aucune donnée disponible</div>
+                  <div className="text-body text-center py-4 sm:py-6">Aucune donnée disponible</div>
                 )}
               </CardContent>
             </Card>
 
             {/* Wave Business Statistics */}
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-              <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+            <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+              <CardHeader className="border-b border-gray-100 dark:border-strokedark">
                 <CardTitle className="flex items-center space-x-2">
-                  <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                    <Waves className="h-5 w-5 text-orange-600 dark:text-orange-300" />
+                  <div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                    <Waves className="h-5 w-5 text-primary dark:text-secondary" />
                   </div>
                   <span><span>Statistiques Wave Business</span></span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
+              <CardContent className="p-3 sm:p-4 md:p-6">
                 {waveLoading ? (
-                  <div className="flex items-center justify-center py-8">
+                  <div className="flex items-center justify-center py-4 sm:py-6">
                     <Loader className="animate-spin mr-2" /> Chargement...
                   </div>
                 ) : waveError ? (
@@ -861,77 +861,77 @@ export default function DashboardPage() {
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-4 rounded-lg">
-                        <div className="text-sm text-orange-600 dark:text-orange-300 font-medium">Total Transactions</div>
-                        <div className="text-2xl font-bold text-orange-900 dark:text-orange-100"><span>{waveStats.total_transactions || 0}</span></div>
+                        <div className="text-sm text-primary dark:text-secondary font-medium">Total Transactions</div>
+                        <div className="text-lg font-bold sm:text-xl text-orange-900 dark:text-orange-100"><span>{waveStats.total_transactions || 0}</span></div>
                       </div>
                       <div className="bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 p-4 rounded-lg">
                         <div className="text-sm text-purple-600 dark:text-purple-300 font-medium">Montant Total</div>
-                        <div className="text-2xl font-bold text-purple-900 dark:text-purple-100"><span>{parseFloat((waveStats.total_amount || 0).toString()).toFixed(2)}</span> <span>FCFA</span></div>
+                        <div className="text-lg font-bold sm:text-xl text-purple-900 dark:text-purple-100"><span>{parseFloat((waveStats.total_amount || 0).toString()).toFixed(2)}</span> <span>FCFA</span></div>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-gradient-to-r from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 p-4 rounded-lg">
                         <div className="text-sm text-emerald-600 dark:text-emerald-300 font-medium">Confirmées</div>
-                        <div className="text-2xl font-bold text-emerald-900 dark:text-emerald-100"><span>{waveStats.confirmed_count || 0}</span></div>
+                        <div className="text-lg font-bold sm:text-xl text-emerald-900 dark:text-emerald-100"><span>{waveStats.confirmed_count || 0}</span></div>
                       </div>
                       <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 p-4 rounded-lg">
                         <div className="text-sm text-yellow-600 dark:text-yellow-300 font-medium">En Attente</div>
-                        <div className="text-2xl font-bold text-yellow-900 dark:text-yellow-100"><span>{waveStats.pending_count || 0}</span></div>
+                        <div className="text-lg font-bold sm:text-xl text-yellow-900 dark:text-yellow-100"><span>{waveStats.pending_count || 0}</span></div>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-gradient-to-r from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 p-4 rounded-lg">
                         <div className="text-sm text-red-600 dark:text-red-300 font-medium">Annulées</div>
-                        <div className="text-2xl font-bold text-red-900 dark:text-red-100"><span>{waveStats.cancelled_count || 0}</span></div>
+                        <div className="text-lg font-bold sm:text-xl text-red-900 dark:text-red-100"><span>{waveStats.cancelled_count || 0}</span></div>
                       </div>
                       <div className="bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 p-4 rounded-lg">
-                        <div className="text-sm text-orange-600 dark:text-orange-300 font-medium">Expirées</div>
-                        <div className="text-2xl font-bold text-orange-900 dark:text-orange-100"><span>{waveStats.expired_count || 0}</span></div>
+                        <div className="text-sm text-primary dark:text-secondary font-medium">Expirées</div>
+                        <div className="text-lg font-bold sm:text-xl text-orange-900 dark:text-orange-100"><span>{waveStats.expired_count || 0}</span></div>
                       </div>
                     </div>
                   </div>
                 ) : (
-                  <div className="text-gray-500 text-center py-8">Aucune donnée disponible</div>
+                  <div className="text-body text-center py-4 sm:py-6">Aucune donnée disponible</div>
                 )}
               </CardContent>
             </Card>
           </div>
 
           {/* Aggregator Overview Section */}
-          <div className="mt-12 mb-8" id="aggregator-overview">
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center space-x-2">
-              <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                <Layers className="h-5 w-5 text-orange-600 dark:text-orange-300" />
+          <div className="mt-12 mb-4 sm:mb-6" id="aggregator-overview">
+            <h2 className="text-xl sm:text-lg font-bold sm:text-xl text-gray-800 dark:text-gray-100 mb-6 flex items-center space-x-2">
+              <div className="p-2 bg-meta-2 dark:bg-orange-900 rounded-lg">
+                <Layers className="h-5 w-5 text-primary dark:text-secondary" />
               </div>
               <span>{t("dashboard.aggregatorOverview")}</span>
             </h2>
 
             {aggregatorLoading ? (
-              <div className="flex items-center justify-center py-12">
-                <Loader className="animate-spin h-8 w-8 text-orange-500 mr-3" />
-                <span className="text-lg font-medium text-gray-600">{t("dashboard.loadingAggregatorData")}</span>
+              <div className="flex items-center justify-center py-6 sm:py-10">
+                <Loader className="animate-spin h-8 w-8 text-primary mr-3" />
+                <span className="text-sm font-medium sm:text-base text-body">{t("dashboard.loadingAggregatorData")}</span>
               </div>
             ) : aggregatorError ? (
-              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-6 rounded-xl text-center">
+              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-3 sm:p-4 md:p-6 rounded-xl text-center">
                 <AlertCircle className="h-10 w-10 text-red-500 mx-auto mb-3" />
                 <p className="text-red-700 dark:text-red-400 font-medium">{aggregatorError}</p>
               </div>
             ) : aggregatorStats ? (
-              <div className="space-y-8 animate-in fade-in duration-500">
+              <div className="space-y-4 sm:space-y-6 animate-in fade-in duration-500">
                 {/* Aggregator Stats Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:p-4 md:p-6">
                   <AggregatorStatCard
                     title={t("nav.aggregatorUsers")}
                     value={aggregatorStats.users?.total_aggregators || 0}
                     icon={Users}
-                    className="bg-gradient-to-br from-orange-500 to-orange-600 text-white"
+                    className="bg-gradient-to-br from-primary to-primary text-white"
                     description={<span>{`${aggregatorStats.users?.active_aggregators || 0} actifs aujourd'hui`}</span>}
                   />
                   <AggregatorStatCard
                     title="Volume Payin"
                     value={`${(aggregatorStats.payin?.total_amount || 0).toLocaleString()} FCFA`}
                     icon={TrendingUp}
-                    className="bg-gradient-to-br from-green-500 to-green-600 text-white"
+                    className="bg-gradient-to-br from-meta-3 to-meta-3 text-white"
                     description={<span>{`${aggregatorStats.payin?.success_count || 0} transactions (${aggregatorStats.payin?.total_platform_profit || 0} profit)`}</span>}
                   />
                   <AggregatorStatCard
@@ -951,34 +951,34 @@ export default function DashboardPage() {
                 </div>
 
                 {/* Today's Specific Metrics */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <Card className="border-0 shadow-lg bg-orange-50/50 dark:bg-orange-900/10">
-                    <CardContent className="p-4 flex items-center justify-between">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:p-4 md:p-6">
+                  <Card className="border-0 shadow-lg bg-gray/50 dark:bg-orange-900/10">
+                    <CardContent className="p-4 flex flex-wrap items-start justify-between gap-3 sm:items-center">
                       <div>
-                        <p className="text-xs font-semibold text-orange-600 uppercase tracking-wider">Trx Aujourd'hui</p>
-                        <p className="text-2xl font-bold"><span>{aggregatorStats.today?.total_count || 0}</span></p>
+                        <p className="text-xs font-semibold text-primary uppercase tracking-wider">Trx Aujourd'hui</p>
+                        <p className="text-lg font-bold sm:text-xl"><span>{aggregatorStats.today?.total_count || 0}</span></p>
                       </div>
-                      <div className="bg-orange-100 dark:bg-orange-900/40 p-2 rounded-full text-orange-600">
+                      <div className="bg-meta-2 dark:bg-orange-900/40 p-2 rounded-full text-primary">
                         <Activity className="h-5 w-5" />
                       </div>
                     </CardContent>
                   </Card>
                   <Card className="border-0 shadow-lg bg-green-50/50 dark:bg-green-900/10">
-                    <CardContent className="p-4 flex items-center justify-between">
+                    <CardContent className="p-4 flex flex-wrap items-start justify-between gap-3 sm:items-center">
                       <div>
-                        <p className="text-xs font-semibold text-green-600 uppercase tracking-wider">Volume Aujourd'hui</p>
-                        <p className="text-2xl font-bold"><span>{(aggregatorStats.today?.total_amount || 0).toLocaleString()}</span> <span>FCFA</span></p>
+                        <p className="text-xs font-semibold text-meta-3 uppercase tracking-wider">Volume Aujourd'hui</p>
+                        <p className="text-lg font-bold sm:text-xl"><span>{(aggregatorStats.today?.total_amount || 0).toLocaleString()}</span> <span>FCFA</span></p>
                       </div>
-                      <div className="bg-green-100 dark:bg-green-900/40 p-2 rounded-full text-green-600">
+                      <div className="bg-green-100 dark:bg-green-900/40 p-2 rounded-full text-meta-3">
                         <DollarSign className="h-5 w-5" />
                       </div>
                     </CardContent>
                   </Card>
                   <Card className="border-0 shadow-lg bg-blue-50/50 dark:bg-blue-900/10">
-                    <CardContent className="p-4 flex items-center justify-between">
+                    <CardContent className="p-4 flex flex-wrap items-start justify-between gap-3 sm:items-center">
                       <div>
                         <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider">Profit Aujourd'hui</p>
-                        <p className="text-2xl font-bold"><span>{(aggregatorStats.today?.total_platform_profit || 0).toLocaleString()}</span> <span>FCFA</span></p>
+                        <p className="text-lg font-bold sm:text-xl"><span>{(aggregatorStats.today?.total_platform_profit || 0).toLocaleString()}</span> <span>FCFA</span></p>
                       </div>
                       <div className="bg-blue-100 dark:bg-blue-900/40 p-2 rounded-full text-blue-600">
                         <TrendingUp className="h-5 w-5" />
@@ -987,10 +987,10 @@ export default function DashboardPage() {
                   </Card>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:p-4 md:p-6">
                   {/* Top Aggregators */}
-                  <Card className="border-0 shadow-lg bg-white dark:bg-gray-800 transition-all duration-300 hover:shadow-xl overflow-hidden">
-                    <CardHeader className="border-b border-gray-100 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-900/50">
+                  <Card className="border-0 shadow-lg bg-white dark:bg-boxdark transition-all duration-300 hover:shadow-xl overflow-hidden">
+                    <CardHeader className="border-b border-gray-100 dark:border-strokedark bg-gray-50/50 dark:bg-boxdark-2/50">
                       <CardTitle className="flex items-center space-x-2 text-lg">
                         <Users className="h-5 w-5 text-indigo-500" />
                         <span><span>Top Agrégateurs</span></span>
@@ -998,7 +998,7 @@ export default function DashboardPage() {
                     </CardHeader>
                     <div className="overflow-x-auto">
                       <table className="w-full text-left">
-                        <thead className="text-xs uppercase bg-gray-50 dark:bg-gray-900/50 text-gray-500 dark:text-gray-400">
+                        <thead className="text-xs uppercase bg-gray-50 dark:bg-boxdark-2/50 text-body dark:text-bodydark2">
                           <tr>
                             <th className="px-6 py-4 font-semibold tracking-wider"><span>Agrégateur</span></th>
                             <th className="px-6 py-4 font-semibold tracking-wider"><span>Montant</span></th>
@@ -1010,7 +1010,7 @@ export default function DashboardPage() {
                             <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
                               <td className="px-6 py-4">
                                 <div className="font-medium"><span>{item.user__first_name}</span> <span>{item.user__last_name}</span></div>
-                                <div className="text-xs text-gray-500"><span>{item.user__email}</span></div>
+                                <div className="text-xs text-body"><span>{item.user__email}</span></div>
                               </td>
                               <td className="px-6 py-4 font-mono text-sm">
                                 <span>{(item.total_amount || 0).toLocaleString()}</span> <span>FCFA</span>
@@ -1022,7 +1022,7 @@ export default function DashboardPage() {
                           ))}
                           {(aggregatorStats.top_aggregators || []).length === 0 && (
                             <tr>
-                              <td colSpan={3} className="px-6 py-4 text-center text-gray-500"><span>Aucun agrégateur</span></td>
+                              <td colSpan={3} className="px-6 py-4 text-center text-body"><span>Aucun agrégateur</span></td>
                             </tr>
                           )}
                         </tbody>
@@ -1031,16 +1031,16 @@ export default function DashboardPage() {
                   </Card>
 
                   {/* Network Performance Table */}
-                  <Card className="border-0 shadow-lg bg-white dark:bg-gray-800 transition-all duration-300 hover:shadow-xl overflow-hidden">
-                    <CardHeader className="border-b border-gray-100 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-900/50">
+                  <Card className="border-0 shadow-lg bg-white dark:bg-boxdark transition-all duration-300 hover:shadow-xl overflow-hidden">
+                    <CardHeader className="border-b border-gray-100 dark:border-strokedark bg-gray-50/50 dark:bg-boxdark-2/50">
                       <CardTitle className="flex items-center space-x-2 text-lg">
-                        <Activity className="h-5 w-5 text-orange-500" />
+                        <Activity className="h-5 w-5 text-primary" />
                         <span><span>Performances par Réseau</span></span>
                       </CardTitle>
                     </CardHeader>
                     <div className="overflow-x-auto">
                       <table className="w-full text-left">
-                        <thead className="text-xs uppercase bg-gray-50 dark:bg-gray-900/50 text-gray-500 dark:text-gray-400">
+                        <thead className="text-xs uppercase bg-gray-50 dark:bg-boxdark-2/50 text-body dark:text-bodydark2">
                           <tr>
                             <th className="px-6 py-4 font-semibold tracking-wider"><span>{t("dashboard.network")}</span></th>
                             <th className="px-6 py-4 font-semibold tracking-wider"><span>Opérations</span></th>
@@ -1051,17 +1051,17 @@ export default function DashboardPage() {
                           {(aggregatorStats.network_stats || []).map((item, index) => (
                             <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
                               <td className="px-6 py-4 font-medium"><span>{item.network__nom || 'Inconnu'}</span></td>
-                              <td className="px-6 py-4 font-medium text-sm text-gray-600 dark:text-gray-300">
+                              <td className="px-6 py-4 font-medium text-sm text-body dark:text-bodydark">
                                 <span>{item.tx_count || 0}</span> <span>trx</span>
                               </td>
-                              <td className="px-6 py-4 text-right font-mono text-sm font-semibold text-green-600">
+                              <td className="px-6 py-4 text-right font-mono text-sm font-semibold text-meta-3">
                                 <span>{(item.total_amount || 0).toLocaleString()}</span> <span>FCFA</span>
                               </td>
                             </tr>
                           ))}
                           {(aggregatorStats.network_stats || []).length === 0 && (
                             <tr>
-                              <td colSpan={3} className="px-6 py-4 text-center text-gray-500"><span>Aucun réseau actif</span></td>
+                              <td colSpan={3} className="px-6 py-4 text-center text-body"><span>Aucun réseau actif</span></td>
                             </tr>
                           )}
                         </tbody>
@@ -1071,7 +1071,7 @@ export default function DashboardPage() {
                 </div>
               </div>
             ) : (
-              <div className="text-gray-500 text-center py-12 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+              <div className="text-body text-center py-6 sm:py-10 bg-white dark:bg-boxdark rounded-xl shadow-sm">
                 <span>{t("dashboard.noAggregatorData")}</span>
               </div>
             )}

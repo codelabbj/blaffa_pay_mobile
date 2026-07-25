@@ -106,36 +106,36 @@ export default function DepositPage() {
   const selectedNetwork = networks.find(n => n.uid === network)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:bg-boxdark-2">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-3 sm:px-6 py-4 sm:py-6">
         
         {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
+            <div className="flex items-center gap-2 sm:gap-4">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => router.back()}
-                className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600"
+                className="bg-white dark:bg-boxdark border-stroke dark:border-strokedark"
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Retour
               </Button>
               <div>
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   {t("transactions.depositTitle") || "Deposit"}
                 </h1>
-                <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+                <p className="text-body dark:text-bodydark mt-2 text-lg">
                   Créer une nouvelle transaction de dépôt
                 </p>
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="bg-white dark:bg-gray-800 rounded-lg px-4 py-2 shadow-sm">
+              <div className="bg-white dark:bg-boxdark rounded-lg px-4 py-2 shadow-sm">
                 <div className="flex items-center space-x-2">
-                  <DollarSign className="h-5 w-5 text-green-600" />
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <DollarSign className="h-5 w-5 text-meta-3" />
+                  <span className="text-sm font-medium text-gray-700 dark:text-bodydark">
                     Nouveau dépôt
                   </span>
                 </div>
@@ -145,25 +145,25 @@ export default function DepositPage() {
         </div>
 
         {/* Deposit Form */}
-        <Card className="bg-white dark:bg-gray-800 border-0 shadow-lg">
-          <CardHeader className="border-b border-gray-100 dark:border-gray-700">
+        <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+          <CardHeader className="border-b border-gray-100 dark:border-strokedark">
             <CardTitle className="flex items-center space-x-2">
               <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                <DollarSign className="h-5 w-5 text-green-600 dark:text-green-300" />
+                <DollarSign className="h-5 w-5 text-meta-3 dark:text-green-300" />
               </div>
               <span>Détails du dépôt</span>
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6">
+          <CardContent className="p-3 sm:p-4 md:p-6">
             <form onSubmit={handleSubmit} className="space-y-6">
               
               {/* Network Selection */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-bodydark mb-2">
                   {t("transactions.selectNetwork") || "Select Network"}
                 </label>
                 <Select value={network} onValueChange={setNetwork}>
-                  <SelectTrigger className="bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600">
+                  <SelectTrigger className="bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark">
                     <SelectValue placeholder={t("transactions.selectNetwork") || "Select Network"} />
                   </SelectTrigger>
                   <SelectContent>
@@ -181,12 +181,12 @@ export default function DepositPage() {
 
               {/* Amount */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-bodydark mb-2">
                   {t("transactions.amount") || "Amount"}
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <DollarSign className="h-5 w-5 text-gray-400" />
+                    <DollarSign className="h-5 w-5 text-bodydark2" />
                   </div>
                   <Input
                     placeholder={t("transactions.amount") || "Amount"}
@@ -194,45 +194,45 @@ export default function DepositPage() {
                     onChange={e => setAmount(e.target.value)}
                     type="number"
                     required
-                    className="pl-10 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="pl-10 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                   />
                 </div>
               </div>
 
               {/* Recipient Phone */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-bodydark mb-2">
                   {t("transactions.recipientPhone") || "Recipient Phone"}
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Phone className="h-5 w-5 text-gray-400" />
+                    <Phone className="h-5 w-5 text-bodydark2" />
                   </div>
                   <Input
                     placeholder={t("transactions.recipientPhone") || "Recipient Phone"}
                     value={recipientPhone}
                     onChange={e => setRecipientPhone(e.target.value)}
                     required
-                    className="pl-10 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="pl-10 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                   />
                 </div>
               </div>
 
               {/* Confirm Recipient Phone */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-bodydark mb-2">
                   {t("transactions.confirmRecipientPhone") || "Confirm Recipient Phone"}
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Phone className="h-5 w-5 text-gray-400" />
+                    <Phone className="h-5 w-5 text-bodydark2" />
                   </div>
                   <Input
                     placeholder={t("transactions.confirmRecipientPhone") || "Confirm Recipient Phone"}
                     value={confirmRecipientPhone}
                     onChange={e => setConfirmRecipientPhone(e.target.value)}
                     required
-                    className="pl-10 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="pl-10 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                   />
                 </div>
                 {recipientPhone && confirmRecipientPhone && recipientPhone.trim() !== confirmRecipientPhone.trim() && (
@@ -242,7 +242,7 @@ export default function DepositPage() {
                   </div>
                 )}
                 {recipientPhone && confirmRecipientPhone && recipientPhone.trim() === confirmRecipientPhone.trim() && (
-                  <div className="mt-2 flex items-center space-x-2 text-sm text-green-600">
+                  <div className="mt-2 flex items-center space-x-2 text-sm text-meta-3">
                     <CheckCircle className="h-4 w-4" />
                     <span>Les numéros de téléphone correspondent</span>
                   </div>
@@ -251,29 +251,29 @@ export default function DepositPage() {
 
               {/* Purpose/Objet */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-bodydark mb-2">
                   {t("transactions.purpose") || "Purpose"}
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <FileText className="h-5 w-5 text-gray-400" />
+                    <FileText className="h-5 w-5 text-bodydark2" />
                   </div>
                   <Input
                     placeholder={t("transactions.purpose") || "Purpose"}
                     value={objet}
                     onChange={e => setObjet(e.target.value)}
-                    className="pl-10 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="pl-10 bg-gray-50 dark:bg-meta-4 border-stroke dark:border-strokedark"
                   />
                 </div>
               </div>
 
               {/* Confirmation Checkbox */}
-              <div className="flex items-center space-x-3 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
                 <input
                   type="checkbox"
                   checked={confirmDetails}
                   onChange={e => setConfirmDetails(e.target.checked)}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-stroke rounded"
                 />
                 <label className="text-sm text-blue-800 dark:text-blue-200">
                   {t("transactions.confirmationLabel") || "I confirm the phone number and amount are correct"}
@@ -316,43 +316,43 @@ export default function DepositPage() {
 
         {/* Confirmation Modal */}
         <Dialog open={showConfirmModal} onOpenChange={setShowConfirmModal}>
-          <DialogContent className="bg-white dark:bg-gray-800 border-0 shadow-xl">
+          <DialogContent className="bg-white dark:bg-boxdark border-0 shadow-xl">
             <DialogHeader>
               <DialogTitle className="flex items-center space-x-2">
                 <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <CheckCircle className="h-5 w-5 text-meta-3" />
                 </div>
                 <span>{t("transactions.confirmDepositTitle") || t("transactions.reviewAndConfirm") || "Confirmer le dépôt"}</span>
               </DialogTitle>
             </DialogHeader>
             <div className="space-y-4 py-4">
               <div className="grid grid-cols-1 gap-4">
-                <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+                <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-gray-50 dark:bg-boxdark-2/50 rounded-lg">
                   <div className="flex items-center space-x-2">
                     <Network className="h-4 w-4 text-blue-600" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">{t("transactions.selectNetwork") || "Réseau"}:</span>
+                    <span className="text-sm text-body dark:text-bodydark2">{t("transactions.selectNetwork") || "Réseau"}:</span>
                   </div>
                   <span className="font-medium text-gray-900 dark:text-gray-100">{selectedNetwork?.nom || network}</span>
                 </div>
-                <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+                <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-gray-50 dark:bg-boxdark-2/50 rounded-lg">
                   <div className="flex items-center space-x-2">
-                    <DollarSign className="h-4 w-4 text-green-600" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">{t("transactions.amount") || "Montant"}:</span>
+                    <DollarSign className="h-4 w-4 text-meta-3" />
+                    <span className="text-sm text-body dark:text-bodydark2">{t("transactions.amount") || "Montant"}:</span>
                   </div>
                   <span className="font-medium text-gray-900 dark:text-gray-100">{amount}</span>
                 </div>
-                <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+                <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-gray-50 dark:bg-boxdark-2/50 rounded-lg">
                   <div className="flex items-center space-x-2">
                     <Phone className="h-4 w-4 text-indigo-600" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">{t("transactions.recipientPhone") || "Téléphone du destinataire"}:</span>
+                    <span className="text-sm text-body dark:text-bodydark2">{t("transactions.recipientPhone") || "Téléphone du destinataire"}:</span>
                   </div>
                   <span className="font-medium text-gray-900 dark:text-gray-100">{recipientPhone}</span>
                 </div>
                 {objet && (
-                  <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+                  <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center p-3 bg-gray-50 dark:bg-boxdark-2/50 rounded-lg">
                     <div className="flex items-center space-x-2">
                       <FileText className="h-4 w-4 text-purple-600" />
-                      <span className="text-sm text-gray-600 dark:text-gray-400">{t("transactions.purpose") || "Objet"}:</span>
+                      <span className="text-sm text-body dark:text-bodydark2">{t("transactions.purpose") || "Objet"}:</span>
                     </div>
                     <span className="font-medium text-gray-900 dark:text-gray-100">{objet}</span>
                   </div>
@@ -364,14 +364,14 @@ export default function DepositPage() {
                 variant="outline" 
                 onClick={() => { setShowConfirmModal(false); }} 
                 disabled={loading}
-                className="border-gray-200 dark:border-gray-600"
+                className="border-stroke dark:border-strokedark"
               >
                 {t("common.cancel") || "Annuler"}
               </Button>
               <Button 
                 onClick={handleConfirmSubmit} 
                 disabled={loading}
-                className="bg-green-600 hover:bg-green-700 text-white"
+                className="bg-meta-3 hover:bg-green-700 text-white"
               >
                 {loading ? (
                   <>

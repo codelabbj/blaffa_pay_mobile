@@ -57,7 +57,7 @@ export const UssdFlowBuilder = memo(function UssdFlowBuilder({ steps, onChange, 
             type="button"
             size="sm"
             variant="outline"
-            className="h-7 text-xs border-slate-300 dark:border-gray-600 text-gray-800 dark:text-gray-200"
+            className="h-7 text-xs border-slate-300 dark:border-strokedark text-gray-800 dark:text-gray-200"
             onClick={() => insertShortcut(token)}
           >
             + {token}
@@ -67,7 +67,7 @@ export const UssdFlowBuilder = memo(function UssdFlowBuilder({ steps, onChange, 
           type="button"
           size="sm"
           variant="outline"
-          className="h-7 text-xs border-slate-300 dark:border-gray-600"
+          className="h-7 text-xs border-slate-300 dark:border-strokedark"
           onClick={() => addStep()}
         >
           <Plus className="h-3 w-3 mr-1" /> Étape
@@ -87,7 +87,7 @@ export const UssdFlowBuilder = memo(function UssdFlowBuilder({ steps, onChange, 
               )}
             >
               <div className="flex w-full sm:w-20 shrink-0 items-center justify-between sm:flex-col sm:items-start sm:justify-start gap-1">
-                <span className="text-[10px] font-medium uppercase tracking-wide text-slate-500 dark:text-gray-400">
+                <span className="text-[10px] font-medium uppercase tracking-wide text-slate-500 dark:text-bodydark2">
                   Étape {index + 1}
                 </span>
                 {typeLabel && (
@@ -102,7 +102,7 @@ export const UssdFlowBuilder = memo(function UssdFlowBuilder({ steps, onChange, 
               <Input
                 value={step}
                 onChange={(e) => updateStep(index, e.target.value)}
-                className="h-10 sm:h-9 w-full min-w-0 flex-1 font-mono text-sm bg-white dark:bg-gray-900 border-slate-200 dark:border-gray-600 text-gray-900 dark:text-gray-100"
+                className="h-10 sm:h-9 w-full min-w-0 flex-1 font-mono text-sm bg-white dark:bg-boxdark-2 border-slate-200 dark:border-strokedark text-gray-900 dark:text-gray-100"
                 placeholder="*880# ou NUM, PIN…"
               />
               <div className="flex shrink-0 items-center justify-end gap-1 sm:flex-col sm:gap-0.5">
@@ -149,12 +149,12 @@ export const UssdFlowBuilder = memo(function UssdFlowBuilder({ steps, onChange, 
         )}
       </div>
 
-      <details className="rounded-lg border border-slate-200 dark:border-gray-600 bg-slate-50/80 dark:bg-gray-900/40 p-3">
-        <summary className="cursor-pointer text-sm font-medium text-slate-600 dark:text-gray-300">
+      <details className="rounded-lg border border-slate-200 dark:border-strokedark bg-slate-50/80 dark:bg-boxdark-2/40 p-3">
+        <summary className="cursor-pointer text-sm font-medium text-slate-600 dark:text-bodydark">
           Édition rapide (une étape par ligne)
         </summary>
         <Textarea
-          className="mt-2 font-mono text-sm bg-white dark:bg-gray-900 border-slate-200 dark:border-gray-600"
+          className="mt-2 font-mono text-sm bg-white dark:bg-boxdark-2 border-slate-200 dark:border-strokedark"
           rows={5}
           value={bulkValue}
           onChange={(e) => onChange(e.target.value.split("\n").map((l) => l.trim()).filter(Boolean))}

@@ -122,7 +122,7 @@ export function AsyncCombobox({
                         <CommandEmpty>
                             {loading ? (
                                 <div className="flex items-center justify-center py-6">
-                                    <Loader2 className="h-4 w-4 animate-spin text-orange-500" />
+                                    <Loader2 className="h-4 w-4 animate-spin text-primary" />
                                 </div>
                             ) : (
                                 emptyMessage

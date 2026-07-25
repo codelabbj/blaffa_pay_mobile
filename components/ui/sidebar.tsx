@@ -141,7 +141,7 @@ const SidebarProvider = React.forwardRef<
               } as React.CSSProperties
             }
             className={cn(
-              "group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900",
+              "group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:bg-boxdark-2",
               className
             )}
             ref={ref}
@@ -181,7 +181,7 @@ const Sidebar = React.forwardRef<
       return (
         <div
           className={cn(
-            "flex h-full w-[--sidebar-width] flex-col bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-900 dark:text-gray-100 border-r-2 border-gray-200/50 dark:border-gray-700/50 shadow-lg",
+            "flex h-full w-[--sidebar-width] flex-col bg-white/80 dark:bg-boxdark/80 backdrop-blur-sm text-gray-900 dark:text-gray-100 border-r-2 border-stroke/50 dark:border-strokedark/50 shadow-lg",
             className
           )}
           ref={ref}
@@ -198,7 +198,7 @@ const Sidebar = React.forwardRef<
           <SheetContent
             data-sidebar="sidebar"
             data-mobile="true"
-            className="w-[--sidebar-width] bg-white/95 dark:bg-gray-800/95 backdrop-blur-md p-0 text-gray-900 dark:text-gray-100 [&>button]:hidden"
+            className="w-[--sidebar-width] bg-white/95 dark:bg-boxdark/95 backdrop-blur-md p-0 text-gray-900 dark:text-gray-100 [&>button]:hidden"
             style={
               {
                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -241,14 +241,14 @@ const Sidebar = React.forwardRef<
             // Adjust the padding for floating and inset variants.
             variant === "floating" || variant === "inset"
               ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4)_+2px)]"
-              : "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r-2 group-data-[side=left]:border-gray-200/50 group-data-[side=left]:dark:border-gray-700/50 group-data-[side=right]:border-l-2 group-data-[side=right]:border-gray-200/50 group-data-[side=right]:dark:border-gray-700/50",
+              : "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r-2 group-data-[side=left]:border-stroke/50 group-data-[side=left]:dark:border-strokedark/50 group-data-[side=right]:border-l-2 group-data-[side=right]:border-stroke/50 group-data-[side=right]:dark:border-strokedark/50",
             className
           )}
           {...props}
         >
           <div
             data-sidebar="sidebar"
-            className="flex h-full w-full flex-col bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm group-data-[variant=floating]:rounded-xl group-data-[variant=floating]:border-2 group-data-[variant=floating]:border-gray-200/50 group-data-[variant=floating]:dark:border-gray-700/50 group-data-[variant=floating]:shadow-xl"
+            className="flex h-full w-full flex-col bg-white/80 dark:bg-boxdark/80 backdrop-blur-sm group-data-[variant=floating]:rounded-xl group-data-[variant=floating]:border-2 group-data-[variant=floating]:border-stroke/50 group-data-[variant=floating]:dark:border-strokedark/50 group-data-[variant=floating]:shadow-xl"
           >
             {children}
           </div>
@@ -303,7 +303,7 @@ const SidebarRail = React.forwardRef<
         "absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all duration-200 ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] after:bg-gradient-to-b from-gray-300 via-gray-400 to-gray-300 dark:from-gray-600 dark:via-gray-500 dark:to-gray-600 hover:after:bg-gradient-to-b hover:after:from-blue-400 hover:after:via-blue-500 hover:after:to-blue-600 group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex",
         "[[data-side=left]_&]:cursor-w-resize [[data-side=right]_&]:cursor-e-resize",
         "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
-        "group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full group-data-[collapsible=offcanvas]:hover:bg-white/50 dark:hover:bg-gray-800/50",
+        "group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full group-data-[collapsible=offcanvas]:hover:bg-white/50 dark:hover:bg-boxdark/50",
         "[[data-side=left][data-collapsible=offcanvas]_&]:-right-2",
         "[[data-side=right][data-collapsible=offcanvas]_&]:-left-2",
         className
@@ -322,7 +322,7 @@ const SidebarInset = React.forwardRef<
     <main
       ref={ref}
       className={cn(
-        "relative flex min-h-svh flex-1 flex-col bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900",
+        "relative flex min-h-svh flex-1 flex-col bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:bg-boxdark-2",
         "peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] md:peer-data-[variant=inset]:m-2 md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-xl",
         className
       )}
@@ -341,7 +341,7 @@ const SidebarInput = React.forwardRef<
       ref={ref}
       data-sidebar="input"
       className={cn(
-        "h-9 w-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-blue-500",
+        "h-9 w-full bg-white/80 dark:bg-boxdark/80 backdrop-blur-sm shadow-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-blue-500",
         className
       )}
       {...props}
@@ -439,7 +439,7 @@ const SidebarGroupLabel = React.forwardRef<
       ref={ref}
       data-sidebar="group-label"
       className={cn(
-        "duration-200 flex h-9 shrink-0 items-center rounded-lg px-3 text-xs font-semibold text-gray-700 dark:text-gray-300 outline-none ring-blue-500 transition-all duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+        "duration-200 flex h-9 shrink-0 items-center rounded-lg px-3 text-xs font-semibold text-gray-700 dark:text-bodydark outline-none ring-blue-500 transition-all duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
         "group-data-[collapsible=icon]:-mt-9 group-data-[collapsible=icon]:opacity-0",
         className
       )}
@@ -460,7 +460,7 @@ const SidebarGroupAction = React.forwardRef<
       ref={ref}
       data-sidebar="group-action"
       className={cn(
-        "absolute right-3 top-3.5 flex aspect-square w-6 items-center justify-center rounded-lg p-0 text-gray-700 dark:text-gray-300 outline-none ring-blue-500 transition-all duration-200 hover:bg-blue-50 hover:text-blue-900 focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 dark:hover:bg-blue-900/20 dark:hover:text-blue-100",
+        "absolute right-3 top-3.5 flex aspect-square w-6 items-center justify-center rounded-lg p-0 text-gray-700 dark:text-bodydark outline-none ring-blue-500 transition-all duration-200 hover:bg-blue-50 hover:text-blue-900 focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 dark:hover:bg-blue-900/20 dark:hover:text-blue-100",
         // Increases the hit area of the button on mobile.
         "after:absolute after:-inset-2 after:md:hidden",
         "group-data-[collapsible=icon]:hidden",
@@ -606,7 +606,7 @@ const SidebarMenuAction = React.forwardRef<
       ref={ref}
       data-sidebar="menu-action"
       className={cn(
-        "absolute right-2 top-2 flex aspect-square w-6 items-center justify-center rounded-lg p-0 text-gray-700 dark:text-gray-300 outline-none ring-blue-500 transition-all duration-200 hover:bg-blue-50 hover:text-blue-900 focus-visible:ring-2 peer-hover/menu-button:text-blue-900 [&>svg]:size-4 [&>svg]:shrink-0 dark:hover:bg-blue-900/20 dark:hover:text-blue-100",
+        "absolute right-2 top-2 flex aspect-square w-6 items-center justify-center rounded-lg p-0 text-gray-700 dark:text-bodydark outline-none ring-blue-500 transition-all duration-200 hover:bg-blue-50 hover:text-blue-900 focus-visible:ring-2 peer-hover/menu-button:text-blue-900 [&>svg]:size-4 [&>svg]:shrink-0 dark:hover:bg-blue-900/20 dark:hover:text-blue-100",
         // Increases the hit area of the button on mobile.
         "after:absolute after:-inset-2 after:md:hidden",
         "peer-data-[size=sm]/menu-button:top-1",
@@ -631,7 +631,7 @@ const SidebarMenuBadge = React.forwardRef<
     ref={ref}
     data-sidebar="menu-badge"
     className={cn(
-      "absolute right-2 flex h-6 min-w-6 items-center justify-center rounded-lg px-2 text-xs font-semibold tabular-nums text-gray-700 dark:text-gray-300 select-none pointer-events-none bg-gray-100 dark:bg-gray-700",
+      "absolute right-2 flex h-6 min-w-6 items-center justify-center rounded-lg px-2 text-xs font-semibold tabular-nums text-gray-700 dark:text-bodydark select-none pointer-events-none bg-gray-100 dark:bg-meta-4",
       "peer-hover/menu-button:text-blue-900 peer-data-[active=true]/menu-button:text-white peer-data-[active=true]/menu-button:bg-white/20",
       "peer-data-[size=sm]/menu-button:top-1",
       "peer-data-[size=default]/menu-button:top-2",
@@ -690,7 +690,7 @@ const SidebarMenuSub = React.forwardRef<
     ref={ref}
     data-sidebar="menu-sub"
     className={cn(
-      "mx-4 flex min-w-0 translate-x-px flex-col gap-2 border-l-2 border-gray-200/50 dark:border-gray-700/50 px-3 py-1",
+      "mx-4 flex min-w-0 translate-x-px flex-col gap-2 border-l-2 border-stroke/50 dark:border-strokedark/50 px-3 py-1",
       "group-data-[collapsible=icon]:hidden",
       className
     )}
@@ -722,7 +722,7 @@ const SidebarMenuSubButton = React.forwardRef<
       data-size={size}
       data-active={isActive}
       className={cn(
-        "flex h-8 min-w-0 -translate-x-px items-center gap-3 overflow-hidden rounded-lg px-3 text-gray-700 dark:text-gray-300 outline-none ring-blue-500 transition-all duration-200 hover:bg-blue-50 hover:text-blue-900 focus-visible:ring-2 active:bg-blue-100 active:text-blue-900 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-blue-600 dark:text-blue-400",
+        "flex h-8 min-w-0 -translate-x-px items-center gap-3 overflow-hidden rounded-lg px-3 text-gray-700 dark:text-bodydark outline-none ring-blue-500 transition-all duration-200 hover:bg-blue-50 hover:text-blue-900 focus-visible:ring-2 active:bg-blue-100 active:text-blue-900 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-blue-600 dark:text-blue-400",
         "data-[active=true]:bg-gradient-to-r data-[active=true]:from-blue-500 data-[active=true]:to-purple-600 data-[active=true]:text-white data-[active=true]:font-semibold data-[active=true]:shadow-lg dark:data-[active=true]:from-blue-600 dark:data-[active=true]:to-purple-700",
         size === "sm" && "text-xs",
         size === "md" && "text-sm",

@@ -26,7 +26,7 @@ export default function SignInPage() {
   // Hydration guard: show generic loading on server, and translated loading on client after mount
   if (!mounted || checking) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <div className="min-h-screen flex items-center justify-center bg-whiten dark:bg-boxdark-2">
         <span className="text-gray-700 dark:text-gray-200 text-lg">
           {mounted ? t("common.loading") : "Loading..."}
         </span>
@@ -35,8 +35,10 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-      <SignInForm />
+    <div className="flex min-h-screen items-center justify-center bg-whiten px-4 py-4 sm:py-6 dark:bg-boxdark-2 sm:px-6">
+      <div className="w-full max-w-md">
+        <SignInForm />
+      </div>
     </div>
   )
 }
