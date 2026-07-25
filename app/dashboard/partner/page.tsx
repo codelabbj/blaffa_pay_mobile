@@ -1020,7 +1020,11 @@ function PartnerPageContent() {
 													<TableHead className="font-semibold">Type</TableHead>
 													<TableHead className="font-semibold">Contrepartie</TableHead>
 													<TableHead className="font-semibold">Montant</TableHead>
-													<TableHead className=
+													<TableHead className="font-semibold">Statut</TableHead>
+													<TableHead className="font-semibold">Date</TableHead>
+												</TableRow>
+											</TableHeader>
+											<TableBody>
 												{partnerTransfers.map((transfer) => (
 													<TableRow key={transfer.uid} className="hover:bg-gray-50 dark:hover:bg-boxdark-2/50">
 														<TableCell data-label="Partenaire">
@@ -1090,13 +1094,6 @@ function PartnerPageContent() {
 																	{transfer.created_at
 																		? new Date(transfer.created_at).toLocaleDateString()
 																		: 'Inconnu'
-																	}
-																</span>
-															</div>
-														</TableCell>
-													</TableRow>
-												))}
-																													: 'Inconnu'
 																	}
 																</span>
 															</div>
@@ -1180,11 +1177,17 @@ function PartnerPageContent() {
 														<TableHead className="font-semibold">Référence</TableHead>
 														<TableHead className="font-semibold">Montant</TableHead>
 														<TableHead className="font-semibold">Solde Avant</TableHead>
-														<TableHead className="font-semibold">Solde Après</Tab
-													{accountTransactions.map((transaction) => (
-														<TableRow key={transaction.uid} className="hover:bg-gray-50 dark:hover:bg-boxdark-2/50">
-															<TableCell data-label="Partenaire">
-																<Badge className={transaction.is_credit
+													<TableHead className="font-semibold">Solde Après</TableHead>
+													<TableHead className="font-semibold">Description</TableHead>
+													<TableHead className="font-semibold">Référence Associée</TableHead>
+													<TableHead className="font-semibold">Date</TableHead>
+												</TableRow>
+											</TableHeader>
+											<TableBody>
+												{accountTransactions.map((transaction) => (
+													<TableRow key={transaction.uid} className="hover:bg-gray-50 dark:hover:bg-boxdark-2/50">
+														<TableCell data-label="Partenaire">
+															<Badge className={transaction.is_credit
 																	? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300"
 																	: "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300"
 																}>
@@ -1238,16 +1241,6 @@ function PartnerPageContent() {
 																<div className="flex items-center space-x-2">
 																	<Calendar className="h-4 w-4 text-bodydark2" />
 																	<span className="text-sm text-body dark:text-bodydark2">
-																		{transaction.created_at
-																			? new Date(transaction.created_at).toLocaleString()
-																			: 'Inconnu'
-																		}
-																	</span>
-																</div>
-															</TableCell>
-														</TableRow>
-													))}
-												odydark2">
 																		{transaction.created_at
 																			? new Date(transaction.created_at).toLocaleString()
 																			: 'Inconnu'
