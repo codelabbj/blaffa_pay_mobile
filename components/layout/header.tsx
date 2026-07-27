@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Bell, Settings, User, LogOut, Search, Menu } from "lucide-react"
+import { Settings, User, LogOut, Menu } from "lucide-react"
 import { clearTokens } from "@/lib/api"
 import { useRouter } from "next/navigation"
 import { getAppName } from "@/lib/env-config"
@@ -49,31 +49,8 @@ export function Header({ onMobileMenuClick }: HeaderProps) {
           <span className="text-sm font-bold text-black dark:text-white lg:hidden">{appName}</span>
         </div>
 
-        {/* Search bar — hidden on mobile, visible md+ */}
-        <div className="hidden flex-1 px-4 md:block">
-          <div className="relative max-w-sm">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-bodydark2" />
-            <input
-              type="text"
-              placeholder="Rechercher..."
-              className="w-full rounded-lg border border-stroke bg-gray py-2 pl-10 pr-4 text-sm outline-none focus:border-primary dark:border-strokedark dark:bg-meta-4 dark:text-white"
-            />
-          </div>
-        </div>
-
         {/* Actions */}
         <div className="flex items-center gap-2 md:gap-3">
-
-          {/* Search icon — mobile only */}
-          <button className="flex h-9 w-9 items-center justify-center rounded-full border border-stroke bg-gray text-body hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-bodydark md:hidden">
-            <Search className="h-4 w-4" />
-          </button>
-
-          {/* Notifications */}
-          <button className="relative flex h-9 w-9 items-center justify-center rounded-full border border-stroke bg-gray text-body hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-bodydark">
-            <Bell className="h-4 w-4" />
-            <span className="absolute right-0.5 top-0.5 h-2 w-2 rounded-full bg-danger" />
-          </button>
 
           {/* Theme toggle */}
           <ThemeToggle />

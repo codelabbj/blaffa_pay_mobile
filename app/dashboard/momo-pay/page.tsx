@@ -750,7 +750,7 @@ function MomoPayPageContent() {
                             aria-label={`Sélectionner ${transaction.reference}`}
                           />
                         </TableCell>
-                        <TableCell className="font-mono text-sm" data-label="Date d'expiration">
+                        <TableCell className="font-mono text-sm" data-label="Référence">
                           <div className="flex items-center space-x-2">
                             <div className="w-8 h-8 bg-gradient-to-br from-primary to-meta-3 rounded-full flex items-center justify-center text-white font-semibold text-xs">
                               {transaction.reference.charAt(0).toUpperCase()}
@@ -758,7 +758,7 @@ function MomoPayPageContent() {
                             <span>{transaction.reference}</span>
                           </div>
                         </TableCell>
-                        <TableCell className="font-medium" data-label="Actions">
+                        <TableCell className="font-medium" data-label="Montant">
                           <div className="flex items-center space-x-2">
                             <span>{formatAmount(transaction.amount)}</span>
                           </div>

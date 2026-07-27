@@ -240,11 +240,11 @@ function SidebarInner({ onNavClick }: { onNavClick?: () => void }) {
             </li>
           </FeatureGate>
 
-          <FeatureGate feature="momoPayTransactions">
+          <FeatureGate feature="momoPay">
             <li><NavItem href="/dashboard/momo-pay" icon={<Smartphone />} label="MoMo Pay" active={has("/dashboard/momo-pay")} onClick={onNavClick} /></li>
           </FeatureGate>
 
-          <FeatureGate feature="waveBusinessTransactions">
+          <FeatureGate feature="waveBusiness">
             <li><NavItem href="/dashboard/wave-business-transaction" icon={<Waves />} label="Wave Business" active={has("/dashboard/wave-business-transaction")} onClick={onNavClick} /></li>
           </FeatureGate>
 

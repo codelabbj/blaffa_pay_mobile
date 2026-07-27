@@ -74,6 +74,56 @@ const COLORS = {
   indigo: '#6366F1'
 };
 
+function truncate(str: string, n: number) {
+  if (!str) return "";
+  return str.length > n ? str.slice(0, n - 1) + "…" : str;
+}
+
+function formatAmount(x: any) {
+  const n = Number(x || 0);
+  if (Number.isNaN(n)) return "0";
+  return n.toLocaleString("fr-FR", { maximumFractionDigits: 0 });
+}
+
+function hexToRgba(hex: string, alpha: number) {
+  const h = hex.replace("#", "");
+  const full = h.length === 3 ? h.split("").map(c => c + c).join("") : h;
+  const r = parseInt(full.slice(0, 2), 16);
+  const g = parseInt(full.slice(2, 4), 16);
+  const b = parseInt(full.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+function networkColor(network?: string | null): string {
+  if (!network) return "#9ca3af";
+  const n = network.toLowerCase();
+  if (n.includes("orange")) return "#ff7900";
+  if (n.includes("mtn") || n.includes("momo")) return "#ffcc00";
+  if (n.includes("wave")) return "#00b140";
+  if (n.includes("moov")) return "#00aeef";
+  if (n.includes("celtic")) return "#1e40af";
+  return "#6b7280";
+}
+
+function getRelativeTime(iso?: string | null) {
+  if (!iso) return "";
+  const date = new Date(iso).getTime();
+  if (Number.isNaN(date)) return "";
+  const diffMs = Date.now() - date;
+  const s = Math.max(1, Math.floor(diffMs / 1000));
+  if (s < 60) return `il y a ${s}s`;
+  const m = Math.floor(s / 60);
+  if (m < 60) return `il y a ${m} min`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `il y a ${h}h`;
+  const d = Math.floor(h / 24);
+  if (d < 30) return `il y a ${d}j`;
+  const mo = Math.floor(d / 30);
+  if (mo < 12) return `il y a ${mo} mois`;
+  const y = Math.floor(mo / 12);
+  return `il y a ${y} an${y > 1 ? "s" : ""}`;
+}
+
 function TransactionsPageContent() {
   const router = useRouter()
   const pathname = usePathname()
@@ -885,7 +935,7 @@ function TransactionsPageContent() {
           </Button>
         </BulkActionBar>
 
-        {/* Transactions Table */}
+        {/* Transactions Card List */}
         <Card className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
           <CardHeader className="border-b border-gray-100 dark:border-strokedark">
             <CardTitle className="flex items-center space-x-2">
@@ -893,9 +943,18 @@ function TransactionsPageContent() {
                 <CreditCard className="h-5 w-5 text-meta-3 dark:text-green-300" />
               </div>
               <span><span>Liste des transactions</span></span>
+              <span className="ml-auto text-sm font-normal text-body dark:text-bodydark2">
+                <Checkbox
+                  className="mr-2 !h-4 !w-4"
+                  checked={selection.allSelected ? true : selection.someSelected ? "indeterminate" : false}
+                  onCheckedChange={(v) => selection.toggleAll(v === true)}
+                  aria-label="Tout sélectionner"
+                />
+                Tout sélectionner
+              </span>
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-0">
+          <CardContent className="p-3 sm:p-4 md:p-5">
             {loading ? (
               <div className="flex items-center justify-center py-6 sm:py-10">
                 <div className="flex flex-col items-center space-y-4">
@@ -907,179 +966,194 @@ function TransactionsPageContent() {
               <div className="p-3 sm:p-4 md:p-6 text-center">
                 <ErrorDisplay error={error} onRetry={fetchTransactions} />
               </div>
+            ) : transactions.length === 0 ? (
+              <div className="py-16 text-center">
+                <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-gray-100 dark:bg-meta-4 flex items-center justify-center">
+                  <CreditCard className="h-8 w-8 text-bodydark2" />
+                </div>
+                <p className="text-body dark:text-bodydark">Aucune transaction trouvée.</p>
+              </div>
             ) : (
-              <div className="overflow-x-auto">
-                <Table>
-                  <TableHeader>
-                    <TableRow className="bg-gray-50 dark:bg-boxdark-2/50">
-                      <TableHead className="w-10">
-                        <Checkbox
-                          checked={selection.allSelected ? true : selection.someSelected ? "indeterminate" : false}
-                          onCheckedChange={(v) => selection.toggleAll(v === true)}
-                          aria-label="Tout sélectionner"
-                        />
-                      </TableHead>
-                      <TableHead className="font-semibold"><span>ID Transaction</span></TableHead>
-                      <SortableHead label="Destinataire" field="recipient_phone" activeField={sortField} direction={sortDirection} onSort={handleSort} />
-                      <SortableHead label="Type" field="type" activeField={sortField} direction={sortDirection} onSort={handleSort} />
-                      <SortableHead label="Montant" field="amount" activeField={sortField} direction={sortDirection} onSort={handleSort} />
-                      <TableHead className="font-semibold"><span>Réseau</span></TableHead>
-                      <TableHead className="font-semibold"><span>Créé par</span></TableHead>
-                      <SortableHead label="Statut" field="status" activeField={sortField} direction={sortDirection} onSort={handleSort} />
-                      <SortableHead label="Date" field="created_at" activeField={sortField} direction={sortDirection} onSort={handleSort} />
-                      <TableHead className="font-semibold text-right"><span>Actions</span></TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {transactions.map((transaction) => (
-                      <TableRow key={transaction.uid} className={`transition-colors hover:brightness-95 ${getStatusRowClass(transaction.status)}`}>
-                        <TableCell>
+              <div className="space-y-4">
+                {transactions.map((transaction) => {
+                  const statusInfo = statusMap[transaction.status] || { label: transaction.status, color: "#adb5bd" }
+                  const relativeTime = getRelativeTime(transaction.created_at)
+                  const isPending = ["pending", "sent_to_user", "processing"].includes(transaction.status)
+                  const isPaid = ["success", "completed", "confirmed"].includes(transaction.status)
+                  const isFailed = ["failed", "cancelled", "timeout", "expired"].includes(transaction.status)
+                  return (
+                    <div
+                      key={transaction.uid}
+                      className={`relative rounded-2xl border bg-white dark:bg-meta-4/20 px-5 pt-5 pb-4 shadow-sm transition hover:shadow-md ${getStatusRowClass(transaction.status)} ${isPending ? "border-amber-200 dark:border-amber-700/40" : isPaid ? "border-green-200 dark:border-green-700/40" : isFailed ? "border-red-200 dark:border-red-700/40" : "border-stroke dark:border-strokedark"}`}
+                    >
+                      {/* Row 1: Checkbox + platform/name · refs · status badge */}
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex items-start gap-3 min-w-0">
                           <Checkbox
                             checked={selection.selected.has(transaction.uid)}
                             onCheckedChange={(v) => selection.toggleRow(transaction.uid, v === true)}
                             aria-label={`Sélectionner ${transaction.uid}`}
+                            className="!mt-1"
                           />
-                        </TableCell>
-                        <TableCell data-label="ID Transaction">
-                          <div className="flex items-center space-x-2 font-mono text-sm text-gray-900 dark:text-gray-100">
-                            <span>{transaction.uid}</span>
-                            <CopyButton value={transaction.uid} className="h-4 w-4" iconClassName="h-3 w-3" />
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 truncate max-w-[220px]">
+                                {transaction.recipient_name || transaction.user_name || transaction.partner?.name || "Client"}
+                              </h3>
+                            </div>
+                            <div className="mt-1 flex items-center gap-2 text-sm text-body dark:text-bodydark2 font-mono">
+                              <span className="truncate">{transaction.uid || transaction.reference}</span>
+                              {transaction.external_transaction_id && (
+                                <>
+                                  <span className="opacity-50">·</span>
+                                  <span className="truncate">cl {transaction.external_transaction_id}</span>
+                                </>
+                              )}
+                              <CopyButton value={transaction.uid || transaction.reference} className="h-3.5 w-3.5 opacity-70" iconClassName="h-3 w-3" />
+                            </div>
                           </div>
-                        </TableCell>
+                        </div>
 
-                        <TableCell data-label="Réseau">
-                          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                            {/* <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-xs font-semibold">
-                              {transaction.recipient_name?.charAt(0)?.toUpperCase() || transaction.user?.email?.charAt(0)?.toUpperCase() }
-                            </div> */}
-                            <div>
-                              <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                                <span>{transaction.recipient_phone || 'Utilisateur inconnu'}</span>
-                              </div>
-                              <div className="text-xs text-body dark:text-bodydark2">
-                                <span>{transaction.recipient_name}</span>
-                              </div>
-                            </div>
-                          </div>
-                        </TableCell>
-                        <TableCell data-label="Créé par">
-                          <Badge
-                            className={
-                              transaction.type === 'deposit'
-                                ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300"
-                                : "bg-meta-2 text-orange-800 dark:bg-orange-900/20 dark:text-secondary"
-                            }
-                          >
-                            <span>{transaction.type === 'deposit' ? 'Dépôt' : 'Retrait'}</span>
-                          </Badge>
-                        </TableCell>
-                        <TableCell data-label="Actions">
-                          <div className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                            <span>{parseFloat(transaction.amount || 0).toFixed(2)}</span> <span>FCFA</span>
-                          </div>
-                          {transaction.fees && (
-                            <div className="text-xs text-body dark:text-bodydark2">
-                              <span>Frais:</span> <span>${parseFloat(transaction.fees).toFixed(2)}</span>
-                            </div>
-                          )}
-                        </TableCell>
-                        <TableCell>
-                          <span className="text-sm text-gray-900 dark:text-gray-100">
-                            <span>{transaction.network_name || transaction.network || 'N/A'}</span>
+                        <span
+                          className="flex-shrink-0 inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold"
+                          style={{
+                            backgroundColor: hexToRgba(statusInfo.color, 0.12),
+                            color: statusInfo.color,
+                          }}
+                        >
+                          {isPending ? "À payer" : statusInfo.label}
+                        </span>
+                      </div>
+
+                      {/* Row 2: Amount + network badge */}
+                      <div className="mt-2 flex items-center gap-3 flex-wrap">
+                        <div className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100">
+                          {formatAmount(transaction.amount)} F
+                        </div>
+                        <span className="inline-flex items-center gap-2 rounded-full bg-gray-100 dark:bg-boxdark-2 px-3 py-1 text-sm font-semibold text-gray-800 dark:text-gray-100">
+                          <span className="inline-block w-3 h-3 rounded-full" style={{ backgroundColor: networkColor(transaction.network_name || transaction.network) }} />
+                          {transaction.network_name || transaction.network || "Réseau"}
+                        </span>
+                        {getTypeBadge(transaction.type)}
+                      </div>
+
+                      {/* Row 3: Phone + verified · Date · relative */}
+                      <div className="mt-1.5 flex items-center gap-x-4 gap-y-1 flex-wrap text-sm">
+                        <div className="flex items-center gap-1.5 font-semibold text-gray-800 dark:text-gray-100">
+                          {transaction.recipient_phone || "—"}
+                          <span title="Numéro vérifié">
+                            <CheckCircle className="h-4 w-4 text-blue-500" />
                           </span>
-                        </TableCell>
-                        <TableCell>
-                          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                            {/* <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-xs font-semibold">
-                              {transaction.recipient_name?.charAt(0)?.toUpperCase() || transaction.user?.email?.charAt(0)?.toUpperCase() }
-                            </div> */}
-                            <div>
-                              <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                                <span>{transaction.created_by_name}</span>
-                              </div>
-                              <div className="text-xs text-body dark:text-bodydark2">
-                                <span>{transaction.created_by_email}</span>
-                              </div>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-body dark:text-bodydark2">
+                            {transaction.created_at ? new Date(transaction.created_at).toLocaleString("fr-FR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }) : "—"}
+                          </span>
+                          <span className="text-red-600 dark:text-red-400 font-semibold">
+                            {relativeTime}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Created by meta line */}
+                      {(transaction.created_by_name || transaction.created_by_email) && (
+                        <div className="mt-1.5 text-xs text-body dark:text-bodydark2">
+                          Créé par <span className="font-medium text-gray-700 dark:text-gray-200">{transaction.created_by_name || "—"}</span>
+                          {transaction.created_by_email && <span> · {transaction.created_by_email}</span>}
+                        </div>
+                      )}
+
+                      {/* Warning banner: already-paid / error / confirmation */}
+                      {transaction.error_message && (
+                        <div className="mt-3 rounded-xl bg-red-50 dark:bg-red-900/15 border border-red-200 dark:border-red-700/40 px-3 py-2.5 text-red-800 dark:text-red-300">
+                          <div className="flex items-start gap-2">
+                            <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                            <div className="text-sm font-semibold leading-snug">⚠️ {transaction.error_message}</div>
+                          </div>
+                        </div>
+                      )}
+                      {transaction.confirmation_message && !transaction.error_message && isPaid && (
+                        <div className="mt-3 rounded-xl bg-green-50 dark:bg-green-900/15 border border-green-200 dark:border-green-700/40 px-3 py-2.5 text-green-800 dark:text-green-300">
+                          <div className="flex items-start gap-2">
+                            <CheckCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                            <div className="text-sm font-semibold leading-snug">{transaction.confirmation_message}</div>
+                          </div>
+                        </div>
+                      )}
+                      {isPaid && !transaction.error_message && !transaction.confirmation_message && (
+                        <div className="mt-3 rounded-xl bg-red-50 dark:bg-red-900/15 border border-red-200 dark:border-red-700/40 px-3 py-2.5 text-red-800 dark:text-red-300">
+                          <div className="flex items-start gap-2">
+                            <div className="text-sm font-bold leading-snug">
+                              ⚠️ DÉJÀ PAYÉ chez nous — vérifier avant de repayer (risque de double paiement)
                             </div>
                           </div>
-                        </TableCell>
-                        <TableCell>
-                          <Badge
-                            className={
-                              transaction.status === 'success'
-                                ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300"
-                                : transaction.status === 'sent_to_user'
-                                  ? "bg-yellow-100 text-yellow-400 dark:bg-yellow-900/20 dark:text-yellow-300"
-                                  : transaction.status === 'failed'
-                                    ? "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300"
-                                    : "bg-meta-2 text-orange-800 dark:bg-orange-900/20 dark:text-secondary"
-                            }
-                          >
-                            <div className="flex items-center space-x-1">
-                              {transaction.status === 'success' && <CheckCircle className="h-3 w-3" />}
-                              {transaction.status === 'pending' && <Clock className="h-3 w-3" />}
-                              {transaction.status === 'failed' && <XCircle className="h-3 w-3" />}
-                              {transaction.status === 'processing' && <AlertCircle className="h-3 w-3" />}
-                              <span><span>{transaction.status}</span></span>
-                            </div>
-                          </Badge>
-                        </TableCell>
-                        <TableCell>
-                          <div className="flex items-center space-x-2">
-                            <Calendar className="h-4 w-4 text-bodydark2" />
-                            <div className="flex flex-col">
-                              <span className="text-sm text-gray-700 dark:text-bodydark font-medium">
-                                <span>{new Date(transaction.created_at).toLocaleDateString()}</span>
-                              </span>
-                              <span className="text-xs text-body dark:text-bodydark2">
-                                <span>{new Date(transaction.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-                              </span>
-                            </div>
-                          </div>
-                        </TableCell>
-                        <TableCell data-label="Actions">
-                          <div className="flex flex-wrap gap-1.5">
-                            <button
-                              onClick={() => router.push(`/dashboard/transactions/${transaction.uid}/edit`)}
-                              className="inline-flex items-center gap-1.5 rounded-md border border-stroke bg-white px-2.5 py-1.5 text-xs font-medium text-body shadow-sm hover:border-primary hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-bodydark dark:hover:border-primary dark:hover:text-white"
-                            >
-                              <Pencil className="h-3.5 w-3.5 flex-shrink-0" />
-                              Modifier
-                            </button>
-                            <button
-                              onClick={() => openRetryModal(transaction)}
-                              className="inline-flex items-center gap-1.5 rounded-md bg-primary px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-opacity-90"
-                            >
-                              <AlertCircle className="h-3.5 w-3.5 flex-shrink-0" />
-                              Relancer
-                            </button>
-                            <button
-                              onClick={() => openSuccessModal(transaction)}
-                              className="inline-flex items-center gap-1.5 rounded-md bg-meta-3 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-opacity-90"
-                            >
-                              <CheckCircle className="h-3.5 w-3.5 flex-shrink-0" />
-                              Succès
-                            </button>
-                            <button
-                              onClick={() => openCancelModal(transaction)}
-                              className="inline-flex items-center gap-1.5 rounded-md bg-warning px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-opacity-90"
-                            >
-                              <XCircle className="h-3.5 w-3.5 flex-shrink-0" />
-                              Annuler
-                            </button>
-                            <button
-                              onClick={() => openFailedModal(transaction)}
-                              className="inline-flex items-center gap-1.5 rounded-md bg-danger px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-opacity-90"
-                            >
-                              <XCircle className="h-3.5 w-3.5 flex-shrink-0" />
-                              Échec
-                            </button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                        </div>
+                      )}
+                      {transaction.raw_sms && (
+                        <div className="mt-2 text-xs text-red-600 dark:text-red-400 font-medium">
+                          [DEJA PAYE] ⚠️ <span>{truncate(transaction.raw_sms, 120)}</span>
+                        </div>
+                      )}
+
+                      {/* Action buttons */}
+                      <div className="mt-4 flex flex-col gap-2 ml-8">
+                        <button
+                          type="button"
+                          onClick={() => openRetryModal(transaction)}
+                          className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#194185] to-[#3b82f6] hover:brightness-110 text-white px-4 py-3 text-base font-semibold shadow-sm transition"
+                        >
+                          <ArrowUpDown className="h-5 w-5" />
+                          Relancer
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => openSuccessModal(transaction)}
+                          className="inline-flex items-center justify-center gap-2 rounded-xl bg-green-100 hover:bg-green-200 dark:bg-green-900/40 dark:hover:bg-green-900/60 text-green-800 dark:text-green-200 px-4 py-3 text-base font-semibold border border-green-200 dark:border-green-700/40 transition"
+                        >
+                          <CheckCircle className="h-5 w-5" />
+                          Succès
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => openCancelModal(transaction)}
+                          className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:hover:bg-red-900/30 text-red-700 dark:text-red-300 px-4 py-3 text-base font-semibold border border-red-200 dark:border-red-700/40 transition"
+                        >
+                          <XCircle className="h-5 w-5" />
+                          Annuler
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => openFailedModal(transaction)}
+                          className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:brightness-110 text-white px-4 py-3 text-base font-semibold shadow-sm transition"
+                        >
+                          <AlertCircle className="h-5 w-5" />
+                          Échec
+                        </button>
+                      </div>
+
+                      {/* Secondary actions: Modifier · Assigner */}
+                      <div className="flex items-center gap-2 mt-3 flex-wrap">
+                        <button
+                          onClick={() => router.push(`/dashboard/transactions/${transaction.uid}/edit`)}
+                          className="inline-flex items-center gap-1.5 rounded-lg border border-stroke dark:border-strokedark bg-white dark:bg-boxdark px-3 py-2 text-xs font-medium text-body hover:border-primary hover:text-primary dark:text-bodydark dark:hover:border-primary dark:hover:text-white"
+                        >
+                          <Pencil className="h-3.5 w-3.5" />
+                          Modifier
+                        </button>
+                        <button
+                          onClick={() => handleAssign(transaction)}
+                          className="inline-flex items-center gap-1.5 rounded-lg border border-stroke dark:border-strokedark bg-white dark:bg-boxdark px-3 py-2 text-xs font-medium text-body hover:border-secondary hover:text-secondary dark:text-bodydark dark:hover:border-secondary dark:hover:text-white"
+                        >
+                          <Plus className="h-3.5 w-3.5" />
+                          Assigner
+                        </button>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
             )}
           </CardContent>
