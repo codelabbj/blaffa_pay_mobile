@@ -637,10 +637,6 @@ function TransactionsPageContent() {
   // Submit retry request
   const handleRetrySubmit = async () => {
     if (!retryTransaction) return
-    if (!retryReason.trim()) {
-      setRetryError(t("transactions.retryReasonRequired") || "Reason is required")
-      return
-    }
     setRetryLoading(true)
     setRetryError("")
     try {
@@ -648,7 +644,7 @@ function TransactionsPageContent() {
       await apiFetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ reason: retryReason.trim() }),
+        body: JSON.stringify({ reason: "Aucune raison fournie" }),
         successMessage: t("transactions.retryRequested") || "Demande de relance envoyée avec succès"
       })
       setRetryModalOpen(false)
@@ -877,6 +873,16 @@ function TransactionsPageContent() {
                   </span>
                 </div>
               </div>
+              <Button
+                onClick={() => triggerPtrRefresh()}
+                disabled={ptrRefreshing || loading}
+                variant="outline"
+                size="sm"
+                className="gap-1.5"
+              >
+                <RefreshCw className={`h-4 w-4 ${ptrRefreshing ? "animate-spin" : ""}`} />
+                Rafraîchir
+              </Button>
               {/* <Button
                 onClick={() => setCreateModalOpen(true)}
                 className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-white"
@@ -1173,41 +1179,49 @@ function TransactionsPageContent() {
 
                       {/* Action buttons */}
                       <div className="mt-4 flex flex-col gap-2 ml-8">
-                        <button
-                          type="button"
-                          onClick={() => openRetryModal(transaction)}
-                          className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#194185] to-[#3b82f6] hover:brightness-110 text-white px-4 py-3 text-base font-semibold shadow-sm transition"
-                        >
-                          <ArrowUpDown className="h-5 w-5" />
-                          Relancer
-                        </button>
+                        {!isPaid && (
+                          <button
+                            type="button"
+                            onClick={() => openRetryModal(transaction)}
+                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#194185] to-[#3b82f6] hover:brightness-110 text-white px-4 py-3 text-base font-semibold shadow-sm transition"
+                          >
+                            <ArrowUpDown className="h-5 w-5" />
+                            Relancer
+                          </button>
+                        )}
 
-                        <button
-                          type="button"
-                          onClick={() => openSuccessModal(transaction)}
-                          className="inline-flex items-center justify-center gap-2 rounded-xl bg-green-100 hover:bg-green-200 dark:bg-green-900/40 dark:hover:bg-green-900/60 text-green-800 dark:text-green-200 px-4 py-3 text-base font-semibold border border-green-200 dark:border-green-700/40 transition"
-                        >
-                          <CheckCircle className="h-5 w-5" />
-                          Succès
-                        </button>
+                        {!isPaid && (
+                          <button
+                            type="button"
+                            onClick={() => openSuccessModal(transaction)}
+                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-green-100 hover:bg-green-200 dark:bg-green-900/40 dark:hover:bg-green-900/60 text-green-800 dark:text-green-200 px-4 py-3 text-base font-semibold border border-green-200 dark:border-green-700/40 transition"
+                          >
+                            <CheckCircle className="h-5 w-5" />
+                            Succès
+                          </button>
+                        )}
 
-                        <button
-                          type="button"
-                          onClick={() => openCancelModal(transaction)}
-                          className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:hover:bg-red-900/30 text-red-700 dark:text-red-300 px-4 py-3 text-base font-semibold border border-red-200 dark:border-red-700/40 transition"
-                        >
-                          <XCircle className="h-5 w-5" />
-                          Annuler
-                        </button>
+                        {!isFailed && (
+                          <button
+                            type="button"
+                            onClick={() => openCancelModal(transaction)}
+                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:hover:bg-red-900/30 text-red-700 dark:text-red-300 px-4 py-3 text-base font-semibold border border-red-200 dark:border-red-700/40 transition"
+                          >
+                            <XCircle className="h-5 w-5" />
+                            Annuler
+                          </button>
+                        )}
 
-                        <button
-                          type="button"
-                          onClick={() => openFailedModal(transaction)}
-                          className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:brightness-110 text-white px-4 py-3 text-base font-semibold shadow-sm transition"
-                        >
-                          <AlertCircle className="h-5 w-5" />
-                          Échec
-                        </button>
+                        {!isFailed && (
+                          <button
+                            type="button"
+                            onClick={() => openFailedModal(transaction)}
+                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:brightness-110 text-white px-4 py-3 text-base font-semibold shadow-sm transition"
+                          >
+                            <AlertCircle className="h-5 w-5" />
+                            Échec
+                          </button>
+                        )}
                       </div>
 
                       {/* Secondary actions: Modifier · Assigner */}
@@ -1473,7 +1487,7 @@ function TransactionsPageContent() {
             <DialogHeader>
               <DialogTitle>Relancer la transaction</DialogTitle>
               <DialogDescription>
-                Fournir une raison pour relancer cette transaction
+                Êtes-vous sûr de vouloir relancer cette transaction ?
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4">
@@ -1482,19 +1496,6 @@ function TransactionsPageContent() {
                   <p className="text-sm text-red-600 dark:text-red-400">{retryError}</p>
                 </div>
               )}
-              <div className="space-y-2">
-                <label htmlFor="retry-reason" className="text-sm font-medium">
-                  Raison *
-                </label>
-                <textarea
-                  id="retry-reason"
-                  value={retryReason}
-                  onChange={(e) => setRetryReason(e.target.value)}
-                  placeholder="Entrer la raison du relancement"
-                  rows={3}
-                  className="w-full px-3 py-2 bg-gray-50 dark:bg-meta-4 border border-stroke dark:border-strokedark rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
             </div>
             <DialogFooter>
               <Button
@@ -1528,7 +1529,7 @@ function TransactionsPageContent() {
             <DialogHeader>
               <DialogTitle>Annuler la transaction</DialogTitle>
               <DialogDescription>
-                Fournir une raison pour annuler cette transaction
+                Êtes-vous sûr de vouloir annuler cette transaction ?
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4">
@@ -1537,19 +1538,6 @@ function TransactionsPageContent() {
                   <p className="text-sm text-red-600 dark:text-red-400">{cancelError}</p>
                 </div>
               )}
-              <div className="space-y-2">
-                <label htmlFor="cancel-reason" className="text-sm font-medium">
-                  Raison *
-                </label>
-                <textarea
-                  id="cancel-reason"
-                  value={cancelReason}
-                  onChange={(e) => setCancelReason(e.target.value)}
-                  placeholder="Entrer la raison de l'annulation"
-                  rows={3}
-                  className="w-full px-3 py-2 bg-gray-50 dark:bg-meta-4 border border-stroke dark:border-strokedark rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
             </div>
             <DialogFooter>
               <Button
@@ -1583,7 +1571,7 @@ function TransactionsPageContent() {
             <DialogHeader>
               <DialogTitle>Marquer comme Succès</DialogTitle>
               <DialogDescription>
-                Fournir une raison pour marquer cette transaction comme réussie
+                Êtes-vous sûr de vouloir marquer cette transaction comme réussie ?
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4">
@@ -1592,19 +1580,6 @@ function TransactionsPageContent() {
                   <p className="text-sm text-red-600 dark:text-red-400">{successError}</p>
                 </div>
               )}
-              <div className="space-y-2">
-                <label htmlFor="success-reason" className="text-sm font-medium">
-                  Raison *
-                </label>
-                <textarea
-                  id="success-reason"
-                  value={successReason}
-                  onChange={(e) => setSuccessReason(e.target.value)}
-                  placeholder="Entrer la raison du marquage comme succès"
-                  rows={3}
-                  className="w-full px-3 py-2 bg-gray-50 dark:bg-meta-4 border border-stroke dark:border-strokedark rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
             </div>
             <DialogFooter>
               <Button
@@ -1638,7 +1613,7 @@ function TransactionsPageContent() {
             <DialogHeader>
               <DialogTitle>Marquer comme Échec</DialogTitle>
               <DialogDescription>
-                Fournir une raison pour marquer cette transaction comme échouée
+                Êtes-vous sûr de vouloir marquer cette transaction comme échouée ?
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4">
@@ -1647,19 +1622,6 @@ function TransactionsPageContent() {
                   <p className="text-sm text-red-600 dark:text-red-400">{failedError}</p>
                 </div>
               )}
-              <div className="space-y-2">
-                <label htmlFor="failed-reason" className="text-sm font-medium">
-                  Raison *
-                </label>
-                <textarea
-                  id="failed-reason"
-                  value={failedReason}
-                  onChange={(e) => setFailedReason(e.target.value)}
-                  placeholder="Entrer la raison du marquage comme échec"
-                  rows={3}
-                  className="w-full px-3 py-2 bg-gray-50 dark:bg-meta-4 border border-stroke dark:border-strokedark rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
             </div>
             <DialogFooter>
               <Button
