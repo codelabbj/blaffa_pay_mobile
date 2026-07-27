@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useLanguage } from "@/components/providers/language-provider"
 import { useApi } from "@/lib/useApi"
-import { Search, ChevronLeft, ChevronRight, ArrowUpDown, Pencil, Trash, CreditCard, TrendingUp, DollarSign, Clock, CheckCircle, XCircle, AlertCircle, Plus, Filter, MoreHorizontal, Eye, TrendingDown, Calendar, X } from "lucide-react"
+import { Search, ChevronLeft, ChevronRight, ArrowUpDown, Pencil, Trash, CreditCard, TrendingUp, DollarSign, Clock, CheckCircle, XCircle, AlertCircle, Plus, Filter, MoreHorizontal, Eye, TrendingDown, Calendar, X, RefreshCw } from "lucide-react"
 import {
   Dialog,
   DialogTrigger,
@@ -160,6 +160,13 @@ function TransactionsPageContent() {
   const [createModalOpen, setCreateModalOpen] = useState(false)
   const [showEditConfirm, setShowEditConfirm] = useState(false)
   const [pendingEditPayload, setPendingEditPayload] = useState<any | null>(null)
+
+  // Pull-to-refresh
+  const [ptrStartY, setPtrStartY] = useState<number | null>(null)
+  const [ptrDistance, setPtrDistance] = useState(0)
+  const [ptrRefreshing, setPtrRefreshing] = useState(false)
+  const PTR_THRESHOLD = 72
+  const PTR_MAX = 140
 
   const selection = useTableSelection(transactions)
 
@@ -758,6 +765,48 @@ function TransactionsPageContent() {
     }
   }
 
+  // Pull-to-refresh: start tracking
+  const handlePtrStart = (clientY: number) => {
+    if (ptrRefreshing || loading) return
+    const atTop = (typeof window !== "undefined" ? window.scrollY : 0) <= 0
+    if (!atTop) return
+    setPtrStartY(clientY)
+    setPtrDistance(0)
+  }
+
+  const handlePtrMove = (clientY: number) => {
+    if (ptrStartY === null || ptrRefreshing) return
+    const rawDelta = clientY - ptrStartY
+    if (rawDelta <= 0) {
+      setPtrDistance(0)
+      return
+    }
+    // Damped over-pull past PTR_MAX
+    let d = rawDelta * 0.5
+    if (d > PTR_MAX) d = PTR_MAX + (rawDelta * 0.5 - PTR_MAX) * 0.25
+    setPtrDistance(d)
+  }
+
+  const handlePtrEnd = () => {
+    if (ptrStartY === null) return
+    setPtrStartY(null)
+    if (ptrDistance >= PTR_THRESHOLD && !ptrRefreshing) {
+      // Snap to refreshing height, run fetch, then reset
+      setPtrRefreshing(true)
+      setPtrDistance(PTR_THRESHOLD)
+      const onDone = () => {
+        setTimeout(() => {
+          setPtrRefreshing(false)
+          setPtrDistance(0)
+        }, 320)
+      }
+      fetchTransactions().then(onDone, onDone)
+    } else {
+      // Release without triggering: snap back
+      setPtrDistance(0)
+    }
+  }
+
   if (false && loading) {
     return (
       <div className="flex items-center justify-center h-96">
@@ -778,7 +827,34 @@ function TransactionsPageContent() {
   }
 
   return (
-    <div className="min-h-screen bg-whiten dark:bg-boxdark-2">
+    <div
+      className="min-h-screen bg-whiten dark:bg-boxdark-2 overscroll-contain touch-pan-y select-none"
+      onTouchStart={(e) => handlePtrStart(e.touches[0].clientY)}
+      onTouchMove={(e) => handlePtrMove(e.touches[0].clientY)}
+      onTouchEnd={handlePtrEnd}
+      onTouchCancel={handlePtrEnd}
+      onMouseDown={(e) => { if (e.button === 0) handlePtrStart(e.clientY) }}
+      onMouseMove={(e) => { if (e.buttons & 1) handlePtrMove(e.clientY) }}
+      onMouseUp={handlePtrEnd}
+      onMouseLeave={handlePtrEnd}
+    >
+      {/* Pull-to-refresh indicator */}
+      <div
+        className="w-full flex justify-center overflow-hidden transition-[height] duration-300 ease-out"
+        style={{ height: ptrDistance }}
+        aria-hidden={ptrDistance <= 0}
+      >
+        <div
+          className="flex items-center gap-2 text-sm font-semibold text-body dark:text-bodydark2"
+          style={{ height: PTR_THRESHOLD }}
+        >
+          <RefreshCw className={`h-5 w-5 ${ptrRefreshing ? "animate-spin text-primary" : ptrDistance >= PTR_THRESHOLD ? "text-meta-3" : ""}`} />
+          <span>
+            {ptrRefreshing ? "Actualisation…" : ptrDistance >= PTR_THRESHOLD ? "Relâcher pour actualiser" : ptrDistance > 0 ? "Tirer pour actualiser" : ""}
+          </span>
+        </div>
+      </div>
+
       <div className="w-full">
 
         {/* Page Header */}
