@@ -822,6 +822,10 @@ function TransactionsPageContent() {
     )
   }
 
+  function triggerPtrRefresh(): void {
+    throw new Error("Function not implemented.")
+  }
+
   return (
     <div
       className="min-h-screen bg-whiten dark:bg-boxdark-2 overscroll-contain touch-pan-y select-none"
@@ -1178,8 +1182,8 @@ function TransactionsPageContent() {
                       )}
 
                       {/* Action buttons */}
-                      <div className="mt-4 flex flex-col gap-2 ml-8">
-                        {!isPaid && (
+                      {transaction.status !== "success" && (
+                        <div className="mt-4 flex flex-col gap-2 ml-8">
                           <button
                             type="button"
                             onClick={() => openRetryModal(transaction)}
@@ -1188,9 +1192,7 @@ function TransactionsPageContent() {
                             <ArrowUpDown className="h-5 w-5" />
                             Relancer
                           </button>
-                        )}
 
-                        {!isPaid && (
                           <button
                             type="button"
                             onClick={() => openSuccessModal(transaction)}
@@ -1199,9 +1201,7 @@ function TransactionsPageContent() {
                             <CheckCircle className="h-5 w-5" />
                             Succès
                           </button>
-                        )}
 
-                        {!isFailed && (
                           <button
                             type="button"
                             onClick={() => openCancelModal(transaction)}
@@ -1210,9 +1210,7 @@ function TransactionsPageContent() {
                             <XCircle className="h-5 w-5" />
                             Annuler
                           </button>
-                        )}
 
-                        {!isFailed && (
                           <button
                             type="button"
                             onClick={() => openFailedModal(transaction)}
@@ -1221,8 +1219,8 @@ function TransactionsPageContent() {
                             <AlertCircle className="h-5 w-5" />
                             Échec
                           </button>
-                        )}
-                      </div>
+                        </div>
+                      )}
 
                       {/* Secondary actions: Modifier · Assigner */}
                       <div className="flex items-center gap-2 mt-3 flex-wrap">

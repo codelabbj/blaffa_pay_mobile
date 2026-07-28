@@ -507,7 +507,7 @@ function UsersPageContent() {
           <div className="flex flex-wrap items-start justify-between gap-3 sm:items-center">
             <div>
               <h1 className="text-base font-bold sm:text-lg sm:text-2xl bg-gradient-to-r from-primary to-meta-3 bg-clip-text text-transparent">
-                <span>{t("users.title") || "Utilisateurs"}</span>
+                {t("users.title") || "Utilisateurs"}
               </h1>
               <p className="text-body dark:text-bodydark mt-2 text-lg">
                 Gérer et surveiller les comptes utilisateurs
@@ -609,7 +609,7 @@ function UsersPageContent() {
               <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
                 <Users className="h-5 w-5 text-blue-600 dark:text-blue-300" />
               </div>
-              <span><span>Liste des utilisateurs</span></span>
+              <span>Liste des utilisateurs</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
@@ -641,12 +641,13 @@ function UsersPageContent() {
                           }}
                         />
                       </TableHead>
-                      <TableHead className="font-semibold"><span>Utilisateur</span></TableHead>
-                      <TableHead className="font-semibold"><span>Email</span></TableHead>
-                      <TableHead className="font-semibold"><span>Statut</span></TableHead>
-                      <TableHead className="font-semibold"><span>Vérification</span></TableHead>
-                      <TableHead className="font-semibold"><span>Créé le</span></TableHead>
-                      <TableHead className="font-semibold text-right"><span>Actions</span></TableHead>
+                      <TableHead className="font-semibold">Utilisateur</TableHead>
+                      <TableHead className="font-semibold">Email</TableHead>
+                      <TableHead className="font-semibold">Téléphone</TableHead>
+                      <TableHead className="font-semibold">Statut</TableHead>
+                      <TableHead className="font-semibold">Vérification</TableHead>
+                      <TableHead className="font-semibold">Créé le</TableHead>
+                      <TableHead className="font-semibold text-right">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -666,26 +667,29 @@ function UsersPageContent() {
                         </TableCell>
                         <TableCell data-label="Utilisateur">
                           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
+                            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-semibold flex-shrink-0">
                               {user.display_name?.charAt(0)?.toUpperCase() || user.email?.charAt(0)?.toUpperCase() || 'U'}
                             </div>
-                            <div>
+                            <div className="min-w-0">
                               <div className="font-medium text-gray-900 dark:text-gray-100">
-                                <span>{user.display_name || 'Sans nom'}</span>
+                                {user.display_name || 'Sans nom'}
                               </div>
-                              <div className="text-sm text-body dark:text-bodydark2">
-                                <span>ID:</span> <span>{user.uid}</span>
+                              <div className="text-xs text-body dark:text-bodydark2 font-mono mt-1 flex items-center gap-1.5">
+                                <span className="opacity-60">ID:</span>
+                                <span className="truncate max-w-[140px]">{user.uid}</span>
+                                <CopyButton value={user.uid} className="h-3.5 w-3.5 opacity-70 flex-shrink-0" iconClassName="h-3 w-3" />
                               </div>
                             </div>
                           </div>
                         </TableCell>
                         <TableCell data-label="Email">
                           <div className="text-sm text-gray-900 dark:text-gray-100">
-                            <span>{user.email}</span>
+                            {user.email}
                           </div>
-                          <div className="text-xs text-body font-mono mt-1 flex items-center space-x-1">
-                            <span>ID:</span> <span>{user.uid}</span>
-                            <CopyButton value={user.uid} className="h-4 w-4" iconClassName="h-3 w-3" />
+                        </TableCell>
+                        <TableCell data-label="Téléphone">
+                          <div className="text-sm text-gray-900 dark:text-gray-100">
+                            {user.phone || '—'}
                           </div>
                         </TableCell>
                         <TableCell data-label="Statut">
@@ -696,42 +700,44 @@ function UsersPageContent() {
                                 : "bg-red-200 text-red-800 dark:bg-red-900/20 dark:text-red-300"
                             }
                           >
-                            <span>{user.is_active ? 'Actif' : 'Inactif'}</span>
+                            {user.is_active ? 'Actif' : 'Inactif'}
                           </Badge>
                         </TableCell>
                         <TableCell data-label="Vérification">
-                          <div className="flex items-center space-x-2">
+                          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                             <Badge
                               variant="outline"
                               className={
                                 user.email_verified
-                                  ? "border-green-200 text-green-700 dark:border-green-700 dark:text-green-300"
-                                  : "border-red-200 text-red-700 dark:border-red-700 dark:text-red-300"
+                                  ? "border-green-200 bg-green-50 text-green-700 dark:border-green-700 dark:bg-green-900/20 dark:text-green-300"
+                                  : "border-red-200 bg-red-50 text-red-700 dark:border-red-700 dark:bg-red-900/20 dark:text-red-300"
                               }
                             >
                               <Mail className="h-3 w-3 mr-1" />
-                              <span>{user.email_verified ? 'Vérifié' : 'Non vérifié'}</span>
+                              {user.email_verified ? 'Email ✓' : 'Email ✗'}
                             </Badge>
                             <Badge
                               variant="outline"
                               className={
                                 user.phone_verified
-                                  ? "border-green-200 text-green-700 dark:border-green-700 dark:text-green-300"
-                                  : "border-red-200 text-red-700 dark:border-red-700 dark:text-red-300"
+                                  ? "border-green-200 bg-green-50 text-green-700 dark:border-green-700 dark:bg-green-900/20 dark:text-green-300"
+                                  : "border-red-200 bg-red-50 text-red-700 dark:border-red-700 dark:bg-red-900/20 dark:text-red-300"
                               }
                             >
                               <Phone className="h-3 w-3 mr-1" />
-                              <span>{user.phone_verified ? 'Vérifié' : 'Non vérifié'}</span>
+                              {user.phone_verified ? 'Tél. ✓' : 'Tél. ✗'}
                             </Badge>
                           </div>
                         </TableCell>
                         <TableCell data-label="Créé le">
-                          <div className="text-sm text-body dark:text-bodydark2">
-                            <span>{user.created_at}</span>
+                          <div className="text-sm text-body dark:text-bodydark2 whitespace-nowrap">
+                            {user.created_at
+                              ? new Date(user.created_at).toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" })
+                              : '—'}
                           </div>
                         </TableCell>
                         <TableCell className="text-right" data-label="Actions">
-                          <div className="flex flex-wrap gap-1.5">
+                          <div className="flex flex-wrap justify-end gap-1.5">
                             <button
                               onClick={() => handleOpenDetail(user.uid)}
                               className="inline-flex items-center gap-1.5 rounded-md border border-stroke bg-white px-2.5 py-1.5 text-xs font-medium text-body shadow-sm hover:border-primary hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-bodydark"
