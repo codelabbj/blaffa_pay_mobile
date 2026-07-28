@@ -1126,7 +1126,14 @@ function TransactionsPageContent() {
                       {/* Row 3: Phone + verified · Date · relative */}
                       <div className="mt-1.5 flex items-center gap-x-4 gap-y-1 flex-wrap text-sm">
                         <div className="flex items-center gap-1.5 font-semibold text-gray-800 dark:text-gray-100">
-                          {transaction.recipient_phone || "—"}
+                          <span>{transaction.recipient_phone || "—"}</span>
+                          {transaction.recipient_phone && (
+                            <CopyButton
+                              value={transaction.recipient_phone}
+                              className="h-4 w-4 opacity-70"
+                              iconClassName="h-3 w-3"
+                            />
+                          )}
                           <span title="Numéro vérifié">
                             <CheckCircle className="h-4 w-4 text-blue-500" />
                           </span>
