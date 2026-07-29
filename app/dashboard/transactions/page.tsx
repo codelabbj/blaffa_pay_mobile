@@ -1227,26 +1227,23 @@ function TransactionsPageContent() {
                           const isReceived = parsed.role === "received"
                           const isFailStep = isFailed && isReceived && idx === lastReceivedIdx
                           return (
-                            <div className="grid grid-cols-[140px_1fr] gap-x-3 px-3 py-2.5 border-t border-gray-100 dark:border-strokedark/60 items-start">
-                              {/* Fixed-width badge column */}
-                              <div className="pt-0.5 flex-shrink-0">
-                                {isReceived ? (
-                                  <span className="inline-flex items-center gap-1 rounded-md bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700/50 px-2 py-1 text-xs font-semibold text-green-800 dark:text-green-300 leading-tight">
-                                    📩 Réponse opérateur
-                                  </span>
-                                ) : (
-                                  <span className="inline-flex items-center gap-1 rounded-md bg-purple-100 dark:bg-purple-900/30 border border-purple-300 dark:border-purple-700/50 px-2 py-1 text-xs font-semibold text-purple-700 dark:text-purple-300 leading-tight">
-                                    ▬ Le robot envoie
-                                  </span>
-                                )}
-                              </div>
-                              {/* Text column: min-w-0 forces wrap within this column only */}
-                              <p className={`min-w-0 text-sm font-medium leading-snug break-words ${isFailStep ? "text-red-600 dark:text-red-400" : "text-gray-800 dark:text-gray-100"}`}>
+                            <div className="px-3 py-2.5 border-t border-gray-100 dark:border-strokedark/60 leading-relaxed">
+                              {/* Badge inline — text flows right of it, then wraps full-width below */}
+                              {isReceived ? (
+                                <span className="inline-flex items-center gap-1 rounded-md bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700/50 px-2 py-0.5 text-xs font-semibold text-green-800 dark:text-green-300 align-middle mr-2 mb-0.5">
+                                  📩 Réponse opérateur
+                                </span>
+                              ) : (
+                                <span className="inline-flex items-center gap-1 rounded-md bg-purple-100 dark:bg-purple-900/30 border border-purple-300 dark:border-purple-700/50 px-2 py-0.5 text-xs font-semibold text-purple-700 dark:text-purple-300 align-middle mr-2 mb-0.5">
+                                  ▬ Le robot envoie
+                                </span>
+                              )}
+                              <span className={`text-xs font-mono font-medium whitespace-pre-wrap break-words align-middle ${isFailStep ? "text-red-600 dark:text-red-400" : "text-gray-700 dark:text-bodydark"}`}>
                                 {parsed.text}
                                 {isFailStep && (
                                   <span className="ml-2 font-bold text-red-600 dark:text-red-400">← la raison de l'échec</span>
                                 )}
-                              </p>
+                              </span>
                             </div>
                           )
                         }
