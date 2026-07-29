@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useLanguage } from "@/components/providers/language-provider"
 import { useApi } from "@/lib/useApi"
-import { Search, ChevronLeft, ChevronRight, ArrowUpDown, Pencil, Trash, CreditCard, TrendingUp, DollarSign, Clock, CheckCircle, XCircle, AlertCircle, Plus, Filter, MoreHorizontal, Eye, TrendingDown, Calendar, X, RefreshCw } from "lucide-react"
+import { Search, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, ArrowUpDown, Pencil, Trash, CreditCard, TrendingUp, DollarSign, Clock, CheckCircle, XCircle, AlertCircle, Plus, Filter, MoreHorizontal, Eye, TrendingDown, Calendar, X, RefreshCw } from "lucide-react"
 import {
   Dialog,
   DialogTrigger,
@@ -144,6 +144,7 @@ function TransactionsPageContent() {
   })
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">((searchParams.get("sort_dir") as any) || "desc")
   const [bulkLoading, setBulkLoading] = useState(false)
+  const [expandedUssd, setExpandedUssd] = useState<Set<string>>(new Set())
   const [transactions, setTransactions] = useState<any[]>([])
   const [totalCount, setTotalCount] = useState(0)
   const [loading, setLoading] = useState(false)
@@ -1182,6 +1183,105 @@ function TransactionsPageContent() {
                           </div>
                         </div>
                       )}
+                      {/* USSD Path Trace */}
+                      {(() => {
+                        const rawPath = transaction.ussd_path
+                        if (!rawPath || !Array.isArray(rawPath) || rawPath.length === 0) return null
+
+                        const parseStep = (entry: string): { role: "sent" | "received"; text: string } | null => {
+                          const s = String(entry)
+                          if (s.startsWith("Envoyé:") || s.startsWith("Envoye:")) {
+                            return { role: "sent", text: s.replace(/^Envoy[eé]:\s*/, "").trim() }
+                          }
+                          if (s.startsWith("Reçu:") || s.startsWith("Recu:")) {
+                            return { role: "received", text: s.replace(/^Re[cç]u:\s*/, "").trim() }
+                          }
+                          return null
+                        }
+
+                        const firstParsed = parseStep(rawPath[0])
+                        const dialedCode = firstParsed?.role === "sent" ? firstParsed.text : rawPath[0]
+                        const steps = rawPath.slice(1)
+
+                        let lastReceivedIdx = -1
+                        steps.forEach((entry: string, i: number) => {
+                          const p = parseStep(entry)
+                          if (p?.role === "received") lastReceivedIdx = i
+                        })
+                        const isFailed = ["failed", "cancelled", "timeout"].includes(transaction.status)
+                        const isExpanded = expandedUssd.has(transaction.uid)
+                        const toggleExpand = () => setExpandedUssd(prev => {
+                          const next = new Set(prev)
+                          next.has(transaction.uid) ? next.delete(transaction.uid) : next.add(transaction.uid)
+                          return next
+                        })
+
+                        // Collapsed: show only dialed code header + first received step
+                        const firstReceivedIdx = steps.findIndex(e => parseStep(e)?.role === "received")
+                        const visibleSteps = isExpanded ? steps : steps.slice(0, firstReceivedIdx + 1)
+                        const hiddenCount = steps.length - (firstReceivedIdx + 1)
+
+                        const StepRow = ({ entry, idx }: { entry: string; idx: number }) => {
+                          const parsed = parseStep(entry)
+                          if (!parsed) return null
+                          const isReceived = parsed.role === "received"
+                          const isFailStep = isFailed && isReceived && idx === lastReceivedIdx
+                          return (
+                            <div className="grid grid-cols-[140px_1fr] gap-x-3 px-3 py-2.5 border-t border-gray-100 dark:border-strokedark/60 items-start">
+                              {/* Fixed-width badge column */}
+                              <div className="pt-0.5 flex-shrink-0">
+                                {isReceived ? (
+                                  <span className="inline-flex items-center gap-1 rounded-md bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700/50 px-2 py-1 text-xs font-semibold text-green-800 dark:text-green-300 leading-tight">
+                                    📩 Réponse opérateur
+                                  </span>
+                                ) : (
+                                  <span className="inline-flex items-center gap-1 rounded-md bg-purple-100 dark:bg-purple-900/30 border border-purple-300 dark:border-purple-700/50 px-2 py-1 text-xs font-semibold text-purple-700 dark:text-purple-300 leading-tight">
+                                    ▬ Le robot envoie
+                                  </span>
+                                )}
+                              </div>
+                              {/* Text column: min-w-0 forces wrap within this column only */}
+                              <p className={`min-w-0 text-sm font-medium leading-snug break-words ${isFailStep ? "text-red-600 dark:text-red-400" : "text-gray-800 dark:text-gray-100"}`}>
+                                {parsed.text}
+                                {isFailStep && (
+                                  <span className="ml-2 font-bold text-red-600 dark:text-red-400">← la raison de l'échec</span>
+                                )}
+                              </p>
+                            </div>
+                          )
+                        }
+
+                        return (
+                          <div className="mt-3 rounded-xl border border-gray-200 dark:border-strokedark bg-gray-50 dark:bg-boxdark-2 overflow-hidden">
+                            {/* Header: dialed code */}
+                            <div className="flex items-center gap-3 px-3 py-2.5 bg-white dark:bg-boxdark">
+                              <span className="inline-flex items-center gap-1.5 rounded-md bg-gray-100 dark:bg-meta-4 border border-gray-300 dark:border-strokedark px-2.5 py-1 text-xs font-semibold text-gray-700 dark:text-gray-200 whitespace-nowrap flex-shrink-0">
+                                📞 Code composé
+                              </span>
+                              <span className="font-mono text-sm font-bold text-gray-900 dark:text-gray-100">{dialedCode}</span>
+                            </div>
+                            {/* Visible steps */}
+                            {visibleSteps.map((entry: string, idx: number) => (
+                              <StepRow key={idx} entry={entry} idx={idx} />
+                            ))}
+                            {/* Expand / collapse toggle */}
+                            {hiddenCount > 0 && (
+                              <button
+                                type="button"
+                                onClick={toggleExpand}
+                                className="w-full flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-primary dark:text-blue-400 hover:bg-gray-100 dark:hover:bg-meta-4/40 transition border-t border-gray-100 dark:border-strokedark/60"
+                              >
+                                {isExpanded ? (
+                                  <><ChevronUp className="h-3.5 w-3.5" /> Réduire</>
+                                ) : (
+                                  <><ChevronDown className="h-3.5 w-3.5" /> Voir {hiddenCount} étape{hiddenCount > 1 ? "s" : ""} de plus</>
+                                )}
+                              </button>
+                            )}
+                          </div>
+                        )
+                      })()}
+
                       {transaction.raw_sms && (
                         <div className="mt-2 text-xs text-red-600 dark:text-red-400 font-medium">
                           [DEJA PAYE] ⚠️ <span>{truncate(transaction.raw_sms, 120)}</span>

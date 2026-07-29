@@ -1,6 +1,8 @@
 "use client"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 
+export const dynamicParams = false;
+export function generateStaticParams() { return []; }
 export default function NetworkConfigUpdatePage() {
   return (
     <Card>
